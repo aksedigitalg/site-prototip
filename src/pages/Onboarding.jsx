@@ -1,24 +1,27 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { MapPin, Zap, Users } from 'lucide-react'
 
 const slides = [
   {
-    Icon: MapPin,
-    title: 'Şehrini Keşfet',
+    title: 'Şehrini\nKeşfet',
     desc: 'Etkinlikler, mekanlar ve daha fazlası — yaşadığın şehri hiç bu kadar yakından tanımadın.',
+    // ribbon: soldan girer, büyük döngü, sağdan çıkar
+    path: 'M -25 130 C 80 -40, 460 60, 430 280 C 400 500, -30 470, 15 640 C 45 770, 350 840, 465 790',
   },
   {
-    Icon: Zap,
-    title: 'Anında Bul',
-    desc: 'Bulunduğun konuma göre en iyi yerleri, kısa yolları ve gizli hazineleri anında keşfet.',
+    title: 'Anında\nBul',
+    desc: 'Bulunduğun konuma göre en iyi yerleri ve gizli hazineleri anında keşfet.',
+    path: 'M -25 160 C 60 -20, 470 80, 440 300 C 410 520, -20 490, 20 660 C 50 790, 360 850, 465 800',
   },
   {
-    Icon: Users,
-    title: 'Topluluğa Katıl',
+    title: 'Topluluğa\nKatıl',
     desc: 'Şehrin nabzını tut. Yerel toplulukla bağlan, paylaş ve birlikte keşfet.',
+    path: 'M -25 110 C 100 -50, 450 70, 415 290 C 380 510, -25 480, 10 650 C 40 790, 340 850, 465 800',
   },
 ]
+
+const RIBBON_COLOR = '#8B5CF6'
+const RIBBON_BG = '#F5F3FF'
 
 export default function Onboarding() {
   const [current, setCurrent] = useState(0)
@@ -33,12 +36,42 @@ export default function Onboarding() {
     }
   }
 
-  const { Icon, title, desc } = slides[current]
+  const slide = slides[current]
 
   return (
-    <div className="min-h-screen bg-white flex flex-col px-6 py-12">
-      {/* Skip */}
-      <div className="flex justify-end">
+    <div
+      className="min-h-screen relative overflow-hidden flex flex-col"
+      style={{ backgroundColor: RIBBON_BG }}
+    >
+      {/* SVG Ribbon */}
+      <svg
+        className="absolute inset-0 w-full h-full pointer-events-none"
+        viewBox="0 0 430 870"
+        preserveAspectRatio="xMidYMid slice"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        {/* Arka şerit — hafif soluk, derinlik için */}
+        <path
+          d={slide.path}
+          stroke={RIBBON_COLOR}
+          strokeWidth="38"
+          fill="none"
+          strokeLinecap="round"
+          opacity="0.12"
+        />
+        {/* Ön şerit — ana */}
+        <path
+          d={slide.path}
+          stroke={RIBBON_COLOR}
+          strokeWidth="22"
+          fill="none"
+          strokeLinecap="round"
+          opacity="0.85"
+        />
+      </svg>
+
+      {/* Geç butonu */}
+      <div className="absolute top-12 right-6 z-10">
         <button
           onClick={() => {
             localStorage.setItem('sehir_onboarded', '1')
@@ -50,35 +83,41 @@ export default function Onboarding() {
         </button>
       </div>
 
-      {/* Content */}
-      <div className="flex-1 flex flex-col items-center justify-center text-center gap-6">
-        <div className="w-24 h-24 rounded-3xl bg-gray-100 flex items-center justify-center shadow-sm mb-2">
-          <Icon size={40} strokeWidth={1.5} className="text-gray-900" />
+      {/* Alt içerik */}
+      <div className="absolute bottom-0 left-0 right-0 px-7 pb-14 z-10">
+        {/* Dots */}
+        <div className="flex gap-2 mb-7">
+          {slides.map((_, i) => (
+            <div
+              key={i}
+              className="h-1.5 rounded-full transition-all duration-300"
+              style={{
+                width: i === current ? 24 : 6,
+                backgroundColor: i === current ? RIBBON_COLOR : '#D1D5DB',
+              }}
+            />
+          ))}
         </div>
-        <h1 className="text-gray-900 text-3xl font-bold leading-tight">{title}</h1>
-        <p className="text-gray-500 text-base leading-relaxed max-w-xs">{desc}</p>
-      </div>
 
-      {/* Dots */}
-      <div className="flex gap-2 justify-center mb-8">
-        {slides.map((_, i) => (
-          <div
-            key={i}
-            onClick={() => setCurrent(i)}
-            className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-              i === current ? 'w-6 bg-gray-900' : 'w-2 bg-gray-200'
-            }`}
-          />
-        ))}
-      </div>
+        {/* Başlık */}
+        <h1 className="text-gray-900 text-4xl font-bold leading-tight mb-3 whitespace-pre-line">
+          {slide.title}
+        </h1>
 
-      {/* Button */}
-      <button
-        onClick={handleNext}
-        className="w-full bg-gray-900 text-white font-semibold text-base py-4 rounded-2xl shadow-sm active:scale-95 transition-transform"
-      >
-        {current < slides.length - 1 ? 'İleri' : 'Başla'}
-      </button>
+        {/* Açıklama */}
+        <p className="text-gray-500 text-sm leading-relaxed mb-8 max-w-xs">
+          {slide.desc}
+        </p>
+
+        {/* Buton */}
+        <button
+          onClick={handleNext}
+          className="w-full text-white font-semibold text-base py-4 rounded-2xl active:scale-95 transition-transform"
+          style={{ backgroundColor: RIBBON_COLOR }}
+        >
+          {current < slides.length - 1 ? 'İleri' : 'Başla'}
+        </button>
+      </div>
     </div>
   )
 }
