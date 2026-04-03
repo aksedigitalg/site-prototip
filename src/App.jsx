@@ -6,6 +6,10 @@ import ForgotPassword from './pages/ForgotPassword'
 import ResetOTP from './pages/ResetOTP'
 import NewPassword from './pages/NewPassword'
 import Home from './pages/Home'
+import Search from './pages/Search'
+import Explore from './pages/Explore'
+import Campaigns from './pages/Campaigns'
+import Profile from './pages/Profile'
 
 function PrivateRoute({ children }) {
   const session = localStorage.getItem('sehir_session')
@@ -53,7 +57,11 @@ export default function App() {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-otp" element={<ResetOTP />} />
           <Route path="/new-password" element={<NewPassword />} />
-          <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
+          <Route path="/home"      element={<PrivateRoute><Home /></PrivateRoute>} />
+          <Route path="/search"    element={<PrivateRoute><Search /></PrivateRoute>} />
+          <Route path="/explore"   element={<PrivateRoute><Explore /></PrivateRoute>} />
+          <Route path="/campaigns" element={<PrivateRoute><Campaigns /></PrivateRoute>} />
+          <Route path="/profile"   element={<PrivateRoute><Profile /></PrivateRoute>} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
         <DevReset />
