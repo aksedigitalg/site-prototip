@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import Onboarding from './pages/Onboarding'
 import Login from './pages/Login'
 import Register from './pages/Register'
@@ -74,14 +74,14 @@ function AdminRoute({ children }) {
   return session ? children : <Navigate to="/admin/login" replace />
 }
 
-export default function App() {
-  const session  = localStorage.getItem('sehir_session')
+function AnimatedRoutes() {
+  const location = useLocation()
+  const session   = localStorage.getItem('sehir_session')
   const onboarded = localStorage.getItem('sehir_onboarded')
 
   return (
-    <div className="flex justify-center bg-slate-100 min-h-screen">
-      <div className="w-full max-w-[430px] min-h-screen bg-white relative overflow-hidden">
-        <Routes>
+    <div key={location.pathname} className="page-transition">
+      <Routes>
           {/* ── Yönlendirme ── */}
           <Route
             path="/"
@@ -168,6 +168,15 @@ export default function App() {
 
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
+    </div>
+  )
+}
+
+export default function App() {
+  return (
+    <div className="flex justify-center bg-slate-100 min-h-screen">
+      <div className="w-full max-w-[430px] min-h-screen bg-white relative overflow-hidden">
+        <AnimatedRoutes />
       </div>
     </div>
   )
