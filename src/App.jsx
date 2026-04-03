@@ -15,6 +15,10 @@ import IlanlarPage from './pages/IlanlarPage'
 import EmlakDetail from './pages/EmlakDetail'
 import VasitaDetail from './pages/VasitaDetail'
 import IkincielDetail from './pages/IkincielDetail'
+import EtkinliklerPage from './pages/EtkinliklerPage'
+import EtkinlikDetail from './pages/EtkinlikDetail'
+import AlisverisPage from './pages/AlisverisPage'
+import SaticiProfil from './pages/SaticiProfil'
 import Search from './pages/Search'
 import Explore from './pages/Explore'
 import Campaigns from './pages/Campaigns'
@@ -76,6 +80,10 @@ export default function App() {
           <Route path="/ilanlar/emlak/:id"   element={<PrivateRoute><EmlakDetail /></PrivateRoute>} />
           <Route path="/ilanlar/vasita/:id"  element={<PrivateRoute><VasitaDetail /></PrivateRoute>} />
           <Route path="/ilanlar/ikinciel/:id" element={<PrivateRoute><IkincielDetail /></PrivateRoute>} />
+          <Route path="/etkinlikler"         element={<PrivateRoute><EtkinliklerPage /></PrivateRoute>} />
+          <Route path="/etkinlik/:id"        element={<PrivateRoute><EtkinlikDetail /></PrivateRoute>} />
+          <Route path="/alisveris"           element={<PrivateRoute><AlisverisPage /></PrivateRoute>} />
+          <Route path="/magaza/:id"          element={<PrivateRoute><SaticiProfil /></PrivateRoute>} />
           <Route path="/search"    element={<PrivateRoute><Search /></PrivateRoute>} />
           <Route path="/explore"   element={<PrivateRoute><Explore /></PrivateRoute>} />
           <Route path="/campaigns" element={<PrivateRoute><Campaigns /></PrivateRoute>} />

@@ -22,8 +22,8 @@ const CATEGORIES = [
   { icon: Wrench,          label: 'Hizmetler',  path: '/services' },
   { icon: Briefcase,       label: 'İş İlanları',path: null },
   { icon: Tag,             label: 'İlanlar',    path: '/ilanlar' },
-  { icon: Calendar,        label: 'Etkinlikler',path: null },
-  { icon: ShoppingBag,     label: 'Alışveriş',  path: null },
+  { icon: Calendar,        label: 'Etkinlikler',path: '/etkinlikler' },
+  { icon: ShoppingBag,     label: 'Alışveriş',  path: '/alisveris' },
 ]
 
 function NearbyCard({ icon: Icon, title, type, onPress }) {
