@@ -4,7 +4,6 @@ import {
   ArrowLeft, Calendar, MapPin, Star, Users,
 } from 'lucide-react'
 import { ARACLAR, ARAC_KATEGORILER } from '../data/mockAracKiralama'
-import BottomNav from '../components/BottomNav'
 
 function StarRow({ puan }) {
   return (
@@ -185,7 +184,6 @@ export default function AracKiralamaPage() {
 
       </div>
 
-      <BottomNav active="" />
     </div>
   )
 }

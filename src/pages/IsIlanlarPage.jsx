@@ -4,7 +4,6 @@ import {
   ArrowLeft, Search, MapPin, Clock, Briefcase, ChevronRight, Bookmark,
 } from 'lucide-react'
 import { IS_ILANLARI, IS_KATEGORILER, IS_TURLERI } from '../data/mockIsIlanlari'
-import BottomNav from '../components/BottomNav'
 
 const TUR_RENK = {
   tam:       { bg: '#f0fdf4', text: '#15803d' },
@@ -189,7 +188,6 @@ export default function IsIlanlarPage() {
 
       </div>
 
-      <BottomNav active="" />
     </div>
   )
 }

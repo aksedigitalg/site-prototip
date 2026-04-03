@@ -1,4 +1,5 @@
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
+import BottomNav from './components/BottomNav'
 import Onboarding from './pages/Onboarding'
 import Login from './pages/Login'
 import Register from './pages/Register'
@@ -91,6 +92,7 @@ function AnimatedRoutes() {
   const onboarded = localStorage.getItem('sehir_onboarded')
 
   return (
+    <>
     <div key={location.pathname} className="page-transition">
       <Routes>
           {/* ── Yönlendirme ── */}
@@ -191,6 +193,8 @@ function AnimatedRoutes() {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
     </div>
+    <BottomNav />
+    </>
   )
 }
 

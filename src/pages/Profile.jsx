@@ -4,8 +4,49 @@ import {
   CalendarDays, Clock, MessageCircle, FileText,
   Crown, Gift,
 } from 'lucide-react'
-import BottomNav from '../components/BottomNav'
 import { REZERVASYONLAR, RANDEVULAR, KONUSMALAR, TEKLIFLER } from '../data/mockMesajlar'
+
+const AYLIK_VERI = [
+  { ay: 'Eki', v: 2 }, { ay: 'Kas', v: 5 }, { ay: 'Ara', v: 3 },
+  { ay: 'Oca', v: 8 }, { ay: 'Şub', v: 4 }, { ay: 'Mar', v: 7 },
+]
+
+function AktiviteChart({ toplamBuAy }) {
+  const data = [...AYLIK_VERI, { ay: 'Nis', v: Math.max(toplamBuAy, 1) }]
+  const max  = Math.max(...data.map(d => d.v), 1)
+  const BAR_W = 26
+  const CHART_H = 56
+  const totalW = data.length * BAR_W + (data.length - 1) * 10
+
+  return (
+    <svg viewBox={`0 0 ${totalW} 72`} className="w-full" style={{ height: 72 }}>
+      {data.map((d, i) => {
+        const barH  = Math.max((d.v / max) * CHART_H, 4)
+        const x     = i * (BAR_W + 10)
+        const isLast = i === data.length - 1
+        return (
+          <g key={d.ay}>
+            <rect
+              x={x} y={CHART_H - barH}
+              width={BAR_W} height={barH}
+              rx={6}
+              fill={isLast ? '#111827' : '#e5e7eb'}
+            />
+            <text
+              x={x + BAR_W / 2} y={68}
+              textAnchor="middle"
+              fontSize={9}
+              fill={isLast ? '#6b7280' : '#9ca3af'}
+              fontWeight={isLast ? '600' : '400'}
+            >
+              {d.ay}
+            </text>
+          </g>
+        )
+      })}
+    </svg>
+  )
+}
 
 export default function Profile() {
   const navigate = useNavigate()
@@ -65,6 +106,15 @@ export default function Profile() {
             <p className="text-gray-400 text-sm mt-0.5">+90 {user?.phone}</p>
             <p className="text-gray-300 text-xs mt-0.5">Üye · 2026</p>
           </div>
+        </div>
+
+        {/* Aylık Aktivite Chart */}
+        <div className="bg-white border border-gray-100 rounded-2xl px-4 py-4 shadow-sm">
+          <div className="flex items-center justify-between mb-3">
+            <p className="text-gray-800 text-sm font-bold">Aylık Aktivite</p>
+            <span className="text-gray-400 text-xs">Son 7 ay</span>
+          </div>
+          <AktiviteChart toplamBuAy={rezSayi + rnvSayi + tklSayi} />
         </div>
 
         {/* İstatistik grid */}
@@ -196,7 +246,6 @@ export default function Profile() {
 
       </div>
 
-      <BottomNav active="profile" />
     </div>
   )
 }

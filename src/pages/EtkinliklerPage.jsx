@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Search, ChevronLeft, MapPin, Clock, ChevronRight } from 'lucide-react'
-import BottomNav from '../components/BottomNav'
 import { ETKINLIK_CATEGORIES, ETKINLIKLER } from '../data/mockEtkinlikler'
 import StoryBar from '../components/StoryBar'
 import { STORIES, MARKALAR } from '../data/mockStory'
@@ -194,7 +193,6 @@ export default function EtkinliklerPage() {
 
       </div>
 
-      <BottomNav active="home" />
     </div>
   )
 }

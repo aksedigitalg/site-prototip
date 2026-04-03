@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ChevronRight, Star, MapPin, Plus, Clock, MessageCircle } from 'lucide-react'
-import BottomNav from '../components/BottomNav'
 import {
   HERO_ITEMS,
   POPULER_YERLER,
@@ -266,7 +265,6 @@ export default function Explore() {
 
       </div>
 
-      <BottomNav active="explore" />
     </div>
   )
 }

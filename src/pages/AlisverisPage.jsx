@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Search, ChevronLeft, Star, MapPin, Tag } from 'lucide-react'
-import BottomNav from '../components/BottomNav'
 import { MAGAZA_CATEGORIES, MAGAZALAR } from '../data/mockAlisveris'
 import StoryBar from '../components/StoryBar'
 import { STORIES, MARKALAR } from '../data/mockStory'
@@ -124,7 +123,6 @@ export default function AlisverisPage() {
 
       </div>
 
-      <BottomNav active="home" />
     </div>
   )
 }

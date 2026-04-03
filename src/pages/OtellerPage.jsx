@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ArrowLeft, Search, Star, MapPin, Calendar, Users } from 'lucide-react'
 import { OTELLER, OTEL_KATEGORILER } from '../data/mockOtel'
-import BottomNav from '../components/BottomNav'
 
 function StarRow({ puan }) {
   return (
@@ -167,7 +166,6 @@ export default function OtellerPage() {
 
       </div>
 
-      <BottomNav active="" />
     </div>
   )
 }

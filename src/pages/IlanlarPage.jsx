@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Search, ChevronLeft, MapPin, BedDouble, Maximize2, Gauge, Fuel, Car } from 'lucide-react'
-import BottomNav from '../components/BottomNav'
 import {
   EMLAK_SUBCATEGORIES, EMLAK_STATUS, EMLAK_LISTINGS,
   VASITA_SUBCATEGORIES, VASITA_LISTINGS,
@@ -353,7 +352,6 @@ export default function IlanlarPage() {
         )}
       </div>
 
-      <BottomNav active="home" />
     </div>
   )
 }

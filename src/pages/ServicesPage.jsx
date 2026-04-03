@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Search, Star, MapPin, ChevronLeft, CheckCircle } from 'lucide-react'
-import BottomNav from '../components/BottomNav'
 import { SERVICE_CATEGORIES, SERVICE_FILTERS, SERVICES } from '../data/mockServices'
 import StoryBar from '../components/StoryBar'
 import { STORIES, MARKALAR } from '../data/mockStory'
@@ -153,7 +152,6 @@ export default function ServicesPage() {
 
       </div>
 
-      <BottomNav active="home" />
     </div>
   )
 }

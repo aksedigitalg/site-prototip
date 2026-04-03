@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { ArrowLeft, Calendar, Clock, Users, CheckCircle } from 'lucide-react'
+import { ArrowLeft, Calendar, Clock, Users, CheckCircle, ChevronLeft, ChevronRight } from 'lucide-react'
 import { RESTAURANTS } from '../data/mockFood'
 
 const SAAT_DILIMLERI = [
@@ -8,10 +8,105 @@ const SAAT_DILIMLERI = [
   '18:00','18:30','19:00','19:30','20:00','20:30','21:00','21:30','22:00',
 ]
 
-function tarihEkle(gun) {
-  const d = new Date()
-  d.setDate(d.getDate() + gun)
-  return d.toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', weekday: 'long' })
+const AYLAR_TR = ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık']
+const GUN_BASLIKLARI = ['Pt','Sa','Çr','Pe','Cu','Ct','Pz']
+
+function gunEsit(a, b) {
+  return a.getFullYear() === b.getFullYear() &&
+         a.getMonth()    === b.getMonth()    &&
+         a.getDate()     === b.getDate()
+}
+
+function MiniCalendar({ secilenTarih, onChange }) {
+  const bugun = new Date()
+  bugun.setHours(0, 0, 0, 0)
+
+  const [gorulenAy, setGorulenAy] = useState(new Date(bugun))
+
+  const ayBaslangic = new Date(gorulenAy.getFullYear(), gorulenAy.getMonth(), 1)
+  const ayBitis     = new Date(gorulenAy.getFullYear(), gorulenAy.getMonth() + 1, 0)
+  const baslangicGunu = (ayBaslangic.getDay() + 6) % 7 // Pt=0 bazlı
+
+  const gunler = []
+  for (let i = 1; i <= ayBitis.getDate(); i++) {
+    gunler.push(new Date(gorulenAy.getFullYear(), gorulenAy.getMonth(), i))
+  }
+
+  function oncekiAy() {
+    setGorulenAy(new Date(gorulenAy.getFullYear(), gorulenAy.getMonth() - 1, 1))
+  }
+  function sonrakiAy() {
+    setGorulenAy(new Date(gorulenAy.getFullYear(), gorulenAy.getMonth() + 1, 1))
+  }
+
+  const oncekiAyGoster = ayBaslangic > bugun
+
+  return (
+    <div>
+      {/* Ay navigasyonu */}
+      <div className="flex items-center justify-between mb-3">
+        <button
+          onClick={oncekiAy}
+          disabled={!oncekiAyGoster}
+          className="w-8 h-8 rounded-xl bg-gray-100 flex items-center justify-center active:bg-gray-200 disabled:opacity-30"
+        >
+          <ChevronLeft size={16} strokeWidth={2} className="text-gray-600" />
+        </button>
+        <span className="text-gray-800 text-sm font-bold">
+          {AYLAR_TR[gorulenAy.getMonth()]} {gorulenAy.getFullYear()}
+        </span>
+        <button
+          onClick={sonrakiAy}
+          className="w-8 h-8 rounded-xl bg-gray-100 flex items-center justify-center active:bg-gray-200"
+        >
+          <ChevronRight size={16} strokeWidth={2} className="text-gray-600" />
+        </button>
+      </div>
+
+      {/* Gün başlıkları */}
+      <div className="grid grid-cols-7 mb-1">
+        {GUN_BASLIKLARI.map(g => (
+          <div key={g} className="text-center text-[10px] font-semibold text-gray-400 py-1">{g}</div>
+        ))}
+      </div>
+
+      {/* Günler */}
+      <div className="grid grid-cols-7 gap-y-1">
+        {/* Boşluk hücreleri */}
+        {Array.from({ length: baslangicGunu }).map((_, i) => (
+          <div key={`bos-${i}`} />
+        ))}
+        {/* Gün butonları */}
+        {gunler.map(gun => {
+          const gecmis   = gun < bugun
+          const secili   = secilenTarih && gunEsit(gun, secilenTarih)
+          const bugunMu  = gunEsit(gun, bugun)
+          return (
+            <button
+              key={gun.getDate()}
+              onClick={() => !gecmis && onChange(gun)}
+              disabled={gecmis}
+              className="aspect-square flex items-center justify-center rounded-xl text-sm font-medium transition-all active:scale-90"
+              style={{
+                background: secili ? '#111827' : 'transparent',
+                color:      secili ? '#ffffff' : gecmis ? '#d1d5db' : '#1f2937',
+                outline:    bugunMu && !secili ? '1.5px solid #d1d5db' : 'none',
+              }}
+            >
+              {gun.getDate()}
+            </button>
+          )
+        })}
+      </div>
+
+      {/* Seçilen tarih gösterimi */}
+      {secilenTarih && (
+        <p className="text-center text-xs text-gray-400 mt-3">
+          {secilenTarih.toLocaleDateString('tr-TR', { weekday: 'long', day: 'numeric', month: 'long' })}
+        </p>
+      )}
+    </div>
+  )
 }
 
 export default function RezervasyonForm() {
@@ -19,19 +114,20 @@ export default function RezervasyonForm() {
   const navigate = useNavigate()
   const restaurant = RESTAURANTS.find(r => r.id === parseInt(id))
 
-  const [secilenGun,  setSecilenGun]  = useState(0)
-  const [secilenSaat, setSecilenSaat] = useState(null)
-  const [kisi,        setKisi]        = useState(2)
-  const [not,         setNot]         = useState('')
-  const [basarili,    setBasarili]    = useState(false)
+  const bugun = new Date()
+  bugun.setHours(0, 0, 0, 0)
+
+  const [secilenTarih, setSecilenTarih] = useState(bugun)
+  const [secilenSaat,  setSecilenSaat]  = useState(null)
+  const [kisi,         setKisi]         = useState(2)
+  const [not,          setNot]          = useState('')
+  const [basarili,     setBasarili]     = useState(false)
 
   if (!restaurant) return null
 
-  const GUNLER = [
-    { label: 'Bugün',      tarih: tarihEkle(0), gun: 0 },
-    { label: 'Yarın',      tarih: tarihEkle(1), gun: 1 },
-    { label: 'Öbür Gün',  tarih: tarihEkle(2), gun: 2 },
-  ]
+  const tarihLabel = secilenTarih
+    ? secilenTarih.toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', weekday: 'long' })
+    : ''
 
   function handleSubmit() {
     if (!secilenSaat) return
@@ -40,7 +136,7 @@ export default function RezervasyonForm() {
       restaurantId: restaurant.id,
       restaurantName: restaurant.name,
       restaurantLogo: '🍽️',
-      tarih: GUNLER[secilenGun].tarih,
+      tarih: tarihLabel,
       saat: secilenSaat,
       kisiSayisi: kisi,
       not,
@@ -59,8 +155,7 @@ export default function RezervasyonForm() {
         </div>
         <h1 className="text-gray-900 text-xl font-bold">Rezervasyon Alındı!</h1>
         <p className="text-gray-500 text-sm mt-2 leading-relaxed">
-          {restaurant.name} için {GUNLER[secilenGun].tarih} saat {secilenSaat}
-          {'\n'}{kisi} kişilik rezervasyonunuz alındı.
+          {restaurant.name} için {tarihLabel} saat {secilenSaat}, {kisi} kişilik rezervasyonunuz alındı.
         </p>
         <p className="text-gray-400 text-xs mt-1">Onay için sizi arayabiliriz.</p>
         <button
@@ -84,7 +179,7 @@ export default function RezervasyonForm() {
 
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 flex justify-center">
-        <div className="w-full max-w-[430px] bg-white/80 backdrop-blur-md border-b border-gray-100 px-4 py-3 flex items-center gap-3">
+        <div className="w-full max-w-[430px] bg-white/80 backdrop-blur-md border-b border-gray-100 px-4 h-[60px] flex items-center gap-3">
           <button onClick={() => navigate(-1)} className="text-gray-500">
             <ArrowLeft size={20} strokeWidth={1.5} />
           </button>
@@ -95,32 +190,15 @@ export default function RezervasyonForm() {
         </div>
       </header>
 
-      <div className="pt-16 pb-28 px-4 space-y-4">
+      <div className="pt-[60px] pb-28 px-4 space-y-4">
 
-        {/* Tarih Seç */}
+        {/* Takvim */}
         <div className="bg-white border border-gray-100 rounded-2xl px-4 py-4 shadow-sm">
-          <div className="flex items-center gap-2 mb-3">
+          <div className="flex items-center gap-2 mb-4">
             <Calendar size={15} strokeWidth={1.5} className="text-gray-400" />
             <p className="text-gray-800 text-sm font-bold">Tarih Seç</p>
           </div>
-          <div className="flex gap-2">
-            {GUNLER.map((g, i) => (
-              <button
-                key={i}
-                onClick={() => setSecilenGun(i)}
-                className={`flex-1 py-3 rounded-xl text-center transition-all ${
-                  secilenGun === i
-                    ? 'bg-gray-900 text-white'
-                    : 'bg-gray-50 border border-gray-200 text-gray-600'
-                }`}
-              >
-                <p className="text-xs font-bold">{g.label}</p>
-                <p className={`text-xs mt-0.5 ${secilenGun === i ? 'text-white/70' : 'text-gray-400'}`}>
-                  {new Date(Date.now() + i * 86400000).toLocaleDateString('tr-TR', { day: 'numeric', month: 'short' })}
-                </p>
-              </button>
-            ))}
-          </div>
+          <MiniCalendar secilenTarih={secilenTarih} onChange={setSecilenTarih} />
         </div>
 
         {/* Saat Seç */}
@@ -194,7 +272,7 @@ export default function RezervasyonForm() {
             }`}
           >
             {secilenSaat
-              ? `Rezervasyon Yap — ${GUNLER[secilenGun].label}, ${secilenSaat}, ${kisi} Kişi`
+              ? `Rezervasyon Yap — ${tarihLabel}, ${secilenSaat}, ${kisi} Kişi`
               : 'Saat Seçiniz'}
           </button>
         </div>

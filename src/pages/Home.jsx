@@ -9,7 +9,6 @@ import {
   Hotel, Coffee, Scissors, Dumbbell, BookOpen, PawPrint,
   Mail, GraduationCap, Navigation, Plus, X, ChevronRight, Clock,
 } from 'lucide-react'
-import BottomNav from '../components/BottomNav'
 import { MOCK_PLACES } from '../data/mockPlaces'
 
 // ─── Slider banner'ları ───────────────────────────────────────────────────────
@@ -166,7 +165,7 @@ export default function Home() {
 
       {/* ── Header ── */}
       <header className="fixed top-0 left-0 right-0 z-50 flex justify-center">
-        <div className="w-full max-w-[430px] bg-white/80 backdrop-blur-md border-b border-gray-100 px-4 py-3 flex items-center justify-between">
+        <div className="w-full max-w-[430px] bg-white/80 backdrop-blur-md border-b border-gray-100 px-4 h-[60px] flex items-center justify-between">
           <button className="w-9 h-9 flex items-center justify-center">
             <Menu size={20} strokeWidth={1.5} className="text-gray-700" />
           </button>
@@ -193,7 +192,7 @@ export default function Home() {
       </header>
 
       {/* ── İçerik ── */}
-      <div className="pt-16 pb-24">
+      <div className="pt-[60px] pb-24">
 
         {/* Arama */}
         <div className="px-4 pt-4 pb-1">
@@ -372,7 +371,6 @@ export default function Home() {
 
       </div>
 
-      <BottomNav active="home" />
 
       {/* ── GebzemAI FAB ── */}
       <button

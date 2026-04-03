@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ArrowRight, Clock } from 'lucide-react'
-import BottomNav from '../components/BottomNav'
 import { KAMPANYALAR, KAMPANYA_KATEGORILER } from '../data/mockCampaigns'
 
 export default function Campaigns() {
@@ -122,7 +121,6 @@ export default function Campaigns() {
 
       </div>
 
-      <BottomNav active="campaigns" />
     </div>
   )
 }
