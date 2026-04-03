@@ -70,18 +70,21 @@ const KAYITLI_KONUMLAR = [
 ]
 
 // ─── Yakında kart ─────────────────────────────────────────────────────────────
-function NearbyCard({ icon: Icon, title, type, onPress }) {
+function NearbyCard({ logo, title, subtitle, type, onPress }) {
   const first = MOCK_PLACES[type]?.[0]
   return (
     <div
       onClick={onPress}
-      className="bg-white border border-gray-100 rounded-2xl p-4 shadow-sm flex flex-col gap-2 cursor-pointer active:scale-95 transition-transform"
+      className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm flex flex-col gap-2 cursor-pointer active:scale-95 transition-transform"
     >
       <div className="flex items-center gap-2">
-        <div className="w-8 h-8 rounded-xl bg-gray-100 flex items-center justify-center shrink-0">
-          <Icon size={15} strokeWidth={1.5} className="text-gray-700" />
+        <div className="w-9 h-9 rounded-lg bg-gray-50 flex items-center justify-center shrink-0 overflow-hidden">
+          <img src={logo} alt={title} className="w-full h-full object-contain" />
         </div>
-        <span className="text-gray-600 text-xs font-semibold">{title}</span>
+        <div className="flex flex-col">
+          <span className="text-gray-600 text-xs font-semibold">{title}</span>
+          {subtitle && <span className="text-gray-400 text-[10px]">{subtitle}</span>}
+        </div>
       </div>
       <p className="text-gray-800 text-xs font-medium leading-snug line-clamp-2">{first?.name}</p>
       <p className="text-gray-400 text-xs">{first?.distance}</p>
@@ -253,8 +256,19 @@ export default function Home() {
             <span className="text-gray-400 text-xs">Konumundan</span>
           </div>
           <div className="grid grid-cols-2 gap-3">
-            <NearbyCard icon={Pill}     title="Nöbetçi Eczane" type="pharmacy" onPress={() => navigate('/nearby/pharmacy')} />
-            <NearbyCard icon={Landmark} title="En Yakın ATM"   type="atm"      onPress={() => navigate('/nearby/atm')} />
+            <NearbyCard
+              logo="https://atakoyplus.com/wp-content/uploads/2022/03/eczane.png"
+              title="Nöbetçi Eczane"
+              type="pharmacy"
+              onPress={() => navigate('/nearby/pharmacy')}
+            />
+            <NearbyCard
+              logo="https://yt3.googleusercontent.com/kawB1Mlmo8ECTgcckUGVRP0tHjYkc3yewLv7dc_OvF7xNyouBq2TIPYOHiTBb5qH4ItmwnKHOw=s900-c-k-c0x00ffffff-no-rj"
+              title="En Yakın ATM"
+              subtitle="Garanti Bankası"
+              type="atm"
+              onPress={() => navigate('/nearby/atm')}
+            />
           </div>
         </div>
 
