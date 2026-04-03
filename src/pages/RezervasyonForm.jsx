@@ -64,33 +64,40 @@ function MiniCalendar({ secilenTarih, onChange }) {
       </div>
 
       {/* Gün başlıkları */}
-      <div className="grid grid-cols-7 mb-1">
+      <div className="grid grid-cols-7 mb-1" style={{ gap: '2px' }}>
         {GUN_BASLIKLARI.map(g => (
-          <div key={g} className="text-center text-[10px] font-semibold text-gray-400 py-1">{g}</div>
+          <div key={g} style={{ height: 28, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, fontWeight: 600, color: '#9ca3af' }}>{g}</div>
         ))}
       </div>
 
       {/* Günler */}
-      <div className="grid grid-cols-7 gap-y-1">
+      <div className="grid grid-cols-7" style={{ gap: '2px' }}>
         {/* Boşluk hücreleri */}
         {Array.from({ length: baslangicGunu }).map((_, i) => (
-          <div key={`bos-${i}`} />
+          <div key={`bos-${i}`} style={{ height: 36 }} />
         ))}
         {/* Gün butonları */}
         {gunler.map(gun => {
-          const gecmis   = gun < bugun
-          const secili   = secilenTarih && gunEsit(gun, secilenTarih)
-          const bugunMu  = gunEsit(gun, bugun)
+          const gecmis  = gun < bugun
+          const secili  = secilenTarih && gunEsit(gun, secilenTarih)
+          const bugunMu = gunEsit(gun, bugun)
           return (
             <button
               key={gun.getDate()}
               onClick={() => !gecmis && onChange(gun)}
               disabled={gecmis}
-              className="aspect-square flex items-center justify-center rounded-xl text-sm font-medium transition-all active:scale-90"
               style={{
+                height: 36,
+                width: '100%',
+                borderRadius: 10,
                 background: secili ? '#111827' : 'transparent',
                 color:      secili ? '#ffffff' : gecmis ? '#d1d5db' : '#1f2937',
                 outline:    bugunMu && !secili ? '1.5px solid #d1d5db' : 'none',
+                fontSize: 13,
+                fontWeight: secili ? 700 : 400,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
               }}
             >
               {gun.getDate()}
