@@ -33,6 +33,7 @@ import Campaigns from './pages/Campaigns'
 import Profile from './pages/Profile'
 
 // İşletme paneli
+import IsletmeGiris           from './pages/isletme/IsletmeGiris'
 import IsletmeLogin           from './pages/isletme/IsletmeLogin'
 import IsletmeRegister        from './pages/isletme/IsletmeRegister'
 import IsletmeOTP             from './pages/isletme/IsletmeOTP'
@@ -145,6 +146,7 @@ export default function App() {
           <Route path="/mesaj/:id"         element={<PrivateRoute><MesajDetay /></PrivateRoute>} />
 
           {/* ── İşletme Paneli ── */}
+          <Route path="/isletme/giris"           element={<IsletmeGiris />} />
           <Route path="/isletme/login"           element={<IsletmeLogin />} />
           <Route path="/isletme/register"        element={<IsletmeRegister />} />
           <Route path="/isletme/otp"             element={<IsletmeOTP />} />

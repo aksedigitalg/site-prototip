@@ -134,7 +134,7 @@ export default function Profile() {
         {/* İşletme & Admin */}
         <div className="bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden divide-y divide-gray-100">
           <button
-            onClick={() => navigate('/isletme/login')}
+            onClick={() => navigate('/isletme/giris')}
             className="w-full flex items-center gap-3 px-4 py-4 active:bg-gray-50 transition-colors"
           >
             <div className="w-8 h-8 rounded-xl bg-gray-100 flex items-center justify-center shrink-0">
