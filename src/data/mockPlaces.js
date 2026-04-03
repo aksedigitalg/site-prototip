@@ -53,6 +53,25 @@ export const MOCK_PLACES = {
     { id: 2, name: 'AVM Otoparkı',     address: 'Alışveriş Merkezi',     distance: '350 m'  },
     { id: 3, name: 'Belediye Otoparkı',address: 'Cumhuriyet Meydanı',    distance: '600 m'  },
   ],
+
+  bus: [
+    { id: 1, name: '500T — Kadıköy',      address: 'Merkez Durak',          distance: '80 m',  nextBus: 3  },
+    { id: 2, name: '34A — Taksim',        address: 'Bağcılar Cad. Durağı', distance: '140 m', nextBus: 8  },
+    { id: 3, name: '99 — Bostancı',       address: 'Atatürk Sok. Durağı',  distance: '320 m', nextBus: 14 },
+    { id: 4, name: '12B — Mecidiyeköy',   address: 'İnönü Cad. Durağı',    distance: '510 m', nextBus: 22 },
+  ],
+
+  assembly: [
+    { id: 1, name: 'Cumhuriyet Meydanı Toplanma Alanı', address: 'Merkez',            distance: '200 m' },
+    { id: 2, name: 'İlköğretim Okulu Bahçesi',           address: 'Atatürk Sok.',      distance: '450 m' },
+    { id: 3, name: 'Belediye Parkı',                     address: 'Bağcılar Cad.',     distance: '780 m' },
+  ],
+
+  mosque: [
+    { id: 1, name: 'Merkez Camii',       address: 'Cumhuriyet Mah.',       distance: '150 m' },
+    { id: 2, name: 'Fatih Camii',        address: 'Fatih Sok. No:1',       distance: '420 m' },
+    { id: 3, name: 'Yeni Camii',         address: 'İnönü Cad. No:30',      distance: '690 m' },
+  ],
 }
 
 export const PLACE_LABELS = {
@@ -63,4 +82,7 @@ export const PLACE_LABELS = {
   supermarket: 'Market',
   parking:     'Otopark',
   charging:    'Şarj İstasyonu',
+  bus:         'Otobüs Durağı',
+  assembly:    'Toplanma Alanı',
+  mosque:      'En Yakın Cami',
 }

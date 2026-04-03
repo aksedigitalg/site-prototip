@@ -2,12 +2,12 @@ import { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
   Menu, MapPin, ChevronDown, Search,
-  Pill, Landmark, Fuel, ParkingCircle, Zap,
+  Pill, Landmark, Fuel, ParkingCircle, Zap, Bus,
   UtensilsCrossed, Soup, Wrench, Briefcase, Tag,
   Calendar, ShoppingBag, Sparkles,
   Key, Users, Building2, Stethoscope, Shield, Flame,
   Hotel, Coffee, Scissors, Dumbbell, BookOpen, PawPrint,
-  Mail, GraduationCap, Navigation, Plus, X, ChevronRight,
+  Mail, GraduationCap, Navigation, Plus, X, ChevronRight, Clock,
 } from 'lucide-react'
 import BottomNav from '../components/BottomNav'
 import { MOCK_PLACES } from '../data/mockPlaces'
@@ -19,8 +19,9 @@ const SLIDER_ITEMS = [
   { id: 3, baslik: "GebzemAI ile Şehrini Keşfet", alt: 'Hemen Dene →', bg: '#3b0764', path: '/gebzem-ai' },
 ]
 
-// ─── Hızlı erişim (ilk 5 — scrollable satırda gösterilen) ───────────────────
+// ─── Hızlı erişim ────────────────────────────────────────────────────────────
 const QUICK_ACCESS = [
+  { icon: Bus,           label: 'Otobüs',    type: 'bus' },
   { icon: Pill,          label: 'Eczane',    type: 'pharmacy' },
   { icon: Landmark,      label: 'ATM',       type: 'atm' },
   { icon: Fuel,          label: 'Benzinlik', type: 'fuel' },
@@ -69,32 +70,59 @@ const KAYITLI_KONUMLAR = [
   { id: 2, isim: 'Gebze', altIsim: 'Kocaeli' },
 ]
 
-// ─── Yakında kart ─────────────────────────────────────────────────────────────
-function NearbyCard({ logo, letter, letterBg, title, subtitle, type, onPress }) {
+// ─── Otobüs kartı (özel, büyük) ──────────────────────────────────────────────
+function BusCard({ onPress }) {
+  const buses = MOCK_PLACES['bus'] || []
+  const next  = buses[0]
+  return (
+    <button
+      onClick={onPress}
+      className="w-full bg-gray-900 rounded-2xl px-4 py-4 flex items-center gap-3 active:scale-[0.98] transition-transform"
+    >
+      <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
+        <Bus size={20} strokeWidth={1.5} className="text-white" />
+      </div>
+      <div className="flex-1 text-left min-w-0">
+        <p className="text-white/60 text-[10px] font-semibold uppercase tracking-wide">En Yakın Durak</p>
+        <p className="text-white text-sm font-bold truncate mt-0.5">{next?.name}</p>
+        <p className="text-white/40 text-[11px] mt-0.5">{next?.address} · {next?.distance}</p>
+      </div>
+      <div className="flex flex-col items-end shrink-0">
+        <div className="flex items-center gap-1 bg-green-500/20 rounded-lg px-2 py-1">
+          <Clock size={10} strokeWidth={2} className="text-green-400" />
+          <span className="text-green-400 text-xs font-bold">{next?.nextBus} dk</span>
+        </div>
+        <p className="text-white/30 text-[10px] mt-1">sonra geliyor</p>
+      </div>
+    </button>
+  )
+}
+
+// ─── Mini Yakınında kartı ─────────────────────────────────────────────────────
+function NearbyCard({ logo, letter, letterBg, icon: Icon, title, type, onPress }) {
   const first = MOCK_PLACES[type]?.[0]
   return (
-    <div
+    <button
       onClick={onPress}
-      className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm flex flex-col gap-2 cursor-pointer active:scale-95 transition-transform"
+      className="flex items-center gap-3 bg-gray-50 rounded-2xl px-3 py-3 active:bg-gray-100 transition-colors w-full text-left"
     >
-      <div className="flex items-center gap-2">
-        <div
-          className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 overflow-hidden"
-          style={{ background: letterBg || '#f9fafb' }}
-        >
-          {letter
-            ? <span className="text-white font-black text-base leading-none">{letter}</span>
-            : <img src={logo} alt={title} className="w-full h-full object-contain" />
-          }
-        </div>
-        <div className="flex flex-col">
-          <span className="text-gray-600 text-xs font-semibold">{title}</span>
-          {subtitle && <span className="text-gray-400 text-[10px]">{subtitle}</span>}
-        </div>
+      <div
+        className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 overflow-hidden"
+        style={{ background: letterBg || (logo ? '#f9fafb' : '#f3f4f6') }}
+      >
+        {letter
+          ? <span className="text-white font-black text-sm leading-none">{letter}</span>
+          : logo
+            ? <img src={logo} alt={title} className="w-full h-full object-contain" />
+            : Icon ? <Icon size={16} strokeWidth={1.5} className="text-gray-600" /> : null
+        }
       </div>
-      <p className="text-gray-800 text-xs font-medium leading-snug line-clamp-2">{first?.name}</p>
-      <p className="text-gray-400 text-xs">{first?.distance}</p>
-    </div>
+      <div className="flex-1 min-w-0">
+        <p className="text-gray-500 text-[10px] font-semibold">{title}</p>
+        <p className="text-gray-800 text-xs font-bold truncate">{first?.name}</p>
+        <p className="text-gray-400 text-[10px]">{first?.distance}</p>
+      </div>
+    </button>
   )
 }
 
@@ -259,9 +287,19 @@ export default function Home() {
         <div className="px-4 pt-6">
           <div className="flex items-center justify-between mb-3">
             <h2 className="text-gray-800 text-sm font-semibold">Yakınında</h2>
-            <span className="text-gray-400 text-xs">Konumundan</span>
+            <button
+              onClick={() => navigate('/nearby/bus')}
+              className="text-gray-400 text-xs flex items-center gap-0.5 active:text-gray-600"
+            >
+              Hepsi <ChevronRight size={12} strokeWidth={2} />
+            </button>
           </div>
-          <div className="grid grid-cols-2 gap-3">
+
+          {/* Otobüs kartı */}
+          <BusCard onPress={() => navigate('/nearby/bus')} />
+
+          {/* Mini kartlar grid */}
+          <div className="grid grid-cols-2 gap-2 mt-2">
             <NearbyCard
               letter="E"
               letterBg="#c0392b"
@@ -274,6 +312,30 @@ export default function Home() {
               title="Garanti Bankası ATM"
               type="atm"
               onPress={() => navigate('/nearby/atm')}
+            />
+            <NearbyCard
+              icon={Fuel}
+              title="Benzinlik"
+              type="fuel"
+              onPress={() => navigate('/nearby/fuel')}
+            />
+            <NearbyCard
+              icon={Users}
+              title="Toplanma Alanı"
+              type="assembly"
+              onPress={() => navigate('/nearby/assembly')}
+            />
+            <NearbyCard
+              icon={Building2}
+              title="En Yakın Cami"
+              type="mosque"
+              onPress={() => navigate('/nearby/mosque')}
+            />
+            <NearbyCard
+              icon={Zap}
+              title="Şarj İstasyonu"
+              type="charging"
+              onPress={() => navigate('/nearby/charging')}
             />
           </div>
         </div>
