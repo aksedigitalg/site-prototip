@@ -103,24 +103,6 @@ export default function Explore() {
         {/* ── Harita Bölümü ── */}
         <div className="bg-white border-b border-gray-100">
 
-          {/* Kategori filtreleri */}
-          <div className="flex gap-2 px-4 pt-3 pb-2 overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
-            {HARITA_KATEGORILER.map(k => (
-              <button
-                key={k.key}
-                onClick={() => setAktifKat(k.key)}
-                className="shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all active:scale-95"
-                style={{
-                  background: aktifKat === k.key ? '#111827' : '#f3f4f6',
-                  color:      aktifKat === k.key ? '#ffffff' : '#4b5563',
-                }}
-              >
-                <span>{k.emoji}</span>
-                {k.label}
-              </button>
-            ))}
-          </div>
-
           {/* Harita */}
           <div style={{ height: 260, position: 'relative' }}>
             <MapContainer
@@ -163,8 +145,26 @@ export default function Explore() {
             </MapContainer>
           </div>
 
+          {/* Kategori filtreleri */}
+          <div className="flex gap-2 px-4 pt-2.5 pb-2 overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
+            {HARITA_KATEGORILER.map(k => (
+              <button
+                key={k.key}
+                onClick={() => setAktifKat(k.key)}
+                className="shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all active:scale-95"
+                style={{
+                  background: aktifKat === k.key ? '#111827' : '#f3f4f6',
+                  color:      aktifKat === k.key ? '#ffffff' : '#4b5563',
+                }}
+              >
+                <span>{k.emoji}</span>
+                {k.label}
+              </button>
+            ))}
+          </div>
+
           {/* Nokta sayısı */}
-          <div className="px-4 py-2 flex items-center gap-1.5">
+          <div className="px-4 pb-2 flex items-center gap-1.5">
             <MapPin size={11} strokeWidth={1.5} className="text-gray-400" />
             <span className="text-gray-400 text-xs">{gosterilecek.length} yer gösteriliyor</span>
           </div>
