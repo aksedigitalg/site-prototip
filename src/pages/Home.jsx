@@ -147,6 +147,14 @@ export default function Home() {
 
       <BottomNav active="home" />
 
+      {/* Dev Sıfırla */}
+      <button
+        onClick={() => { localStorage.clear(); sessionStorage.clear(); window.location.href = '/' }}
+        className="fixed bottom-24 left-4 z-50 bg-gray-800 text-white text-xs px-3 py-2 rounded-full opacity-40 hover:opacity-100 transition-opacity"
+      >
+        ↺ Sıfırla
+      </button>
+
       {/* GebzemAI FAB */}
       <button
         onClick={() => navigate('/gebzem-ai')}
