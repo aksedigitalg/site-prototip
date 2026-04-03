@@ -31,6 +31,13 @@ import Search from './pages/Search'
 import Explore from './pages/Explore'
 import Campaigns from './pages/Campaigns'
 import Profile from './pages/Profile'
+import ProPage from './pages/ProPage'
+import TalepOlustur from './pages/TalepOlustur'
+import TalepDetay from './pages/TalepDetay'
+import TaleplerPage from './pages/TaleplerPage'
+import IsIlanlarPage from './pages/IsIlanlarPage'
+import IsIlanDetail from './pages/IsIlanDetail'
+import IsverenProfil from './pages/IsverenProfil'
 
 // İşletme paneli
 import IsletmeGiris           from './pages/isletme/IsletmeGiris'
@@ -110,6 +117,13 @@ function AnimatedRoutes() {
           <Route path="/campaigns"       element={<PrivateRoute><Campaigns /></PrivateRoute>} />
           <Route path="/profile"         element={<PrivateRoute><Profile /></PrivateRoute>} />
           <Route path="/gebzem-ai"       element={<PrivateRoute><GebzemAI /></PrivateRoute>} />
+          <Route path="/pro"             element={<PrivateRoute><ProPage /></PrivateRoute>} />
+          <Route path="/talepler"        element={<PrivateRoute><TaleplerPage /></PrivateRoute>} />
+          <Route path="/talep/:id"       element={<PrivateRoute><TalepDetay /></PrivateRoute>} />
+          <Route path="/talep-olustur"   element={<PrivateRoute><TalepOlustur /></PrivateRoute>} />
+          <Route path="/is-ilanlari"     element={<PrivateRoute><IsIlanlarPage /></PrivateRoute>} />
+          <Route path="/is-ilani/:id"    element={<PrivateRoute><IsIlanDetail /></PrivateRoute>} />
+          <Route path="/isveren/:id"     element={<PrivateRoute><IsverenProfil /></PrivateRoute>} />
 
           {/* ── Yemek & Restoran ── */}
           <Route path="/food"            element={<PrivateRoute><FoodPage /></PrivateRoute>} />

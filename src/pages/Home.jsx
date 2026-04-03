@@ -59,10 +59,25 @@ const CATEGORIES = [
   { icon: UtensilsCrossed, label: 'Yemek',       path: '/food' },
   { icon: Soup,            label: 'Restoran',    path: '/food' },
   { icon: Wrench,          label: 'Hizmetler',   path: '/services' },
-  { icon: Briefcase,       label: 'İş İlanları', path: null },
   { icon: Tag,             label: 'İlanlar',     path: '/ilanlar' },
   { icon: Calendar,        label: 'Etkinlikler', path: '/etkinlikler' },
   { icon: ShoppingBag,     label: 'Alışveriş',   path: '/alisveris' },
+  { icon: Briefcase,       label: 'İş İlanları', path: '/is-ilanlari' },
+]
+
+const TUM_KATEGORILER_BUYUK = [
+  { emoji: '🍜', label: 'Yemek',          path: '/food',         renk: '#fff7ed' },
+  { emoji: '🍽️', label: 'Restoran',       path: '/food',         renk: '#fff7ed' },
+  { emoji: '🛍️', label: 'Alışveriş',      path: '/alisveris',    renk: '#eff6ff' },
+  { emoji: '🔧', label: 'Hizmetler',      path: '/services',     renk: '#f0fdf4' },
+  { emoji: '🏠', label: 'İlanlar',         path: '/ilanlar',      renk: '#fdf4ff' },
+  { emoji: '🎭', label: 'Etkinlikler',    path: '/etkinlikler',  renk: '#fef9c3' },
+  { emoji: '💼', label: 'İş İlanları',    path: '/is-ilanlari',  renk: '#f0f9ff' },
+  { emoji: '🏨', label: 'Otel',           path: null,            renk: '#fef2f2' },
+  { emoji: '🚗', label: 'Araç Kiralama',  path: null,            renk: '#f5f3ff' },
+  { emoji: '🤖', label: 'GebzemAI',       path: '/gebzem-ai',    renk: '#f3e8ff' },
+  { emoji: '🗺️', label: 'Keşfet',         path: '/explore',      renk: '#ecfdf5' },
+  { emoji: '🎯', label: 'Kampanyalar',    path: '/campaigns',    renk: '#fff1f2' },
 ]
 
 const KAYITLI_KONUMLAR = [
@@ -70,58 +85,38 @@ const KAYITLI_KONUMLAR = [
   { id: 2, isim: 'Gebze', altIsim: 'Kocaeli' },
 ]
 
-// ─── Otobüs kartı (özel, büyük) ──────────────────────────────────────────────
-function BusCard({ onPress }) {
-  const buses = MOCK_PLACES['bus'] || []
-  const next  = buses[0]
-  return (
-    <button
-      onClick={onPress}
-      className="w-full bg-gray-900 rounded-2xl px-4 py-4 flex items-center gap-3 active:scale-[0.98] transition-transform"
-    >
-      <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
-        <Bus size={20} strokeWidth={1.5} className="text-white" />
-      </div>
-      <div className="flex-1 text-left min-w-0">
-        <p className="text-white/60 text-[10px] font-semibold uppercase tracking-wide">En Yakın Durak</p>
-        <p className="text-white text-sm font-bold truncate mt-0.5">{next?.name}</p>
-        <p className="text-white/40 text-[11px] mt-0.5">{next?.address} · {next?.distance}</p>
-      </div>
-      <div className="flex flex-col items-end shrink-0">
-        <div className="flex items-center gap-1 bg-green-500/20 rounded-lg px-2 py-1">
-          <Clock size={10} strokeWidth={2} className="text-green-400" />
-          <span className="text-green-400 text-xs font-bold">{next?.nextBus} dk</span>
-        </div>
-        <p className="text-white/30 text-[10px] mt-1">sonra geliyor</p>
-      </div>
-    </button>
-  )
-}
-
-// ─── Mini Yakınında kartı ─────────────────────────────────────────────────────
-function NearbyCard({ logo, letter, letterBg, icon: Icon, title, type, onPress }) {
+// ─── Yakınında kartı (hepsi aynı yatay scroll içinde) ────────────────────────
+function NearbyCard({ logo, letter, letterBg, icon: Icon, title, type, isBus, onPress }) {
   const first = MOCK_PLACES[type]?.[0]
   return (
     <button
       onClick={onPress}
-      className="shrink-0 flex flex-col gap-2.5 bg-gray-50 rounded-2xl p-3.5 active:bg-gray-100 transition-colors text-left"
-      style={{ width: '140px' }}
+      className="shrink-0 flex flex-col gap-3 bg-white border border-gray-100 rounded-2xl p-3.5 active:scale-95 transition-transform text-left"
+      style={{ width: '148px' }}
     >
-      <div
-        className="w-9 h-9 rounded-xl flex items-center justify-center overflow-hidden"
-        style={{ background: letterBg || (logo ? '#f0f0f0' : '#e5e7eb') }}
-      >
-        {letter
-          ? <span className="text-white font-black text-sm leading-none">{letter}</span>
-          : logo
-            ? <img src={logo} alt={title} className="w-full h-full object-contain" />
-            : Icon ? <Icon size={16} strokeWidth={1.5} className="text-gray-600" /> : null
-        }
+      <div className="flex items-center justify-between">
+        <div
+          className="w-9 h-9 rounded-xl flex items-center justify-center overflow-hidden"
+          style={{ background: letterBg || (logo ? '#f5f5f5' : '#f3f4f6') }}
+        >
+          {letter
+            ? <span className="text-white font-black text-sm leading-none">{letter}</span>
+            : logo
+              ? <img src={logo} alt={title} className="w-full h-full object-contain" />
+              : Icon ? <Icon size={16} strokeWidth={1.5} className="text-gray-600" /> : null
+          }
+        </div>
+        {isBus && first?.nextBus && (
+          <div className="flex items-center gap-1 bg-green-50 rounded-lg px-2 py-1">
+            <Clock size={9} strokeWidth={2} className="text-green-600" />
+            <span className="text-green-600 text-[10px] font-bold">{first.nextBus} dk</span>
+          </div>
+        )}
       </div>
       <div className="min-w-0">
-        <p className="text-gray-400 text-[10px] font-semibold mb-0.5">{title}</p>
+        <p className="text-gray-400 text-[10px] font-medium mb-0.5">{title}</p>
         <p className="text-gray-800 text-xs font-bold leading-snug line-clamp-2">{first?.name}</p>
-        <p className="text-gray-400 text-[10px] mt-1">{first?.distance}</p>
+        <p className="text-gray-400 text-[10px] mt-1.5">{first?.distance}</p>
       </div>
     </button>
   )
@@ -135,9 +130,10 @@ export default function Home() {
   const [aktifKonum, setAktifKonum] = useState(
     localStorage.getItem('sehir_konum') || 'İstanbul'
   )
-  const [konumSheet,    setKonumSheet]    = useState(false)
-  const [kategoriSheet, setKategoriSheet] = useState(false)
-  const [sliderIdx,     setSliderIdx]     = useState(0)
+  const [konumSheet,       setKonumSheet]       = useState(false)
+  const [kategoriSheet,    setKategoriSheet]    = useState(false)
+  const [tumKatSheet,      setTumKatSheet]      = useState(false)
+  const [sliderIdx,        setSliderIdx]        = useState(0)
   const sliderRef = useRef(null)
 
   // Otomatik slider
@@ -296,11 +292,15 @@ export default function Home() {
             </button>
           </div>
 
-          {/* Otobüs kartı */}
-          <BusCard onPress={() => navigate('/nearby/bus')} />
-
-          {/* Mini kartlar — yatay scroll */}
-          <div className="flex gap-2 mt-2 overflow-x-auto pb-1" style={{ scrollbarWidth: 'none' }}>
+          {/* Yatay scroll — hepsi aynı sırada */}
+          <div className="flex gap-2 overflow-x-auto pb-1" style={{ scrollbarWidth: 'none' }}>
+            <NearbyCard
+              icon={Bus}
+              title="Otobüs Durağı"
+              type="bus"
+              isBus
+              onPress={() => navigate('/nearby/bus')}
+            />
             <NearbyCard
               letter="E"
               letterBg="#c0392b"
@@ -345,6 +345,12 @@ export default function Home() {
         <div className="px-4 pt-6">
           <div className="flex items-center justify-between mb-3">
             <h2 className="text-gray-800 text-sm font-semibold">Kategoriler</h2>
+            <button
+              onClick={() => setTumKatSheet(true)}
+              className="text-gray-400 text-xs flex items-center gap-0.5 active:text-gray-700"
+            >
+              Tümü <ChevronRight size={12} strokeWidth={2} />
+            </button>
           </div>
           <div className="grid grid-cols-4 gap-2">
             {CATEGORIES.map(({ icon: Icon, label, path }) => (
@@ -390,6 +396,48 @@ export default function Home() {
       >
         ↺ Sıfırla
       </button>
+
+      {/* ════════ TÜM KATEGORİLER BOTTOM SHEET (85% yükseklik, büyük kartlar) ════════ */}
+      {tumKatSheet && (
+        <div className="fixed inset-0 z-[100] flex flex-col justify-end">
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setTumKatSheet(false)} />
+          <div
+            className="relative bg-white rounded-t-3xl z-10 flex flex-col"
+            style={{ height: '85vh' }}
+          >
+            {/* Drag handle */}
+            <div className="flex justify-center pt-3 pb-2 shrink-0">
+              <div className="w-10 h-1 rounded-full bg-gray-200" />
+            </div>
+
+            <div className="flex items-center justify-between px-5 pb-4 shrink-0">
+              <h3 className="text-gray-900 text-base font-bold">Tüm Kategoriler</h3>
+              <button onClick={() => setTumKatSheet(false)} className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center">
+                <X size={16} strokeWidth={2} className="text-gray-600" />
+              </button>
+            </div>
+
+            <div className="flex-1 overflow-y-auto px-4 pb-8">
+              <div className="grid grid-cols-3 gap-3">
+                {TUM_KATEGORILER_BUYUK.map(({ emoji, label, path, renk }) => (
+                  <button
+                    key={label}
+                    onClick={() => {
+                      setTumKatSheet(false)
+                      if (path) navigate(path)
+                    }}
+                    className="flex flex-col items-center justify-center gap-3 py-5 rounded-2xl active:scale-95 transition-transform"
+                    style={{ background: renk }}
+                  >
+                    <span className="text-3xl">{emoji}</span>
+                    <span className="text-gray-700 text-xs font-semibold text-center leading-tight px-1">{label}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* ════════ KONUM BOTTOM SHEET ════════ */}
       {konumSheet && (

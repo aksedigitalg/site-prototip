@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import {
   LogOut, ChevronRight, User, Phone, Lock,
   CalendarDays, Clock, MessageCircle, FileText,
+  Crown, Gift,
 } from 'lucide-react'
 import BottomNav from '../components/BottomNav'
 import { REZERVASYONLAR, RANDEVULAR, KONUSMALAR, TEKLIFLER } from '../data/mockMesajlar'
@@ -80,6 +81,33 @@ export default function Profile() {
             </div>
           ))}
         </div>
+
+        {/* Pro Hesap */}
+        <button
+          onClick={() => navigate('/pro')}
+          className="w-full bg-gray-900 rounded-2xl px-4 py-4 flex items-center gap-3 active:scale-95 transition-transform"
+        >
+          <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
+            <Crown size={18} strokeWidth={1.5} className="text-yellow-400" />
+          </div>
+          <div className="flex-1 text-left">
+            <p className="text-white text-sm font-bold">Pro Hesap</p>
+            <p className="text-white/60 text-xs mt-0.5">Reklamsız · Sınırsız AI · ₺79/ay</p>
+          </div>
+          <ChevronRight size={16} strokeWidth={1.5} className="text-white/40" />
+        </button>
+
+        {/* Arkadaşını Davet Et */}
+        <button className="w-full bg-white border border-gray-100 rounded-2xl px-4 py-4 shadow-sm flex items-center gap-3 active:scale-95 transition-transform">
+          <div className="w-10 h-10 rounded-xl bg-purple-50 flex items-center justify-center shrink-0">
+            <Gift size={18} strokeWidth={1.5} className="text-purple-600" />
+          </div>
+          <div className="flex-1 text-left">
+            <p className="text-gray-900 text-sm font-bold">Arkadaşını Davet Et</p>
+            <p className="text-gray-400 text-xs mt-0.5">Her davet için 1 ay Pro hediye</p>
+          </div>
+          <ChevronRight size={16} strokeWidth={1.5} className="text-gray-300" />
+        </button>
 
         {/* Aktiviteler */}
         <div>

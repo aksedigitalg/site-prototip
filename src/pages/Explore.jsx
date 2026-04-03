@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ChevronRight, Star, MapPin } from 'lucide-react'
+import { ChevronRight, Star, MapPin, Plus, Clock, MessageCircle } from 'lucide-react'
 import BottomNav from '../components/BottomNav'
 import {
   HERO_ITEMS,
@@ -9,6 +9,7 @@ import {
   HAFTALIK_ONERILER,
   KESFET_KATEGORILER,
 } from '../data/mockExplore'
+import { TALEPLER } from '../data/mockTalep'
 
 export default function Explore() {
   const navigate = useNavigate()
@@ -41,6 +42,64 @@ export default function Explore() {
       </header>
 
       <div className="pt-[72px] pb-24">
+
+        {/* ── Servis Talep Sistemi ── */}
+        <div className="px-4 pt-4 pb-2">
+          <div className="flex items-center justify-between mb-3">
+            <div>
+              <h2 className="text-gray-900 text-sm font-bold">Servis Talepleri</h2>
+              <p className="text-gray-400 text-xs mt-0.5">Probleminizi paylaşın, ustalar teklif versin</p>
+            </div>
+            <button
+              onClick={() => navigate('/talep-olustur')}
+              className="flex items-center gap-1.5 bg-gray-900 text-white text-xs font-bold px-3 py-2 rounded-xl active:scale-95 transition-transform"
+            >
+              <Plus size={13} strokeWidth={2.5} />
+              Talep Oluştur
+            </button>
+          </div>
+
+          {/* Son talepler */}
+          <div className="flex gap-3 overflow-x-auto pb-1" style={{ scrollbarWidth: 'none' }}>
+            {TALEPLER.slice(0, 4).map(talep => (
+              <button
+                key={talep.id}
+                onClick={() => navigate(`/talep/${talep.id}`)}
+                className="shrink-0 bg-white border border-gray-100 rounded-2xl p-3.5 text-left active:scale-95 transition-transform"
+                style={{ width: '180px' }}
+              >
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-xl">{talep.emoji}</span>
+                  <span className="text-[10px] font-bold text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">{talep.kategori}</span>
+                </div>
+                <p className="text-gray-900 text-xs font-bold leading-snug line-clamp-2 mb-2">{talep.baslik}</p>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-1 text-gray-400 text-[10px]">
+                    <Clock size={9} strokeWidth={1.5} />
+                    <span>{talep.sure}</span>
+                  </div>
+                  <div className="flex items-center gap-1 text-gray-500 text-[10px]">
+                    <MessageCircle size={9} strokeWidth={1.5} />
+                    <span>{talep.teklifSayisi} teklif</span>
+                  </div>
+                </div>
+              </button>
+            ))}
+
+            {/* Tümünü gör */}
+            <button
+              onClick={() => navigate('/talepler')}
+              className="shrink-0 flex flex-col items-center justify-center bg-gray-50 border border-dashed border-gray-200 rounded-2xl gap-2 active:scale-95 transition-transform"
+              style={{ width: '100px', minHeight: '110px' }}
+            >
+              <ChevronRight size={18} strokeWidth={1.5} className="text-gray-400" />
+              <span className="text-gray-400 text-xs font-medium">Tümü</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Ayırıcı */}
+        <div className="h-px bg-gray-100 mx-4 my-2" />
 
         {/* ── Hero Carousel ── */}
         <div className="px-4 pt-4">

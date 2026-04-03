@@ -98,17 +98,21 @@ src/
                             #   - Konum seçici (header ortası, bottom sheet)
                             #   - Arama kutusu
                             #   - Slider (3 banner, otomatik kaydırma)
-                            #   - Hızlı Erişim (5 görünür + "Tümü" → 22 kategorili sheet)
-                            #   - Yakınında kartları
-                            #   - Kategoriler grid
+                            #   - Hızlı Erişim (6 görünür + "Tümü" → 22 kategorili sheet)
+                            #   - Yakınında kartları (yatay scroll, hepsi aynı sıra, bus first)
+                            #   - Kategoriler grid (4 kolon, "Tümü" → 85% yükseklik büyük kartlı sheet)
                             #   - GebzemAI FAB (mor→pembe gradient)
                             #   - Dev Sıfırla butonu (sol alt, yarı saydam)
-    Profile.jsx             # Profil: avatar, istatistikler, aktivite menüsü,
+    Profile.jsx             # Profil: Pro Hesap butonu (siyah, taç ikonu) + Arkadaşını Davet Et
+                            #   (aktivitelerin üstünde), avatar, istatistikler, aktivite menüsü,
                             #   hesap bilgileri, İşletme & Admin giriş linkleri
     Search.jsx              # Canlı arama: son aramalar, popüler, kategori filtreler,
                             #   ünifiye sonuçlar, boş state → GebzemAI yönlendirme
-    Explore.jsx             # Keşfet: hero carousel, popüler yerler, haftalık öneriler,
-                            #   yeni işletmeler, kategori dünyası
+    Explore.jsx             # Keşfet: Servis Talepleri bölümü (en üstte, yatay scroll talepler
+                            #   + "Talep Oluştur" butonu), hero carousel, popüler yerler,
+                            #   haftalık öneriler, yeni işletmeler, kategori dünyası
+    ProPage.jsx             # Pro Hesap: Ücretsiz/Pro ₺79/İşletme ₺199, aylık-yıllık toggle,
+                            #   özellik karşılaştırma, SSS accordion
     Campaigns.jsx           # Kampanyalar: kategori filtreler, büyük featured kart,
                             #   küçük kart listesi, kalan gün sayacı
     GebzemAI.jsx            # AI sohbet: siyah/beyaz minimal, öneri chips (yatay scroll),
@@ -143,6 +147,16 @@ src/
     RezervasyonForm.jsx     # Restoran rezervasyonu & hizmet randevusu (aynı component)
                             # tarih/saat/kişi/not → localStorage
     TeklifForm.jsx          # Düğün teklif talebi: etkinlik/tarih/kişi/bütçe → localStorage
+
+    ── Servis Talep Sistemi ──────────────────────
+    TaleplerPage.jsx        # Tüm servis talepleri, kategori filtreli
+    TalepDetay.jsx          # Talep detay + usta teklifleri (puan, fiyat, kabul et)
+    TalepOlustur.jsx        # Yeni talep formu: başlık/kategori/açıklama/bütçe/konum
+
+    ── İş İlanları ───────────────────────────────
+    IsIlanlarPage.jsx       # İş ilanları: arama, kategori + iş türü filtresi (tam/yarı/uzaktan/staj)
+    IsIlanDetail.jsx        # Detay: Açıklama/Gereksinimler/Avantajlar sekmeleri, "Şimdi Başvur" CTA
+    IsverenProfil.jsx       # İşveren profili: hakkında, istatistikler, açık pozisyonlar
 
     ── Profil Alt Sayfaları ──────────────────────
     Rezervasyonlarim.jsx    # Restoran rezervasyonları listesi
@@ -200,6 +214,10 @@ src/
     mockAdmin.js            # ADMIN_ISTATISTIK, ADMIN_SON_AKTIVITE (5), ADMIN_KULLANICILAR (8),
                             # ADMIN_ISLETMELER (10), ADMIN_ILANLAR (6)
                             # ADMIN_SIFRE = 'admin123', ISLETME_SIFRE = 'isletme123' (artık kullanılmıyor)
+    mockPro.js              # PRO_PLANLAR (Ücretsiz/Pro/İşletme), PRO_SSS (3 soru)
+    mockTalep.js            # TALEP_KATEGORILER (10), TALEPLER (6), TALEP_TEKLIFLERI (usta teklifleri)
+    mockIsIlanlari.js       # IS_KATEGORILER (11), IS_TURLERI (5), IS_ILANLARI (8),
+                            # ISVEREN_PROFILLER (5 işveren)
 
   components/
     BottomNav.jsx           # Fixed bottom nav, bg-white/80 backdrop-blur, rounded-t-[10px]
@@ -254,6 +272,13 @@ src/
 | `/tekliflerim` | Teklif geçmişi | Private |
 | `/mesajlarim` | Mesaj listesi | Private |
 | `/mesaj/:id` | Konuşma detayı | Private |
+| `/pro` | Pro Hesap planları | Private |
+| `/talepler` | Servis talepleri listesi | Private |
+| `/talep/:id` | Talep detayı + usta teklifleri | Private |
+| `/talep-olustur` | Yeni talep oluştur | Private |
+| `/is-ilanlari` | İş ilanları listesi | Private |
+| `/is-ilani/:id` | İş ilanı detayı | Private |
+| `/isveren/:id` | İşveren profili | Private |
 
 ### İşletme Rotaları
 | Path | Sayfa | Erişim |
@@ -294,3 +319,8 @@ src/
 - **Konum seçici**: Header ortasına tıklayınca bottom sheet: GPS, kayıtlı konumlar, yeni konum ekle
 - **İşletme auth**: `isletme_user` localStorage'da, gerçek tel+şifre kontrolü, OTP: `111111`
 - **Admin auth**: Sabit şifre `admin123`, ayrı koyu tema (gray-900 header/nav)
+- **NearbyCard**: Tüm yakın yer kartları tek yatay scroll'da, bus kartı first + yeşil "X dk" badge
+- **Home Kategoriler**: 4'lü grid + "Tümü" → 85% yükseklik bottom sheet (emoji + renkli bg kartlar, 12 kategori)
+- **Pro sayfası**: `secili` state ile plan seçimi, fiyat toggle (aylık/yıllık), `PRO_PLANLAR` mock verisi
+- **Servis talebi sistemi**: Explore sayfasında talep kartları, `/talepler` listesi, `/talep/:id` usta teklifleri
+- **İş ilanları**: kategori + iş türü çift filtre, işveren profili sayfası, başvuru state
