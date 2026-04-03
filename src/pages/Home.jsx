@@ -263,8 +263,8 @@ export default function Home() {
               onPress={() => navigate('/nearby/pharmacy')}
             />
             <NearbyCard
-              logo="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Ziraat_Bankas%C4%B1_logo.svg/1200px-Ziraat_Bankas%C4%B1_logo.svg.png"
-              title="En Yakın ATM"
+              logo="https://yt3.googleusercontent.com/kawB1Mlmo8ECTgcckUGVRP0tHjYkc3yewLv7dc_OvF7xNyouBq2TIPYOHiTBb5qH4ItmwnKHOw=s900-c-k-c0x00ffffff-no-rj"
+              title="Garanti Bankası ATM"
               type="atm"
               onPress={() => navigate('/nearby/atm')}
             />
