@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import { Search, ChevronLeft, MapPin, Clock, ChevronRight } from 'lucide-react'
 import BottomNav from '../components/BottomNav'
 import { ETKINLIK_CATEGORIES, ETKINLIKLER } from '../data/mockEtkinlikler'
+import StoryBar from '../components/StoryBar'
+import { STORIES, MARKALAR } from '../data/mockStory'
 
 function FeaturedCard({ item, onClick }) {
   return (
@@ -86,6 +88,9 @@ export default function EtkinliklerPage() {
       </header>
 
       <div className="pt-14 pb-24">
+
+        {/* Story + Markalar */}
+        <StoryBar stories={STORIES.etkinlikler} markalar={MARKALAR.etkinlikler} />
 
         {/* Öne Çıkan (Carousel) */}
         <div className="pt-4">

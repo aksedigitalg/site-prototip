@@ -38,6 +38,10 @@ import TaleplerPage from './pages/TaleplerPage'
 import IsIlanlarPage from './pages/IsIlanlarPage'
 import IsIlanDetail from './pages/IsIlanDetail'
 import IsverenProfil from './pages/IsverenProfil'
+import OtellerPage from './pages/OtellerPage'
+import OtelDetail from './pages/OtelDetail'
+import AracKiralamaPage from './pages/AracKiralamaPage'
+import AracDetail from './pages/AracDetail'
 
 // İşletme paneli
 import IsletmeGiris           from './pages/isletme/IsletmeGiris'
@@ -124,6 +128,10 @@ function AnimatedRoutes() {
           <Route path="/is-ilanlari"     element={<PrivateRoute><IsIlanlarPage /></PrivateRoute>} />
           <Route path="/is-ilani/:id"    element={<PrivateRoute><IsIlanDetail /></PrivateRoute>} />
           <Route path="/isveren/:id"     element={<PrivateRoute><IsverenProfil /></PrivateRoute>} />
+          <Route path="/oteller"         element={<PrivateRoute><OtellerPage /></PrivateRoute>} />
+          <Route path="/otel/:id"        element={<PrivateRoute><OtelDetail /></PrivateRoute>} />
+          <Route path="/arac-kiralama"   element={<PrivateRoute><AracKiralamaPage /></PrivateRoute>} />
+          <Route path="/arac/:id"        element={<PrivateRoute><AracDetail /></PrivateRoute>} />
 
           {/* ── Yemek & Restoran ── */}
           <Route path="/food"            element={<PrivateRoute><FoodPage /></PrivateRoute>} />

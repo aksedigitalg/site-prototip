@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import { Search, Star, MapPin, ChevronLeft, CheckCircle } from 'lucide-react'
 import BottomNav from '../components/BottomNav'
 import { SERVICE_CATEGORIES, SERVICE_FILTERS, SERVICES } from '../data/mockServices'
+import StoryBar from '../components/StoryBar'
+import { STORIES, MARKALAR } from '../data/mockStory'
 
 const CATEGORY_ICONS = {
   'Temizlik': '🧹', 'Elektrik': '⚡', 'Tesisat': '🔧', 'Boya': '🎨',
@@ -86,6 +88,9 @@ export default function ServicesPage() {
       </header>
 
       <div className="pt-14 pb-24">
+
+        {/* Story + Markalar */}
+        <StoryBar stories={STORIES.services} markalar={MARKALAR.services} />
 
         {/* Arama */}
         <div className="px-4 pt-4">

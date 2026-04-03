@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import { Search, Star, Clock, ChevronLeft, ChevronRight } from 'lucide-react'
 import BottomNav from '../components/BottomNav'
 import { FOOD_CATEGORIES, FOOD_FILTERS, SLIDER_BANNERS, RESTAURANTS } from '../data/mockFood'
+import StoryBar from '../components/StoryBar'
+import { STORIES, MARKALAR } from '../data/mockStory'
 
 function Slider() {
   const [current, setCurrent] = useState(0)
@@ -111,6 +113,9 @@ export default function FoodPage() {
 
         {/* Slider */}
         <Slider />
+
+        {/* Story + Markalar */}
+        <StoryBar stories={STORIES.food} markalar={MARKALAR.food} />
 
         {/* Kategoriler */}
         <div className="mt-5">

@@ -11,6 +11,12 @@ function formatPhone(val) {
 
 const normalize = p => p.replace(/\D/g, '').replace(/^0+/, '')
 
+// Demo işletme hesabı — reset sonrası da çalışır
+const DEMO_ISLETME = {
+  isim: 'Demo Kafe', sahipAdi: 'Demo Sahip',
+  telefon: '5426469070', kategori: 'Kafe & Restoran', password: '8014',
+}
+
 export default function IsletmeLogin() {
   const navigate = useNavigate()
   const [telefon, setTelefon] = useState('')
@@ -21,10 +27,20 @@ export default function IsletmeLogin() {
   function girisYap() {
     setHata('')
     if (!telefon || !sifre) { setHata('Tüm alanları doldurun'); return }
+    const normTel = normalize(telefon)
+
+    // Demo hesabı kontrolü (her zaman çalışır)
+    if (normTel === DEMO_ISLETME.telefon && sifre === DEMO_ISLETME.password) {
+      localStorage.setItem('isletme_user', JSON.stringify(DEMO_ISLETME))
+      localStorage.setItem('isletme_session', 'true')
+      navigate('/isletme/dashboard', { replace: true })
+      return
+    }
+
     const raw = localStorage.getItem('isletme_user')
     if (!raw) { setHata('Kayıtlı işletme hesabı bulunamadı'); return }
     const isletme = JSON.parse(raw)
-    if (normalize(isletme.telefon) !== normalize(telefon)) { setHata('Telefon veya şifre hatalı'); return }
+    if (normalize(isletme.telefon) !== normTel) { setHata('Telefon veya şifre hatalı'); return }
     if (isletme.password !== sifre) { setHata('Telefon veya şifre hatalı'); return }
     localStorage.setItem('isletme_session', 'true')
     navigate('/isletme/dashboard', { replace: true })

@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import { Search, ChevronLeft, Star, MapPin, Tag } from 'lucide-react'
 import BottomNav from '../components/BottomNav'
 import { MAGAZA_CATEGORIES, MAGAZALAR } from '../data/mockAlisveris'
+import StoryBar from '../components/StoryBar'
+import { STORIES, MARKALAR } from '../data/mockStory'
 
 function MagazaCard({ m, onClick }) {
   return (
@@ -76,6 +78,9 @@ export default function AlisverisPage() {
       </header>
 
       <div className="pt-14 pb-24">
+
+        {/* Story + Markalar */}
+        <StoryBar stories={STORIES.alisveris} markalar={MARKALAR.alisveris} />
 
         {/* Arama */}
         <div className="px-4 pt-4">

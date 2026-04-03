@@ -2,6 +2,9 @@ import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { Phone, Lock, Eye, EyeOff, Building2, ShieldCheck } from 'lucide-react'
 
+// Demo kullanıcı — reset sonrası da çalışır
+const DEMO_USER = { firstName: 'Demo', lastName: 'Kullanıcı', phone: '5426469070', password: '8014' }
+
 export default function Login() {
   const [phone, setPhone] = useState('')
   const [password, setPassword] = useState('')
@@ -21,10 +24,21 @@ export default function Login() {
   function handleSubmit(e) {
     e.preventDefault()
     setError('')
+    const normPhone = normalize(phone)
+
+    // Demo hesabı kontrolü (her zaman çalışır)
+    if (normPhone === DEMO_USER.phone && password === DEMO_USER.password) {
+      localStorage.setItem('sehir_user', JSON.stringify(DEMO_USER))
+      localStorage.setItem('sehir_session', '1')
+      navigate('/home')
+      return
+    }
+
+    // Normal localStorage kontrolü
     const raw = localStorage.getItem('sehir_user')
     if (!raw) { setError('Kayıtlı kullanıcı bulunamadı'); return }
     const user = JSON.parse(raw)
-    if (normalize(user.phone) !== normalize(phone)) { setError('Telefon veya şifre hatalı'); return }
+    if (normalize(user.phone) !== normPhone) { setError('Telefon veya şifre hatalı'); return }
     if (user.password !== password) { setError('Telefon veya şifre hatalı'); return }
     localStorage.setItem('sehir_session', '1')
     navigate('/home')
