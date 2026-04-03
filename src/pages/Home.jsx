@@ -131,7 +131,7 @@ export default function Home() {
             {CATEGORIES.map(({ icon: Icon, label, path }) => (
               <button
                 key={label}
-                onClick={() => path && navigate(path)}
+                onClick={() => { if (path) navigate(path) }}
                 className="flex flex-col items-center gap-2 active:scale-95 transition-transform"
               >
                 <div className="w-[60px] h-[60px] rounded-[14px] bg-white border border-gray-100 shadow-sm flex items-center justify-center">
