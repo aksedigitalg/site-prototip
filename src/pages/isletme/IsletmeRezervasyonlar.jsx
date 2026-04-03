@@ -44,7 +44,7 @@ export default function IsletmeRezervasyonlar() {
         </div>
       </header>
 
-      <div className="pt-[116px] pb-24 px-4">
+      <div className="pt-[132px] pb-24 px-4">
         {filtrelenmis.length === 0 ? (
           <div className="flex flex-col items-center pt-16 text-center">
             <div className="text-4xl mb-3">📭</div>

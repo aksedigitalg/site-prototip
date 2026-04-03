@@ -1,7 +1,46 @@
 import { useNavigate } from 'react-router-dom'
-import { LogOut, TrendingUp, TrendingDown, Eye, MousePointerClick, CalendarCheck, MessageCircle, Tag, ChevronRight } from 'lucide-react'
+import { LogOut, TrendingUp, Eye, MousePointerClick, CalendarCheck, MessageCircle, Tag, ChevronRight } from 'lucide-react'
 import IsletmeNav from '../../components/IsletmeNav'
 import { ISLETME_PROFIL, ISLETME_ISTATISTIK, ISLETME_REZERVASYONLAR, ISLETME_MESAJLAR } from '../../data/mockIsletme'
+
+const AYLIK_GRAFIK = [
+  { ay: 'Eki', rez: 14, goru: 980  },
+  { ay: 'Kas', rez: 18, goru: 1120 },
+  { ay: 'Ara', rez: 12, goru: 870  },
+  { ay: 'Oca', rez: 22, goru: 1340 },
+  { ay: 'Şub', rez: 19, goru: 1190 },
+  { ay: 'Mar', rez: 25, goru: 1560 },
+  { ay: 'Nis', rez: 28, goru: 1842 },
+]
+
+function IsletmeChart() {
+  const maxRez  = Math.max(...AYLIK_GRAFIK.map(d => d.rez))
+  const maxGoru = Math.max(...AYLIK_GRAFIK.map(d => d.goru))
+  const CHART_H = 60
+  const BAR_W   = 18
+  const GAP     = 8
+  const totalW  = AYLIK_GRAFIK.length * (BAR_W * 2 + GAP + 4) + GAP
+
+  return (
+    <svg viewBox={`0 0 ${totalW} 80`} className="w-full" style={{ height: 80 }}>
+      {AYLIK_GRAFIK.map((d, i) => {
+        const rezH  = Math.max((d.rez  / maxRez)  * CHART_H, 3)
+        const goruH = Math.max((d.goru / maxGoru) * CHART_H, 3)
+        const xBase = i * (BAR_W * 2 + GAP + 4) + GAP
+        const isLast = i === AYLIK_GRAFIK.length - 1
+        return (
+          <g key={d.ay}>
+            <rect x={xBase}           y={CHART_H - goruH} width={BAR_W} height={goruH} rx={4} fill={isLast ? '#6366f1' : '#e0e7ff'} />
+            <rect x={xBase + BAR_W + 2} y={CHART_H - rezH}  width={BAR_W} height={rezH}  rx={4} fill={isLast ? '#10b981' : '#d1fae5'} />
+            <text x={xBase + BAR_W} y={76} textAnchor="middle" fontSize={8} fill={isLast ? '#6b7280' : '#9ca3af'} fontWeight={isLast ? '600' : '400'}>
+              {d.ay}
+            </text>
+          </g>
+        )
+      })}
+    </svg>
+  )
+}
 
 function StatKart({ label, deger, alt, ikon: Icon, renk }) {
   return (
@@ -46,8 +85,21 @@ export default function IsletmeDashboard() {
 
       <div className="pt-[80px] pb-24 px-4">
 
+        {/* Aylık Grafik */}
+        <div className="pt-4 bg-white border border-gray-100 rounded-2xl px-4 py-4 shadow-sm">
+          <div className="flex items-center justify-between mb-1">
+            <p className="text-gray-800 text-sm font-bold">Aylık Performans</p>
+            <span className="text-gray-400 text-[10px]">Son 7 ay</span>
+          </div>
+          <div className="flex items-center gap-3 mb-3">
+            <span className="flex items-center gap-1 text-[10px] text-indigo-500 font-semibold"><span className="w-2 h-2 rounded-sm bg-indigo-400 inline-block" /> Görüntülenme</span>
+            <span className="flex items-center gap-1 text-[10px] text-emerald-500 font-semibold"><span className="w-2 h-2 rounded-sm bg-emerald-400 inline-block" /> Rezervasyon</span>
+          </div>
+          <IsletmeChart />
+        </div>
+
         {/* İstatistik kartları */}
-        <div className="pt-4 grid grid-cols-2 gap-3">
+        <div className="pt-1 grid grid-cols-2 gap-3">
           <StatKart label="Görüntülenme" deger={buAyGoruntulenme} alt="Bu ay" ikon={Eye} renk="#6366f1" />
           <StatKart label="Tıklama"      deger={buAyTiklama}      alt="Bu ay" ikon={MousePointerClick} renk="#f59e0b" />
           <StatKart label="Rezervasyon"  deger={buAyRezervasyon}  alt="Bu ay" ikon={CalendarCheck} renk="#10b981" />
