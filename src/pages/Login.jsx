@@ -105,23 +105,14 @@ export default function Login() {
         <div className="flex-1 h-px bg-gray-100" />
       </div>
 
-      {/* İşletme girişi / kaydı */}
-      <div className="flex gap-3 mt-4">
-        <button
-          onClick={() => navigate('/isletme/login')}
-          className="flex-1 flex items-center justify-center gap-2 border border-gray-200 rounded-2xl py-3.5 text-gray-700 text-sm font-semibold active:bg-gray-50 transition-colors"
-        >
-          <Building2 size={16} strokeWidth={1.5} />
-          İşletme Girişi
-        </button>
-        <button
-          onClick={() => navigate('/isletme/register')}
-          className="flex-1 flex items-center justify-center gap-2 border border-gray-200 rounded-2xl py-3.5 text-gray-700 text-sm font-semibold active:bg-gray-50 transition-colors"
-        >
-          <Building2 size={16} strokeWidth={1.5} />
-          İşletme Kaydı
-        </button>
-      </div>
+      {/* İşletme girişi */}
+      <button
+        onClick={() => navigate('/isletme/login')}
+        className="w-full flex items-center justify-center gap-2 mt-4 border border-gray-200 rounded-2xl py-3.5 text-gray-700 text-sm font-semibold active:bg-gray-50 transition-colors"
+      >
+        <Building2 size={16} strokeWidth={1.5} />
+        İşletme Girişi
+      </button>
 
       {/* Admin girişi */}
       <button
