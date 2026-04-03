@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
-import { Phone, Lock, Eye, EyeOff } from 'lucide-react'
+import { Phone, Lock, Eye, EyeOff, Building2, ShieldCheck } from 'lucide-react'
 
 export default function Login() {
   const [phone, setPhone] = useState('')
@@ -97,6 +97,41 @@ export default function Login() {
           Kayıt Ol
         </Link>
       </p>
+
+      {/* Ayırıcı */}
+      <div className="flex items-center gap-3 mt-8">
+        <div className="flex-1 h-px bg-gray-100" />
+        <span className="text-gray-300 text-xs">veya</span>
+        <div className="flex-1 h-px bg-gray-100" />
+      </div>
+
+      {/* İşletme girişi / kaydı */}
+      <div className="flex gap-3 mt-4">
+        <button
+          onClick={() => navigate('/isletme/login')}
+          className="flex-1 flex items-center justify-center gap-2 border border-gray-200 rounded-2xl py-3.5 text-gray-700 text-sm font-semibold active:bg-gray-50 transition-colors"
+        >
+          <Building2 size={16} strokeWidth={1.5} />
+          İşletme Girişi
+        </button>
+        <button
+          onClick={() => navigate('/isletme/register')}
+          className="flex-1 flex items-center justify-center gap-2 border border-gray-200 rounded-2xl py-3.5 text-gray-700 text-sm font-semibold active:bg-gray-50 transition-colors"
+        >
+          <Building2 size={16} strokeWidth={1.5} />
+          İşletme Kaydı
+        </button>
+      </div>
+
+      {/* Admin girişi */}
+      <button
+        onClick={() => navigate('/admin/login')}
+        className="w-full flex items-center justify-center gap-2 mt-3 py-3 text-gray-300 text-xs font-medium active:text-gray-500 transition-colors"
+      >
+        <ShieldCheck size={13} strokeWidth={1.5} />
+        Admin Girişi
+      </button>
+
     </div>
   )
 }
