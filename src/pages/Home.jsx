@@ -104,11 +104,12 @@ function NearbyCard({ logo, letter, letterBg, icon: Icon, title, type, onPress }
   return (
     <button
       onClick={onPress}
-      className="flex items-center gap-3 bg-gray-50 rounded-2xl px-3 py-3 active:bg-gray-100 transition-colors w-full text-left"
+      className="shrink-0 flex flex-col gap-2.5 bg-gray-50 rounded-2xl p-3.5 active:bg-gray-100 transition-colors text-left"
+      style={{ width: '140px' }}
     >
       <div
-        className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 overflow-hidden"
-        style={{ background: letterBg || (logo ? '#f9fafb' : '#f3f4f6') }}
+        className="w-9 h-9 rounded-xl flex items-center justify-center overflow-hidden"
+        style={{ background: letterBg || (logo ? '#f0f0f0' : '#e5e7eb') }}
       >
         {letter
           ? <span className="text-white font-black text-sm leading-none">{letter}</span>
@@ -117,10 +118,10 @@ function NearbyCard({ logo, letter, letterBg, icon: Icon, title, type, onPress }
             : Icon ? <Icon size={16} strokeWidth={1.5} className="text-gray-600" /> : null
         }
       </div>
-      <div className="flex-1 min-w-0">
-        <p className="text-gray-500 text-[10px] font-semibold">{title}</p>
-        <p className="text-gray-800 text-xs font-bold truncate">{first?.name}</p>
-        <p className="text-gray-400 text-[10px]">{first?.distance}</p>
+      <div className="min-w-0">
+        <p className="text-gray-400 text-[10px] font-semibold mb-0.5">{title}</p>
+        <p className="text-gray-800 text-xs font-bold leading-snug line-clamp-2">{first?.name}</p>
+        <p className="text-gray-400 text-[10px] mt-1">{first?.distance}</p>
       </div>
     </button>
   )
@@ -298,8 +299,8 @@ export default function Home() {
           {/* Otobüs kartı */}
           <BusCard onPress={() => navigate('/nearby/bus')} />
 
-          {/* Mini kartlar grid */}
-          <div className="grid grid-cols-2 gap-2 mt-2">
+          {/* Mini kartlar — yatay scroll */}
+          <div className="flex gap-2 mt-2 overflow-x-auto pb-1" style={{ scrollbarWidth: 'none' }}>
             <NearbyCard
               letter="E"
               letterBg="#c0392b"
