@@ -19,6 +19,13 @@ import EtkinliklerPage from './pages/EtkinliklerPage'
 import EtkinlikDetail from './pages/EtkinlikDetail'
 import AlisverisPage from './pages/AlisverisPage'
 import SaticiProfil from './pages/SaticiProfil'
+import RezervasyonForm from './pages/RezervasyonForm'
+import TeklifForm from './pages/TeklifForm'
+import Rezervasyonlarim from './pages/Rezervasyonlarim'
+import Randevularim from './pages/Randevularim'
+import TekliflerPage from './pages/TekliflerPage'
+import MesajlarPage from './pages/MesajlarPage'
+import MesajDetay from './pages/MesajDetay'
 import Search from './pages/Search'
 import Explore from './pages/Explore'
 import Campaigns from './pages/Campaigns'
@@ -84,6 +91,14 @@ export default function App() {
           <Route path="/etkinlik/:id"        element={<PrivateRoute><EtkinlikDetail /></PrivateRoute>} />
           <Route path="/alisveris"           element={<PrivateRoute><AlisverisPage /></PrivateRoute>} />
           <Route path="/magaza/:id"          element={<PrivateRoute><SaticiProfil /></PrivateRoute>} />
+          <Route path="/rezervasyon/:id"     element={<PrivateRoute><RezervasyonForm /></PrivateRoute>} />
+          <Route path="/teklif-form/:id"     element={<PrivateRoute><TeklifForm /></PrivateRoute>} />
+          <Route path="/randevu-form/:id"    element={<PrivateRoute><RezervasyonForm /></PrivateRoute>} />
+          <Route path="/rezervasyonlarim"    element={<PrivateRoute><Rezervasyonlarim /></PrivateRoute>} />
+          <Route path="/randevularim"        element={<PrivateRoute><Randevularim /></PrivateRoute>} />
+          <Route path="/tekliflerim"         element={<PrivateRoute><TekliflerPage /></PrivateRoute>} />
+          <Route path="/mesajlarim"          element={<PrivateRoute><MesajlarPage /></PrivateRoute>} />
+          <Route path="/mesaj/:id"           element={<PrivateRoute><MesajDetay /></PrivateRoute>} />
           <Route path="/search"    element={<PrivateRoute><Search /></PrivateRoute>} />
           <Route path="/explore"   element={<PrivateRoute><Explore /></PrivateRoute>} />
           <Route path="/campaigns" element={<PrivateRoute><Campaigns /></PrivateRoute>} />

@@ -327,9 +327,28 @@ export default function RestaurantDetail() {
 
       {restaurant.isOpen && totalItems === 0 && (
         <div className="fixed bottom-0 left-0 right-0 z-40 flex justify-center">
-          <div className="w-full max-w-[430px] bg-white border-t border-gray-100 px-4 py-3">
-            <button className="w-full bg-gray-900 text-white font-semibold text-base py-4 rounded-2xl active:scale-95 transition-transform">
+          <div className="w-full max-w-[430px] bg-white border-t border-gray-100 px-4 py-3 flex gap-2">
+            <button
+              onClick={() => navigate(`/rezervasyon/${restaurant.id}`)}
+              className="flex-1 border border-gray-200 text-gray-700 font-semibold text-sm py-4 rounded-2xl active:scale-95 transition-transform"
+            >
+              Rezervasyon
+            </button>
+            <button className="flex-1 bg-gray-900 text-white font-semibold text-sm py-4 rounded-2xl active:scale-95 transition-transform">
               Sipariş Ver
+            </button>
+          </div>
+        </div>
+      )}
+
+      {!restaurant.isOpen && (
+        <div className="fixed bottom-0 left-0 right-0 z-40 flex justify-center">
+          <div className="w-full max-w-[430px] bg-white border-t border-gray-100 px-4 py-3">
+            <button
+              onClick={() => navigate(`/rezervasyon/${restaurant.id}`)}
+              className="w-full bg-gray-900 text-white font-semibold text-sm py-4 rounded-2xl active:scale-95 transition-transform"
+            >
+              Rezervasyon Yap
             </button>
           </div>
         </div>

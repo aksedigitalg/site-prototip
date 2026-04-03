@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import {
   ArrowLeft, Star, MapPin, Phone, Clock,
-  MessageSquare, CheckCircle, Info, ChevronRight,
+  MessageSquare, CheckCircle, Info, ChevronRight, Send,
 } from 'lucide-react'
 import { SERVICES, SERVICE_DETAILS } from '../data/mockServices'
 
@@ -24,8 +24,8 @@ function Stars({ rating, size = 12 }) {
 }
 
 export default function ServiceDetail() {
-  const { id } = useParams()
-  const navigate = useNavigate()
+  const { id }    = useParams()
+  const navigate  = useNavigate()
   const serviceId = parseInt(id)
 
   const service = SERVICES.find(s => s.id === serviceId)
@@ -197,23 +197,75 @@ export default function ServiceDetail() {
         )}
       </div>
 
-      {/* Alt buton */}
-      {service.isAvailable && (
-        <div className="fixed bottom-0 left-0 right-0 z-40 flex justify-center">
-          <div className="w-full max-w-[430px] bg-white border-t border-gray-100 px-4 py-3 flex gap-3">
-            <a
-              href={`tel:${detail?.phone}`}
-              className="flex-1 border border-gray-200 text-gray-700 font-semibold text-sm py-4 rounded-2xl flex items-center justify-center gap-2 active:scale-95 transition-transform"
-            >
-              <Phone size={16} strokeWidth={1.5} />
-              Ara
-            </a>
-            <button className="flex-1 bg-gray-900 text-white font-semibold text-sm py-4 rounded-2xl active:scale-95 transition-transform">
-              Randevu Al
-            </button>
-          </div>
+      {/* Alt buton — kategoriye göre değişir */}
+      <div className="fixed bottom-0 left-0 right-0 z-40 flex justify-center">
+        <div className="w-full max-w-[430px] bg-white border-t border-gray-100 px-4 py-3 flex gap-2">
+          {/* Mesaj her kategoride var */}
+          <button
+            onClick={() => navigate('/mesajlarim')}
+            className="w-12 h-12 shrink-0 border border-gray-200 rounded-2xl flex items-center justify-center active:scale-95 transition-transform"
+          >
+            <Send size={16} strokeWidth={1.5} className="text-gray-600" />
+          </button>
+
+          {service.isAvailable && service.category === 'Düğün' && (
+            <>
+              <a
+                href={`tel:${detail?.phone}`}
+                className="flex-1 border border-gray-200 text-gray-700 font-semibold text-sm py-3.5 rounded-2xl flex items-center justify-center gap-2 active:scale-95 transition-transform"
+              >
+                <Phone size={15} strokeWidth={1.5} />
+                Ara
+              </a>
+              <button
+                onClick={() => navigate(`/teklif-form/${service.id}`)}
+                className="flex-1 bg-gray-900 text-white font-semibold text-sm py-3.5 rounded-2xl active:scale-95 transition-transform"
+              >
+                Teklif Al
+              </button>
+            </>
+          )}
+
+          {service.isAvailable && service.category === 'Sağlık' && (
+            <>
+              <a
+                href={`tel:${detail?.phone}`}
+                className="flex-1 border border-gray-200 text-gray-700 font-semibold text-sm py-3.5 rounded-2xl flex items-center justify-center gap-2 active:scale-95 transition-transform"
+              >
+                <Phone size={15} strokeWidth={1.5} />
+                Ara
+              </a>
+              <button
+                onClick={() => navigate(`/randevu-form/${service.id}`)}
+                className="flex-1 bg-gray-900 text-white font-semibold text-sm py-3.5 rounded-2xl active:scale-95 transition-transform"
+              >
+                Randevu Al
+              </button>
+            </>
+          )}
+
+          {service.isAvailable && service.category !== 'Düğün' && service.category !== 'Sağlık' && (
+            <>
+              <a
+                href={`tel:${detail?.phone}`}
+                className="flex-1 border border-gray-200 text-gray-700 font-semibold text-sm py-3.5 rounded-2xl flex items-center justify-center gap-2 active:scale-95 transition-transform"
+              >
+                <Phone size={15} strokeWidth={1.5} />
+                Ara
+              </a>
+              <button className="flex-1 bg-gray-900 text-white font-semibold text-sm py-3.5 rounded-2xl active:scale-95 transition-transform">
+                Talep Gönder
+              </button>
+            </>
+          )}
+
+          {!service.isAvailable && (
+            <div className="flex-1 bg-gray-100 text-gray-400 font-semibold text-sm py-3.5 rounded-2xl flex items-center justify-center">
+              Şu an müsait değil
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   )
 }

@@ -1,16 +1,39 @@
 import { useNavigate } from 'react-router-dom'
-import { LogOut, ChevronRight, User, Phone, Lock } from 'lucide-react'
+import {
+  LogOut, ChevronRight, User, Phone, Lock,
+  CalendarDays, Clock, MessageCircle, FileText,
+} from 'lucide-react'
 import BottomNav from '../components/BottomNav'
+import { REZERVASYONLAR, RANDEVULAR, KONUSMALAR, TEKLIFLER } from '../data/mockMesajlar'
 
 export default function Profile() {
   const navigate = useNavigate()
-  const raw = localStorage.getItem('sehir_user')
+  const raw  = localStorage.getItem('sehir_user')
   const user = raw ? JSON.parse(raw) : null
+
+  const localRezRaw = localStorage.getItem('sehir_rezervasyonlar')
+  const localRez    = localRezRaw ? JSON.parse(localRezRaw) : []
+  const localRnvRaw = localStorage.getItem('sehir_randevular')
+  const localRnv    = localRnvRaw ? JSON.parse(localRnvRaw) : []
+  const localTkfRaw = localStorage.getItem('sehir_teklifler')
+  const localTkf    = localTkfRaw ? JSON.parse(localTkfRaw) : []
+
+  const rezSayi  = REZERVASYONLAR.length + localRez.length
+  const rnvSayi  = RANDEVULAR.length    + localRnv.length
+  const msjSayi  = KONUSMALAR.filter(k => k.okunmadi > 0).length
+  const tklSayi  = TEKLIFLER.length    + localTkf.length
 
   function handleLogout() {
     localStorage.removeItem('sehir_session')
     navigate('/login')
   }
+
+  const AKTIVITELER = [
+    { icon: CalendarDays, label: 'Rezervasyonlarım', count: rezSayi, path: '/rezervasyonlarim', color: 'bg-blue-50 text-blue-600' },
+    { icon: Clock,        label: 'Randevularım',     count: rnvSayi, path: '/randevularim',     color: 'bg-purple-50 text-purple-600' },
+    { icon: MessageCircle,label: 'Mesajlarım',       count: msjSayi, path: '/mesajlarim',       color: 'bg-green-50 text-green-600',  badge: msjSayi > 0 },
+    { icon: FileText,     label: 'Tekliflerim',      count: tklSayi, path: '/tekliflerim',      color: 'bg-orange-50 text-orange-600' },
+  ]
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -18,57 +41,105 @@ export default function Profile() {
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 flex justify-center">
         <div className="w-full max-w-[430px] bg-white/80 backdrop-blur-md border-b border-gray-100 px-4 py-3 flex items-center justify-between">
-          <span className="text-gray-800 text-base font-bold">Profil</span>
+          <span className="text-gray-800 text-base font-bold">Profilim</span>
           <button onClick={handleLogout} className="text-gray-400">
             <LogOut size={18} strokeWidth={1.5} />
           </button>
         </div>
       </header>
 
-      <div className="pt-16 pb-24 px-4">
+      <div className="pt-16 pb-24 px-4 space-y-4">
 
-        {/* Avatar */}
-        <div className="flex flex-col items-center pt-8 pb-6">
-          <div className="w-20 h-20 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center mb-3 shadow-sm">
-            <span className="text-gray-700 text-2xl font-bold">
+        {/* Avatar + İsim */}
+        <div className="bg-white border border-gray-100 rounded-2xl shadow-sm px-4 py-6 flex items-center gap-4">
+          <div className="w-16 h-16 rounded-2xl bg-gray-900 flex items-center justify-center shrink-0">
+            <span className="text-white text-xl font-bold">
               {user?.firstName?.[0]}{user?.lastName?.[0]}
             </span>
           </div>
-          <h1 className="text-gray-900 text-lg font-bold">
-            {user?.firstName} {user?.lastName}
-          </h1>
-          <p className="text-gray-400 text-sm mt-1">+90 {user?.phone}</p>
+          <div className="flex-1 min-w-0">
+            <h1 className="text-gray-900 text-base font-bold">
+              {user?.firstName} {user?.lastName}
+            </h1>
+            <p className="text-gray-400 text-sm mt-0.5">+90 {user?.phone}</p>
+            <p className="text-gray-300 text-xs mt-0.5">Üye · 2026</p>
+          </div>
         </div>
 
-        {/* Bilgiler */}
-        <div className="bg-white border border-gray-100 rounded-2xl shadow-sm divide-y divide-gray-50">
+        {/* İstatistik grid */}
+        <div className="grid grid-cols-4 gap-2">
           {[
-            { icon: User,  label: 'Ad Soyad', value: `${user?.firstName} ${user?.lastName}` },
-            { icon: Phone, label: 'Telefon',  value: `+90 ${user?.phone}` },
-            { icon: Lock,  label: 'Şifre',    value: '••••••••' },
-          ].map(({ icon: Icon, label, value }) => (
-            <div key={label} className="flex items-center gap-3 px-4 py-4">
-              <div className="w-8 h-8 rounded-xl bg-gray-100 flex items-center justify-center shrink-0">
-                <Icon size={15} strokeWidth={1.5} className="text-gray-600" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-gray-400 text-xs">{label}</p>
-                <p className="text-gray-800 text-sm font-medium truncate">{value}</p>
-              </div>
-              <ChevronRight size={14} strokeWidth={1.5} className="text-gray-300" />
+            { label: 'Rezervasyon', count: rezSayi },
+            { label: 'Randevu',     count: rnvSayi },
+            { label: 'Mesaj',       count: KONUSMALAR.length },
+            { label: 'Teklif',      count: tklSayi },
+          ].map(s => (
+            <div key={s.label} className="bg-white border border-gray-100 rounded-2xl py-3 text-center shadow-sm">
+              <p className="text-gray-900 text-lg font-extrabold">{s.count}</p>
+              <p className="text-gray-400 text-xs mt-0.5 leading-tight">{s.label}</p>
             </div>
           ))}
+        </div>
+
+        {/* Aktiviteler */}
+        <div>
+          <p className="text-gray-500 text-xs font-semibold px-1 mb-2">AKTİVİTELERİM</p>
+          <div className="bg-white border border-gray-100 rounded-2xl shadow-sm divide-y divide-gray-50">
+            {AKTIVITELER.map(({ icon: Icon, label, count, path, color, badge }) => (
+              <button
+                key={label}
+                onClick={() => navigate(path)}
+                className="w-full flex items-center gap-3 px-4 py-4 active:bg-gray-50 transition-colors"
+              >
+                <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${color}`}>
+                  <Icon size={16} strokeWidth={1.5} />
+                </div>
+                <span className="text-gray-800 text-sm font-medium flex-1 text-left">{label}</span>
+                {badge && count > 0 ? (
+                  <span className="w-5 h-5 bg-gray-900 text-white text-xs rounded-full flex items-center justify-center font-bold">
+                    {count}
+                  </span>
+                ) : (
+                  <span className="text-gray-400 text-xs mr-1">{count > 0 ? count : ''}</span>
+                )}
+                <ChevronRight size={14} strokeWidth={1.5} className="text-gray-300" />
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Hesap */}
+        <div>
+          <p className="text-gray-500 text-xs font-semibold px-1 mb-2">HESABIM</p>
+          <div className="bg-white border border-gray-100 rounded-2xl shadow-sm divide-y divide-gray-50">
+            {[
+              { icon: User,  label: 'Ad Soyad', value: `${user?.firstName} ${user?.lastName}` },
+              { icon: Phone, label: 'Telefon',  value: `+90 ${user?.phone}` },
+              { icon: Lock,  label: 'Şifre',    value: '••••••••' },
+            ].map(({ icon: Icon, label, value }) => (
+              <div key={label} className="flex items-center gap-3 px-4 py-3.5">
+                <div className="w-8 h-8 rounded-xl bg-gray-100 flex items-center justify-center shrink-0">
+                  <Icon size={14} strokeWidth={1.5} className="text-gray-600" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-gray-400 text-xs">{label}</p>
+                  <p className="text-gray-800 text-sm font-medium truncate">{value}</p>
+                </div>
+                <ChevronRight size={13} strokeWidth={1.5} className="text-gray-300" />
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Çıkış */}
         <button
           onClick={handleLogout}
-          className="w-full mt-4 bg-white border border-gray-100 rounded-2xl px-4 py-4 shadow-sm flex items-center gap-3 text-left active:scale-95 transition-transform"
+          className="w-full bg-white border border-gray-100 rounded-2xl px-4 py-4 shadow-sm flex items-center gap-3 active:scale-95 transition-transform"
         >
-          <div className="w-8 h-8 rounded-xl bg-gray-100 flex items-center justify-center shrink-0">
-            <LogOut size={15} strokeWidth={1.5} className="text-gray-600" />
+          <div className="w-8 h-8 rounded-xl bg-red-50 flex items-center justify-center shrink-0">
+            <LogOut size={14} strokeWidth={1.5} className="text-red-500" />
           </div>
-          <span className="text-gray-700 text-sm font-medium">Çıkış Yap</span>
+          <span className="text-red-500 text-sm font-semibold">Çıkış Yap</span>
         </button>
 
       </div>
