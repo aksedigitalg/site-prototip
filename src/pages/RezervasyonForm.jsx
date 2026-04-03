@@ -41,74 +41,73 @@ function MiniCalendar({ secilenTarih, onChange }) {
 
   const oncekiAyGoster = ayBaslangic > bugun
 
+  const cellW = 'calc(100% / 7)'
+
   return (
-    <div>
+    <div style={{ width: '100%' }}>
       {/* Ay navigasyonu */}
-      <div className="flex items-center justify-between mb-3">
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
         <button
           onClick={oncekiAy}
           disabled={!oncekiAyGoster}
-          className="w-8 h-8 rounded-xl bg-gray-100 flex items-center justify-center active:bg-gray-200 disabled:opacity-30"
+          style={{ width: 32, height: 32, borderRadius: 10, background: '#f3f4f6', display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: oncekiAyGoster ? 1 : 0.3 }}
         >
-          <ChevronLeft size={16} strokeWidth={2} className="text-gray-600" />
+          <ChevronLeft size={16} strokeWidth={2} color="#4b5563" />
         </button>
-        <span className="text-gray-800 text-sm font-bold">
+        <span style={{ fontSize: 14, fontWeight: 700, color: '#1f2937' }}>
           {AYLAR_TR[gorulenAy.getMonth()]} {gorulenAy.getFullYear()}
         </span>
         <button
           onClick={sonrakiAy}
-          className="w-8 h-8 rounded-xl bg-gray-100 flex items-center justify-center active:bg-gray-200"
+          style={{ width: 32, height: 32, borderRadius: 10, background: '#f3f4f6', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
         >
-          <ChevronRight size={16} strokeWidth={2} className="text-gray-600" />
+          <ChevronRight size={16} strokeWidth={2} color="#4b5563" />
         </button>
       </div>
 
       {/* Gün başlıkları */}
-      <div className="grid grid-cols-7 mb-1" style={{ gap: '2px' }}>
+      <div style={{ display: 'flex', marginBottom: 4 }}>
         {GUN_BASLIKLARI.map(g => (
-          <div key={g} style={{ height: 28, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, fontWeight: 600, color: '#9ca3af' }}>{g}</div>
+          <div key={g} style={{ width: cellW, height: 28, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, fontWeight: 600, color: '#9ca3af' }}>{g}</div>
         ))}
       </div>
 
       {/* Günler */}
-      <div className="grid grid-cols-7" style={{ gap: '2px' }}>
-        {/* Boşluk hücreleri */}
+      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
         {Array.from({ length: baslangicGunu }).map((_, i) => (
-          <div key={`bos-${i}`} style={{ height: 36 }} />
+          <div key={`bos-${i}`} style={{ width: cellW, height: 36 }} />
         ))}
-        {/* Gün butonları */}
         {gunler.map(gun => {
           const gecmis  = gun < bugun
           const secili  = secilenTarih && gunEsit(gun, secilenTarih)
           const bugunMu = gunEsit(gun, bugun)
           return (
-            <button
-              key={gun.getDate()}
-              onClick={() => !gecmis && onChange(gun)}
-              disabled={gecmis}
-              style={{
-                height: 36,
-                width: '100%',
-                borderRadius: 10,
-                background: secili ? '#111827' : 'transparent',
-                color:      secili ? '#ffffff' : gecmis ? '#d1d5db' : '#1f2937',
-                outline:    bugunMu && !secili ? '1.5px solid #d1d5db' : 'none',
-                fontSize: 13,
-                fontWeight: secili ? 700 : 400,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              {gun.getDate()}
-            </button>
+            <div key={gun.getDate()} style={{ width: cellW, height: 36, padding: '2px' }}>
+              <button
+                onClick={() => !gecmis && onChange(gun)}
+                disabled={gecmis}
+                style={{
+                  width: '100%', height: '100%',
+                  borderRadius: 9,
+                  background: secili ? '#111827' : 'transparent',
+                  color:      secili ? '#fff' : gecmis ? '#d1d5db' : '#1f2937',
+                  border:     bugunMu && !secili ? '1.5px solid #d1d5db' : 'none',
+                  fontSize: 13,
+                  fontWeight: secili ? 700 : 400,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  cursor: gecmis ? 'default' : 'pointer',
+                }}
+              >
+                {gun.getDate()}
+              </button>
+            </div>
           )
         })}
       </div>
 
-      {/* Seçilen tarih gösterimi */}
+      {/* Seçilen tarih */}
       {secilenTarih && (
-        <p className="text-center text-xs text-gray-400 mt-3">
+        <p style={{ textAlign: 'center', fontSize: 11, color: '#9ca3af', marginTop: 10 }}>
           {secilenTarih.toLocaleDateString('tr-TR', { weekday: 'long', day: 'numeric', month: 'long' })}
         </p>
       )}
