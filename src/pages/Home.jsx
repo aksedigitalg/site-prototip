@@ -168,12 +168,8 @@ export default function Home() {
             <span className="text-gray-400 text-xs">Konumundan</span>
           </div>
           <div className="grid grid-cols-2 gap-3">
-            <div onClick={() => navigate('/nearby/pharmacy')} className="cursor-pointer active:scale-95 transition-transform">
-              <NearbyCard icon={Pill}     title="Nöbetçi Eczane" data={pharmacy} loading={loading} />
-            </div>
-            <div onClick={() => navigate('/nearby/atm')} className="cursor-pointer active:scale-95 transition-transform">
-              <NearbyCard icon={Landmark} title="En Yakın ATM"   data={atm}      loading={loading} />
-            </div>
+            <NearbyCard icon={Pill}     title="Nöbetçi Eczane" data={pharmacy} loading={loading} />
+            <NearbyCard icon={Landmark} title="En Yakın ATM"   data={atm}      loading={loading} />
           </div>
         </div>
 
