@@ -1,24 +1,22 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { MapPin, Zap, Users } from 'lucide-react'
 
 const slides = [
   {
-    icon: '🏙️',
-    title: 'Şehrine Hoş Geldin',
-    desc: 'Yaşadığın şehri daha iyi keşfet. Etkinlikler, mekanlar ve çok daha fazlası seni bekliyor.',
-    bg: 'from-blue-600 to-blue-800',
+    Icon: MapPin,
+    title: 'Şehrini Keşfet',
+    desc: 'Etkinlikler, mekanlar ve daha fazlası — yaşadığın şehri hiç bu kadar yakından tanımadın.',
   },
   {
-    icon: '🗺️',
-    title: 'Her Yerde Keşfet',
-    desc: 'Bulunduğun konuma göre en iyi yerleri, kısa yolları ve gizli hazineleri bul.',
-    bg: 'from-orange-500 to-orange-700',
+    Icon: Zap,
+    title: 'Anında Bul',
+    desc: 'Bulunduğun konuma göre en iyi yerleri, kısa yolları ve gizli hazineleri anında keşfet.',
   },
   {
-    icon: '⚡',
-    title: 'Anında Bağlan',
-    desc: 'Şehrin nabzını tut. Gerçek zamanlı güncellemeler ve yerel toplulukla anında iletişim kur.',
-    bg: 'from-blue-700 to-orange-600',
+    Icon: Users,
+    title: 'Topluluğa Katıl',
+    desc: 'Şehrin nabzını tut. Yerel toplulukla bağlan, paylaş ve birlikte keşfet.',
   },
 ]
 
@@ -35,18 +33,18 @@ export default function Onboarding() {
     }
   }
 
-  const slide = slides[current]
+  const { Icon, title, desc } = slides[current]
 
   return (
-    <div className={`min-h-screen bg-gradient-to-br ${slide.bg} flex flex-col items-center justify-between px-6 py-12 transition-all duration-500`}>
+    <div className="min-h-screen bg-white flex flex-col px-6 py-12">
       {/* Skip */}
-      <div className="w-full flex justify-end">
+      <div className="flex justify-end">
         <button
           onClick={() => {
             localStorage.setItem('sehir_onboarded', '1')
             navigate('/login')
           }}
-          className="text-white/70 text-sm font-medium"
+          className="text-gray-400 text-sm font-medium"
         >
           Geç
         </button>
@@ -54,19 +52,21 @@ export default function Onboarding() {
 
       {/* Content */}
       <div className="flex-1 flex flex-col items-center justify-center text-center gap-6">
-        <div className="text-8xl mb-2">{slide.icon}</div>
-        <h1 className="text-white text-3xl font-bold leading-tight">{slide.title}</h1>
-        <p className="text-white/80 text-base leading-relaxed max-w-xs">{slide.desc}</p>
+        <div className="w-24 h-24 rounded-3xl bg-gray-100 flex items-center justify-center shadow-sm mb-2">
+          <Icon size={40} strokeWidth={1.5} className="text-gray-900" />
+        </div>
+        <h1 className="text-gray-900 text-3xl font-bold leading-tight">{title}</h1>
+        <p className="text-gray-500 text-base leading-relaxed max-w-xs">{desc}</p>
       </div>
 
       {/* Dots */}
-      <div className="flex gap-2 mb-8">
+      <div className="flex gap-2 justify-center mb-8">
         {slides.map((_, i) => (
           <div
             key={i}
             onClick={() => setCurrent(i)}
             className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-              i === current ? 'w-6 bg-white' : 'w-2 bg-white/40'
+              i === current ? 'w-6 bg-gray-900' : 'w-2 bg-gray-200'
             }`}
           />
         ))}
@@ -75,7 +75,7 @@ export default function Onboarding() {
       {/* Button */}
       <button
         onClick={handleNext}
-        className="w-full bg-white text-blue-700 font-bold text-lg py-4 rounded-2xl shadow-lg active:scale-95 transition-transform"
+        className="w-full bg-gray-900 text-white font-semibold text-base py-4 rounded-2xl shadow-sm active:scale-95 transition-transform"
       >
         {current < slides.length - 1 ? 'İleri' : 'Başla'}
       </button>

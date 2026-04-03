@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom'
+import { MapPin, LogOut } from 'lucide-react'
 
 export default function Home() {
   const navigate = useNavigate()
@@ -12,34 +13,30 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-700 to-orange-600 flex flex-col items-center justify-center px-6 text-center relative">
-      {/* Logout */}
-      <button
-        onClick={handleLogout}
-        className="absolute top-6 right-6 text-white/60 text-sm font-medium"
-      >
-        Çıkış
-      </button>
-
-      {/* Avatar */}
-      <div className="w-24 h-24 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-5xl mb-6 shadow-lg">
-        👤
+    <div className="min-h-screen bg-white flex flex-col px-6 py-12">
+      {/* Top bar */}
+      <div className="flex items-center justify-between pt-4 mb-10">
+        <div className="flex items-center gap-2">
+          <MapPin size={18} strokeWidth={1.5} className="text-gray-400" />
+          <span className="text-gray-400 text-sm font-medium">İstanbul</span>
+        </div>
+        <button onClick={handleLogout} className="text-gray-300">
+          <LogOut size={20} strokeWidth={1.5} />
+        </button>
       </div>
 
       {/* Greeting */}
-      <h1 className="text-white text-3xl font-bold mb-2">
-        Hoş geldin{user ? `, ${user.firstName}!` : '!'}
-      </h1>
-      {user && (
-        <p className="text-white/70 text-base">
-          {user.firstName} {user.lastName}
-        </p>
-      )}
+      <div className="mb-10">
+        <p className="text-gray-400 text-sm font-medium mb-1">Merhaba 👋</p>
+        <h1 className="text-gray-900 text-3xl font-bold">
+          {user ? `${user.firstName} ${user.lastName}` : 'Hoş Geldin'}
+        </h1>
+      </div>
 
-      {/* Card */}
-      <div className="mt-10 w-full bg-white/15 backdrop-blur rounded-3xl p-6 text-left shadow-xl">
-        <p className="text-white/90 text-sm leading-relaxed">
-          🏙️ Şehrin nabzı burada atıyor. Yakında daha fazla özellik geliyor...
+      {/* Placeholder card */}
+      <div className="rounded-3xl border border-gray-100 bg-gray-50 p-6 shadow-sm">
+        <p className="text-gray-400 text-sm leading-relaxed">
+          Şehrin nabzı burada atıyor. Yakında daha fazla özellik geliyor...
         </p>
       </div>
     </div>

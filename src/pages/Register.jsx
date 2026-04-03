@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { UserRound } from 'lucide-react'
 
 export default function Register() {
   const [firstName, setFirstName] = useState('')
@@ -9,54 +10,53 @@ export default function Register() {
   function handleSubmit(e) {
     e.preventDefault()
     if (!firstName.trim() || !lastName.trim()) return
-    const user = { firstName: firstName.trim(), lastName: lastName.trim() }
-    localStorage.setItem('sehir_user', JSON.stringify(user))
+    localStorage.setItem('sehir_user', JSON.stringify({ firstName: firstName.trim(), lastName: lastName.trim() }))
     navigate('/home')
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-screen flex flex-col bg-white px-6 py-12">
       {/* Header */}
-      <div className="bg-gradient-to-br from-orange-500 to-orange-700 px-6 pt-16 pb-12 rounded-b-3xl">
-        <div className="text-4xl mb-3">✨</div>
-        <h1 className="text-white text-2xl font-bold">Hesap Oluştur</h1>
-        <p className="text-white/70 text-sm mt-1">Seni tanımak istiyoruz!</p>
+      <div className="pt-8 mb-10">
+        <div className="w-12 h-12 rounded-2xl bg-gray-100 flex items-center justify-center mb-6 shadow-sm">
+          <UserRound size={22} strokeWidth={1.5} className="text-gray-900" />
+        </div>
+        <h1 className="text-gray-900 text-2xl font-bold">Hesabını Oluştur</h1>
+        <p className="text-gray-400 text-sm mt-1">Seni tanımak istiyoruz</p>
       </div>
 
       {/* Form */}
-      <div className="flex-1 px-6 pt-10">
-        <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-          <div>
-            <label className="text-slate-600 text-sm font-medium block mb-2">Ad</label>
-            <input
-              type="text"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-              placeholder="Adın"
-              className="w-full border-2 border-slate-200 rounded-2xl px-4 py-4 text-slate-800 text-base outline-none focus:border-orange-500 transition-colors"
-            />
-          </div>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <div>
+          <label className="text-gray-600 text-sm font-medium block mb-2">Ad</label>
+          <input
+            type="text"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            placeholder="Adın"
+            className="w-full border border-gray-200 rounded-2xl px-4 py-4 text-gray-900 text-base outline-none bg-gray-50 focus:border-gray-400 focus:bg-white transition-all shadow-sm"
+          />
+        </div>
 
-          <div>
-            <label className="text-slate-600 text-sm font-medium block mb-2">Soyad</label>
-            <input
-              type="text"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-              placeholder="Soyadın"
-              className="w-full border-2 border-slate-200 rounded-2xl px-4 py-4 text-slate-800 text-base outline-none focus:border-orange-500 transition-colors"
-            />
-          </div>
+        <div>
+          <label className="text-gray-600 text-sm font-medium block mb-2">Soyad</label>
+          <input
+            type="text"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+            placeholder="Soyadın"
+            className="w-full border border-gray-200 rounded-2xl px-4 py-4 text-gray-900 text-base outline-none bg-gray-50 focus:border-gray-400 focus:bg-white transition-all shadow-sm"
+          />
+        </div>
 
-          <button
-            type="submit"
-            disabled={!firstName.trim() || !lastName.trim()}
-            className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold text-lg py-4 rounded-2xl shadow-md active:scale-95 transition-transform disabled:opacity-40 disabled:scale-100 mt-2"
-          >
-            Kayıt Ol
-          </button>
-        </form>
-      </div>
+        <button
+          type="submit"
+          disabled={!firstName.trim() || !lastName.trim()}
+          className="w-full bg-gray-900 text-white font-semibold text-base py-4 rounded-2xl shadow-sm active:scale-95 transition-transform disabled:opacity-30 disabled:scale-100 mt-2"
+        >
+          Kayıt Ol
+        </button>
+      </form>
     </div>
   )
 }
