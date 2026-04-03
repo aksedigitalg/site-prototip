@@ -9,6 +9,12 @@ import Home from './pages/Home'
 import NearbyDetail from './pages/NearbyDetail'
 import FoodPage from './pages/FoodPage'
 import RestaurantDetail from './pages/RestaurantDetail'
+import ServicesPage from './pages/ServicesPage'
+import ServiceDetail from './pages/ServiceDetail'
+import IlanlarPage from './pages/IlanlarPage'
+import EmlakDetail from './pages/EmlakDetail'
+import VasitaDetail from './pages/VasitaDetail'
+import IkincielDetail from './pages/IkincielDetail'
 import Search from './pages/Search'
 import Explore from './pages/Explore'
 import Campaigns from './pages/Campaigns'
@@ -64,6 +70,12 @@ export default function App() {
           <Route path="/nearby/:type"   element={<PrivateRoute><NearbyDetail /></PrivateRoute>} />
           <Route path="/food"           element={<PrivateRoute><FoodPage /></PrivateRoute>} />
           <Route path="/restaurant/:id" element={<PrivateRoute><RestaurantDetail /></PrivateRoute>} />
+          <Route path="/services"              element={<PrivateRoute><ServicesPage /></PrivateRoute>} />
+          <Route path="/service/:id"         element={<PrivateRoute><ServiceDetail /></PrivateRoute>} />
+          <Route path="/ilanlar"             element={<PrivateRoute><IlanlarPage /></PrivateRoute>} />
+          <Route path="/ilanlar/emlak/:id"   element={<PrivateRoute><EmlakDetail /></PrivateRoute>} />
+          <Route path="/ilanlar/vasita/:id"  element={<PrivateRoute><VasitaDetail /></PrivateRoute>} />
+          <Route path="/ilanlar/ikinciel/:id" element={<PrivateRoute><IkincielDetail /></PrivateRoute>} />
           <Route path="/search"    element={<PrivateRoute><Search /></PrivateRoute>} />
           <Route path="/explore"   element={<PrivateRoute><Explore /></PrivateRoute>} />
           <Route path="/campaigns" element={<PrivateRoute><Campaigns /></PrivateRoute>} />

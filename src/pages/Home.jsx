@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import {
   Menu, MapPin, ChevronDown, Search,
   Pill, Landmark, Hospital, Fuel, ParkingCircle, Zap,
-  UtensilsCrossed, Soup, Wrench, Briefcase, Home as HomeIcon,
+  UtensilsCrossed, Soup, Wrench, Briefcase, Tag,
   Calendar, ShoppingBag,
 } from 'lucide-react'
 import BottomNav from '../components/BottomNav'
@@ -19,9 +19,9 @@ const QUICK_ACCESS = [
 const CATEGORIES = [
   { icon: UtensilsCrossed, label: 'Yemek',      path: '/food' },
   { icon: Soup,            label: 'Restoran',   path: '/food' },
-  { icon: Wrench,          label: 'Hizmetler',  path: null },
+  { icon: Wrench,          label: 'Hizmetler',  path: '/services' },
   { icon: Briefcase,       label: 'İş İlanları',path: null },
-  { icon: HomeIcon,        label: 'Emlak',      path: null },
+  { icon: Tag,             label: 'İlanlar',    path: '/ilanlar' },
   { icon: Calendar,        label: 'Etkinlikler',path: null },
   { icon: ShoppingBag,     label: 'Alışveriş',  path: null },
 ]
