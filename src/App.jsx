@@ -16,6 +16,17 @@ function PublicRoute({ children }) {
   return children
 }
 
+function DevReset() {
+  return (
+    <button
+      onClick={() => { localStorage.clear(); window.location.href = '/' }}
+      className="fixed bottom-4 right-4 z-50 bg-gray-800 text-white text-xs px-3 py-2 rounded-full opacity-40 hover:opacity-100 transition-opacity"
+    >
+      ↺ Sıfırla
+    </button>
+  )
+}
+
 export default function App() {
   const user = localStorage.getItem('sehir_user')
   const onboarded = localStorage.getItem('sehir_onboarded')
@@ -41,6 +52,7 @@ export default function App() {
           <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
+        <DevReset />
       </div>
     </div>
   )
