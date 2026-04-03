@@ -26,6 +26,7 @@ import Randevularim from './pages/Randevularim'
 import TekliflerPage from './pages/TekliflerPage'
 import MesajlarPage from './pages/MesajlarPage'
 import MesajDetay from './pages/MesajDetay'
+import GebzemAI from './pages/GebzemAI'
 import Search from './pages/Search'
 import Explore from './pages/Explore'
 import Campaigns from './pages/Campaigns'
@@ -99,6 +100,7 @@ export default function App() {
           <Route path="/tekliflerim"         element={<PrivateRoute><TekliflerPage /></PrivateRoute>} />
           <Route path="/mesajlarim"          element={<PrivateRoute><MesajlarPage /></PrivateRoute>} />
           <Route path="/mesaj/:id"           element={<PrivateRoute><MesajDetay /></PrivateRoute>} />
+          <Route path="/gebzem-ai"           element={<PrivateRoute><GebzemAI /></PrivateRoute>} />
           <Route path="/search"    element={<PrivateRoute><Search /></PrivateRoute>} />
           <Route path="/explore"   element={<PrivateRoute><Explore /></PrivateRoute>} />
           <Route path="/campaigns" element={<PrivateRoute><Campaigns /></PrivateRoute>} />

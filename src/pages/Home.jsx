@@ -3,7 +3,7 @@ import {
   Menu, MapPin, ChevronDown, Search,
   Pill, Landmark, Hospital, Fuel, ParkingCircle, Zap,
   UtensilsCrossed, Soup, Wrench, Briefcase, Tag,
-  Calendar, ShoppingBag,
+  Calendar, ShoppingBag, Sparkles,
 } from 'lucide-react'
 import BottomNav from '../components/BottomNav'
 import { MOCK_PLACES } from '../data/mockPlaces'
@@ -146,6 +146,24 @@ export default function Home() {
       </div>
 
       <BottomNav active="home" />
+
+      {/* GebzemAI FAB */}
+      <button
+        onClick={() => navigate('/gebzem-ai')}
+        className="fixed z-50 flex items-center gap-2 active:scale-90 transition-transform"
+        style={{
+          bottom: '78px',
+          right: '16px',
+          background: 'linear-gradient(135deg, #7C3AED 0%, #9333EA 55%, #EC4899 100%)',
+          boxShadow: '0 4px 20px rgba(147,51,234,0.45), 0 2px 8px rgba(236,72,153,0.25)',
+          borderRadius: '20px',
+          padding: '10px 16px 10px 12px',
+        }}
+      >
+        <Sparkles size={16} strokeWidth={2} className="text-white" />
+        <span className="text-white text-xs font-bold tracking-wide">GebzemAI</span>
+      </button>
+
     </div>
   )
 }
