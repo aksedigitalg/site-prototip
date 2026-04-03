@@ -131,6 +131,30 @@ export default function Profile() {
           </div>
         </div>
 
+        {/* İşletme & Admin */}
+        <div className="bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden divide-y divide-gray-100">
+          <button
+            onClick={() => navigate('/isletme/login')}
+            className="w-full flex items-center gap-3 px-4 py-4 active:bg-gray-50 transition-colors"
+          >
+            <div className="w-8 h-8 rounded-xl bg-gray-100 flex items-center justify-center shrink-0">
+              <span className="text-sm">🏪</span>
+            </div>
+            <span className="text-gray-700 text-sm font-semibold flex-1 text-left">İşletme Hesabım</span>
+            <ChevronRight size={13} strokeWidth={1.5} className="text-gray-300" />
+          </button>
+          <button
+            onClick={() => navigate('/admin/login')}
+            className="w-full flex items-center gap-3 px-4 py-4 active:bg-gray-50 transition-colors"
+          >
+            <div className="w-8 h-8 rounded-xl bg-gray-100 flex items-center justify-center shrink-0">
+              <span className="text-sm">🛡️</span>
+            </div>
+            <span className="text-gray-700 text-sm font-semibold flex-1 text-left">Admin Paneli</span>
+            <ChevronRight size={13} strokeWidth={1.5} className="text-gray-300" />
+          </button>
+        </div>
+
         {/* Çıkış */}
         <button
           onClick={handleLogout}
