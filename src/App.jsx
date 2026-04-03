@@ -6,6 +6,7 @@ import ForgotPassword from './pages/ForgotPassword'
 import ResetOTP from './pages/ResetOTP'
 import NewPassword from './pages/NewPassword'
 import Home from './pages/Home'
+import NearbyDetail from './pages/NearbyDetail'
 import Search from './pages/Search'
 import Explore from './pages/Explore'
 import Campaigns from './pages/Campaigns'
@@ -57,7 +58,8 @@ export default function App() {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-otp" element={<ResetOTP />} />
           <Route path="/new-password" element={<NewPassword />} />
-          <Route path="/home"      element={<PrivateRoute><Home /></PrivateRoute>} />
+          <Route path="/home"           element={<PrivateRoute><Home /></PrivateRoute>} />
+          <Route path="/nearby/:type"  element={<PrivateRoute><NearbyDetail /></PrivateRoute>} />
           <Route path="/search"    element={<PrivateRoute><Search /></PrivateRoute>} />
           <Route path="/explore"   element={<PrivateRoute><Explore /></PrivateRoute>} />
           <Route path="/campaigns" element={<PrivateRoute><Campaigns /></PrivateRoute>} />
