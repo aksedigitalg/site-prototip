@@ -33,12 +33,17 @@ import Campaigns from './pages/Campaigns'
 import Profile from './pages/Profile'
 
 // İşletme paneli
-import IsletmeLogin         from './pages/isletme/IsletmeLogin'
-import IsletmeDashboard     from './pages/isletme/IsletmeDashboard'
-import IsletmeProfil        from './pages/isletme/IsletmeProfil'
-import IsletmeRezervasyonlar from './pages/isletme/IsletmeRezervasyonlar'
-import IsletmeMesajlar      from './pages/isletme/IsletmeMesajlar'
-import IsletmeKampanyalar   from './pages/isletme/IsletmeKampanyalar'
+import IsletmeLogin           from './pages/isletme/IsletmeLogin'
+import IsletmeRegister        from './pages/isletme/IsletmeRegister'
+import IsletmeOTP             from './pages/isletme/IsletmeOTP'
+import IsletmeForgotPassword  from './pages/isletme/IsletmeForgotPassword'
+import IsletmeResetOTP        from './pages/isletme/IsletmeResetOTP'
+import IsletmeNewPassword     from './pages/isletme/IsletmeNewPassword'
+import IsletmeDashboard       from './pages/isletme/IsletmeDashboard'
+import IsletmeProfil          from './pages/isletme/IsletmeProfil'
+import IsletmeRezervasyonlar  from './pages/isletme/IsletmeRezervasyonlar'
+import IsletmeMesajlar        from './pages/isletme/IsletmeMesajlar'
+import IsletmeKampanyalar     from './pages/isletme/IsletmeKampanyalar'
 
 // Admin paneli
 import AdminLogin       from './pages/admin/AdminLogin'
@@ -140,8 +145,13 @@ export default function App() {
           <Route path="/mesaj/:id"         element={<PrivateRoute><MesajDetay /></PrivateRoute>} />
 
           {/* ── İşletme Paneli ── */}
-          <Route path="/isletme/login"          element={<IsletmeLogin />} />
-          <Route path="/isletme/dashboard"      element={<IsletmeRoute><IsletmeDashboard /></IsletmeRoute>} />
+          <Route path="/isletme/login"           element={<IsletmeLogin />} />
+          <Route path="/isletme/register"        element={<IsletmeRegister />} />
+          <Route path="/isletme/otp"             element={<IsletmeOTP />} />
+          <Route path="/isletme/forgot-password" element={<IsletmeForgotPassword />} />
+          <Route path="/isletme/reset-otp"       element={<IsletmeResetOTP />} />
+          <Route path="/isletme/new-password"    element={<IsletmeNewPassword />} />
+          <Route path="/isletme/dashboard"       element={<IsletmeRoute><IsletmeDashboard /></IsletmeRoute>} />
           <Route path="/isletme/profil"         element={<IsletmeRoute><IsletmeProfil /></IsletmeRoute>} />
           <Route path="/isletme/rezervasyonlar" element={<IsletmeRoute><IsletmeRezervasyonlar /></IsletmeRoute>} />
           <Route path="/isletme/mesajlar"       element={<IsletmeRoute><IsletmeMesajlar /></IsletmeRoute>} />
