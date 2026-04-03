@@ -6,6 +6,11 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+html, body {
+  overscroll-behavior: none;
+  background: white;
+}
+
 /* iOS zoom fix — 16px altı font olan inputlar mobilde otomatik zoom yapıyor */
 input, textarea, select {
   font-size: 16px !important;
