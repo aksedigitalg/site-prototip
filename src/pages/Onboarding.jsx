@@ -53,7 +53,7 @@ function Ribbon({ animate }) {
           C -40 800, 350 830, 470 790
         `}
         stroke="#8B5CF6"
-        strokeWidth="20"
+        strokeWidth="50"
         strokeLinecap="round"
         fill="none"
         style={{
@@ -92,7 +92,7 @@ export default function Onboarding() {
   return (
     <div className="min-h-screen relative overflow-hidden bg-[#F5F0FF]">
 
-      <Ribbon animate={animate} />
+      {/* <Ribbon animate={animate} /> */}
 
       {/* Geç */}
       <button

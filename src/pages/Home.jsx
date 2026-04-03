@@ -7,8 +7,7 @@ export default function Home() {
   const user = raw ? JSON.parse(raw) : null
 
   function handleLogout() {
-    localStorage.removeItem('sehir_user')
-    sessionStorage.removeItem('sehir_phone')
+    localStorage.removeItem('sehir_session')
     navigate('/login')
   }
 

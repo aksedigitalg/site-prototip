@@ -1,17 +1,13 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { Phone } from 'lucide-react'
+import { useNavigate, Link } from 'react-router-dom'
+import { Phone, Lock, Eye, EyeOff } from 'lucide-react'
 
 export default function Login() {
   const [phone, setPhone] = useState('')
+  const [password, setPassword] = useState('')
+  const [showPass, setShowPass] = useState(false)
+  const [error, setError] = useState('')
   const navigate = useNavigate()
-
-  function handleSubmit(e) {
-    e.preventDefault()
-    if (phone.replace(/\D/g, '').length < 10) return
-    sessionStorage.setItem('sehir_phone', phone)
-    navigate('/otp')
-  }
 
   function formatPhone(val) {
     const digits = val.replace(/\D/g, '').slice(0, 10)
@@ -20,25 +16,34 @@ export default function Login() {
     return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)} ${digits.slice(6)}`
   }
 
+  const normalize = (p) => p.replace(/\D/g, '').replace(/^0+/, '')
+
+  function handleSubmit(e) {
+    e.preventDefault()
+    setError('')
+    const raw = localStorage.getItem('sehir_user')
+    if (!raw) { setError('Kayıtlı kullanıcı bulunamadı'); return }
+    const user = JSON.parse(raw)
+    if (normalize(user.phone) !== normalize(phone)) { setError('Telefon veya şifre hatalı'); return }
+    if (user.password !== password) { setError('Telefon veya şifre hatalı'); return }
+    localStorage.setItem('sehir_session', '1')
+    navigate('/home')
+  }
+
   return (
     <div className="min-h-screen flex flex-col bg-white px-6 py-12">
-      {/* Header */}
       <div className="pt-8 mb-10">
-        <div className="w-12 h-12 rounded-2xl bg-gray-100 flex items-center justify-center mb-6 shadow-sm">
-          <Phone size={22} strokeWidth={1.5} className="text-gray-900" />
-        </div>
-        <h1 className="text-gray-900 text-2xl font-bold">Giriş Yap</h1>
-        <p className="text-gray-400 text-sm mt-1">Telefon numaranla devam et</p>
+        <h1 className="text-gray-900 text-2xl font-bold">Hoş Geldin</h1>
+        <p className="text-gray-400 text-sm mt-1">Hesabına giriş yap</p>
       </div>
 
-      {/* Form */}
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        {/* Telefon */}
         <div>
-          <label className="text-gray-600 text-sm font-medium block mb-2">
-            Telefon Numarası
-          </label>
+          <label className="text-gray-600 text-sm font-medium block mb-2">Telefon</label>
           <div className="flex items-center border border-gray-200 rounded-2xl px-4 bg-gray-50 focus-within:border-gray-400 focus-within:bg-white transition-all shadow-sm">
-            <span className="text-gray-400 text-sm mr-2">+90</span>
+            <Phone size={16} strokeWidth={1.5} className="text-gray-400 mr-2 shrink-0" />
+            <span className="text-gray-400 text-sm mr-1">+90</span>
             <input
               type="tel"
               value={phone}
@@ -50,17 +55,47 @@ export default function Login() {
           </div>
         </div>
 
+        {/* Şifre */}
+        <div>
+          <label className="text-gray-600 text-sm font-medium block mb-2">Şifre</label>
+          <div className="flex items-center border border-gray-200 rounded-2xl px-4 bg-gray-50 focus-within:border-gray-400 focus-within:bg-white transition-all shadow-sm">
+            <Lock size={16} strokeWidth={1.5} className="text-gray-400 mr-2 shrink-0" />
+            <input
+              type={showPass ? 'text' : 'password'}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Şifren"
+              className="flex-1 py-4 text-gray-900 text-base outline-none bg-transparent"
+            />
+            <button type="button" onClick={() => setShowPass(!showPass)} className="text-gray-300 ml-2">
+              {showPass ? <EyeOff size={16} strokeWidth={1.5} /> : <Eye size={16} strokeWidth={1.5} />}
+            </button>
+          </div>
+        </div>
+
+        {/* Şifremi unuttum */}
+        <div className="flex justify-end">
+          <Link to="/forgot-password" className="text-gray-400 text-sm">
+            Şifremi Unuttum
+          </Link>
+        </div>
+
+        {error && <p className="text-red-400 text-sm text-center">{error}</p>}
+
         <button
           type="submit"
-          disabled={phone.replace(/\D/g, '').length < 10}
+          disabled={!phone || !password}
           className="w-full bg-gray-900 text-white font-semibold text-base py-4 rounded-2xl shadow-sm active:scale-95 transition-transform disabled:opacity-30 disabled:scale-100 mt-2"
         >
-          Kod Gönder
+          Giriş Yap
         </button>
       </form>
 
-      <p className="text-gray-300 text-xs text-center mt-8 leading-relaxed">
-        Devam ederek kullanım koşullarını kabul etmiş sayılırsın.
+      <p className="text-gray-400 text-sm text-center mt-8">
+        Hesabın yok mu?{' '}
+        <Link to="/register" className="text-gray-900 font-semibold">
+          Kayıt Ol
+        </Link>
       </p>
     </div>
   )

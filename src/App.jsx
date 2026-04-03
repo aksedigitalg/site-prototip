@@ -1,25 +1,27 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 import Onboarding from './pages/Onboarding'
 import Login from './pages/Login'
-import OTP from './pages/OTP'
 import Register from './pages/Register'
+import ForgotPassword from './pages/ForgotPassword'
+import ResetOTP from './pages/ResetOTP'
+import NewPassword from './pages/NewPassword'
 import Home from './pages/Home'
 
 function PrivateRoute({ children }) {
-  const user = localStorage.getItem('sehir_user')
-  return user ? children : <Navigate to="/login" replace />
+  const session = localStorage.getItem('sehir_session')
+  return session ? children : <Navigate to="/login" replace />
 }
 
 function PublicRoute({ children }) {
-  const user = localStorage.getItem('sehir_user')
-  if (user) return <Navigate to="/home" replace />
+  const session = localStorage.getItem('sehir_session')
+  if (session) return <Navigate to="/home" replace />
   return children
 }
 
 function DevReset() {
   return (
     <button
-      onClick={() => { localStorage.clear(); window.location.href = '/' }}
+      onClick={() => { localStorage.clear(); sessionStorage.clear(); window.location.href = '/' }}
       className="fixed bottom-4 right-4 z-50 bg-gray-800 text-white text-xs px-3 py-2 rounded-full opacity-40 hover:opacity-100 transition-opacity"
     >
       ↺ Sıfırla
@@ -28,7 +30,7 @@ function DevReset() {
 }
 
 export default function App() {
-  const user = localStorage.getItem('sehir_user')
+  const session = localStorage.getItem('sehir_session')
   const onboarded = localStorage.getItem('sehir_onboarded')
 
   return (
@@ -38,7 +40,7 @@ export default function App() {
           <Route
             path="/"
             element={
-              user
+              session
                 ? <Navigate to="/home" replace />
                 : onboarded
                   ? <Navigate to="/login" replace />
@@ -47,8 +49,10 @@ export default function App() {
           />
           <Route path="/onboarding" element={<Onboarding />} />
           <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
-          <Route path="/otp" element={<OTP />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-otp" element={<ResetOTP />} />
+          <Route path="/new-password" element={<NewPassword />} />
           <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
