@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import {
   Menu, MapPin, ChevronDown, Search,
   Pill, Landmark, Fuel, ParkingCircle, Zap, Bus,
-  UtensilsCrossed, Soup, Wrench, Briefcase, Tag,
+  UtensilsCrossed, Soup, Wrench, Tag,
   Calendar, ShoppingBag, Sparkles,
   Key, Users, Building2, Stethoscope, Shield, Flame,
   Hotel, Coffee, Scissors, Dumbbell, BookOpen, PawPrint,
@@ -58,11 +58,11 @@ const TUM_KATEGORILER = [
 const CATEGORIES = [
   { icon: UtensilsCrossed, label: 'Yemek',       path: '/food' },
   { icon: Soup,            label: 'Restoran',    path: '/food' },
+  { icon: ShoppingBag,     label: 'Alışveriş',   path: '/alisveris' },
   { icon: Wrench,          label: 'Hizmetler',   path: '/services' },
   { icon: Tag,             label: 'İlanlar',     path: '/ilanlar' },
   { icon: Calendar,        label: 'Etkinlikler', path: '/etkinlikler' },
-  { icon: ShoppingBag,     label: 'Alışveriş',   path: '/alisveris' },
-  { icon: Briefcase,       label: 'İş İlanları', path: '/is-ilanlari' },
+  { icon: Hotel,           label: 'Otel',        path: '/oteller' },
 ]
 
 const TUM_KATEGORILER_BUYUK = [
@@ -342,29 +342,31 @@ export default function Home() {
         </div>
 
         {/* ── Kategoriler ── */}
-        <div className="px-4 pt-6">
-          <div className="flex items-center justify-between mb-3">
-            <h2 className="text-gray-800 text-sm font-semibold">Kategoriler</h2>
-            <button
-              onClick={() => setTumKatSheet(true)}
-              className="text-gray-400 text-xs flex items-center gap-0.5 active:text-gray-700"
-            >
-              Tümü <ChevronRight size={12} strokeWidth={2} />
-            </button>
-          </div>
-          <div className="grid grid-cols-4 gap-2">
+        <div className="pt-6 px-4">
+          <h2 className="text-gray-800 text-sm font-semibold mb-3">Kategoriler</h2>
+          <div className="grid grid-cols-4 gap-3">
             {CATEGORIES.map(({ icon: Icon, label, path }) => (
               <button
                 key={label}
-                onClick={() => { if (path) navigate(path) }}
-                className="flex flex-col items-center gap-2 active:scale-95 transition-transform"
+                onClick={() => navigate(path)}
+                className="flex flex-col items-center gap-1.5 active:scale-95 transition-transform"
               >
-                <div className="w-[60px] h-[60px] rounded-[14px] bg-white border border-gray-100 shadow-sm flex items-center justify-center">
-                  <Icon size={24} strokeWidth={1.5} className="text-gray-700" />
+                <div className="rounded-2xl bg-white border border-gray-100 shadow-sm flex items-center justify-center" style={{ width: 52, height: 52 }}>
+                  <Icon size={20} strokeWidth={1.5} className="text-gray-700" />
                 </div>
-                <span className="text-gray-500 text-xs font-medium text-center leading-tight">{label}</span>
+                <span className="text-gray-500 text-[11px] font-medium text-center leading-tight">{label}</span>
               </button>
             ))}
+            {/* Hepsi butonu */}
+            <button
+              onClick={() => setTumKatSheet(true)}
+              className="flex flex-col items-center gap-1.5 active:scale-95 transition-transform"
+            >
+              <div className="rounded-2xl bg-gray-900 flex items-center justify-center" style={{ width: 52, height: 52 }}>
+                <ChevronRight size={18} strokeWidth={2} className="text-white" />
+              </div>
+              <span className="text-gray-500 text-[11px] font-medium">Hepsi</span>
+            </button>
           </div>
         </div>
 
