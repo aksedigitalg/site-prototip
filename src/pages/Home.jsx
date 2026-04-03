@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import {
   Menu, MapPin, ChevronDown, Search,
   Pill, Landmark, Hospital, Fuel, ShoppingCart, ParkingCircle,
-  UtensilsCrossed, Wrench, Briefcase, Home as HomeIcon,
-  Calendar, ShoppingBag, ChevronRight, LogOut,
+  UtensilsCrossed, Soup, Wrench, Briefcase, Home as HomeIcon,
+  Calendar, ShoppingBag, LogOut,
 } from 'lucide-react'
 import BottomNav from '../components/BottomNav'
 
@@ -18,12 +18,13 @@ const QUICK_ACCESS = [
 ]
 
 const CATEGORIES = [
-  { icon: UtensilsCrossed, label: 'Yemek & Restoran', count: '240+' },
-  { icon: Wrench,          label: 'Hizmetler',        count: '180+' },
-  { icon: Briefcase,       label: 'İş İlanları',      count: '95+' },
-  { icon: HomeIcon,        label: 'Emlak',            count: '320+' },
-  { icon: Calendar,        label: 'Etkinlikler',      count: '45+' },
-  { icon: ShoppingBag,     label: 'Alışveriş',        count: '150+' },
+  { icon: UtensilsCrossed, label: 'Yemek' },
+  { icon: Soup,            label: 'Restoran' },
+  { icon: Wrench,          label: 'Hizmetler' },
+  { icon: Briefcase,       label: 'İş İlanları' },
+  { icon: HomeIcon,        label: 'Emlak' },
+  { icon: Calendar,        label: 'Etkinlikler' },
+  { icon: ShoppingBag,     label: 'Alışveriş' },
 ]
 
 async function fetchOverpass(lat, lon, amenity) {
@@ -181,20 +182,16 @@ export default function Home() {
           <div className="flex items-center justify-between mb-3">
             <h2 className="text-gray-800 text-sm font-semibold">Kategoriler</h2>
           </div>
-          <div className="grid grid-cols-2 gap-3">
-            {CATEGORIES.map(({ icon: Icon, label, count }) => (
+          <div className="grid grid-cols-4 gap-2">
+            {CATEGORIES.map(({ icon: Icon, label }) => (
               <button
                 key={label}
-                className="bg-white border border-gray-100 rounded-2xl p-4 shadow-sm flex items-center gap-3 text-left active:scale-95 transition-transform"
+                className="flex flex-col items-center gap-2 active:scale-95 transition-transform"
               >
-                <div className="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center shrink-0">
-                  <Icon size={18} strokeWidth={1.5} className="text-gray-700" />
+                <div className="w-[60px] h-[60px] rounded-[14px] bg-white border border-gray-100 shadow-sm flex items-center justify-center">
+                  <Icon size={24} strokeWidth={1.5} className="text-gray-700" />
                 </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-gray-800 text-xs font-semibold leading-tight">{label}</p>
-                  <p className="text-gray-400 text-xs mt-0.5">{count}</p>
-                </div>
-                <ChevronRight size={14} strokeWidth={1.5} className="text-gray-300 shrink-0" />
+                <span className="text-gray-500 text-xs font-medium text-center leading-tight">{label}</span>
               </button>
             ))}
           </div>
