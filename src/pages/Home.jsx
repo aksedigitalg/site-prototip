@@ -70,7 +70,7 @@ const KAYITLI_KONUMLAR = [
 ]
 
 // ─── Yakında kart ─────────────────────────────────────────────────────────────
-function NearbyCard({ logo, title, subtitle, type, onPress }) {
+function NearbyCard({ logo, letter, letterBg, title, subtitle, type, onPress }) {
   const first = MOCK_PLACES[type]?.[0]
   return (
     <div
@@ -78,8 +78,14 @@ function NearbyCard({ logo, title, subtitle, type, onPress }) {
       className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm flex flex-col gap-2 cursor-pointer active:scale-95 transition-transform"
     >
       <div className="flex items-center gap-2">
-        <div className="w-9 h-9 rounded-lg bg-gray-50 flex items-center justify-center shrink-0 overflow-hidden">
-          <img src={logo} alt={title} className="w-full h-full object-contain" />
+        <div
+          className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 overflow-hidden"
+          style={{ background: letterBg || '#f9fafb' }}
+        >
+          {letter
+            ? <span className="text-white font-black text-base leading-none">{letter}</span>
+            : <img src={logo} alt={title} className="w-full h-full object-contain" />
+          }
         </div>
         <div className="flex flex-col">
           <span className="text-gray-600 text-xs font-semibold">{title}</span>
@@ -257,7 +263,8 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-2 gap-3">
             <NearbyCard
-              logo="https://atakoyplus.com/wp-content/uploads/2022/03/eczane.png"
+              letter="E"
+              letterBg="#c0392b"
               title="Nöbetçi Eczane"
               type="pharmacy"
               onPress={() => navigate('/nearby/pharmacy')}
