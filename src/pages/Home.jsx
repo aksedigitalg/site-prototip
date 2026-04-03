@@ -17,13 +17,13 @@ const QUICK_ACCESS = [
 ]
 
 const CATEGORIES = [
-  { icon: UtensilsCrossed, label: 'Yemek' },
-  { icon: Soup,            label: 'Restoran' },
-  { icon: Wrench,          label: 'Hizmetler' },
-  { icon: Briefcase,       label: 'İş İlanları' },
-  { icon: HomeIcon,        label: 'Emlak' },
-  { icon: Calendar,        label: 'Etkinlikler' },
-  { icon: ShoppingBag,     label: 'Alışveriş' },
+  { icon: UtensilsCrossed, label: 'Yemek',      path: '/food' },
+  { icon: Soup,            label: 'Restoran',   path: '/food' },
+  { icon: Wrench,          label: 'Hizmetler',  path: null },
+  { icon: Briefcase,       label: 'İş İlanları',path: null },
+  { icon: HomeIcon,        label: 'Emlak',      path: null },
+  { icon: Calendar,        label: 'Etkinlikler',path: null },
+  { icon: ShoppingBag,     label: 'Alışveriş',  path: null },
 ]
 
 function NearbyCard({ icon: Icon, title, type, onPress }) {
@@ -128,9 +128,10 @@ export default function Home() {
             <h2 className="text-gray-800 text-sm font-semibold">Kategoriler</h2>
           </div>
           <div className="grid grid-cols-4 gap-2">
-            {CATEGORIES.map(({ icon: Icon, label }) => (
+            {CATEGORIES.map(({ icon: Icon, label, path }) => (
               <button
                 key={label}
+                onClick={() => path && navigate(path)}
                 className="flex flex-col items-center gap-2 active:scale-95 transition-transform"
               >
                 <div className="w-[60px] h-[60px] rounded-[14px] bg-white border border-gray-100 shadow-sm flex items-center justify-center">
