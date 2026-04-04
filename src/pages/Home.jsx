@@ -219,7 +219,7 @@ export default function Home() {
                 style={{
                   scrollSnapAlign: 'start',
                   background: item.bg,
-                  minHeight: '110px',
+                  minHeight: '160px',
                   borderRadius: '16px',
                 }}
               >
