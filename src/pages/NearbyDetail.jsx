@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet'
 import L from 'leaflet'
-import { ArrowLeft, ChevronDown, X, Check, Phone, Navigation } from 'lucide-react'
+import { ArrowLeft, ChevronDown, X, Check, Phone, Navigation, List, Map } from 'lucide-react'
 import { MOCK_PLACES, PLACE_LABELS } from '../data/mockPlaces'
 
 delete L.Icon.Default.prototype._getIconUrl
@@ -70,6 +70,7 @@ export default function NearbyDetail() {
 
   const [showBankSheet, setShowBankSheet] = useState(false)
   const [selectedBank,  setSelectedBank]  = useState(null)
+  const [view,          setView]          = useState('map')  // 'map' | 'list'
   const [aktifId,       setAktifId]       = useState(null)
   const [flyTarget,     setFlyTarget]     = useState(null)
   const cardScrollRef = useRef(null)
@@ -110,11 +111,54 @@ export default function NearbyDetail() {
             <ArrowLeft size={18} strokeWidth={1.5} className="text-gray-700" />
           </button>
           <h1 className="text-gray-800 text-base font-bold flex-1">{title}</h1>
-          <span className="text-gray-400 text-xs">{filtered.length} yer</span>
+          <div className="flex bg-gray-100 rounded-xl p-0.5">
+            <button onClick={() => setView('list')}
+              className="flex items-center justify-center rounded-[10px] transition-all"
+              style={{ width: 32, height: 28, background: view === 'list' ? '#111827' : 'transparent' }}>
+              <List size={14} strokeWidth={2} color={view === 'list' ? '#fff' : '#6b7280'} />
+            </button>
+            <button onClick={() => setView('map')}
+              className="flex items-center justify-center rounded-[10px] transition-all"
+              style={{ width: 32, height: 28, background: view === 'map' ? '#111827' : 'transparent' }}>
+              <Map size={14} strokeWidth={2} color={view === 'map' ? '#fff' : '#6b7280'} />
+            </button>
+          </div>
         </div>
       </header>
 
-      {/* Harita — tam ekran */}
+      {/* LİSTE GÖRÜNÜMÜ */}
+      {view === 'list' && (
+        <div className="pt-[56px] pb-24 px-4">
+          <p className="text-gray-400 text-xs pt-3 mb-3">{filtered.length} sonuç</p>
+          <div className="flex flex-col gap-2.5">
+            {markers.map(p => (
+              <button
+                key={p.id}
+                onClick={() => { setAktifId(p.id); setView('map'); setFlyTarget({ lat: p.lat, lng: p.lon }) }}
+                className="bg-white border border-gray-100 rounded-2xl px-4 py-3.5 shadow-sm flex items-center gap-3 text-left active:scale-[0.98] transition-transform"
+              >
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 text-lg"
+                  style={{ background: (RENK_MAP[type] || '#6b7280') + '15' }}>
+                  {EMOJI_MAP[type] || '📍'}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-gray-800 text-sm font-semibold truncate">{p.name}</p>
+                  <p className="text-gray-400 text-xs truncate mt-0.5">{p.address}</p>
+                </div>
+                <div className="shrink-0 text-right">
+                  <span className="text-xs font-semibold" style={{ color: RENK_MAP[type] || '#6b7280' }}>{p.distance}</span>
+                  {p.nextBus != null && (
+                    <div className="mt-1 text-[10px] font-bold bg-green-50 text-green-600 rounded-full px-2 py-0.5 inline-block">{p.nextBus} dk</div>
+                  )}
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* HARİTA GÖRÜNÜMÜ */}
+      {view === 'map' && (
       <div className="pt-[56px] flex-1 relative" style={{ minHeight: 'calc(100vh - 56px)' }}>
         <MapContainer
           center={[BASE.lat, BASE.lon]}
@@ -232,6 +276,7 @@ export default function NearbyDetail() {
           </div>
         </div>
       </div>
+      )}
 
       {/* ATM — Banka Seç */}
       {showBankFilter && (
