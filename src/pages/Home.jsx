@@ -132,7 +132,6 @@ export default function Home() {
   const [konumSheet,       setKonumSheet]       = useState(false)
   const [kategoriSheet,    setKategoriSheet]    = useState(false)
   const [tumKatSheet,      setTumKatSheet]      = useState(false)
-  const [menuSheet,        setMenuSheet]        = useState(false)
   const [sliderIdx,        setSliderIdx]        = useState(0)
   const sliderRef = useRef(null)
 
@@ -167,7 +166,7 @@ export default function Home() {
       {/* ── Header ── */}
       <header className="fixed top-0 left-0 right-0 z-50 flex justify-center">
         <div className="w-full max-w-[430px] bg-white/80 backdrop-blur-md px-4 h-[60px] flex items-center justify-between">
-          <button onClick={() => setMenuSheet(true)} className="w-9 h-9 flex items-center justify-center">
+          <button onClick={() => setTumKatSheet(true)} className="w-9 h-9 flex items-center justify-center">
             <Menu size={20} strokeWidth={1.5} className="text-gray-700" />
           </button>
 
@@ -393,75 +392,51 @@ export default function Home() {
         ↺ Sıfırla
       </button>
 
-      {/* ════════ TÜM KATEGORİLER BOTTOM SHEET (85% yükseklik, büyük kartlar) ════════ */}
+      {/* ════════ TÜM KATEGORİLER BOTTOM SHEET (80% yükseklik) ════════ */}
       {tumKatSheet && (
         <div className="fixed inset-0 z-[100] flex flex-col justify-end">
           <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setTumKatSheet(false)} />
           <div
             className="relative bg-white rounded-t-3xl z-10 flex flex-col"
-            style={{ height: '85vh' }}
+            style={{ height: '80vh' }}
           >
-            {/* Drag handle */}
+            {/* iPhone çentik */}
             <div className="flex justify-center pt-3 pb-2 shrink-0">
-              <div className="w-10 h-1 rounded-full bg-gray-200" />
+              <div className="w-10 h-1.5 rounded-full bg-gray-300" />
             </div>
 
-            <div className="flex items-center justify-between px-5 pb-4 shrink-0">
-              <h3 className="text-gray-900 text-base font-bold">Tüm Kategoriler</h3>
+            <div className="flex items-center justify-between px-5 pb-3 shrink-0">
+              <h3 className="text-gray-900 text-base font-bold">Kategoriler</h3>
               <button onClick={() => setTumKatSheet(false)} className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center">
                 <X size={16} strokeWidth={2} className="text-gray-600" />
               </button>
             </div>
 
             <div className="flex-1 overflow-y-auto px-4 pb-8">
+
+              {/* GebzemAI — en üstte */}
+              <button
+                onClick={() => { setTumKatSheet(false); navigate('/gebzem-ai') }}
+                className="w-full flex items-center gap-3 rounded-2xl px-4 py-4 mb-4 active:scale-[0.97] transition-transform"
+                style={{ background: 'linear-gradient(135deg, #7C3AED 0%, #9333EA 55%, #EC4899 100%)' }}
+              >
+                <div className="w-11 h-11 rounded-xl bg-white/15 flex items-center justify-center shrink-0">
+                  <Sparkles size={20} strokeWidth={2} className="text-white" />
+                </div>
+                <div className="flex-1 text-left">
+                  <p className="text-white text-sm font-bold">GebzemAI</p>
+                  <p className="text-white/60 text-xs mt-0.5">Yapay zeka ile şehrini keşfet</p>
+                </div>
+                <ChevronRight size={16} strokeWidth={1.5} className="text-white/40" />
+              </button>
+
+              {/* Kategoriler grid */}
               <div className="grid grid-cols-3 gap-3">
                 {TUM_KATEGORILER_BUYUK.map(({ emoji, label, path, renk }) => (
                   <button
                     key={label}
                     onClick={() => {
                       setTumKatSheet(false)
-                      if (path) navigate(path)
-                    }}
-                    className="flex flex-col items-center justify-center gap-3 py-5 rounded-2xl active:scale-95 transition-transform"
-                    style={{ background: renk }}
-                  >
-                    <span className="text-3xl">{emoji}</span>
-                    <span className="text-gray-700 text-xs font-semibold text-center leading-tight px-1">{label}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* ════════ MENÜ BOTTOM SHEET (80% yükseklik) ════════ */}
-      {menuSheet && (
-        <div className="fixed inset-0 z-[100] flex flex-col justify-end">
-          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setMenuSheet(false)} />
-          <div
-            className="relative bg-white rounded-t-3xl z-10 flex flex-col"
-            style={{ height: '80vh' }}
-          >
-            {/* iPhone çentik çizgisi */}
-            <div className="flex justify-center pt-3 pb-2 shrink-0">
-              <div className="w-10 h-1.5 rounded-full bg-gray-300" />
-            </div>
-
-            <div className="flex items-center justify-between px-5 pb-4 shrink-0">
-              <h3 className="text-gray-900 text-base font-bold">Kategoriler</h3>
-              <button onClick={() => setMenuSheet(false)} className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center">
-                <X size={16} strokeWidth={2} className="text-gray-600" />
-              </button>
-            </div>
-
-            <div className="flex-1 overflow-y-auto px-4 pb-8">
-              <div className="grid grid-cols-3 gap-3">
-                {TUM_KATEGORILER_BUYUK.map(({ emoji, label, path, renk }) => (
-                  <button
-                    key={label}
-                    onClick={() => {
-                      setMenuSheet(false)
                       if (path) navigate(path)
                     }}
                     className="flex flex-col items-center justify-center gap-3 py-5 rounded-2xl active:scale-95 transition-transform"
