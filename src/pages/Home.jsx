@@ -168,15 +168,7 @@ export default function Home() {
         <div className="w-full max-w-[430px] bg-white/80 backdrop-blur-md px-4 h-[60px] flex items-center gap-3">
           {/* Profil resmi */}
           <button onClick={() => navigate('/profile')} className="w-9 h-9 rounded-full overflow-hidden shrink-0 active:scale-95 transition-transform">
-            {(() => {
-              const avatar = localStorage.getItem('sehir_avatar')
-              if (avatar) return <img src={avatar} alt="" className="w-full h-full object-cover" />
-              return (
-                <div className="w-full h-full bg-gray-900 flex items-center justify-center">
-                  <span className="text-white text-xs font-bold">{user?.firstName?.[0]}{user?.lastName?.[0]}</span>
-                </div>
-              )
-            })()}
+            <img src={localStorage.getItem('sehir_avatar') || '/profil.jpeg'} alt="" className="w-full h-full object-cover" />
           </button>
 
           {/* Selamlama */}

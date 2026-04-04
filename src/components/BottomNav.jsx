@@ -81,19 +81,14 @@ export default function BottomNav() {
           </button>
 
           <button onClick={() => navigate('/profile')} className="flex flex-col items-center gap-1 px-3 py-1">
-            {(() => {
-              const raw = localStorage.getItem('sehir_user')
-              const user = raw ? JSON.parse(raw) : null
-              const avatar = localStorage.getItem('sehir_avatar')
-              if (avatar) {
-                return <img src={avatar} alt="Profil" style={{ width: 22, height: 22, borderRadius: '50%', objectFit: 'cover', border: active === 'profile' ? '2px solid #111827' : '2px solid transparent' }} />
-              }
-              return (
-                <div style={{ width: 22, height: 22, borderRadius: '50%', background: active === 'profile' ? '#111827' : '#d1d5db', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <span style={{ fontSize: 9, fontWeight: 700, color: '#fff' }}>{user?.firstName?.[0] || ''}{user?.lastName?.[0] || ''}</span>
-                </div>
-              )
-            })()}
+            <img
+              src={localStorage.getItem('sehir_avatar') || '/profil.jpeg'}
+              alt="Profil"
+              style={{
+                width: 22, height: 22, borderRadius: '50%', objectFit: 'cover',
+                border: active === 'profile' ? '2px solid #111827' : '2px solid transparent',
+              }}
+            />
             <span className={`text-xs ${active === 'profile' ? 'text-gray-900 font-semibold' : 'text-gray-400 font-medium'}`}>Profil</span>
           </button>
 

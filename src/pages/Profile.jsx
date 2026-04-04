@@ -70,13 +70,7 @@ export default function Profile() {
         <div className="bg-white border border-gray-100 rounded-2xl shadow-sm px-4 py-6 flex items-center gap-4">
           <input ref={fileRef} type="file" accept="image/*" className="hidden" onChange={handleAvatarChange} />
           <button onClick={() => fileRef.current?.click()} className="relative w-16 h-16 rounded-2xl shrink-0 overflow-hidden active:scale-95 transition-transform">
-            {avatar ? (
-              <img src={avatar} alt="Profil" className="w-full h-full object-cover" />
-            ) : (
-              <div className="w-full h-full bg-gray-900 flex items-center justify-center">
-                <span className="text-white text-xl font-bold">{user?.firstName?.[0]}{user?.lastName?.[0]}</span>
-              </div>
-            )}
+            <img src={avatar || '/profil.jpeg'} alt="Profil" className="w-full h-full object-cover" />
             <div className="absolute bottom-0 right-0 w-6 h-6 bg-white rounded-full flex items-center justify-center shadow-sm border border-gray-100">
               <Camera size={11} strokeWidth={2} className="text-gray-500" />
             </div>
