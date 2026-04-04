@@ -191,17 +191,6 @@ export default function Home() {
       {/* ── İçerik ── */}
       <div className="pt-[60px] pb-24">
 
-        {/* Arama */}
-        <div className="px-4 pt-4 pb-1">
-          <button
-            onClick={() => navigate('/search')}
-            className="w-full flex items-center gap-3 bg-white border border-gray-200 rounded-2xl px-4 py-3 shadow-sm"
-          >
-            <Search size={15} strokeWidth={1.5} className="text-gray-400" />
-            <span className="text-gray-400 text-sm">Ne arıyorsun?</span>
-          </button>
-        </div>
-
         {/* ── Slider ── */}
         <div className="pt-4 px-4">
           <div
