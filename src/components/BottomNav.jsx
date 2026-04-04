@@ -85,7 +85,7 @@ export default function BottomNav() {
               src={localStorage.getItem('sehir_avatar') || '/profil.jpeg'}
               alt="Profil"
               style={{
-                width: 22, height: 22, borderRadius: '50%', objectFit: 'cover',
+                width: 28, height: 28, borderRadius: '50%', objectFit: 'cover',
                 border: active === 'profile' ? '2px solid #111827' : '2px solid transparent',
               }}
             />

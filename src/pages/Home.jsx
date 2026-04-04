@@ -13,14 +13,13 @@ import { MOCK_PLACES } from '../data/mockPlaces'
 
 // ─── Slider banner'ları ───────────────────────────────────────────────────────
 const SLIDER_ITEMS = [
-  { id: 1, baslik: "Gebze'de 50+ Yeni İşletme Seni Bekliyor", alt: 'Şehrindeki en yeni mekanları keşfet →', bg: '#374151', path: '/explore' },
-  { id: 2, baslik: 'Nisan Etkinlikleri Başladı!', alt: '8 etkinlik · Konser, tiyatro ve daha fazlası →', bg: '#4b5563', path: '/etkinlikler' },
-  { id: 3, baslik: 'Yapay Zeka ile Şehrini Tanı', alt: 'GebzemAI her sorunun cevabını bilir →', bg: '#6b7280', path: '/gebzem-ai' },
+  { id: 1, baslik: '50+ Yeni İşletme', alt: 'Şehrindeki mekanları keşfet', path: '/explore' },
+  { id: 2, baslik: 'Nisan Etkinlikleri', alt: 'Konser, tiyatro ve daha fazlası', path: '/etkinlikler' },
+  { id: 3, baslik: 'GebzemAI Asistan', alt: 'Yapay zeka ile şehrini tanı', path: '/gebzem-ai' },
 ]
 
 // ─── Hızlı erişim ────────────────────────────────────────────────────────────
 const QUICK_ACCESS = [
-  { icon: Bus,           label: 'Otobüs',    type: 'bus' },
   { icon: Pill,          label: 'Eczane',    type: 'pharmacy' },
   { icon: Landmark,      label: 'ATM',       type: 'atm' },
   { icon: Fuel,          label: 'Benzinlik', type: 'fuel' },
@@ -165,7 +164,7 @@ export default function Home() {
 
       {/* ── Header ── */}
       <header className="fixed top-0 left-0 right-0 z-50 flex justify-center">
-        <div className="w-full max-w-[430px] bg-white/80 backdrop-blur-md px-4 h-[60px] flex items-center gap-3">
+        <div className="w-full max-w-[430px] px-4 h-[60px] flex items-center gap-3">
           {/* Profil resmi */}
           <button onClick={() => navigate('/profile')} className="w-9 h-9 rounded-full overflow-hidden shrink-0 active:scale-95 transition-transform">
             <img src={localStorage.getItem('sehir_avatar') || '/profil.jpeg'} alt="" className="w-full h-full object-cover" />
@@ -202,29 +201,15 @@ export default function Home() {
                 className="shrink-0 w-full flex flex-col justify-end px-5 py-5 active:scale-[0.98] transition-transform"
                 style={{
                   scrollSnapAlign: 'start',
-                  background: item.bg,
+                  background: '#ffffff',
                   minHeight: '210px',
                   borderRadius: '16px',
+                  border: '1px solid #e5e7eb',
                 }}
               >
-                <p className="text-white text-base font-bold leading-snug text-left">{item.baslik}</p>
-                <p className="text-white/60 text-xs mt-1 text-left">{item.alt}</p>
+                <p className="text-gray-900 text-lg font-extrabold leading-snug text-left">{item.baslik}</p>
+                <p className="text-gray-400 text-xs mt-1 text-left">{item.alt}</p>
               </button>
-            ))}
-          </div>
-          {/* Dot indikatörler */}
-          <div className="flex justify-center gap-1.5 mt-2">
-            {SLIDER_ITEMS.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setSliderIdx(i)}
-                className="transition-all rounded-full"
-                style={{
-                  width: i === sliderIdx ? '16px' : '6px',
-                  height: '6px',
-                  background: i === sliderIdx ? '#111827' : '#d1d5db',
-                }}
-              />
             ))}
           </div>
         </div>
@@ -241,7 +226,7 @@ export default function Home() {
                 onClick={() => navigate(`/nearby/${type}`)}
                 className="flex flex-col items-center gap-1.5 shrink-0 active:scale-95 transition-transform"
               >
-                <div className="w-13 h-13 rounded-2xl bg-white border border-gray-100 shadow-sm flex items-center justify-center" style={{ width: 52, height: 52 }}>
+                <div className="rounded-2xl bg-white border border-gray-100 flex items-center justify-center" style={{ width: 52, height: 52 }}>
                   <Icon size={20} strokeWidth={1.5} className="text-gray-700" />
                 </div>
                 <span className="text-gray-500 text-[11px] font-medium">{label}</span>
