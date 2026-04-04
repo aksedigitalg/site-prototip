@@ -25,6 +25,7 @@ import TeklifForm from './pages/TeklifForm'
 import Rezervasyonlarim from './pages/Rezervasyonlarim'
 import Randevularim from './pages/Randevularim'
 import TekliflerPage from './pages/TekliflerPage'
+import Ilanlarim from './pages/Ilanlarim'
 import MesajlarPage from './pages/MesajlarPage'
 import MesajDetay from './pages/MesajDetay'
 import GebzemAI from './pages/GebzemAI'
@@ -166,6 +167,7 @@ function AnimatedRoutes() {
           <Route path="/rezervasyonlarim"  element={<PrivateRoute><Rezervasyonlarim /></PrivateRoute>} />
           <Route path="/randevularim"      element={<PrivateRoute><Randevularim /></PrivateRoute>} />
           <Route path="/tekliflerim"       element={<PrivateRoute><TekliflerPage /></PrivateRoute>} />
+          <Route path="/ilanlarim"        element={<PrivateRoute><Ilanlarim /></PrivateRoute>} />
           <Route path="/mesajlarim"        element={<PrivateRoute><MesajlarPage /></PrivateRoute>} />
           <Route path="/mesaj/:id"         element={<PrivateRoute><MesajDetay /></PrivateRoute>} />
 
