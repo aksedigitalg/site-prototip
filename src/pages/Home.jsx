@@ -165,7 +165,7 @@ export default function Home() {
 
       {/* ── Header ── */}
       <header className="fixed top-0 left-0 right-0 z-50 flex justify-center">
-        <div className="w-full max-w-[430px] bg-white/80 backdrop-blur-md border-b border-gray-100 px-4 h-[60px] flex items-center justify-between">
+        <div className="w-full max-w-[430px] bg-white/80 backdrop-blur-md px-4 h-[60px] flex items-center justify-between">
           <button className="w-9 h-9 flex items-center justify-center">
             <Menu size={20} strokeWidth={1.5} className="text-gray-700" />
           </button>
@@ -175,7 +175,6 @@ export default function Home() {
             onClick={() => setKonumSheet(true)}
             className="flex items-center gap-1 active:scale-95 transition-transform"
           >
-            <MapPin size={13} strokeWidth={1.5} className="text-gray-500" />
             <span className="text-gray-800 text-sm font-semibold">{aktifKonum}</span>
             <ChevronDown size={13} strokeWidth={1.5} className="text-gray-400" />
           </button>
