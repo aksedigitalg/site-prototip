@@ -13,9 +13,9 @@ import { MOCK_PLACES } from '../data/mockPlaces'
 
 // ─── Slider banner'ları ───────────────────────────────────────────────────────
 const SLIDER_ITEMS = [
-  { id: 1, baslik: "Gebze'de 50+ Yeni İşletme", alt: 'Hepsini Keşfet →', bg: '#111827', path: '/explore' },
-  { id: 2, baslik: 'Nisan Etkinlikleri Başladı', alt: '8 etkinlik seni bekliyor →', bg: '#1e3a5f', path: '/etkinlikler' },
-  { id: 3, baslik: "GebzemAI ile Şehrini Keşfet", alt: 'Hemen Dene →', bg: '#3b0764', path: '/gebzem-ai' },
+  { id: 1, baslik: "Gebze'de 50+ Yeni İşletme Seni Bekliyor", alt: 'Şehrindeki en yeni mekanları keşfet →', bg: '#374151', path: '/explore' },
+  { id: 2, baslik: 'Nisan Etkinlikleri Başladı!', alt: '8 etkinlik · Konser, tiyatro ve daha fazlası →', bg: '#4b5563', path: '/etkinlikler' },
+  { id: 3, baslik: 'Yapay Zeka ile Şehrini Tanı', alt: 'GebzemAI her sorunun cevabını bilir →', bg: '#6b7280', path: '/gebzem-ai' },
 ]
 
 // ─── Hızlı erişim ────────────────────────────────────────────────────────────
@@ -165,25 +165,29 @@ export default function Home() {
 
       {/* ── Header ── */}
       <header className="fixed top-0 left-0 right-0 z-50 flex justify-center">
-        <div className="w-full max-w-[430px] bg-white/80 backdrop-blur-md px-4 h-[60px] flex items-center justify-between">
-          <button onClick={() => setTumKatSheet(true)} className="w-9 h-9 flex items-center justify-center">
-            <Menu size={20} strokeWidth={1.5} className="text-gray-700" />
+        <div className="w-full max-w-[430px] bg-white/80 backdrop-blur-md px-4 h-[60px] flex items-center gap-3">
+          {/* Profil resmi */}
+          <button onClick={() => navigate('/profile')} className="w-9 h-9 rounded-full overflow-hidden shrink-0 active:scale-95 transition-transform">
+            {(() => {
+              const avatar = localStorage.getItem('sehir_avatar')
+              if (avatar) return <img src={avatar} alt="" className="w-full h-full object-cover" />
+              return (
+                <div className="w-full h-full bg-gray-900 flex items-center justify-center">
+                  <span className="text-white text-xs font-bold">{user?.firstName?.[0]}{user?.lastName?.[0]}</span>
+                </div>
+              )
+            })()}
           </button>
 
-          {/* Konum butonu */}
-          <button
-            onClick={() => setKonumSheet(true)}
-            className="flex items-center gap-1 active:scale-95 transition-transform"
-          >
-            <span className="text-gray-800 text-sm font-semibold">{aktifKonum}</span>
-            <ChevronDown size={13} strokeWidth={1.5} className="text-gray-400" />
-          </button>
+          {/* Selamlama */}
+          <div className="flex-1 min-w-0">
+            <p className="text-gray-400 text-[10px] font-medium">İyi Günler</p>
+            <p className="text-gray-900 text-sm font-bold truncate">{user?.firstName} {user?.lastName}</p>
+          </div>
 
-          <button
-            onClick={() => navigate('/campaigns')}
-            className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center active:scale-90 transition-transform"
-          >
-            <span className="text-lg">🎁</span>
+          {/* Arama */}
+          <button onClick={() => navigate('/search')} className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center active:scale-90 transition-transform">
+            <Search size={17} strokeWidth={1.5} className="text-gray-600" />
           </button>
         </div>
       </header>
@@ -207,7 +211,7 @@ export default function Home() {
                 style={{
                   scrollSnapAlign: 'start',
                   background: item.bg,
-                  minHeight: '160px',
+                  minHeight: '210px',
                   borderRadius: '16px',
                 }}
               >
@@ -230,34 +234,6 @@ export default function Home() {
                 }}
               />
             ))}
-          </div>
-        </div>
-
-        {/* ── Kategoriler ── */}
-        <div className="pt-4 px-4">
-          <div className="grid grid-cols-4 gap-3">
-            {CATEGORIES.map(({ icon: Icon, label, path }) => (
-              <button
-                key={label}
-                onClick={() => navigate(path)}
-                className="flex flex-col items-center gap-1.5 active:scale-95 transition-transform"
-              >
-                <div className="rounded-2xl bg-white border border-gray-100 shadow-sm flex items-center justify-center" style={{ width: 52, height: 52 }}>
-                  <Icon size={20} strokeWidth={1.5} className="text-gray-700" />
-                </div>
-                <span className="text-gray-500 text-[11px] font-medium text-center leading-tight">{label}</span>
-              </button>
-            ))}
-            {/* Hepsi butonu */}
-            <button
-              onClick={() => setTumKatSheet(true)}
-              className="flex flex-col items-center gap-1.5 active:scale-95 transition-transform"
-            >
-              <div className="rounded-2xl bg-gray-900 flex items-center justify-center" style={{ width: 52, height: 52 }}>
-                <ChevronRight size={18} strokeWidth={2} className="text-white" />
-              </div>
-              <span className="text-gray-500 text-[11px] font-medium">Hepsi</span>
-            </button>
           </div>
         </div>
 
@@ -293,71 +269,21 @@ export default function Home() {
           </div>
         </div>
 
-        {/* ── Yakınında ── */}
-        <div className="px-4 pt-6">
-          <div className="flex items-center justify-between mb-3">
-            <h2 className="text-gray-800 text-sm font-semibold">Yakınında</h2>
-            <button
-              onClick={() => navigate('/nearby/bus')}
-              className="text-gray-400 text-xs flex items-center gap-0.5 active:text-gray-600"
-            >
-              Hepsi <ChevronRight size={12} strokeWidth={2} />
-            </button>
-          </div>
-
-          {/* Yatay scroll — hepsi aynı sırada */}
-          <div className="flex gap-2 overflow-x-auto pb-1" style={{ scrollbarWidth: 'none' }}>
-            <NearbyCard
-              icon={Bus}
-              title="Otobüs Durağı"
-              type="bus"
-              isBus
-              onPress={() => navigate('/nearby/bus')}
-            />
-            <NearbyCard
-              letter="E"
-              letterBg="#c0392b"
-              title="Nöbetçi Eczane"
-              type="pharmacy"
-              onPress={() => navigate('/nearby/pharmacy')}
-            />
-            <NearbyCard
-              logo="https://yt3.googleusercontent.com/kawB1Mlmo8ECTgcckUGVRP0tHjYkc3yewLv7dc_OvF7xNyouBq2TIPYOHiTBb5qH4ItmwnKHOw=s900-c-k-c0x00ffffff-no-rj"
-              title="Garanti Bankası ATM"
-              type="atm"
-              onPress={() => navigate('/nearby/atm')}
-            />
-            <NearbyCard
-              icon={Fuel}
-              title="Benzinlik"
-              type="fuel"
-              onPress={() => navigate('/nearby/fuel')}
-            />
-            <NearbyCard
-              icon={Users}
-              title="Toplanma Alanı"
-              type="assembly"
-              onPress={() => navigate('/nearby/assembly')}
-            />
-            <NearbyCard
-              icon={Building2}
-              title="En Yakın Cami"
-              type="mosque"
-              onPress={() => navigate('/nearby/mosque')}
-            />
-            <NearbyCard
-              icon={Zap}
-              title="Şarj İstasyonu"
-              type="charging"
-              onPress={() => navigate('/nearby/charging')}
-            />
-          </div>
-        </div>
-
 
       </div>
 
 
+
+      {/* ── Kampanya FAB ── */}
+      <button
+        onClick={() => navigate('/campaigns')}
+        className="fixed z-50 active:scale-90 transition-transform"
+        style={{ bottom: 78, right: 16 }}
+      >
+        <div className="w-11 h-11 rounded-full bg-white border border-gray-100 shadow-lg flex items-center justify-center">
+          <span className="text-xl">🎁</span>
+        </div>
+      </button>
 
       {/* ── Dev Sıfırla ── */}
       <button
