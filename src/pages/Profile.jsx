@@ -1,13 +1,28 @@
+import { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
   LogOut, ChevronRight, User, Phone, Lock,
   CalendarDays, Clock, MessageCircle, FileText,
-  Crown, Gift, Tag,
+  Crown, Gift, Tag, Camera,
 } from 'lucide-react'
 import { REZERVASYONLAR, RANDEVULAR, KONUSMALAR, TEKLIFLER } from '../data/mockMesajlar'
 
 export default function Profile() {
   const navigate = useNavigate()
+  const fileRef = useRef(null)
+  const [avatar, setAvatar] = useState(localStorage.getItem('sehir_avatar') || null)
+
+  function handleAvatarChange(e) {
+    const file = e.target.files?.[0]
+    if (!file) return
+    const reader = new FileReader()
+    reader.onload = (ev) => {
+      const dataUrl = ev.target.result
+      localStorage.setItem('sehir_avatar', dataUrl)
+      setAvatar(dataUrl)
+    }
+    reader.readAsDataURL(file)
+  }
   const raw  = localStorage.getItem('sehir_user')
   const user = raw ? JSON.parse(raw) : null
 
@@ -53,11 +68,19 @@ export default function Profile() {
 
         {/* Avatar + İsim */}
         <div className="bg-white border border-gray-100 rounded-2xl shadow-sm px-4 py-6 flex items-center gap-4">
-          <div className="w-16 h-16 rounded-2xl bg-gray-900 flex items-center justify-center shrink-0">
-            <span className="text-white text-xl font-bold">
-              {user?.firstName?.[0]}{user?.lastName?.[0]}
-            </span>
-          </div>
+          <input ref={fileRef} type="file" accept="image/*" className="hidden" onChange={handleAvatarChange} />
+          <button onClick={() => fileRef.current?.click()} className="relative w-16 h-16 rounded-2xl shrink-0 overflow-hidden active:scale-95 transition-transform">
+            {avatar ? (
+              <img src={avatar} alt="Profil" className="w-full h-full object-cover" />
+            ) : (
+              <div className="w-full h-full bg-gray-900 flex items-center justify-center">
+                <span className="text-white text-xl font-bold">{user?.firstName?.[0]}{user?.lastName?.[0]}</span>
+              </div>
+            )}
+            <div className="absolute bottom-0 right-0 w-6 h-6 bg-white rounded-full flex items-center justify-center shadow-sm border border-gray-100">
+              <Camera size={11} strokeWidth={2} className="text-gray-500" />
+            </div>
+          </button>
           <div className="flex-1 min-w-0">
             <h1 className="text-gray-900 text-base font-bold">
               {user?.firstName} {user?.lastName}
