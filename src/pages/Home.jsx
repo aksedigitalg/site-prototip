@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
   Menu, MapPin, ChevronDown, Search,
@@ -132,7 +132,6 @@ export default function Home() {
   const [kategoriSheet,    setKategoriSheet]    = useState(false)
   const [tumKatSheet,      setTumKatSheet]      = useState(false)
   const [sliderIdx,        setSliderIdx]        = useState(0)
-  const sliderRef = useRef(null)
 
   // Otomatik slider
   useEffect(() => {
@@ -142,21 +141,10 @@ export default function Home() {
     return () => clearInterval(t)
   }, [])
 
-  useEffect(() => {
-    if (!sliderRef.current) return
-    sliderRef.current.scrollTo({ left: sliderIdx * sliderRef.current.offsetWidth, behavior: 'smooth' })
-  }, [sliderIdx])
-
   function konumSec(isim) {
     setAktifKonum(isim)
     localStorage.setItem('sehir_konum', isim)
     setKonumSheet(false)
-  }
-
-  function handleSliderScroll() {
-    if (!sliderRef.current) return
-    const idx = Math.round(sliderRef.current.scrollLeft / sliderRef.current.offsetWidth)
-    setSliderIdx(idx)
   }
 
   return (
@@ -177,8 +165,8 @@ export default function Home() {
           </div>
 
           {/* Arama */}
-          <button onClick={() => navigate('/search')} className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center active:scale-90 transition-transform">
-            <Search size={17} strokeWidth={1.5} className="text-gray-600" />
+          <button onClick={() => navigate('/search')} className="rounded-full bg-gray-100 flex items-center justify-center active:scale-90 transition-transform" style={{ width: 42, height: 42 }}>
+            <Search size={18} strokeWidth={1.5} className="text-gray-900" />
           </button>
         </div>
       </header>
@@ -189,28 +177,32 @@ export default function Home() {
         {/* ── Slider ── */}
         <div className="pt-4 px-4">
           <div
-            ref={sliderRef}
-            onScroll={handleSliderScroll}
-            className="flex overflow-x-auto rounded-2xl"
-            style={{ scrollbarWidth: 'none', scrollSnapType: 'x mandatory' }}
+            className="rounded-2xl overflow-hidden bg-white"
+            style={{ minHeight: '210px', position: 'relative' }}
           >
-            {SLIDER_ITEMS.map((item, i) => (
-              <button
-                key={item.id}
-                onClick={() => navigate(item.path)}
-                className="shrink-0 w-full flex flex-col justify-end px-5 py-5 active:scale-[0.98] transition-transform"
-                style={{
-                  scrollSnapAlign: 'start',
-                  background: '#ffffff',
-                  minHeight: '210px',
-                  borderRadius: '16px',
-                  border: '1px solid #e5e7eb',
-                }}
-              >
-                <p className="text-gray-900 text-lg font-extrabold leading-snug text-left">{item.baslik}</p>
-                <p className="text-gray-400 text-xs mt-1 text-left">{item.alt}</p>
-              </button>
-            ))}
+            <div
+              style={{
+                display: 'flex',
+                transition: 'transform 0.4s ease',
+                transform: `translateX(-${sliderIdx * 100}%)`,
+              }}
+            >
+              {SLIDER_ITEMS.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => navigate(item.path)}
+                  className="shrink-0 w-full flex flex-col justify-end active:scale-[0.98] transition-transform"
+                  style={{
+                    background: '#ffffff',
+                    minHeight: '210px',
+                    padding: '30px',
+                  }}
+                >
+                  <p className="text-gray-900 text-lg font-extrabold leading-snug text-left">{item.baslik}</p>
+                  <p className="text-gray-400 text-xs mt-1 text-left">{item.alt}</p>
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 
