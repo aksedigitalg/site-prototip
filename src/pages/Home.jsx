@@ -164,9 +164,19 @@ export default function Home() {
             <p className="text-gray-900 text-sm font-bold truncate">{user?.firstName} {user?.lastName}</p>
           </div>
 
+          {/* Arama + Menü sağda */}
+
           {/* Arama */}
-          <button onClick={() => navigate('/search')} className="rounded-full bg-gray-100 flex items-center justify-center active:scale-90 transition-transform" style={{ width: 42, height: 42 }}>
-            <Search size={18} strokeWidth={1.5} className="text-gray-900" />
+          <button onClick={() => navigate('/search')} className="rounded-full bg-white flex items-center justify-center active:scale-90 transition-transform" style={{ width: 42, height: 42 }}>
+            <Search size={18} strokeWidth={2} className="text-gray-900" />
+          </button>
+
+          {/* Menü */}
+          <button onClick={() => setTumKatSheet(true)} className="rounded-full bg-white flex items-center justify-center active:scale-90 transition-transform" style={{ width: 42, height: 42 }}>
+            <div className="flex flex-col items-end" style={{ gap: 3 }}>
+              <div style={{ width: 14, height: 2, borderRadius: 1, background: '#111827' }} />
+              <div style={{ width: 9, height: 2, borderRadius: 1, background: '#111827' }} />
+            </div>
           </button>
         </div>
       </header>
