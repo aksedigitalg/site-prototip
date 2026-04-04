@@ -132,6 +132,7 @@ export default function Home() {
   const [konumSheet,       setKonumSheet]       = useState(false)
   const [kategoriSheet,    setKategoriSheet]    = useState(false)
   const [tumKatSheet,      setTumKatSheet]      = useState(false)
+  const [menuSheet,        setMenuSheet]        = useState(false)
   const [sliderIdx,        setSliderIdx]        = useState(0)
   const sliderRef = useRef(null)
 
@@ -166,7 +167,7 @@ export default function Home() {
       {/* ── Header ── */}
       <header className="fixed top-0 left-0 right-0 z-50 flex justify-center">
         <div className="w-full max-w-[430px] bg-white/80 backdrop-blur-md px-4 h-[60px] flex items-center justify-between">
-          <button className="w-9 h-9 flex items-center justify-center">
+          <button onClick={() => setMenuSheet(true)} className="w-9 h-9 flex items-center justify-center">
             <Menu size={20} strokeWidth={1.5} className="text-gray-700" />
           </button>
 
@@ -419,6 +420,48 @@ export default function Home() {
                     key={label}
                     onClick={() => {
                       setTumKatSheet(false)
+                      if (path) navigate(path)
+                    }}
+                    className="flex flex-col items-center justify-center gap-3 py-5 rounded-2xl active:scale-95 transition-transform"
+                    style={{ background: renk }}
+                  >
+                    <span className="text-3xl">{emoji}</span>
+                    <span className="text-gray-700 text-xs font-semibold text-center leading-tight px-1">{label}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ════════ MENÜ BOTTOM SHEET (80% yükseklik) ════════ */}
+      {menuSheet && (
+        <div className="fixed inset-0 z-[100] flex flex-col justify-end">
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setMenuSheet(false)} />
+          <div
+            className="relative bg-white rounded-t-3xl z-10 flex flex-col"
+            style={{ height: '80vh' }}
+          >
+            {/* iPhone çentik çizgisi */}
+            <div className="flex justify-center pt-3 pb-2 shrink-0">
+              <div className="w-10 h-1.5 rounded-full bg-gray-300" />
+            </div>
+
+            <div className="flex items-center justify-between px-5 pb-4 shrink-0">
+              <h3 className="text-gray-900 text-base font-bold">Kategoriler</h3>
+              <button onClick={() => setMenuSheet(false)} className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center">
+                <X size={16} strokeWidth={2} className="text-gray-600" />
+              </button>
+            </div>
+
+            <div className="flex-1 overflow-y-auto px-4 pb-8">
+              <div className="grid grid-cols-3 gap-3">
+                {TUM_KATEGORILER_BUYUK.map(({ emoji, label, path, renk }) => (
+                  <button
+                    key={label}
+                    onClick={() => {
+                      setMenuSheet(false)
                       if (path) navigate(path)
                     }}
                     className="flex flex-col items-center justify-center gap-3 py-5 rounded-2xl active:scale-95 transition-transform"
