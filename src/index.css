@@ -9,16 +9,13 @@
 html, body {
   overscroll-behavior: none;
   background: white;
-  overflow-x: hidden;
 }
 
-/* Scrollbar gizle — tüm sayfalar */
-*::-webkit-scrollbar {
-  display: none;
-}
-* {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+/* Dikey scrollbar sadece görsel olarak gizle, scroll çalışmaya devam eder */
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+  background: transparent;
 }
 
 @keyframes pageIn {
