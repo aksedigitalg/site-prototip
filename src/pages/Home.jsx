@@ -245,6 +245,34 @@ export default function Home() {
           </div>
         </div>
 
+        {/* ── Kategoriler ── */}
+        <div className="pt-4 px-4">
+          <div className="grid grid-cols-4 gap-3">
+            {CATEGORIES.map(({ icon: Icon, label, path }) => (
+              <button
+                key={label}
+                onClick={() => navigate(path)}
+                className="flex flex-col items-center gap-1.5 active:scale-95 transition-transform"
+              >
+                <div className="rounded-2xl bg-white border border-gray-100 shadow-sm flex items-center justify-center" style={{ width: 52, height: 52 }}>
+                  <Icon size={20} strokeWidth={1.5} className="text-gray-700" />
+                </div>
+                <span className="text-gray-500 text-[11px] font-medium text-center leading-tight">{label}</span>
+              </button>
+            ))}
+            {/* Hepsi butonu */}
+            <button
+              onClick={() => setTumKatSheet(true)}
+              className="flex flex-col items-center gap-1.5 active:scale-95 transition-transform"
+            >
+              <div className="rounded-2xl bg-gray-900 flex items-center justify-center" style={{ width: 52, height: 52 }}>
+                <ChevronRight size={18} strokeWidth={2} className="text-white" />
+              </div>
+              <span className="text-gray-500 text-[11px] font-medium">Hepsi</span>
+            </button>
+          </div>
+        </div>
+
         {/* ── Hızlı Erişim ── */}
         <div className="pt-5">
           <div className="px-4 mb-3 flex items-center justify-between">
@@ -338,34 +366,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* ── Kategoriler ── */}
-        <div className="pt-6 px-4">
-          <h2 className="text-gray-800 text-sm font-semibold mb-3">Kategoriler</h2>
-          <div className="grid grid-cols-4 gap-3">
-            {CATEGORIES.map(({ icon: Icon, label, path }) => (
-              <button
-                key={label}
-                onClick={() => navigate(path)}
-                className="flex flex-col items-center gap-1.5 active:scale-95 transition-transform"
-              >
-                <div className="rounded-2xl bg-white border border-gray-100 shadow-sm flex items-center justify-center" style={{ width: 52, height: 52 }}>
-                  <Icon size={20} strokeWidth={1.5} className="text-gray-700" />
-                </div>
-                <span className="text-gray-500 text-[11px] font-medium text-center leading-tight">{label}</span>
-              </button>
-            ))}
-            {/* Hepsi butonu */}
-            <button
-              onClick={() => setTumKatSheet(true)}
-              className="flex flex-col items-center gap-1.5 active:scale-95 transition-transform"
-            >
-              <div className="rounded-2xl bg-gray-900 flex items-center justify-center" style={{ width: 52, height: 52 }}>
-                <ChevronRight size={18} strokeWidth={2} className="text-white" />
-              </div>
-              <span className="text-gray-500 text-[11px] font-medium">Hepsi</span>
-            </button>
-          </div>
-        </div>
 
       </div>
 
