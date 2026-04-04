@@ -181,12 +181,10 @@ export default function Home() {
           </button>
 
           <button
-            onClick={() => navigate('/profile')}
-            className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center"
+            onClick={() => navigate('/campaigns')}
+            className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center active:scale-90 transition-transform"
           >
-            <span className="text-gray-700 text-xs font-bold">
-              {user?.firstName?.[0]}{user?.lastName?.[0]}
-            </span>
+            <span className="text-lg">🎁</span>
           </button>
         </div>
       </header>
@@ -372,22 +370,6 @@ export default function Home() {
       </div>
 
 
-      {/* ── GebzemAI FAB ── */}
-      <button
-        onClick={() => navigate('/gebzem-ai')}
-        className="fixed z-50 flex items-center gap-2 active:scale-90 transition-transform"
-        style={{
-          bottom: '78px',
-          right: '16px',
-          background: 'linear-gradient(135deg, #7C3AED 0%, #9333EA 55%, #EC4899 100%)',
-          boxShadow: '0 4px 20px rgba(147,51,234,0.45), 0 2px 8px rgba(236,72,153,0.25)',
-          borderRadius: '20px',
-          padding: '10px 16px 10px 12px',
-        }}
-      >
-        <Sparkles size={16} strokeWidth={2} className="text-white" />
-        <span className="text-white text-xs font-bold tracking-wide">GebzemAI</span>
-      </button>
 
       {/* ── Dev Sıfırla ── */}
       <button
