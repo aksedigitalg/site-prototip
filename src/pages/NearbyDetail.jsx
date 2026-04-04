@@ -104,7 +104,7 @@ export default function NearbyDetail() {
     <div className="min-h-screen bg-gray-50 flex flex-col">
 
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 flex justify-center">
+      <header className="fixed top-0 left-0 right-0 flex justify-center" style={{ zIndex: 1000 }}>
         <div className="w-full max-w-[430px] bg-white/90 backdrop-blur-md border-b border-gray-100 px-4 h-[56px] flex items-center gap-3">
           <button onClick={() => navigate(-1)} className="w-9 h-9 flex items-center justify-center rounded-xl bg-gray-100 active:bg-gray-200 transition-colors">
             <ArrowLeft size={18} strokeWidth={1.5} className="text-gray-700" />
