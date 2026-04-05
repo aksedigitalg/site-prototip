@@ -47,8 +47,8 @@ export default function BottomNav() {
 
   return (
     <>
-      <nav className="fixed z-50 flex justify-center" style={{ bottom: 10, left: 10, right: 10 }}>
-        <div className="w-full max-w-[410px] bg-white/85 backdrop-blur-md flex items-center justify-around" style={{ borderRadius: 15, padding: '8px 4px 8px', position: 'relative' }}>
+      <nav className="fixed z-50 flex justify-center" style={{ bottom: 0, left: 0, right: 0 }}>
+        <div className="w-full max-w-[430px] bg-white/85 backdrop-blur-md flex items-center justify-around" style={{ borderRadius: '10px 10px 0 0', padding: '8px 4px 8px', position: 'relative' }}>
 
           <button onClick={() => navigate('/home')} className="flex flex-col items-center gap-1 px-3 py-1">
             <Home size={24} strokeWidth={1.5} className={active === 'home' ? 'text-gray-900' : 'text-gray-400'} />
@@ -78,16 +78,15 @@ export default function BottomNav() {
             <span className={`text-[12px] ${active === 'explore' ? 'text-gray-900 font-bold' : 'text-gray-400 font-medium'}`}>Keşfet</span>
           </button>
 
-          <button onClick={() => navigate('/profile')} className="flex flex-col items-center gap-1 px-3 py-1">
+          <button onClick={() => navigate('/profile')} className="flex items-center justify-center px-3 py-1">
             <img
               src={localStorage.getItem('sehir_avatar') || '/profil.jpeg'}
               alt="Profil"
               style={{
-                width: 28, height: 28, borderRadius: '50%', objectFit: 'cover',
+                width: 42, height: 42, borderRadius: '50%', objectFit: 'cover',
                 border: active === 'profile' ? '2px solid #111827' : '2px solid transparent',
               }}
             />
-            <span className={`text-[12px] ${active === 'profile' ? 'text-gray-900 font-bold' : 'text-gray-400 font-medium'}`}>Profil</span>
           </button>
 
         </div>
