@@ -4,6 +4,7 @@
 * {
   font-family: 'Plus Jakarta Sans', sans-serif;
   -webkit-tap-highlight-color: transparent;
+  letter-spacing: normal;
 }
 
 html, body {

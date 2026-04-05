@@ -13,9 +13,8 @@ import { MOCK_PLACES } from '../data/mockPlaces'
 
 // ─── Slider banner'ları ───────────────────────────────────────────────────────
 const SLIDER_ITEMS = [
-  { id: 1, baslik: 'Şehrindeki Yeni Mekanları Keşfet', alt: '50+ işletme seni bekliyor', path: '/explore' },
-  { id: 2, baslik: 'Bu Hafta Kaçırma!', alt: 'Konser, tiyatro ve festivaller', path: '/etkinlikler' },
-  { id: 3, baslik: 'Soru Sor, Cevap Al', alt: 'GebzemAI yapay zeka asistanın', path: '/gebzem-ai' },
+  { id: 1, baslik: 'Bu Hafta Kaçırma!', alt: 'Konser, tiyatro ve festivaller', path: '/etkinlikler' },
+  { id: 2, baslik: 'Soru Sor, Cevap Al', alt: 'GebzemAI yapay zeka asistanın', path: '/gebzem-ai' },
 ]
 
 // ─── Hızlı erişim ────────────────────────────────────────────────────────────
