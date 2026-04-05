@@ -13,9 +13,9 @@ import { MOCK_PLACES } from '../data/mockPlaces'
 
 // ─── Slider banner'ları ───────────────────────────────────────────────────────
 const SLIDER_ITEMS = [
-  { id: 1, baslik: '50+ Yeni İşletme', alt: 'Şehrindeki mekanları keşfet', path: '/explore' },
-  { id: 2, baslik: 'Nisan Etkinlikleri', alt: 'Konser, tiyatro ve daha fazlası', path: '/etkinlikler' },
-  { id: 3, baslik: 'GebzemAI Asistan', alt: 'Yapay zeka ile şehrini tanı', path: '/gebzem-ai' },
+  { id: 1, baslik: 'Şehrindeki Yeni Mekanları Keşfet', alt: '50+ işletme seni bekliyor', path: '/explore' },
+  { id: 2, baslik: 'Bu Hafta Kaçırma!', alt: 'Konser, tiyatro ve festivaller', path: '/etkinlikler' },
+  { id: 3, baslik: 'Soru Sor, Cevap Al', alt: 'GebzemAI yapay zeka asistanın', path: '/gebzem-ai' },
 ]
 
 // ─── Hızlı erişim ────────────────────────────────────────────────────────────
@@ -148,11 +148,11 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen" style={{ background: '#f5f6f8' }}>
 
       {/* ── Header ── */}
       <header className="fixed top-0 left-0 right-0 z-50 flex justify-center">
-        <div className="w-full max-w-[430px] px-4 h-[70px] pt-[10px] flex items-center gap-3">
+        <div className="w-full max-w-[430px] flex items-center" style={{ paddingLeft: 20, paddingRight: 20, gap: 10, paddingTop: 10, height: 56 }}>
           {/* Profil resmi */}
           <button onClick={() => navigate('/profile')} className="w-9 h-9 rounded-full overflow-hidden shrink-0 active:scale-95 transition-transform">
             <img src={localStorage.getItem('sehir_avatar') || '/profil.jpeg'} alt="" className="w-full h-full object-cover" />
@@ -160,7 +160,7 @@ export default function Home() {
 
           {/* Selamlama */}
           <div className="flex-1 min-w-0">
-            <p className="text-gray-900 text-sm truncate"><span className="font-normal text-gray-400">{new Date().getHours() < 12 ? 'Günaydın' : new Date().getHours() < 18 ? 'İyi Günler' : 'İyi Akşamlar'}, </span><span className="font-bold">{user?.firstName}</span></p>
+            <p className="text-gray-900 text-sm truncate"><span className="font-normal">{new Date().getHours() < 12 ? 'Günaydın' : new Date().getHours() < 18 ? 'İyi Günler' : 'İyi Akşamlar'}, </span><span className="font-bold">{user?.firstName}</span></p>
           </div>
 
           {/* Arama + Menü sağda */}
@@ -181,10 +181,10 @@ export default function Home() {
       </header>
 
       {/* ── İçerik ── */}
-      <div className="pt-[70px] pb-24">
+      <div style={{ paddingTop: 56, paddingBottom: 96, paddingLeft: 20, paddingRight: 20 }}>
 
         {/* ── Slider ── */}
-        <div className="pt-4 px-4">
+        <div style={{ paddingTop: 16 }}>
           <div
             className="rounded-2xl overflow-hidden bg-white"
             style={{ minHeight: '210px', position: 'relative' }}
@@ -207,8 +207,8 @@ export default function Home() {
                     padding: '30px',
                   }}
                 >
-                  <p className="text-gray-900 text-lg font-extrabold leading-snug text-left">{item.baslik}</p>
-                  <p className="text-gray-400 text-xs mt-1 text-left">{item.alt}</p>
+                  <p className="text-gray-900 font-extrabold leading-snug text-left" style={{ fontSize: 22 }}>{item.baslik}</p>
+                  <p className="text-gray-400 text-xs mt-1.5 text-left">{item.alt}</p>
                 </button>
               ))}
             </div>
@@ -216,11 +216,11 @@ export default function Home() {
         </div>
 
         {/* ── Hızlı Erişim ── */}
-        <div className="pt-5">
-          <div className="px-4 mb-3 flex items-center justify-between">
+        <div style={{ paddingTop: 16 }}>
+          <div style={{ marginBottom: 12 }} className="flex items-center justify-between">
             <h2 className="text-gray-800 text-sm font-semibold">Hızlı Erişim</h2>
           </div>
-          <div className="grid grid-cols-6 gap-2 px-4">
+          <div className="grid grid-cols-6 gap-2">
             {QUICK_ACCESS.map(({ icon: Icon, label, type }) => (
               <button
                 key={label}
@@ -258,7 +258,7 @@ export default function Home() {
         className="fixed z-50 active:scale-90 transition-transform"
         style={{ bottom: 78, right: 16 }}
       >
-        <div className="w-11 h-11 rounded-full bg-white border border-gray-100 shadow-lg flex items-center justify-center">
+        <div className="w-11 h-11 rounded-full bg-white border border-gray-100 flex items-center justify-center">
           <span className="text-xl">🎁</span>
         </div>
       </button>
