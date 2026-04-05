@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
   Menu, MapPin, ChevronDown, Search,
-  Pill, Landmark, Fuel, ParkingCircle, Zap, Bus,
+  Pill, CreditCard, Fuel, ParkingCircle, Zap, Bus,
   UtensilsCrossed, Soup, Wrench, Tag,
   Calendar, ShoppingBag, Sparkles,
   Key, Users, Building2, Stethoscope, Shield, Flame,
@@ -21,7 +21,7 @@ const SLIDER_ITEMS = [
 // ─── Hızlı erişim ────────────────────────────────────────────────────────────
 const QUICK_ACCESS = [
   { icon: Pill,          label: 'Eczane',    type: 'pharmacy' },
-  { icon: Landmark,      label: 'ATM',       type: 'atm' },
+  { icon: CreditCard,    label: 'ATM',       type: 'atm' },
   { icon: Fuel,          label: 'Benzinlik', type: 'fuel' },
   { icon: ParkingCircle, label: 'Otopark',   type: 'parking' },
   { icon: Zap,           label: 'Şarj',      type: 'charging' },
@@ -221,14 +221,14 @@ export default function Home() {
           <div className="px-4 mb-3 flex items-center justify-between">
             <h2 className="text-gray-800 text-sm font-semibold">Hızlı Erişim</h2>
           </div>
-          <div className="flex gap-3 px-4 overflow-x-auto pb-1 items-center" style={{ scrollbarWidth: 'none' }}>
+          <div className="grid grid-cols-6 gap-2 px-4">
             {QUICK_ACCESS.map(({ icon: Icon, label, type }) => (
               <button
                 key={label}
                 onClick={() => navigate(`/nearby/${type}`)}
-                className="flex flex-col items-center gap-1.5 shrink-0 active:scale-95 transition-transform"
+                className="flex flex-col items-center gap-1.5 active:scale-95 transition-transform"
               >
-                <div className="rounded-2xl bg-white flex items-center justify-center" style={{ width: 52, height: 52 }}>
+                <div className="w-full aspect-square rounded-2xl bg-white flex items-center justify-center">
                   <Icon size={20} strokeWidth={1.5} className="text-gray-700" />
                 </div>
                 <span className="text-gray-500 text-[11px] font-medium">{label}</span>
@@ -238,9 +238,9 @@ export default function Home() {
             {/* Tümü butonu */}
             <button
               onClick={() => setKategoriSheet(true)}
-              className="flex flex-col items-center gap-1.5 shrink-0 active:scale-95 transition-transform"
+              className="flex flex-col items-center gap-1.5 active:scale-95 transition-transform"
             >
-              <div className="rounded-2xl bg-gray-900 flex items-center justify-center" style={{ width: 52, height: 52 }}>
+              <div className="w-full aspect-square rounded-2xl bg-gray-900 flex items-center justify-center">
                 <ChevronRight size={18} strokeWidth={2} className="text-white" />
               </div>
               <span className="text-gray-500 text-[11px] font-medium">Tümü</span>
