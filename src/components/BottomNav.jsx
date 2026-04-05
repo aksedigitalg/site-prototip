@@ -51,13 +51,13 @@ export default function BottomNav() {
         <div className="w-full max-w-[410px] bg-white/85 backdrop-blur-md flex items-center justify-around" style={{ borderRadius: 15, padding: '8px 4px 8px', position: 'relative' }}>
 
           <button onClick={() => navigate('/home')} className="flex flex-col items-center gap-1 px-3 py-1">
-            <Home size={22} strokeWidth={1.5} className={active === 'home' ? 'text-gray-900' : 'text-gray-400'} />
-            <span className={`text-[10px] ${active === 'home' ? 'text-gray-900 font-bold' : 'text-gray-400 font-medium'}`}>Anasayfa</span>
+            <Home size={24} strokeWidth={1.5} className={active === 'home' ? 'text-gray-900' : 'text-gray-400'} />
+            <span className={`text-[12px] ${active === 'home' ? 'text-gray-900 font-bold' : 'text-gray-400 font-medium'}`}>Anasayfa</span>
           </button>
 
           <button onClick={() => navigate('/search')} className="flex flex-col items-center gap-1 px-3 py-1">
-            <Search size={22} strokeWidth={1.5} className={active === 'search' ? 'text-gray-900' : 'text-gray-400'} />
-            <span className={`text-[10px] ${active === 'search' ? 'text-gray-900 font-bold' : 'text-gray-400 font-medium'}`}>Arama</span>
+            <Search size={24} strokeWidth={1.5} className={active === 'search' ? 'text-gray-900' : 'text-gray-400'} />
+            <span className={`text-[12px] ${active === 'search' ? 'text-gray-900 font-bold' : 'text-gray-400 font-medium'}`}>Arama</span>
           </button>
 
           {/* Ortadaki büyük daire — dikey ortada */}
@@ -65,7 +65,7 @@ export default function BottomNav() {
             onClick={() => setSheet(true)}
             className="nav-orb flex items-center justify-center active:scale-90 transition-transform"
             style={{
-              width: 52, height: 52,
+              width: 48, height: 48,
               borderRadius: '50%',
               overflow: 'hidden',
               position: 'relative',
@@ -74,8 +74,8 @@ export default function BottomNav() {
 
 
           <button onClick={() => navigate('/explore')} className="flex flex-col items-center gap-1 px-3 py-1">
-            <Compass size={22} strokeWidth={1.5} className={active === 'explore' ? 'text-gray-900' : 'text-gray-400'} />
-            <span className={`text-[10px] ${active === 'explore' ? 'text-gray-900 font-bold' : 'text-gray-400 font-medium'}`}>Keşfet</span>
+            <Compass size={24} strokeWidth={1.5} className={active === 'explore' ? 'text-gray-900' : 'text-gray-400'} />
+            <span className={`text-[12px] ${active === 'explore' ? 'text-gray-900 font-bold' : 'text-gray-400 font-medium'}`}>Keşfet</span>
           </button>
 
           <button onClick={() => navigate('/profile')} className="flex flex-col items-center gap-1 px-3 py-1">
@@ -87,7 +87,7 @@ export default function BottomNav() {
                 border: active === 'profile' ? '2px solid #111827' : '2px solid transparent',
               }}
             />
-            <span className={`text-[10px] ${active === 'profile' ? 'text-gray-900 font-bold' : 'text-gray-400 font-medium'}`}>Profil</span>
+            <span className={`text-[12px] ${active === 'profile' ? 'text-gray-900 font-bold' : 'text-gray-400 font-medium'}`}>Profil</span>
           </button>
 
         </div>
