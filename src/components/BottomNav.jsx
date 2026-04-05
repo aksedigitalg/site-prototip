@@ -78,14 +78,7 @@ export default function BottomNav() {
           </button>
 
           <button onClick={() => navigate('/profile')} className="flex flex-col items-center gap-1 px-3">
-            <img
-              src={localStorage.getItem('sehir_avatar') || '/profil.jpeg'}
-              alt="Profil"
-              style={{
-                width: 32, height: 32, borderRadius: '50%', objectFit: 'cover',
-                border: active === 'profile' ? '2px solid #111827' : '2px solid transparent',
-              }}
-            />
+            <User size={24} strokeWidth={1.5} className={active === 'profile' ? 'text-gray-900' : 'text-gray-400'} />
             <span className={`text-[12px] ${active === 'profile' ? 'text-gray-900 font-bold' : 'text-gray-400 font-medium'}`}>Profil</span>
           </button>
 

@@ -227,9 +227,7 @@ export default function Home() {
         className="fixed z-50 active:scale-90 transition-transform"
         style={{ bottom: 78, right: 16 }}
       >
-        <div className="w-11 h-11 rounded-full bg-white border border-gray-100 flex items-center justify-center">
-          <span className="text-xl">🎁</span>
-        </div>
+        <span className="text-2xl">🎁</span>
       </button>
 
 
