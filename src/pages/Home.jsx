@@ -89,8 +89,8 @@ function NearbyCard({ logo, letter, letterBg, icon: Icon, title, type, isBus, on
   return (
     <button
       onClick={onPress}
-      className="shrink-0 flex flex-col gap-3 bg-white border border-gray-100 rounded-2xl p-3.5 active:scale-95 transition-transform text-left"
-      style={{ width: '148px' }}
+      className="shrink-0 flex flex-col gap-3 bg-white rounded-2xl p-3.5 active:scale-95 transition-transform text-left"
+      style={{ width: 'calc(50% - 6px)' }}
     >
       <div className="flex items-center justify-between">
         <div
@@ -228,7 +228,7 @@ export default function Home() {
                 onClick={() => navigate(`/nearby/${type}`)}
                 className="flex flex-col items-center gap-1.5 shrink-0 active:scale-95 transition-transform"
               >
-                <div className="rounded-2xl bg-white border border-gray-100 flex items-center justify-center" style={{ width: 52, height: 52 }}>
+                <div className="rounded-2xl bg-white flex items-center justify-center" style={{ width: 52, height: 52 }}>
                   <Icon size={20} strokeWidth={1.5} className="text-gray-700" />
                 </div>
                 <span className="text-gray-500 text-[11px] font-medium">{label}</span>
