@@ -137,6 +137,26 @@ export default function Login() {
         Admin Girişi
       </button>
 
+      {/* Dev Sıfırla */}
+      <button
+        onClick={() => {
+          localStorage.removeItem('sehir_session')
+          localStorage.removeItem('isletme_session')
+          localStorage.removeItem('admin_session')
+          localStorage.removeItem('sehir_rezervasyonlar')
+          localStorage.removeItem('sehir_randevular')
+          localStorage.removeItem('sehir_teklifler')
+          sessionStorage.clear()
+          localStorage.setItem('sehir_user', JSON.stringify({ firstName: 'Demo', lastName: 'Kullanıcı', phone: '5426469070', password: '8014' }))
+          localStorage.setItem('isletme_user', JSON.stringify({ isim: 'Demo Kafe', sahipAdi: 'Demo Sahip', telefon: '5426469070', kategori: 'Kafe & Restoran', password: '8014' }))
+          localStorage.setItem('sehir_onboarded', '1')
+          window.location.reload()
+        }}
+        className="w-full mt-6 py-2 text-gray-300 text-xs font-medium opacity-40 hover:opacity-100 transition-opacity"
+      >
+        ↺ Sıfırla
+      </button>
+
     </div>
   )
 }

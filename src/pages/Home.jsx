@@ -232,27 +232,6 @@ export default function Home() {
         </div>
       </button>
 
-      {/* ── Dev Sıfırla ── */}
-      <button
-        onClick={() => {
-          // Session ve geçici verileri sil, demo hesabını koru
-          localStorage.removeItem('sehir_session')
-          localStorage.removeItem('isletme_session')
-          localStorage.removeItem('admin_session')
-          localStorage.removeItem('sehir_rezervasyonlar')
-          localStorage.removeItem('sehir_randevular')
-          localStorage.removeItem('sehir_teklifler')
-          sessionStorage.clear()
-          // Demo hesapları koru / yenile
-          localStorage.setItem('sehir_user', JSON.stringify({ firstName: 'Demo', lastName: 'Kullanıcı', phone: '5426469070', password: '8014' }))
-          localStorage.setItem('isletme_user', JSON.stringify({ isim: 'Demo Kafe', sahipAdi: 'Demo Sahip', telefon: '5426469070', kategori: 'Kafe & Restoran', password: '8014' }))
-          localStorage.setItem('sehir_onboarded', '1')
-          window.location.href = '/login'
-        }}
-        className="fixed bottom-24 left-4 z-50 bg-gray-800 text-white text-xs px-3 py-2 rounded-full opacity-40 hover:opacity-100 transition-opacity"
-      >
-        ↺ Sıfırla
-      </button>
 
       {/* ════════ TÜM KATEGORİLER BOTTOM SHEET (80% yükseklik) ════════ */}
       {tumKatSheet && (
