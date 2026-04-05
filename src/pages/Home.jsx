@@ -30,7 +30,7 @@ const QUICK_ACCESS = [
 // ─── Tüm kategoriler (bottom sheet) ─────────────────────────────────────────
 const TUM_KATEGORILER = [
   { icon: Pill,          label: 'Eczane',       type: 'pharmacy' },
-  { icon: Landmark,      label: 'ATM',           type: 'atm' },
+  { icon: CreditCard,    label: 'ATM',           type: 'atm' },
   { icon: Fuel,          label: 'Benzinlik',     type: 'fuel' },
   { icon: ParkingCircle, label: 'Otopark',       type: 'parking' },
   { icon: Zap,           label: 'Şarj',          type: 'charging' },
@@ -152,7 +152,7 @@ export default function Home() {
 
       {/* ── Header ── */}
       <header className="fixed top-0 left-0 right-0 z-50 flex justify-center">
-        <div className="w-full max-w-[430px] px-4 h-[60px] flex items-center gap-3">
+        <div className="w-full max-w-[430px] px-4 h-[70px] pt-[10px] flex items-center gap-3">
           {/* Profil resmi */}
           <button onClick={() => navigate('/profile')} className="w-9 h-9 rounded-full overflow-hidden shrink-0 active:scale-95 transition-transform">
             <img src={localStorage.getItem('sehir_avatar') || '/profil.jpeg'} alt="" className="w-full h-full object-cover" />
@@ -160,8 +160,7 @@ export default function Home() {
 
           {/* Selamlama */}
           <div className="flex-1 min-w-0">
-            <p className="text-gray-400 text-[10px] font-medium">İyi Günler</p>
-            <p className="text-gray-900 text-sm font-bold truncate">{user?.firstName} {user?.lastName}</p>
+            <p className="text-gray-900 text-sm truncate"><span className="font-normal text-gray-400">{new Date().getHours() < 12 ? 'Günaydın' : new Date().getHours() < 18 ? 'İyi Günler' : 'İyi Akşamlar'}, </span><span className="font-bold">{user?.firstName}</span></p>
           </div>
 
           {/* Arama + Menü sağda */}
@@ -182,7 +181,7 @@ export default function Home() {
       </header>
 
       {/* ── İçerik ── */}
-      <div className="pt-[60px] pb-24">
+      <div className="pt-[70px] pb-24">
 
         {/* ── Slider ── */}
         <div className="pt-4 px-4">
