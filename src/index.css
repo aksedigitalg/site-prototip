@@ -37,3 +37,23 @@ html, body {
 input, textarea, select {
   font-size: 16px !important;
 }
+
+/* Nav orb — animated gradient */
+@keyframes orbFlow {
+  0%   { background-position: 0% 50%; }
+  25%  { background-position: 100% 0%; }
+  50%  { background-position: 100% 100%; }
+  75%  { background-position: 0% 100%; }
+  100% { background-position: 0% 50%; }
+}
+
+.nav-orb {
+  background: linear-gradient(
+    135deg,
+    #7C3AED, #9333EA, #EC4899, #f472b6,
+    #8b5cf6, #6366f1, #a855f7, #EC4899,
+    #7C3AED
+  );
+  background-size: 400% 400%;
+  animation: orbFlow 4s ease infinite;
+}

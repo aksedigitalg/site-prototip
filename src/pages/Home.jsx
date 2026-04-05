@@ -152,7 +152,7 @@ export default function Home() {
 
       {/* ── Header ── */}
       <header className="fixed top-0 left-0 right-0 z-50 flex justify-center">
-        <div className="w-full max-w-[430px] flex items-center" style={{ paddingLeft: 20, paddingRight: 20, gap: 10, paddingTop: 10, height: 56 }}>
+        <div className="w-full max-w-[430px] flex items-center" style={{ paddingLeft: 20, paddingRight: 20, gap: 8, paddingTop: 10, height: 56 }}>
           {/* Profil resmi */}
           <button onClick={() => navigate('/profile')} className="w-9 h-9 rounded-full overflow-hidden shrink-0 active:scale-95 transition-transform">
             <img src={localStorage.getItem('sehir_avatar') || '/profil.jpeg'} alt="" className="w-full h-full object-cover" />
