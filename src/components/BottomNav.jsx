@@ -48,14 +48,14 @@ export default function BottomNav() {
   return (
     <>
       <nav className="fixed z-50 flex justify-center" style={{ bottom: 20, left: 0, right: 0 }}>
-        <div className="bg-white/85 backdrop-blur-md flex items-center justify-around" style={{ borderRadius: 9999, padding: '10px 4px 10px', position: 'relative', maxWidth: 350, width: '100%' }}>
+        <div className="bg-white/85 backdrop-blur-md flex items-center justify-center gap-[24px]" style={{ borderRadius: 9999, padding: '10px 16px', position: 'relative', maxWidth: 350, width: '100%' }}>
 
-          <button onClick={() => navigate('/home')} className="flex flex-col items-center gap-1 px-3">
+          <button onClick={() => navigate('/home')} className="flex flex-col items-center gap-1">
             <Home size={24} strokeWidth={1.5} className={active === 'home' ? 'text-gray-900' : 'text-gray-400'} />
             <span className={`text-[12px] ${active === 'home' ? 'text-gray-900 font-bold' : 'text-gray-400 font-medium'}`}>Pano</span>
           </button>
 
-          <button onClick={() => navigate('/search')} className="flex flex-col items-center gap-1 px-3">
+          <button onClick={() => navigate('/search')} className="flex flex-col items-center gap-1">
             <Search size={24} strokeWidth={1.5} className={active === 'search' ? 'text-gray-900' : 'text-gray-400'} />
             <span className={`text-[12px] ${active === 'search' ? 'text-gray-900 font-bold' : 'text-gray-400 font-medium'}`}>Arama</span>
           </button>
@@ -72,12 +72,12 @@ export default function BottomNav() {
             }}
           />
 
-          <button onClick={() => navigate('/explore')} className="flex flex-col items-center gap-1 px-3">
+          <button onClick={() => navigate('/explore')} className="flex flex-col items-center gap-1">
             <Compass size={24} strokeWidth={1.5} className={active === 'explore' ? 'text-gray-900' : 'text-gray-400'} />
             <span className={`text-[12px] ${active === 'explore' ? 'text-gray-900 font-bold' : 'text-gray-400 font-medium'}`}>Keşfet</span>
           </button>
 
-          <button onClick={() => navigate('/profile')} className="flex flex-col items-center gap-1 px-3">
+          <button onClick={() => navigate('/profile')} className="flex flex-col items-center gap-1">
             <User size={24} strokeWidth={1.5} className={active === 'profile' ? 'text-gray-900' : 'text-gray-400'} />
             <span className={`text-[12px] ${active === 'profile' ? 'text-gray-900 font-bold' : 'text-gray-400 font-medium'}`}>Profil</span>
           </button>
