@@ -228,7 +228,7 @@ export default function Home() {
                 onClick={() => navigate(`/nearby/${type}`)}
                 className="flex flex-col items-center gap-1.5 active:scale-95 transition-transform"
               >
-                <div className="w-full aspect-square rounded-2xl bg-white flex items-center justify-center">
+                <div className="rounded-2xl bg-white flex items-center justify-center" style={{ width: 52, height: 52 }}>
                   <Icon size={20} strokeWidth={1.5} className="text-gray-700" />
                 </div>
                 <span className="text-gray-500 text-[11px] font-medium">{label}</span>
@@ -240,7 +240,7 @@ export default function Home() {
               onClick={() => setKategoriSheet(true)}
               className="flex flex-col items-center gap-1.5 active:scale-95 transition-transform"
             >
-              <div className="w-full aspect-square rounded-2xl bg-gray-900 flex items-center justify-center">
+              <div className="rounded-2xl bg-gray-900 flex items-center justify-center" style={{ width: 52, height: 52 }}>
                 <ChevronRight size={18} strokeWidth={2} className="text-white" />
               </div>
               <span className="text-gray-500 text-[11px] font-medium">Tümü</span>
