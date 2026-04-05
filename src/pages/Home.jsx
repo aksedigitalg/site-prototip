@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
   Menu, MapPin, ChevronDown, Search,
@@ -13,8 +13,7 @@ import { MOCK_PLACES } from '../data/mockPlaces'
 
 // ─── Slider banner'ları ───────────────────────────────────────────────────────
 const SLIDER_ITEMS = [
-  { id: 1, baslik: 'Bu Hafta Kaçırma!', alt: 'Konser, tiyatro ve festivaller', path: '/etkinlikler' },
-  { id: 2, baslik: 'Soru Sor, Cevap Al', alt: 'GebzemAI yapay zeka asistanın', path: '/gebzem-ai' },
+  { id: 1, baslik: 'Soru Sor, Cevap Al', alt: 'GebzemAI yapay zeka asistanın', path: '/gebzem-ai' },
 ]
 
 // ─── Hızlı erişim ────────────────────────────────────────────────────────────
@@ -130,15 +129,6 @@ export default function Home() {
   const [konumSheet,       setKonumSheet]       = useState(false)
   const [kategoriSheet,    setKategoriSheet]    = useState(false)
   const [tumKatSheet,      setTumKatSheet]      = useState(false)
-  const [sliderIdx,        setSliderIdx]        = useState(0)
-
-  // Otomatik slider
-  useEffect(() => {
-    const t = setInterval(() => {
-      setSliderIdx(prev => (prev + 1) % SLIDER_ITEMS.length)
-    }, 3500)
-    return () => clearInterval(t)
-  }, [])
 
   function konumSec(isim) {
     setAktifKonum(isim)
@@ -182,36 +172,16 @@ export default function Home() {
       {/* ── İçerik ── */}
       <div style={{ paddingTop: 56, paddingBottom: 96, paddingLeft: 20, paddingRight: 20 }}>
 
-        {/* ── Slider ── */}
+        {/* ── Banner ── */}
         <div style={{ paddingTop: 16 }}>
-          <div
-            className="rounded-2xl overflow-hidden bg-white"
-            style={{ minHeight: '210px', position: 'relative' }}
+          <button
+            onClick={() => navigate(SLIDER_ITEMS[0].path)}
+            className="w-full flex flex-col justify-end rounded-2xl active:scale-[0.98] transition-transform"
+            style={{ background: '#ffffff', minHeight: '210px', padding: '30px' }}
           >
-            <div
-              style={{
-                display: 'flex',
-                transition: 'transform 0.4s ease',
-                transform: `translateX(-${sliderIdx * 100}%)`,
-              }}
-            >
-              {SLIDER_ITEMS.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => navigate(item.path)}
-                  className="shrink-0 w-full flex flex-col justify-end active:scale-[0.98] transition-transform"
-                  style={{
-                    background: '#ffffff',
-                    minHeight: '210px',
-                    padding: '30px',
-                  }}
-                >
-                  <p className="text-gray-900 font-extrabold leading-snug text-left" style={{ fontSize: 22 }}>{item.baslik}</p>
-                  <p className="text-gray-400 text-xs mt-1.5 text-left">{item.alt}</p>
-                </button>
-              ))}
-            </div>
-          </div>
+            <p className="text-gray-900 font-extrabold leading-snug text-left" style={{ fontSize: 22 }}>{SLIDER_ITEMS[0].baslik}</p>
+            <p className="text-gray-400 text-xs mt-1.5 text-left">{SLIDER_ITEMS[0].alt}</p>
+          </button>
         </div>
 
         {/* ── Hızlı Erişim ── */}
