@@ -47,8 +47,8 @@ export default function BottomNav() {
 
   return (
     <>
-      <nav className="fixed z-50 flex justify-center" style={{ bottom: 0, left: 0, right: 0 }}>
-        <div className="w-full max-w-[430px] bg-white/85 backdrop-blur-md flex items-center justify-around" style={{ borderRadius: '10px 10px 0 0', padding: '10px 4px 10px', position: 'relative' }}>
+      <nav className="fixed z-50 flex justify-center" style={{ bottom: 20, left: 0, right: 0 }}>
+        <div className="bg-white/85 backdrop-blur-md flex items-center justify-around" style={{ borderRadius: 9999, padding: '10px 4px 10px', position: 'relative', maxWidth: 350, width: '100%' }}>
 
           <button onClick={() => navigate('/home')} className="flex flex-col items-center gap-1 px-3">
             <Home size={24} strokeWidth={1.5} className={active === 'home' ? 'text-gray-900' : 'text-gray-400'} />
