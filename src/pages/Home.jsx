@@ -14,8 +14,8 @@ import { MOCK_PLACES } from '../data/mockPlaces'
 
 // ─── Slider banner'ları ───────────────────────────────────────────────────────
 const SLIDER_ITEMS = [
-  { id: 1, baslik: 'Soru Sor, Cevap Al', emoji: '🤖', path: '/gebzem-ai' },
-  { id: 2, baslik: 'Şehrini Keşfet', emoji: '🗺️', path: '/explore' },
+  { id: 1, baslik: 'GebzemAI ile Tanış', path: '/gebzem-ai' },
+  { id: 2, baslik: 'Şehrin Nabzını Tut', path: '/explore' },
 ]
 
 // ─── Hızlı erişim ────────────────────────────────────────────────────────────
@@ -207,11 +207,10 @@ export default function Home() {
             {SLIDER_ITEMS.map((item, i) => (
               <div
                 key={item.id}
-                className="absolute inset-0 flex items-end justify-between p-[30px]"
+                className="absolute inset-0 flex items-end p-[30px]"
                 style={{ opacity: sliderIndex === i ? 1 : 0, transition: 'opacity 0.6s ease' }}
               >
                 <p className="text-gray-900 font-extrabold leading-snug text-left" style={{ fontSize: 22 }}>{item.baslik}</p>
-                <span className="text-5xl">{item.emoji}</span>
               </div>
             ))}
             {/* Dot indikatörler */}
@@ -252,7 +251,7 @@ export default function Home() {
           <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}>
 
             {/* Hava Durumu */}
-            <div className="shrink-0 bg-white p-4 flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 150, borderRadius: 26 }}>
+            <div className="shrink-0 bg-white p-4 flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 130, borderRadius: 26 }}>
               <CloudSun size={80} strokeWidth={1} className="absolute -bottom-3 -right-3 text-gray-900/5" />
               <div>
                 <p className="text-gray-800 text-[13px] font-bold leading-tight">Hava Durumu</p>
@@ -262,7 +261,7 @@ export default function Home() {
             </div>
 
             {/* En Yakın Eczane */}
-            <button onClick={() => navigate('/nearby/pharmacy')} className="shrink-0 bg-white p-4 flex flex-col justify-between text-left active:scale-[0.97] transition-transform relative overflow-hidden" style={{ width: 140, height: 150, borderRadius: 26 }}>
+            <button onClick={() => navigate('/nearby/pharmacy')} className="shrink-0 bg-white p-4 flex flex-col justify-between text-left active:scale-[0.97] transition-transform relative overflow-hidden" style={{ width: 140, height: 130, borderRadius: 26 }}>
               <Pill size={80} strokeWidth={1} className="absolute -bottom-3 -right-3 text-gray-900/5" />
               <div>
                 <p className="text-gray-800 text-[13px] font-bold leading-tight">En Yakın Eczane</p>
@@ -274,7 +273,7 @@ export default function Home() {
             </button>
 
             {/* Trafik */}
-            <button onClick={() => navigate('/trafik')} className="shrink-0 bg-white p-4 flex flex-col justify-between text-left active:scale-[0.97] transition-transform relative overflow-hidden" style={{ width: 140, height: 150, borderRadius: 26 }}>
+            <button onClick={() => navigate('/trafik')} className="shrink-0 bg-white p-4 flex flex-col justify-between text-left active:scale-[0.97] transition-transform relative overflow-hidden" style={{ width: 140, height: 130, borderRadius: 26 }}>
               <Car size={80} strokeWidth={1} className="absolute -bottom-3 -right-3 text-gray-900/5" />
               <div>
                 <p className="text-gray-800 text-[13px] font-bold leading-tight">Trafik</p>
@@ -284,7 +283,7 @@ export default function Home() {
             </button>
 
             {/* Fırsatlar */}
-            <button onClick={() => navigate('/campaigns')} className="shrink-0 bg-white p-4 flex flex-col justify-between text-left active:scale-[0.97] transition-transform relative overflow-hidden" style={{ width: 140, height: 150, borderRadius: 26 }}>
+            <button onClick={() => navigate('/campaigns')} className="shrink-0 bg-white p-4 flex flex-col justify-between text-left active:scale-[0.97] transition-transform relative overflow-hidden" style={{ width: 140, height: 130, borderRadius: 26 }}>
               <Target size={80} strokeWidth={1} className="absolute -bottom-3 -right-3 text-gray-900/5" />
               <div>
                 <p className="text-gray-800 text-[13px] font-bold leading-tight">Yakınımdaki</p>
@@ -304,36 +303,36 @@ export default function Home() {
           <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}>
 
             {/* Kart 1 */}
-            <button onClick={() => navigate('/alisveris')} className="shrink-0 text-left active:scale-[0.97] transition-transform bg-white overflow-hidden" style={{ width: 140, borderRadius: 16 }}>
-              <div className="w-full h-[100px] bg-white" />
-              <div className="px-3 py-2.5">
+            <button onClick={() => navigate('/alisveris')} className="shrink-0 text-left active:scale-[0.97] transition-transform" style={{ width: 140 }}>
+              <div className="w-full h-[100px] bg-white" style={{ borderRadius: 16 }} />
+              <div className="px-1 pt-2.5">
                 <p className="text-gray-900 text-sm font-bold">Alışveriş</p>
                 <p className="text-gray-400 text-[11px] mt-0.5">6 ay taksit fırsatları</p>
               </div>
             </button>
 
             {/* Kart 2 */}
-            <button onClick={() => navigate('/food')} className="shrink-0 text-left active:scale-[0.97] transition-transform bg-white overflow-hidden" style={{ width: 140, borderRadius: 16 }}>
-              <div className="w-full h-[100px] bg-white" />
-              <div className="px-3 py-2.5">
+            <button onClick={() => navigate('/food')} className="shrink-0 text-left active:scale-[0.97] transition-transform" style={{ width: 140 }}>
+              <div className="w-full h-[100px] bg-white" style={{ borderRadius: 16 }} />
+              <div className="px-1 pt-2.5">
                 <p className="text-gray-900 text-sm font-bold">Yemek & Restoran</p>
                 <p className="text-gray-400 text-[11px] mt-0.5">%20'ye varan indirimler</p>
               </div>
             </button>
 
             {/* Kart 3 */}
-            <button onClick={() => navigate('/campaigns')} className="shrink-0 text-left active:scale-[0.97] transition-transform bg-white overflow-hidden" style={{ width: 140, borderRadius: 16 }}>
-              <div className="w-full h-[100px] bg-white" />
-              <div className="px-3 py-2.5">
+            <button onClick={() => navigate('/campaigns')} className="shrink-0 text-left active:scale-[0.97] transition-transform" style={{ width: 140 }}>
+              <div className="w-full h-[100px] bg-white" style={{ borderRadius: 16 }} />
+              <div className="px-1 pt-2.5">
                 <p className="text-gray-900 text-sm font-bold">Kampanyalar</p>
                 <p className="text-gray-400 text-[11px] mt-0.5">Güncel promosyonlar</p>
               </div>
             </button>
 
             {/* Kart 4 */}
-            <button onClick={() => navigate('/oteller')} className="shrink-0 text-left active:scale-[0.97] transition-transform bg-white overflow-hidden" style={{ width: 140, borderRadius: 16 }}>
-              <div className="w-full h-[100px] bg-white" />
-              <div className="px-3 py-2.5">
+            <button onClick={() => navigate('/oteller')} className="shrink-0 text-left active:scale-[0.97] transition-transform" style={{ width: 140 }}>
+              <div className="w-full h-[100px] bg-white" style={{ borderRadius: 16 }} />
+              <div className="px-1 pt-2.5">
                 <p className="text-gray-900 text-sm font-bold">Oteller</p>
                 <p className="text-gray-400 text-[11px] mt-0.5">Erken rezervasyon fırsatları</p>
               </div>
