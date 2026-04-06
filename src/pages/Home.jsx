@@ -201,24 +201,9 @@ export default function Home() {
         <div style={{ paddingTop: 16 }}>
           <button
             onClick={() => navigate(SLIDER_ITEMS[sliderIndex].path)}
-            className="w-full flex items-end justify-between rounded-2xl relative overflow-hidden"
-            style={{ background: '#ffffff', minHeight: '210px', padding: '30px' }}
+            className="w-full rounded-2xl relative overflow-hidden"
+            style={{ background: '#ffffff', minHeight: '210px' }}
           >
-            {SLIDER_ITEMS.map((item, i) => (
-              <div
-                key={item.id}
-                className="absolute inset-0 flex items-end p-[30px]"
-                style={{ opacity: sliderIndex === i ? 1 : 0, transition: 'opacity 0.6s ease' }}
-              >
-                <p className="text-gray-900 font-extrabold leading-snug text-left" style={{ fontSize: 22 }}>{item.baslik}</p>
-              </div>
-            ))}
-            {/* Dot indikatörler */}
-            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
-              {SLIDER_ITEMS.map((_, i) => (
-                <div key={i} className="rounded-full" style={{ width: sliderIndex === i ? 16 : 6, height: 6, background: sliderIndex === i ? '#111' : '#d1d5db', transition: 'all 0.3s ease' }} />
-              ))}
-            </div>
           </button>
         </div>
 
