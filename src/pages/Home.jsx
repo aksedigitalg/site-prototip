@@ -297,36 +297,36 @@ export default function Home() {
           <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}>
 
             {/* Kart 1 */}
-            <button onClick={() => navigate('/alisveris')} className="shrink-0 text-left active:scale-[0.97] transition-transform" style={{ width: 140 }}>
-              <div className="w-full h-[100px]" style={{ background: 'linear-gradient(135deg, #dbeafe, #ede9fe)', borderRadius: 16 }} />
-              <div className="px-1 pt-2">
+            <button onClick={() => navigate('/alisveris')} className="shrink-0 text-left active:scale-[0.97] transition-transform bg-white overflow-hidden" style={{ width: 140, borderRadius: 16 }}>
+              <div className="w-full h-[100px]" style={{ background: 'linear-gradient(135deg, #dbeafe, #ede9fe)' }} />
+              <div className="px-3 py-2.5">
                 <p className="text-gray-900 text-xs font-bold">Alışveriş</p>
                 <p className="text-gray-400 text-[10px] mt-0.5">6 ay taksit fırsatları</p>
               </div>
             </button>
 
             {/* Kart 2 */}
-            <button onClick={() => navigate('/food')} className="shrink-0 text-left active:scale-[0.97] transition-transform" style={{ width: 140 }}>
-              <div className="w-full h-[100px]" style={{ background: 'linear-gradient(135deg, #fef3c7, #fde68a)', borderRadius: 16 }} />
-              <div className="px-1 pt-2">
+            <button onClick={() => navigate('/food')} className="shrink-0 text-left active:scale-[0.97] transition-transform bg-white overflow-hidden" style={{ width: 140, borderRadius: 16 }}>
+              <div className="w-full h-[100px]" style={{ background: 'linear-gradient(135deg, #fef3c7, #fde68a)' }} />
+              <div className="px-3 py-2.5">
                 <p className="text-gray-900 text-xs font-bold">Yemek & Restoran</p>
                 <p className="text-gray-400 text-[10px] mt-0.5">%20'ye varan indirimler</p>
               </div>
             </button>
 
             {/* Kart 3 */}
-            <button onClick={() => navigate('/campaigns')} className="shrink-0 text-left active:scale-[0.97] transition-transform" style={{ width: 140 }}>
-              <div className="w-full h-[100px]" style={{ background: 'linear-gradient(135deg, #d1fae5, #a7f3d0)', borderRadius: 16 }} />
-              <div className="px-1 pt-2">
+            <button onClick={() => navigate('/campaigns')} className="shrink-0 text-left active:scale-[0.97] transition-transform bg-white overflow-hidden" style={{ width: 140, borderRadius: 16 }}>
+              <div className="w-full h-[100px]" style={{ background: 'linear-gradient(135deg, #d1fae5, #a7f3d0)' }} />
+              <div className="px-3 py-2.5">
                 <p className="text-gray-900 text-xs font-bold">Kampanyalar</p>
                 <p className="text-gray-400 text-[10px] mt-0.5">Güncel promosyonlar</p>
               </div>
             </button>
 
             {/* Kart 4 */}
-            <button onClick={() => navigate('/oteller')} className="shrink-0 text-left active:scale-[0.97] transition-transform" style={{ width: 140 }}>
-              <div className="w-full h-[100px]" style={{ background: 'linear-gradient(135deg, #fce7f3, #fbcfe8)', borderRadius: 16 }} />
-              <div className="px-1 pt-2">
+            <button onClick={() => navigate('/oteller')} className="shrink-0 text-left active:scale-[0.97] transition-transform bg-white overflow-hidden" style={{ width: 140, borderRadius: 16 }}>
+              <div className="w-full h-[100px]" style={{ background: 'linear-gradient(135deg, #fce7f3, #fbcfe8)' }} />
+              <div className="px-3 py-2.5">
                 <p className="text-gray-900 text-xs font-bold">Oteller</p>
                 <p className="text-gray-400 text-[10px] mt-0.5">Erken rezervasyon fırsatları</p>
               </div>
@@ -335,53 +335,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* ── Haberler ── */}
-        <div style={{ paddingTop: 24 }}>
-          <div style={{ marginBottom: 12 }}>
-            <h2 className="text-gray-800 font-semibold" style={{ fontSize: 18 }}>Haberler <span className="text-gray-400">›</span></h2>
-          </div>
-
-          {/* Büyük featured haber */}
-          <button className="w-full bg-white rounded-2xl overflow-hidden text-left active:scale-[0.98] transition-transform mb-3">
-            <div className="w-full h-[160px] flex items-end p-5" style={{ background: 'linear-gradient(135deg, #1e293b, #334155)' }}>
-              <div>
-                <span className="inline-block bg-white/20 text-white text-[10px] font-semibold px-2 py-0.5 rounded-full mb-2">Gündem</span>
-                <p className="text-white text-base font-bold leading-snug">Gebze'de yeni metro hattı çalışmaları başladı</p>
-              </div>
-            </div>
-            <div className="px-4 py-3 flex items-center justify-between">
-              <p className="text-gray-400 text-[11px]">Bugün · Ulaşım</p>
-              <ChevronRight size={14} className="text-gray-300" />
-            </div>
-          </button>
-
-          {/* Küçük haberler */}
-          <div className="flex flex-col gap-2">
-            <button className="flex items-center gap-3 bg-white rounded-2xl px-4 py-3 text-left active:scale-[0.98] transition-transform">
-              <div className="flex-1 min-w-0">
-                <p className="text-gray-900 text-[13px] font-bold leading-snug line-clamp-2">Kent parkı yenileme projesi tamamlandı</p>
-                <p className="text-gray-400 text-[10px] mt-1">Dün · Çevre</p>
-              </div>
-              <ChevronRight size={14} className="text-gray-300 shrink-0" />
-            </button>
-
-            <button className="flex items-center gap-3 bg-white rounded-2xl px-4 py-3 text-left active:scale-[0.98] transition-transform">
-              <div className="flex-1 min-w-0">
-                <p className="text-gray-900 text-[13px] font-bold leading-snug line-clamp-2">Üniversite öğrencilerine ücretsiz ulaşım müjdesi</p>
-                <p className="text-gray-400 text-[10px] mt-1">2 gün önce · Eğitim</p>
-              </div>
-              <ChevronRight size={14} className="text-gray-300 shrink-0" />
-            </button>
-
-            <button className="flex items-center gap-3 bg-white rounded-2xl px-4 py-3 text-left active:scale-[0.98] transition-transform">
-              <div className="flex-1 min-w-0">
-                <p className="text-gray-900 text-[13px] font-bold leading-snug line-clamp-2">Yeni devlet hastanesi hizmete açılıyor</p>
-                <p className="text-gray-400 text-[10px] mt-1">3 gün önce · Sağlık</p>
-              </div>
-              <ChevronRight size={14} className="text-gray-300 shrink-0" />
-            </button>
-          </div>
-        </div>
 
       </div>
 
