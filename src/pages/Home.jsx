@@ -249,7 +249,7 @@ export default function Home() {
             </button>
 
             {/* Trafik Yoğunluğu */}
-            <div className="rounded-2xl bg-white p-4 flex flex-col gap-2" style={{ minHeight: 100 }}>
+            <button onClick={() => navigate('/trafik')} className="rounded-2xl bg-white p-4 flex flex-col gap-2 text-left active:scale-[0.97] transition-transform" style={{ minHeight: 100 }}>
               <span className="text-[12px] font-semibold text-gray-500">Trafik Yoğunluğu</span>
               <div className="flex items-center gap-2">
                 <span className="text-3xl">🚗</span>
@@ -258,7 +258,7 @@ export default function Home() {
                   <p className="text-gray-400 text-[11px]">D-100 · Gebze merkez</p>
                 </div>
               </div>
-            </div>
+            </button>
 
             {/* Yakınımdaki Fırsatlar */}
             <button onClick={() => navigate('/campaigns')} className="rounded-2xl bg-white p-4 flex flex-col gap-2 text-left active:scale-[0.97] transition-transform" style={{ minHeight: 100 }}>

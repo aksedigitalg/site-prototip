@@ -8,6 +8,7 @@ import ResetOTP from './pages/ResetOTP'
 import NewPassword from './pages/NewPassword'
 import Home from './pages/Home'
 import NearbyDetail from './pages/NearbyDetail'
+import TrafikHarita from './pages/TrafikHarita'
 import FoodPage from './pages/FoodPage'
 import RestaurantDetail from './pages/RestaurantDetail'
 import ServicesPage from './pages/ServicesPage'
@@ -119,6 +120,7 @@ function AnimatedRoutes() {
           {/* ── Ana ── */}
           <Route path="/home"            element={<PrivateRoute><Home /></PrivateRoute>} />
           <Route path="/nearby/:type"    element={<PrivateRoute><NearbyDetail /></PrivateRoute>} />
+          <Route path="/trafik"          element={<PrivateRoute><TrafikHarita /></PrivateRoute>} />
           <Route path="/search"          element={<PrivateRoute><Search /></PrivateRoute>} />
           <Route path="/explore"         element={<PrivateRoute><Explore /></PrivateRoute>} />
           <Route path="/campaigns"       element={<PrivateRoute><Campaigns /></PrivateRoute>} />
