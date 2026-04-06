@@ -23,6 +23,7 @@ const QUICK_ACCESS = [
   { icon: Fuel,          label: 'Benzinlik', type: 'fuel' },
   { icon: ParkingCircle, label: 'Otopark',   type: 'parking' },
   { icon: Zap,           label: 'Şarj',      type: 'charging' },
+  { icon: Bus,           label: 'Otobüs',   type: 'bus' },
 ]
 
 // ─── Tüm kategoriler (bottom sheet) ─────────────────────────────────────────
@@ -184,7 +185,7 @@ export default function Home() {
         {/* ── Hızlı Erişim ── */}
         <div style={{ paddingTop: 16 }}>
           <div style={{ marginBottom: 12 }} className="flex items-center justify-between">
-            <h2 className="text-gray-800 text-sm font-semibold">Hızlı Erişim</h2>
+            <button onClick={() => setKategoriSheet(true)}><h2 className="text-gray-800 font-semibold" style={{ fontSize: 18 }}>Şehir Rehberi <span className="text-gray-400">›</span></h2></button>
           </div>
           <div className="grid grid-cols-6 gap-2">
             {QUICK_ACCESS.map(({ icon: Icon, label, type }) => (
@@ -200,16 +201,6 @@ export default function Home() {
               </button>
             ))}
 
-            {/* Tümü butonu */}
-            <button
-              onClick={() => setKategoriSheet(true)}
-              className="flex flex-col items-center gap-1.5 active:scale-95 transition-transform"
-            >
-              <div className="rounded-2xl bg-gray-900 flex items-center justify-center" style={{ width: 52, height: 52 }}>
-                <ChevronRight size={18} strokeWidth={2} className="text-white" />
-              </div>
-              <span className="text-gray-500 text-[11px] font-medium">Tümü</span>
-            </button>
           </div>
         </div>
 
