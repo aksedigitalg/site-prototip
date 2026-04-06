@@ -220,6 +220,60 @@ export default function Home() {
           </div>
         </div>
 
+        {/* ── Bilgi Kartları 2x2 ── */}
+        <div style={{ paddingTop: 20 }}>
+          <div className="grid grid-cols-2 gap-3">
+
+            {/* Hava Durumu */}
+            <div className="rounded-2xl bg-white p-4 flex flex-col gap-2" style={{ minHeight: 100 }}>
+              <span className="text-[12px] font-semibold text-gray-500">Hava Durumu</span>
+              <div className="flex items-center gap-2">
+                <span className="text-3xl">☀️</span>
+                <div>
+                  <p className="text-gray-900 text-xl font-bold">22°</p>
+                  <p className="text-gray-400 text-[11px]">Açık, Gebze</p>
+                </div>
+              </div>
+            </div>
+
+            {/* En Yakın Eczane */}
+            <button onClick={() => navigate('/nearby/pharmacy')} className="rounded-2xl bg-white p-4 flex flex-col gap-2 text-left active:scale-[0.97] transition-transform" style={{ minHeight: 100 }}>
+              <span className="text-[12px] font-semibold text-gray-500">En Yakın Eczane</span>
+              <div className="flex items-center gap-2">
+                <span className="text-3xl">💊</span>
+                <div>
+                  <p className="text-gray-900 text-sm font-bold">Hayat Eczanesi</p>
+                  <p className="text-green-500 text-[11px] font-semibold">Açık · 350m</p>
+                </div>
+              </div>
+            </button>
+
+            {/* Trafik Yoğunluğu */}
+            <div className="rounded-2xl bg-white p-4 flex flex-col gap-2" style={{ minHeight: 100 }}>
+              <span className="text-[12px] font-semibold text-gray-500">Trafik Yoğunluğu</span>
+              <div className="flex items-center gap-2">
+                <span className="text-3xl">🚗</span>
+                <div>
+                  <p className="text-orange-500 text-sm font-bold">Orta Yoğunluk</p>
+                  <p className="text-gray-400 text-[11px]">D-100 · Gebze merkez</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Yakınımdaki Fırsatlar */}
+            <button onClick={() => navigate('/campaigns')} className="rounded-2xl bg-white p-4 flex flex-col gap-2 text-left active:scale-[0.97] transition-transform" style={{ minHeight: 100 }}>
+              <span className="text-[12px] font-semibold text-gray-500">Yakınımdaki Fırsatlar</span>
+              <div className="flex items-center gap-2">
+                <span className="text-3xl">🎯</span>
+                <div>
+                  <p className="text-gray-900 text-sm font-bold">12 Fırsat</p>
+                  <p className="text-gray-400 text-[11px]">3 km çevrende</p>
+                </div>
+              </div>
+            </button>
+
+          </div>
+        </div>
 
       </div>
 
