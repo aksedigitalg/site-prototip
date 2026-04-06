@@ -18,12 +18,29 @@ const SLIDER_ITEMS = [
 
 // ─── Hızlı erişim ────────────────────────────────────────────────────────────
 const QUICK_ACCESS = [
-  { icon: Pill,          label: 'Eczane',    type: 'pharmacy' },
-  { icon: CreditCard,    label: 'ATM',       type: 'atm' },
-  { icon: Fuel,          label: 'Benzinlik', type: 'fuel' },
-  { icon: ParkingCircle, label: 'Otopark',   type: 'parking' },
-  { icon: Zap,           label: 'Şarj',      type: 'charging' },
-  { icon: Bus,           label: 'Otobüs',   type: 'bus' },
+  { icon: Pill,          label: 'Eczane',       type: 'pharmacy' },
+  { icon: CreditCard,    label: 'ATM',          type: 'atm' },
+  { icon: Fuel,          label: 'Benzinlik',    type: 'fuel' },
+  { icon: ParkingCircle, label: 'Otopark',      type: 'parking' },
+  { icon: Zap,           label: 'Şarj',         type: 'charging' },
+  { icon: Bus,           label: 'Otobüs',       type: 'bus' },
+  { icon: Key,           label: 'Çilingir',     type: 'locksmith' },
+  { icon: Users,         label: 'Toplanma',     type: 'assembly' },
+  { icon: Building2,     label: 'Tarihi Yer',   type: 'historic' },
+  { icon: Building2,     label: 'Belediye',     type: 'municipality' },
+  { icon: Stethoscope,   label: 'Sağlık Ocağı', type: 'clinic' },
+  { icon: Shield,        label: 'Polis',        type: 'police' },
+  { icon: Flame,         label: 'İtfaiye',      type: 'firefighter' },
+  { icon: Hotel,         label: 'Konaklama',    type: 'hotel' },
+  { icon: Coffee,        label: 'Kafe',         type: 'cafe' },
+  { icon: Scissors,      label: 'Kuaför',       type: 'salon' },
+  { icon: Dumbbell,      label: 'Spor Salonu',  type: 'gym' },
+  { icon: BookOpen,      label: 'Kütüphane',    type: 'library' },
+  { icon: ShoppingBag,   label: 'AVM',          type: 'mall' },
+  { icon: PawPrint,      label: 'Veteriner',    type: 'vet' },
+  { icon: Mail,          label: 'PTT',          type: 'ptt' },
+  { icon: Building2,     label: 'Cami',         type: 'mosque' },
+  { icon: GraduationCap, label: 'Okul',         type: 'school' },
 ]
 
 // ─── Tüm kategoriler (bottom sheet) ─────────────────────────────────────────
@@ -187,12 +204,12 @@ export default function Home() {
           <div style={{ marginBottom: 12 }} className="flex items-center justify-between">
             <button onClick={() => setKategoriSheet(true)}><h2 className="text-gray-800 font-semibold" style={{ fontSize: 18 }}>Şehir Rehberi <span className="text-gray-400">›</span></h2></button>
           </div>
-          <div className="grid grid-cols-6 gap-2">
+          <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}>
             {QUICK_ACCESS.map(({ icon: Icon, label, type }) => (
               <button
                 key={label}
                 onClick={() => navigate(`/nearby/${type}`)}
-                className="flex flex-col items-center gap-1.5 active:scale-95 transition-transform"
+                className="flex flex-col items-center gap-1.5 shrink-0 active:scale-95 transition-transform"
               >
                 <div className="rounded-2xl bg-white flex items-center justify-center" style={{ width: 52, height: 52 }}>
                   <Icon size={22} strokeWidth={1.8} className="text-gray-700" />
@@ -200,7 +217,6 @@ export default function Home() {
                 <span className="text-gray-500 text-[12px] font-medium">{label}</span>
               </button>
             ))}
-
           </div>
         </div>
 
