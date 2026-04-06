@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { Home, Search, Sparkles, Compass, User, X, ChevronRight } from 'lucide-react'
+import { Home, Search, Sparkles, Compass, User, X, ChevronRight, LayoutGrid } from 'lucide-react'
 
 const SHEET_KATEGORILER = [
   { emoji: '🍜', label: 'Yemek',          path: '/food',          renk: '#fff7ed' },
@@ -60,17 +60,11 @@ export default function BottomNav() {
             <span className={`text-[12px] ${active === 'search' ? 'text-gray-900 font-bold' : 'text-gray-400 font-medium'}`}>Arama</span>
           </button>
 
-          {/* Ortadaki büyük daire */}
-          <button
-            onClick={() => setSheet(true)}
-            className="nav-orb flex items-center justify-center active:scale-90 transition-transform"
-            style={{
-              width: 48, height: 48,
-              borderRadius: '50%',
-              overflow: 'hidden',
-              position: 'relative',
-            }}
-          />
+          {/* Kategoriler */}
+          <button onClick={() => setSheet(true)} className="flex flex-col items-center gap-1">
+            <LayoutGrid size={24} strokeWidth={1.5} className="text-gray-400" />
+            <span className="text-[12px] text-gray-400 font-medium">Kategoriler</span>
+          </button>
 
           <button onClick={() => navigate('/explore')} className="flex flex-col items-center gap-1">
             <Compass size={24} strokeWidth={1.5} className={active === 'explore' ? 'text-gray-900' : 'text-gray-400'} />
