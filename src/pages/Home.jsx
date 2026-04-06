@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
-  Menu, MapPin, ChevronDown, Search,
+  Bell, MapPin, ChevronDown, Search,
   Pill, CreditCard, Fuel, ParkingCircle, Zap, Bus,
   UtensilsCrossed, Soup, Wrench, Tag,
   Calendar, ShoppingBag, Sparkles,
@@ -149,7 +149,7 @@ export default function Home() {
 
           {/* Selamlama */}
           <div className="flex-1 min-w-0">
-            <p className="text-gray-900 text-sm truncate"><span className="font-normal">{new Date().getHours() < 12 ? 'Günaydın' : new Date().getHours() < 18 ? 'İyi Günler' : 'İyi Akşamlar'}, </span><span className="font-bold">{user?.firstName}</span></p>
+            <p className="text-gray-900 truncate" style={{ fontSize: 15 }}><span className="font-normal">{new Date().getHours() < 12 ? 'Günaydın' : new Date().getHours() < 18 ? 'İyi Günler' : 'İyi Akşamlar'}, </span><span className="font-bold">{user?.firstName}</span></p>
           </div>
 
           {/* Arama + Menü sağda */}
@@ -159,12 +159,9 @@ export default function Home() {
             <Search size={18} strokeWidth={2} className="text-gray-900" />
           </button>
 
-          {/* Menü */}
-          <button onClick={() => setTumKatSheet(true)} className="rounded-full bg-white flex items-center justify-center active:scale-90 transition-transform" style={{ width: 42, height: 42 }}>
-            <div className="flex flex-col items-end" style={{ gap: 3 }}>
-              <div style={{ width: 14, height: 2, borderRadius: 1, background: '#111827' }} />
-              <div style={{ width: 9, height: 2, borderRadius: 1, background: '#111827' }} />
-            </div>
+          {/* Bildirim */}
+          <button onClick={() => navigate('/bildirimler')} className="rounded-full bg-white flex items-center justify-center active:scale-90 transition-transform" style={{ width: 42, height: 42 }}>
+            <Bell size={18} strokeWidth={2} className="text-gray-900" />
           </button>
         </div>
       </header>
