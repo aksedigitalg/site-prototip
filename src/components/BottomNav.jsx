@@ -48,32 +48,26 @@ export default function BottomNav() {
   return (
     <>
       <nav className="fixed z-50 flex justify-center" style={{ bottom: 20, left: 0, right: 0 }}>
-        <div className="bg-white/85 backdrop-blur-md flex items-center justify-center gap-[24px]" style={{ borderRadius: 9999, padding: '10px 16px', position: 'relative', maxWidth: 350, width: '100%' }}>
+        <div className="bg-white/85 backdrop-blur-md flex items-center justify-center gap-[6px]" style={{ borderRadius: 9999, padding: '8px 8px', position: 'relative' }}>
 
-          <button onClick={() => navigate('/home')} className="flex flex-col items-center gap-1">
-            <Home size={24} strokeWidth={1.5} className={active === 'home' ? 'text-gray-900' : 'text-gray-400'} />
-            <span className={`text-[12px] ${active === 'home' ? 'text-gray-900 font-bold' : 'text-gray-400 font-medium'}`}>Pano</span>
+          <button onClick={() => navigate('/home')} className="flex items-center justify-center" style={{ width: 44, height: 44, borderRadius: 9999, background: active === 'home' ? '#111827' : 'transparent' }}>
+            <Home size={20} strokeWidth={2} className={active === 'home' ? 'text-white' : 'text-gray-400'} />
           </button>
 
-          <button onClick={() => navigate('/search')} className="flex flex-col items-center gap-1">
-            <Search size={24} strokeWidth={1.5} className={active === 'search' ? 'text-gray-900' : 'text-gray-400'} />
-            <span className={`text-[12px] ${active === 'search' ? 'text-gray-900 font-bold' : 'text-gray-400 font-medium'}`}>Arama</span>
+          <button onClick={() => navigate('/search')} className="flex items-center justify-center" style={{ width: 44, height: 44, borderRadius: 9999, background: active === 'search' ? '#111827' : 'transparent' }}>
+            <Search size={20} strokeWidth={2} className={active === 'search' ? 'text-white' : 'text-gray-400'} />
           </button>
 
-          {/* Kategoriler */}
-          <button onClick={() => setSheet(true)} className="flex flex-col items-center gap-1">
-            <LayoutGrid size={24} strokeWidth={1.5} className="text-gray-400" />
-            <span className="text-[12px] text-gray-400 font-medium">Kategoriler</span>
+          <button onClick={() => setSheet(true)} className="flex items-center justify-center" style={{ width: 44, height: 44, borderRadius: 9999 }}>
+            <LayoutGrid size={20} strokeWidth={2} className="text-gray-400" />
           </button>
 
-          <button onClick={() => navigate('/explore')} className="flex flex-col items-center gap-1">
-            <Compass size={24} strokeWidth={1.5} className={active === 'explore' ? 'text-gray-900' : 'text-gray-400'} />
-            <span className={`text-[12px] ${active === 'explore' ? 'text-gray-900 font-bold' : 'text-gray-400 font-medium'}`}>Keşfet</span>
+          <button onClick={() => navigate('/explore')} className="flex items-center justify-center" style={{ width: 44, height: 44, borderRadius: 9999, background: active === 'explore' ? '#111827' : 'transparent' }}>
+            <Compass size={20} strokeWidth={2} className={active === 'explore' ? 'text-white' : 'text-gray-400'} />
           </button>
 
-          <button onClick={() => navigate('/profile')} className="flex flex-col items-center gap-1">
-            <User size={24} strokeWidth={1.5} className={active === 'profile' ? 'text-gray-900' : 'text-gray-400'} />
-            <span className={`text-[12px] ${active === 'profile' ? 'text-gray-900 font-bold' : 'text-gray-400 font-medium'}`}>Profil</span>
+          <button onClick={() => navigate('/profile')} className="flex items-center justify-center" style={{ width: 44, height: 44, borderRadius: 9999, background: active === 'profile' ? '#111827' : 'transparent' }}>
+            <User size={20} strokeWidth={2} className={active === 'profile' ? 'text-white' : 'text-gray-400'} />
           </button>
 
         </div>
@@ -112,7 +106,7 @@ export default function BottomNav() {
                   <p className="text-white text-sm font-bold">GebzemAI</p>
                   <p className="text-white/60 text-xs mt-0.5">Yapay zeka ile şehrini keşfet</p>
                 </div>
-                <ChevronRight size={16} strokeWidth={1.5} className="text-white/40" />
+                <ChevronRight size={16} strokeWidth={2} className="text-white/40" />
               </button>
 
               {/* Kategoriler grid */}
