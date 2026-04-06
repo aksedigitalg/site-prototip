@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { Home, Search, Sparkles, Compass, User, X, ChevronRight, LayoutGrid } from 'lucide-react'
+import { Home, Search, Sparkles, Compass, X, ChevronRight, LayoutGrid } from 'lucide-react'
 
 const SHEET_KATEGORILER = [
   { emoji: '🍜', label: 'Yemek',          path: '/food',          renk: '#fff7ed' },
@@ -48,26 +48,33 @@ export default function BottomNav() {
   return (
     <>
       <nav className="fixed z-50 flex justify-center" style={{ bottom: 20, left: 0, right: 0 }}>
-        <div className="bg-white/85 backdrop-blur-md flex items-center justify-center gap-[6px]" style={{ borderRadius: 9999, padding: '8px 8px', position: 'relative' }}>
+        <div className="bg-white/85 backdrop-blur-md flex items-center justify-center gap-[6px]" style={{ borderRadius: 9999, padding: '8px 8px', position: 'relative', boxShadow: '0 2px 12px rgba(0,0,0,0.06)', border: '1px solid rgba(0,0,0,0.04)' }}>
 
           <button onClick={() => navigate('/home')} className="flex items-center justify-center" style={{ width: 44, height: 44, borderRadius: 9999, background: active === 'home' ? '#111827' : 'transparent' }}>
-            <Home size={20} strokeWidth={2} className={active === 'home' ? 'text-white' : 'text-gray-400'} />
+            <Home size={24} strokeWidth={2} className={active === 'home' ? 'text-white' : 'text-gray-400'} />
           </button>
 
           <button onClick={() => navigate('/search')} className="flex items-center justify-center" style={{ width: 44, height: 44, borderRadius: 9999, background: active === 'search' ? '#111827' : 'transparent' }}>
-            <Search size={20} strokeWidth={2} className={active === 'search' ? 'text-white' : 'text-gray-400'} />
+            <Search size={24} strokeWidth={2} className={active === 'search' ? 'text-white' : 'text-gray-400'} />
           </button>
 
           <button onClick={() => setSheet(true)} className="flex items-center justify-center" style={{ width: 44, height: 44, borderRadius: 9999 }}>
-            <LayoutGrid size={20} strokeWidth={2} className="text-gray-400" />
+            <LayoutGrid size={24} strokeWidth={2} className="text-gray-400" />
           </button>
 
           <button onClick={() => navigate('/explore')} className="flex items-center justify-center" style={{ width: 44, height: 44, borderRadius: 9999, background: active === 'explore' ? '#111827' : 'transparent' }}>
-            <Compass size={20} strokeWidth={2} className={active === 'explore' ? 'text-white' : 'text-gray-400'} />
+            <Compass size={24} strokeWidth={2} className={active === 'explore' ? 'text-white' : 'text-gray-400'} />
           </button>
 
-          <button onClick={() => navigate('/profile')} className="flex items-center justify-center" style={{ width: 44, height: 44, borderRadius: 9999, background: active === 'profile' ? '#111827' : 'transparent' }}>
-            <User size={20} strokeWidth={2} className={active === 'profile' ? 'text-white' : 'text-gray-400'} />
+          <button onClick={() => navigate('/profile')} className="flex items-center justify-center" style={{ width: 44, height: 44, borderRadius: 9999 }}>
+            <img
+              src={localStorage.getItem('sehir_avatar') || '/profil.jpeg'}
+              alt="Profil"
+              style={{
+                width: 32, height: 32, borderRadius: '50%', objectFit: 'cover',
+                border: active === 'profile' ? '2px solid #111827' : '2px solid transparent',
+              }}
+            />
           </button>
 
         </div>
@@ -100,7 +107,7 @@ export default function BottomNav() {
                 style={{ background: 'linear-gradient(135deg, #7C3AED 0%, #9333EA 55%, #EC4899 100%)' }}
               >
                 <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0" style={{ background: 'rgba(255,255,255,0.15)' }}>
-                  <Sparkles size={20} strokeWidth={2} className="text-white" />
+                  <Sparkles size={24} strokeWidth={2} className="text-white" />
                 </div>
                 <div className="flex-1 text-left">
                   <p className="text-white text-sm font-bold">GebzemAI</p>
