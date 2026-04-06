@@ -220,55 +220,95 @@ export default function Home() {
           </div>
         </div>
 
-        {/* ── Bilgi Kartları 2x2 ── */}
+        {/* ── Bilgi Kartları (yatay scroll, resimdeki üst kartlar gibi) ── */}
         <div style={{ paddingTop: 20 }}>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}>
 
             {/* Hava Durumu */}
-            <div className="rounded-2xl bg-white p-4 flex flex-col gap-2" style={{ minHeight: 100 }}>
-              <span className="text-[12px] font-semibold text-gray-500">Hava Durumu</span>
-              <div className="flex items-center gap-2">
-                <span className="text-3xl">☀️</span>
-                <div>
-                  <p className="text-gray-900 text-xl font-bold">22°</p>
-                  <p className="text-gray-400 text-[11px]">Açık, Gebze</p>
-                </div>
+            <div className="shrink-0 rounded-2xl bg-white p-4 flex flex-col justify-between" style={{ width: 140, height: 150 }}>
+              <div>
+                <p className="text-gray-800 text-[13px] font-bold leading-tight">Hava</p>
+                <p className="text-gray-800 text-[13px] font-bold leading-tight">Durumu</p>
               </div>
+              <span className="text-4xl self-end">☀️</span>
             </div>
 
             {/* En Yakın Eczane */}
-            <button onClick={() => navigate('/nearby/pharmacy')} className="rounded-2xl bg-white p-4 flex flex-col gap-2 text-left active:scale-[0.97] transition-transform" style={{ minHeight: 100 }}>
-              <span className="text-[12px] font-semibold text-gray-500">En Yakın Eczane</span>
-              <div className="flex items-center gap-2">
-                <span className="text-3xl">💊</span>
-                <div>
-                  <p className="text-gray-900 text-sm font-bold">Hayat Eczanesi</p>
-                  <p className="text-green-500 text-[11px] font-semibold">Açık · 350m</p>
-                </div>
+            <button onClick={() => navigate('/nearby/pharmacy')} className="shrink-0 rounded-2xl bg-white p-4 flex flex-col justify-between text-left active:scale-[0.97] transition-transform" style={{ width: 140, height: 150 }}>
+              <div>
+                <p className="text-gray-800 text-[13px] font-bold leading-tight">En Yakın</p>
+                <p className="text-gray-800 text-[13px] font-bold leading-tight">Eczane</p>
+              </div>
+              <span className="text-4xl self-end">💊</span>
+            </button>
+
+            {/* Trafik */}
+            <button onClick={() => navigate('/trafik')} className="shrink-0 rounded-2xl bg-white p-4 flex flex-col justify-between text-left active:scale-[0.97] transition-transform" style={{ width: 140, height: 150 }}>
+              <div>
+                <p className="text-gray-800 text-[13px] font-bold leading-tight">Trafik</p>
+                <p className="text-gray-800 text-[13px] font-bold leading-tight">Yoğunluğu</p>
+              </div>
+              <span className="text-4xl self-end">🚗</span>
+            </button>
+
+            {/* Fırsatlar */}
+            <button onClick={() => navigate('/campaigns')} className="shrink-0 rounded-2xl bg-white p-4 flex flex-col justify-between text-left active:scale-[0.97] transition-transform" style={{ width: 140, height: 150 }}>
+              <div>
+                <p className="text-gray-800 text-[13px] font-bold leading-tight">Yakınımdaki</p>
+                <p className="text-gray-800 text-[13px] font-bold leading-tight">Fırsatlar</p>
+              </div>
+              <span className="text-4xl self-end">🎯</span>
+            </button>
+
+          </div>
+        </div>
+
+        {/* ── İndirimler & Fırsatlar (resimdeki alt kısım) ── */}
+        <div style={{ paddingTop: 24 }}>
+          <h2 className="text-gray-800 font-semibold mb-3" style={{ fontSize: 18 }}>İndirimler & Fırsatlar</h2>
+          <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}>
+
+            {/* Kart 1 */}
+            <button onClick={() => navigate('/alisveris')} className="shrink-0 rounded-2xl overflow-hidden text-left active:scale-[0.97] transition-transform" style={{ width: 200, height: 220 }}>
+              <div className="w-full h-[140px] flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #dbeafe, #ede9fe)' }}>
+                <span className="text-6xl">🛍️</span>
+              </div>
+              <div className="bg-white px-4 py-3">
+                <p className="text-gray-900 text-sm font-bold">Alışveriş</p>
+                <p className="text-gray-400 text-[11px] mt-0.5">6 ay taksit fırsatları</p>
               </div>
             </button>
 
-            {/* Trafik Yoğunluğu */}
-            <button onClick={() => navigate('/trafik')} className="rounded-2xl bg-white p-4 flex flex-col gap-2 text-left active:scale-[0.97] transition-transform" style={{ minHeight: 100 }}>
-              <span className="text-[12px] font-semibold text-gray-500">Trafik Yoğunluğu</span>
-              <div className="flex items-center gap-2">
-                <span className="text-3xl">🚗</span>
-                <div>
-                  <p className="text-orange-500 text-sm font-bold">Orta Yoğunluk</p>
-                  <p className="text-gray-400 text-[11px]">D-100 · Gebze merkez</p>
-                </div>
+            {/* Kart 2 */}
+            <button onClick={() => navigate('/food')} className="shrink-0 rounded-2xl overflow-hidden text-left active:scale-[0.97] transition-transform" style={{ width: 200, height: 220 }}>
+              <div className="w-full h-[140px] flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #fef3c7, #fde68a)' }}>
+                <span className="text-6xl">🍽️</span>
+              </div>
+              <div className="bg-white px-4 py-3">
+                <p className="text-gray-900 text-sm font-bold">Yemek & Restoran</p>
+                <p className="text-gray-400 text-[11px] mt-0.5">%20'ye varan indirimler</p>
               </div>
             </button>
 
-            {/* Yakınımdaki Fırsatlar */}
-            <button onClick={() => navigate('/campaigns')} className="rounded-2xl bg-white p-4 flex flex-col gap-2 text-left active:scale-[0.97] transition-transform" style={{ minHeight: 100 }}>
-              <span className="text-[12px] font-semibold text-gray-500">Yakınımdaki Fırsatlar</span>
-              <div className="flex items-center gap-2">
-                <span className="text-3xl">🎯</span>
-                <div>
-                  <p className="text-gray-900 text-sm font-bold">12 Fırsat</p>
-                  <p className="text-gray-400 text-[11px]">3 km çevrende</p>
-                </div>
+            {/* Kart 3 */}
+            <button onClick={() => navigate('/campaigns')} className="shrink-0 rounded-2xl overflow-hidden text-left active:scale-[0.97] transition-transform" style={{ width: 200, height: 220 }}>
+              <div className="w-full h-[140px] flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #d1fae5, #a7f3d0)' }}>
+                <span className="text-6xl">🎁</span>
+              </div>
+              <div className="bg-white px-4 py-3">
+                <p className="text-gray-900 text-sm font-bold">Kampanyalar</p>
+                <p className="text-gray-400 text-[11px] mt-0.5">Güncel promosyonlar</p>
+              </div>
+            </button>
+
+            {/* Kart 4 */}
+            <button onClick={() => navigate('/oteller')} className="shrink-0 rounded-2xl overflow-hidden text-left active:scale-[0.97] transition-transform" style={{ width: 200, height: 220 }}>
+              <div className="w-full h-[140px] flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #fce7f3, #fbcfe8)' }}>
+                <span className="text-6xl">🏨</span>
+              </div>
+              <div className="bg-white px-4 py-3">
+                <p className="text-gray-900 text-sm font-bold">Oteller</p>
+                <p className="text-gray-400 text-[11px] mt-0.5">Erken rezervasyon fırsatları</p>
               </div>
             </button>
 
