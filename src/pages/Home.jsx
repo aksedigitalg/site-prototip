@@ -221,15 +221,6 @@ export default function Home() {
 
 
 
-      {/* ── Kampanya FAB ── */}
-      <button
-        onClick={() => navigate('/campaigns')}
-        className="fixed z-50 active:scale-90 transition-transform"
-        style={{ bottom: 78, right: 16 }}
-      >
-        <span className="text-2xl">🎁</span>
-      </button>
-
 
       {/* ════════ TÜM KATEGORİLER BOTTOM SHEET (80% yükseklik) ════════ */}
       {tumKatSheet && (
