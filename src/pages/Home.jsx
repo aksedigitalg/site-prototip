@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
   Bell, MapPin, ChevronDown, Search,
@@ -13,7 +13,8 @@ import { MOCK_PLACES } from '../data/mockPlaces'
 
 // ─── Slider banner'ları ───────────────────────────────────────────────────────
 const SLIDER_ITEMS = [
-  { id: 1, baslik: 'Soru Sor, Cevap Al', alt: 'GebzemAI yapay zeka asistanın', path: '/gebzem-ai' },
+  { id: 1, baslik: 'Soru Sor, Cevap Al', emoji: '🤖', path: '/gebzem-ai' },
+  { id: 2, baslik: 'Şehrini Keşfet', emoji: '🗺️', path: '/explore' },
 ]
 
 // ─── Hızlı erişim ────────────────────────────────────────────────────────────
@@ -147,6 +148,14 @@ export default function Home() {
   const [konumSheet,       setKonumSheet]       = useState(false)
   const [kategoriSheet,    setKategoriSheet]    = useState(false)
   const [tumKatSheet,      setTumKatSheet]      = useState(false)
+  const [sliderIndex,      setSliderIndex]      = useState(0)
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setSliderIndex(prev => (prev + 1) % SLIDER_ITEMS.length)
+    }, 3500)
+    return () => clearInterval(timer)
+  }, [])
 
   function konumSec(isim) {
     setAktifKonum(isim)
@@ -187,14 +196,29 @@ export default function Home() {
       {/* ── İçerik ── */}
       <div style={{ paddingTop: 56, paddingBottom: 96, paddingLeft: 20, paddingRight: 20 }}>
 
-        {/* ── Banner ── */}
+        {/* ── Banner (fade geçişli slider) ── */}
         <div style={{ paddingTop: 16 }}>
           <button
-            onClick={() => navigate(SLIDER_ITEMS[0].path)}
-            className="w-full flex flex-col justify-end rounded-2xl"
-            style={{ background: '#ffffff', minHeight: '160px', padding: '30px' }}
+            onClick={() => navigate(SLIDER_ITEMS[sliderIndex].path)}
+            className="w-full flex items-end justify-between rounded-2xl relative overflow-hidden"
+            style={{ background: '#ffffff', minHeight: '210px', padding: '30px' }}
           >
-            <p className="text-gray-900 font-extrabold leading-snug text-left" style={{ fontSize: 22 }}>{SLIDER_ITEMS[0].baslik}</p>
+            {SLIDER_ITEMS.map((item, i) => (
+              <div
+                key={item.id}
+                className="absolute inset-0 flex items-end justify-between p-[30px]"
+                style={{ opacity: sliderIndex === i ? 1 : 0, transition: 'opacity 0.6s ease' }}
+              >
+                <p className="text-gray-900 font-extrabold leading-snug text-left" style={{ fontSize: 22 }}>{item.baslik}</p>
+                <span className="text-5xl">{item.emoji}</span>
+              </div>
+            ))}
+            {/* Dot indikatörler */}
+            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
+              {SLIDER_ITEMS.map((_, i) => (
+                <div key={i} className="rounded-full" style={{ width: sliderIndex === i ? 16 : 6, height: 6, background: sliderIndex === i ? '#111' : '#d1d5db', transition: 'all 0.3s ease' }} />
+              ))}
+            </div>
           </button>
         </div>
 
@@ -274,9 +298,7 @@ export default function Home() {
 
             {/* Kart 1 */}
             <button onClick={() => navigate('/alisveris')} className="shrink-0 text-left active:scale-[0.97] transition-transform" style={{ width: 140 }}>
-              <div className="w-full h-[100px] flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #dbeafe, #ede9fe)', borderRadius: 16 }}>
-                <span className="text-4xl">🛍️</span>
-              </div>
+              <div className="w-full h-[100px]" style={{ background: 'linear-gradient(135deg, #dbeafe, #ede9fe)', borderRadius: 16 }} />
               <div className="px-1 pt-2">
                 <p className="text-gray-900 text-xs font-bold">Alışveriş</p>
                 <p className="text-gray-400 text-[10px] mt-0.5">6 ay taksit fırsatları</p>
@@ -285,9 +307,7 @@ export default function Home() {
 
             {/* Kart 2 */}
             <button onClick={() => navigate('/food')} className="shrink-0 text-left active:scale-[0.97] transition-transform" style={{ width: 140 }}>
-              <div className="w-full h-[100px] flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #fef3c7, #fde68a)', borderRadius: 16 }}>
-                <span className="text-4xl">🍽️</span>
-              </div>
+              <div className="w-full h-[100px]" style={{ background: 'linear-gradient(135deg, #fef3c7, #fde68a)', borderRadius: 16 }} />
               <div className="px-1 pt-2">
                 <p className="text-gray-900 text-xs font-bold">Yemek & Restoran</p>
                 <p className="text-gray-400 text-[10px] mt-0.5">%20'ye varan indirimler</p>
@@ -296,9 +316,7 @@ export default function Home() {
 
             {/* Kart 3 */}
             <button onClick={() => navigate('/campaigns')} className="shrink-0 text-left active:scale-[0.97] transition-transform" style={{ width: 140 }}>
-              <div className="w-full h-[100px] flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #d1fae5, #a7f3d0)', borderRadius: 16 }}>
-                <span className="text-4xl">🎁</span>
-              </div>
+              <div className="w-full h-[100px]" style={{ background: 'linear-gradient(135deg, #d1fae5, #a7f3d0)', borderRadius: 16 }} />
               <div className="px-1 pt-2">
                 <p className="text-gray-900 text-xs font-bold">Kampanyalar</p>
                 <p className="text-gray-400 text-[10px] mt-0.5">Güncel promosyonlar</p>
@@ -307,9 +325,7 @@ export default function Home() {
 
             {/* Kart 4 */}
             <button onClick={() => navigate('/oteller')} className="shrink-0 text-left active:scale-[0.97] transition-transform" style={{ width: 140 }}>
-              <div className="w-full h-[100px] flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #fce7f3, #fbcfe8)', borderRadius: 16 }}>
-                <span className="text-4xl">🏨</span>
-              </div>
+              <div className="w-full h-[100px]" style={{ background: 'linear-gradient(135deg, #fce7f3, #fbcfe8)', borderRadius: 16 }} />
               <div className="px-1 pt-2">
                 <p className="text-gray-900 text-xs font-bold">Oteller</p>
                 <p className="text-gray-400 text-[10px] mt-0.5">Erken rezervasyon fırsatları</p>
@@ -324,48 +340,46 @@ export default function Home() {
           <div style={{ marginBottom: 12 }}>
             <h2 className="text-gray-800 font-semibold" style={{ fontSize: 18 }}>Haberler <span className="text-gray-400">›</span></h2>
           </div>
-          <div className="flex flex-col gap-3">
 
-            <button className="flex gap-3 bg-white rounded-2xl p-3 text-left active:scale-[0.98] transition-transform">
-              <div className="shrink-0 w-20 h-20 flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #fee2e2, #fecaca)', borderRadius: 14 }}>
-                <span className="text-3xl">🏗️</span>
+          {/* Büyük featured haber */}
+          <button className="w-full bg-white rounded-2xl overflow-hidden text-left active:scale-[0.98] transition-transform mb-3">
+            <div className="w-full h-[160px] flex items-end p-5" style={{ background: 'linear-gradient(135deg, #1e293b, #334155)' }}>
+              <div>
+                <span className="inline-block bg-white/20 text-white text-[10px] font-semibold px-2 py-0.5 rounded-full mb-2">Gündem</span>
+                <p className="text-white text-base font-bold leading-snug">Gebze'de yeni metro hattı çalışmaları başladı</p>
               </div>
-              <div className="flex-1 min-w-0 py-0.5">
-                <p className="text-gray-900 text-sm font-bold leading-snug line-clamp-2">Gebze'de yeni metro hattı çalışmaları başladı</p>
-                <p className="text-gray-400 text-[11px] mt-1.5">Bugün · Ulaşım</p>
+            </div>
+            <div className="px-4 py-3 flex items-center justify-between">
+              <p className="text-gray-400 text-[11px]">Bugün · Ulaşım</p>
+              <ChevronRight size={14} className="text-gray-300" />
+            </div>
+          </button>
+
+          {/* Küçük haberler */}
+          <div className="flex flex-col gap-2">
+            <button className="flex items-center gap-3 bg-white rounded-2xl px-4 py-3 text-left active:scale-[0.98] transition-transform">
+              <div className="flex-1 min-w-0">
+                <p className="text-gray-900 text-[13px] font-bold leading-snug line-clamp-2">Kent parkı yenileme projesi tamamlandı</p>
+                <p className="text-gray-400 text-[10px] mt-1">Dün · Çevre</p>
               </div>
+              <ChevronRight size={14} className="text-gray-300 shrink-0" />
             </button>
 
-            <button className="flex gap-3 bg-white rounded-2xl p-3 text-left active:scale-[0.98] transition-transform">
-              <div className="shrink-0 w-20 h-20 flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #dbeafe, #bfdbfe)', borderRadius: 14 }}>
-                <span className="text-3xl">🌳</span>
+            <button className="flex items-center gap-3 bg-white rounded-2xl px-4 py-3 text-left active:scale-[0.98] transition-transform">
+              <div className="flex-1 min-w-0">
+                <p className="text-gray-900 text-[13px] font-bold leading-snug line-clamp-2">Üniversite öğrencilerine ücretsiz ulaşım müjdesi</p>
+                <p className="text-gray-400 text-[10px] mt-1">2 gün önce · Eğitim</p>
               </div>
-              <div className="flex-1 min-w-0 py-0.5">
-                <p className="text-gray-900 text-sm font-bold leading-snug line-clamp-2">Kent parkı yenileme projesi tamamlandı</p>
-                <p className="text-gray-400 text-[11px] mt-1.5">Dün · Çevre</p>
-              </div>
+              <ChevronRight size={14} className="text-gray-300 shrink-0" />
             </button>
 
-            <button className="flex gap-3 bg-white rounded-2xl p-3 text-left active:scale-[0.98] transition-transform">
-              <div className="shrink-0 w-20 h-20 flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #fef3c7, #fde68a)', borderRadius: 14 }}>
-                <span className="text-3xl">🎓</span>
+            <button className="flex items-center gap-3 bg-white rounded-2xl px-4 py-3 text-left active:scale-[0.98] transition-transform">
+              <div className="flex-1 min-w-0">
+                <p className="text-gray-900 text-[13px] font-bold leading-snug line-clamp-2">Yeni devlet hastanesi hizmete açılıyor</p>
+                <p className="text-gray-400 text-[10px] mt-1">3 gün önce · Sağlık</p>
               </div>
-              <div className="flex-1 min-w-0 py-0.5">
-                <p className="text-gray-900 text-sm font-bold leading-snug line-clamp-2">Üniversite öğrencilerine ücretsiz ulaşım müjdesi</p>
-                <p className="text-gray-400 text-[11px] mt-1.5">2 gün önce · Eğitim</p>
-              </div>
+              <ChevronRight size={14} className="text-gray-300 shrink-0" />
             </button>
-
-            <button className="flex gap-3 bg-white rounded-2xl p-3 text-left active:scale-[0.98] transition-transform">
-              <div className="shrink-0 w-20 h-20 flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #d1fae5, #a7f3d0)', borderRadius: 14 }}>
-                <span className="text-3xl">🏥</span>
-              </div>
-              <div className="flex-1 min-w-0 py-0.5">
-                <p className="text-gray-900 text-sm font-bold leading-snug line-clamp-2">Yeni devlet hastanesi hizmete açılıyor</p>
-                <p className="text-gray-400 text-[11px] mt-1.5">3 gün önce · Sağlık</p>
-              </div>
-            </button>
-
           </div>
         </div>
 
