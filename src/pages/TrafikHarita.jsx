@@ -1,5 +1,6 @@
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { MapContainer, TileLayer, Polyline } from 'react-leaflet'
+import { MapContainer, TileLayer, Polyline, useMap } from 'react-leaflet'
 import { ArrowLeft } from 'lucide-react'
 
 const CENTER = [40.8025, 29.4301]
@@ -45,6 +46,15 @@ const TRAFIK_YOLLARI = [
   ]},
 ]
 
+function InvalidateSize() {
+  const map = useMap()
+  useEffect(() => {
+    setTimeout(() => map.invalidateSize(), 100)
+    setTimeout(() => map.invalidateSize(), 300)
+  }, [map])
+  return null
+}
+
 export default function TrafikHarita() {
   const navigate = useNavigate()
 
@@ -75,14 +85,15 @@ export default function TrafikHarita() {
       </div>
 
       {/* Harita */}
-      <div className="flex-1">
+      <div style={{ flex: 1, position: 'relative', minHeight: 0 }}>
         <MapContainer
           center={CENTER}
           zoom={14}
-          style={{ height: '100%', width: '100%' }}
+          style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
           zoomControl={false}
           attributionControl={false}
         >
+          <InvalidateSize />
           <TileLayer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" />
           {TRAFIK_YOLLARI.map((yol, i) => (
             <Polyline
