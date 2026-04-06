@@ -194,9 +194,9 @@ export default function Home() {
                 className="flex flex-col items-center gap-1.5 active:scale-95 transition-transform"
               >
                 <div className="rounded-2xl bg-white flex items-center justify-center" style={{ width: 52, height: 52 }}>
-                  <Icon size={20} strokeWidth={1.5} className="text-gray-700" />
+                  <Icon size={22} strokeWidth={1.8} className="text-gray-700" />
                 </div>
-                <span className="text-gray-500 text-[11px] font-medium">{label}</span>
+                <span className="text-gray-500 text-[12px] font-medium">{label}</span>
               </button>
             ))}
 
