@@ -8,6 +8,7 @@ import {
   Key, Users, Building2, Stethoscope, Shield, Flame,
   Hotel, Coffee, Scissors, Dumbbell, BookOpen, PawPrint,
   Mail, GraduationCap, Navigation, Plus, X, ChevronRight, Clock,
+  CloudSun, Car, Target,
 } from 'lucide-react'
 import { MOCK_PLACES } from '../data/mockPlaces'
 
@@ -251,39 +252,45 @@ export default function Home() {
           <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}>
 
             {/* Hava Durumu */}
-            <div className="shrink-0 bg-white p-4 flex flex-col justify-between" style={{ width: 140, height: 150, borderRadius: 26 }}>
+            <div className="shrink-0 bg-white p-4 flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 150, borderRadius: 26 }}>
+              <CloudSun size={80} strokeWidth={1} className="absolute -bottom-3 -right-3 text-gray-900/5" />
               <div>
-                <p className="text-gray-800 text-[13px] font-bold leading-tight">Hava</p>
-                <p className="text-gray-800 text-[13px] font-bold leading-tight">Durumu</p>
+                <p className="text-gray-800 text-[13px] font-bold leading-tight">Hava Durumu</p>
+                <p className="text-gray-400 text-[11px] mt-0.5">Gebze</p>
               </div>
-              <span className="text-4xl self-end">☀️</span>
+              <p className="text-gray-900 text-2xl font-black">9°</p>
             </div>
 
             {/* En Yakın Eczane */}
-            <button onClick={() => navigate('/nearby/pharmacy')} className="shrink-0 bg-white p-4 flex flex-col justify-between text-left active:scale-[0.97] transition-transform" style={{ width: 140, height: 150, borderRadius: 26 }}>
+            <button onClick={() => navigate('/nearby/pharmacy')} className="shrink-0 bg-white p-4 flex flex-col justify-between text-left active:scale-[0.97] transition-transform relative overflow-hidden" style={{ width: 140, height: 150, borderRadius: 26 }}>
+              <Pill size={80} strokeWidth={1} className="absolute -bottom-3 -right-3 text-gray-900/5" />
               <div>
-                <p className="text-gray-800 text-[13px] font-bold leading-tight">En Yakın</p>
-                <p className="text-gray-800 text-[13px] font-bold leading-tight">Eczane</p>
+                <p className="text-gray-800 text-[13px] font-bold leading-tight">En Yakın Eczane</p>
               </div>
-              <span className="text-4xl self-end">💊</span>
+              <div>
+                <p className="text-gray-900 text-xs font-bold">Hayat Eczanesi</p>
+                <p className="text-green-500 text-[10px] font-semibold mt-0.5">Açık · 350m</p>
+              </div>
             </button>
 
             {/* Trafik */}
-            <button onClick={() => navigate('/trafik')} className="shrink-0 bg-white p-4 flex flex-col justify-between text-left active:scale-[0.97] transition-transform" style={{ width: 140, height: 150, borderRadius: 26 }}>
+            <button onClick={() => navigate('/trafik')} className="shrink-0 bg-white p-4 flex flex-col justify-between text-left active:scale-[0.97] transition-transform relative overflow-hidden" style={{ width: 140, height: 150, borderRadius: 26 }}>
+              <Car size={80} strokeWidth={1} className="absolute -bottom-3 -right-3 text-gray-900/5" />
               <div>
                 <p className="text-gray-800 text-[13px] font-bold leading-tight">Trafik</p>
                 <p className="text-gray-800 text-[13px] font-bold leading-tight">Yoğunluğu</p>
               </div>
-              <span className="text-4xl self-end">🚗</span>
+              <p className="text-orange-500 text-xs font-bold">Orta Yoğunluk</p>
             </button>
 
             {/* Fırsatlar */}
-            <button onClick={() => navigate('/campaigns')} className="shrink-0 bg-white p-4 flex flex-col justify-between text-left active:scale-[0.97] transition-transform" style={{ width: 140, height: 150, borderRadius: 26 }}>
+            <button onClick={() => navigate('/campaigns')} className="shrink-0 bg-white p-4 flex flex-col justify-between text-left active:scale-[0.97] transition-transform relative overflow-hidden" style={{ width: 140, height: 150, borderRadius: 26 }}>
+              <Target size={80} strokeWidth={1} className="absolute -bottom-3 -right-3 text-gray-900/5" />
               <div>
                 <p className="text-gray-800 text-[13px] font-bold leading-tight">Yakınımdaki</p>
                 <p className="text-gray-800 text-[13px] font-bold leading-tight">Fırsatlar</p>
               </div>
-              <span className="text-4xl self-end">🎯</span>
+              <p className="text-gray-900 text-xs font-bold">12 Fırsat</p>
             </button>
 
           </div>
@@ -298,37 +305,37 @@ export default function Home() {
 
             {/* Kart 1 */}
             <button onClick={() => navigate('/alisveris')} className="shrink-0 text-left active:scale-[0.97] transition-transform bg-white overflow-hidden" style={{ width: 140, borderRadius: 16 }}>
-              <div className="w-full h-[100px]" style={{ background: 'linear-gradient(135deg, #dbeafe, #ede9fe)' }} />
+              <div className="w-full h-[100px] bg-white" />
               <div className="px-3 py-2.5">
-                <p className="text-gray-900 text-xs font-bold">Alışveriş</p>
-                <p className="text-gray-400 text-[10px] mt-0.5">6 ay taksit fırsatları</p>
+                <p className="text-gray-900 text-sm font-bold">Alışveriş</p>
+                <p className="text-gray-400 text-[11px] mt-0.5">6 ay taksit fırsatları</p>
               </div>
             </button>
 
             {/* Kart 2 */}
             <button onClick={() => navigate('/food')} className="shrink-0 text-left active:scale-[0.97] transition-transform bg-white overflow-hidden" style={{ width: 140, borderRadius: 16 }}>
-              <div className="w-full h-[100px]" style={{ background: 'linear-gradient(135deg, #fef3c7, #fde68a)' }} />
+              <div className="w-full h-[100px] bg-white" />
               <div className="px-3 py-2.5">
-                <p className="text-gray-900 text-xs font-bold">Yemek & Restoran</p>
-                <p className="text-gray-400 text-[10px] mt-0.5">%20'ye varan indirimler</p>
+                <p className="text-gray-900 text-sm font-bold">Yemek & Restoran</p>
+                <p className="text-gray-400 text-[11px] mt-0.5">%20'ye varan indirimler</p>
               </div>
             </button>
 
             {/* Kart 3 */}
             <button onClick={() => navigate('/campaigns')} className="shrink-0 text-left active:scale-[0.97] transition-transform bg-white overflow-hidden" style={{ width: 140, borderRadius: 16 }}>
-              <div className="w-full h-[100px]" style={{ background: 'linear-gradient(135deg, #d1fae5, #a7f3d0)' }} />
+              <div className="w-full h-[100px] bg-white" />
               <div className="px-3 py-2.5">
-                <p className="text-gray-900 text-xs font-bold">Kampanyalar</p>
-                <p className="text-gray-400 text-[10px] mt-0.5">Güncel promosyonlar</p>
+                <p className="text-gray-900 text-sm font-bold">Kampanyalar</p>
+                <p className="text-gray-400 text-[11px] mt-0.5">Güncel promosyonlar</p>
               </div>
             </button>
 
             {/* Kart 4 */}
             <button onClick={() => navigate('/oteller')} className="shrink-0 text-left active:scale-[0.97] transition-transform bg-white overflow-hidden" style={{ width: 140, borderRadius: 16 }}>
-              <div className="w-full h-[100px]" style={{ background: 'linear-gradient(135deg, #fce7f3, #fbcfe8)' }} />
+              <div className="w-full h-[100px] bg-white" />
               <div className="px-3 py-2.5">
-                <p className="text-gray-900 text-xs font-bold">Oteller</p>
-                <p className="text-gray-400 text-[10px] mt-0.5">Erken rezervasyon fırsatları</p>
+                <p className="text-gray-900 text-sm font-bold">Oteller</p>
+                <p className="text-gray-400 text-[11px] mt-0.5">Erken rezervasyon fırsatları</p>
               </div>
             </button>
 
