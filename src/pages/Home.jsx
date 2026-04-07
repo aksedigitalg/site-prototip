@@ -199,7 +199,7 @@ export default function Home() {
       <div style={{ paddingTop: 66, paddingLeft: 20, paddingRight: 20, paddingBottom: 96 }}>
 
         {/* ── Banner (fade geçişli slider) ── */}
-        <div style={{ paddingTop: 20 }}>
+        <div>
           <div
             className="w-full relative overflow-hidden"
             style={{ borderRadius: 25, height: 210 }}
