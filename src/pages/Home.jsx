@@ -161,7 +161,7 @@ export default function Home() {
 
         {/* Selamlama */}
         <div className="flex-1 min-w-0">
-          <p className="text-gray-900 truncate flex items-center gap-1" style={{ fontSize: 16 }}><span className="font-normal">{new Date().getHours() < 12 ? 'Günaydın' : new Date().getHours() < 18 ? 'İyi Günler' : 'İyi Akşamlar'}</span>{new Date().getHours() < 18 ? <CloudSun size={16} strokeWidth={2} className="text-yellow-400" /> : <Moon size={16} strokeWidth={2} className="text-gray-400" />}<span className="font-bold">{user?.firstName}</span></p>
+          <p className="text-gray-900 truncate flex items-center gap-1" style={{ fontSize: 16 }}><span className="font-normal">{new Date().getHours() < 12 ? 'Günaydın' : new Date().getHours() < 18 ? 'İyi Günler' : 'İyi Akşamlar'}</span>{new Date().getHours() < 18 ? <span className="text-sm">☀️</span> : <span className="text-sm">🌙</span>}<span className="font-bold">{user?.firstName}</span></p>
         </div>
 
         {/* Arama */}
@@ -194,7 +194,7 @@ export default function Home() {
           <div style={{ marginBottom: 12 }} className="flex items-center justify-between">
             <button onClick={() => setKategoriSheet(true)}><h2 className="text-gray-800 font-semibold" style={{ fontSize: 18 }}>Şehir Rehberi <span className="text-gray-400">›</span></h2></button>
           </div>
-          <div className="grid grid-cols-5 gap-y-2 gap-x-3">
+          <div className="grid grid-cols-5 gap-x-3" style={{ rowGap: 10 }}>
             {QUICK_ACCESS.map(({ icon: Icon, label, type }) => (
               <button
                 key={label}
