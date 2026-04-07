@@ -193,28 +193,12 @@ export default function Home() {
 
             {/* Skor tablosu */}
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="flex items-center gap-3">
-                <span className="text-gray-800 text-[13px] font-semibold">Türkiye</span>
-                <span className="text-gray-900 font-black" style={{ fontSize: 26 }}>2 - 1</span>
-                <span className="text-gray-800 text-[13px] font-semibold">Kosova</span>
+              <div className="flex items-center gap-4">
+                <span className="text-gray-800 font-bold" style={{ fontSize: 18 }}>Türkiye</span>
+                <span className="text-gray-900 font-black" style={{ fontSize: 34 }}>2 - 1</span>
+                <span className="text-gray-800 font-bold" style={{ fontSize: 18 }}>Kosova</span>
               </div>
             </div>
-
-            {/* Sol oyuncu — Arda Güler */}
-            <img
-              src="https://i.pinimg.com/564x/6c/8c/b0/6c8cb0c69c861719b1cfb7aad560779f.jpg"
-              alt="Arda Güler"
-              className="absolute object-contain"
-              style={{ height: '80%', bottom: 0, left: 10 }}
-            />
-
-            {/* Sağ oyuncu */}
-            <img
-              src="https://w1.pngwing.com/pngs/1014/255/png-transparent-messi-drawing-football-sports-lionel-messi-football-player-team-sport-soccer-player.png"
-              alt="Oyuncu"
-              className="absolute object-contain"
-              style={{ height: '80%', bottom: 0, right: 10 }}
-            />
           </div>
         </div>
 
