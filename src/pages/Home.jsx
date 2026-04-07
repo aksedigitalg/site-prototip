@@ -231,6 +231,33 @@ export default function Home() {
           </div>
         </div>
 
+        {/* ── Kategoriler (yatay scroll) ── */}
+        <div style={{ paddingTop: 20 }}>
+          <div style={{ marginBottom: 12 }}>
+            <h2 className="text-gray-800 font-semibold" style={{ fontSize: 18 }}>Kategoriler <span className="text-gray-400">›</span></h2>
+          </div>
+          <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}>
+            {[
+              { icon: Sparkles, label: 'GebzemAI',      gradient: 'linear-gradient(to top, rgba(147,51,234,0.15), transparent)' },
+              { icon: UtensilsCrossed, label: 'Yemek',   gradient: 'linear-gradient(to top, rgba(251,146,60,0.15), transparent)' },
+              { icon: ShoppingBag, label: 'Alışveriş',   gradient: 'linear-gradient(to top, rgba(59,130,246,0.15), transparent)' },
+              { icon: Wrench, label: 'Hizmetler',        gradient: 'linear-gradient(to top, rgba(34,197,94,0.15), transparent)' },
+              { icon: Tag, label: 'İlanlar',             gradient: 'linear-gradient(to top, rgba(168,85,247,0.15), transparent)' },
+              { icon: Calendar, label: 'Etkinlikler',    gradient: 'linear-gradient(to top, rgba(234,179,8,0.15), transparent)' },
+              { icon: Hotel, label: 'Oteller',           gradient: 'linear-gradient(to top, rgba(239,68,68,0.15), transparent)' },
+              { icon: Wrench, label: 'Araç Kira',        gradient: 'linear-gradient(to top, rgba(99,102,241,0.15), transparent)' },
+            ].map(({ icon: Icon, label, gradient }) => (
+              <div key={label} className="shrink-0 flex flex-col items-center gap-1.5">
+                <div className="rounded-2xl bg-white flex items-center justify-center relative overflow-hidden" style={{ width: 85, height: 85 }}>
+                  <div className="absolute inset-0" style={{ background: gradient }} />
+                  <Icon size={30} strokeWidth={1.5} className="text-gray-700 relative z-10" />
+                </div>
+                <span className="text-gray-500 text-[12px] font-medium">{label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* ── Hızlı Erişim ── */}
         <div style={{ paddingTop: 20 }}>
           <div style={{ marginBottom: 12 }} className="flex items-center justify-between">
