@@ -24,12 +24,12 @@ const QUICK_ACCESS = [
   { icon: CreditCard,    label: 'ATM',          type: 'atm' },
   { icon: Fuel,          label: 'Benzinlik',    type: 'fuel' },
   { icon: ParkingCircle, label: 'Otopark',      type: 'parking' },
+  { icon: Key,           label: 'Çilingir',     type: 'locksmith' },
   { icon: Zap,           label: 'Şarj',         type: 'charging' },
   { icon: Bus,           label: 'Otobüs',       type: 'bus' },
   { icon: Stethoscope,   label: 'Sağlık',       type: 'clinic' },
   { icon: Coffee,        label: 'Kafe',         type: 'cafe' },
   { icon: Hotel,         label: 'Otel',         type: 'hotel' },
-  { icon: Building2,     label: 'Cami',         type: 'mosque' },
 ]
 
 // ─── Tüm kategoriler (bottom sheet) ─────────────────────────────────────────
