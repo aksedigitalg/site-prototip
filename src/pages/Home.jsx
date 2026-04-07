@@ -157,9 +157,7 @@ export default function Home() {
       {/* ── Header ── */}
       <header className="sticky top-0 z-50 flex items-center" style={{ gap: 8, paddingTop: 10, height: 56, background: '#f5f6f8' }}>
         {/* Profil resmi */}
-        <button onClick={() => navigate('/profile')} className="w-9 h-9 rounded-full overflow-hidden shrink-0 active:scale-95 transition-transform">
-          <img src={localStorage.getItem('sehir_avatar') || '/profil.jpeg'} alt="" className="w-full h-full object-cover" />
-        </button>
+        <button onClick={() => navigate('/profile')} className="w-9 h-9 rounded-full bg-gray-300 shrink-0 active:scale-95 transition-transform" />
 
         {/* Selamlama */}
         <div className="flex-1 min-w-0">
