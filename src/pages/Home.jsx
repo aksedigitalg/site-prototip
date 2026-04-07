@@ -291,24 +291,24 @@ export default function Home() {
                 <p className="text-gray-400 text-[10px] mt-1">Parçalı Bulutlu</p>
               </div>
             </div>
-            <div className="shrink-0 flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 130, borderRadius: 22, padding: '14px 16px', background: '#111827' }}>
-              <Moon size={60} strokeWidth={1} className="absolute -bottom-2 -right-2 text-white/10" />
-              <p className="text-white/50 text-[11px] font-medium">Namaz Vakti</p>
+            <div className="shrink-0 flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 130, borderRadius: 22, padding: '14px 16px', background: '#ffffff' }}>
+              <Moon size={60} strokeWidth={1} className="absolute -bottom-2 -right-2 text-gray-900/5" />
+              <p className="text-gray-500 text-[11px] font-medium">Namaz Vakti</p>
               <div>
-                <p className="text-white font-black text-3xl leading-none">15:42</p>
-                <p className="text-white/50 text-[10px] mt-1">İkindi</p>
+                <p className="text-gray-900 font-black text-3xl leading-none">15:42</p>
+                <p className="text-gray-400 text-[10px] mt-1">İkindi</p>
               </div>
             </div>
-            <div className="shrink-0 flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 130, borderRadius: 22, padding: '14px 16px', background: '#111827' }}>
+            <div className="shrink-0 flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 130, borderRadius: 22, padding: '14px 16px', background: '#ffffff' }}>
               {DOVIZ_DATA.map((d, i) => {
                 const DIcon = d.Icon
                 return (
                   <div key={i} className="absolute inset-0 flex flex-col justify-between" style={{ padding: '14px 16px', opacity: dovizIndex === i ? 1 : 0, transition: 'opacity 0.5s ease' }}>
-                    <DIcon size={60} strokeWidth={1} className="absolute -bottom-2 -right-2 text-white/10" />
-                    <p className="text-white/50 text-[11px] font-medium">Döviz Kuru</p>
+                    <DIcon size={60} strokeWidth={1} className="absolute -bottom-2 -right-2 text-gray-900/5" />
+                    <p className="text-gray-500 text-[11px] font-medium">Döviz Kuru</p>
                     <div>
-                      <p className="text-white font-black text-3xl leading-none">{d.deger}</p>
-                      <p className="text-white/50 text-[10px] mt-1">{d.label}</p>
+                      <p className="text-gray-900 font-black text-3xl leading-none">{d.deger}</p>
+                      <p className="text-gray-400 text-[10px] mt-1">{d.label}</p>
                     </div>
                   </div>
                 )
