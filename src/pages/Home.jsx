@@ -155,13 +155,13 @@ export default function Home() {
     <div className="min-h-screen" style={{ background: '#f5f6f8', paddingLeft: 20, paddingRight: 20, paddingBottom: 96 }}>
 
       {/* ── Header ── */}
-      <header className="sticky top-0 z-50 flex items-center" style={{ gap: 8, paddingTop: 10, height: 56, background: '#f5f6f8' }}>
+      <header className="sticky top-0 z-50 flex items-center" style={{ gap: 6, paddingTop: 10, height: 56, background: '#f5f6f8' }}>
         {/* Profil resmi */}
-        <button onClick={() => navigate('/profile')} className="w-9 h-9 rounded-full bg-gray-300 shrink-0 active:scale-95 transition-transform" />
+        <button onClick={() => navigate('/profile')} className="w-9 h-9 rounded-full bg-gray-300 shrink-0 active:scale-95 transition-transform" style={{ marginRight: 4 }} />
 
         {/* Selamlama */}
         <div className="flex-1 min-w-0">
-          <p className="text-gray-900 truncate" style={{ fontSize: 15 }}><span className="font-normal">{new Date().getHours() < 12 ? 'Günaydın' : new Date().getHours() < 18 ? 'İyi Günler' : 'İyi Akşamlar'}, </span><span className="font-bold">{user?.firstName}</span></p>
+          <p className="text-gray-900 truncate flex items-center gap-1" style={{ fontSize: 16 }}><span className="font-normal">{new Date().getHours() < 12 ? 'Günaydın' : new Date().getHours() < 18 ? 'İyi Günler' : 'İyi Akşamlar'}</span>{new Date().getHours() < 18 ? <CloudSun size={16} strokeWidth={2} className="text-yellow-400" /> : <Moon size={16} strokeWidth={2} className="text-gray-400" />}<span className="font-bold">{user?.firstName}</span></p>
         </div>
 
         {/* Arama */}
@@ -183,8 +183,8 @@ export default function Home() {
         <div style={{ paddingTop: 16 }}>
           <button
             onClick={() => navigate(SLIDER_ITEMS[sliderIndex].path)}
-            className="w-full rounded-2xl relative overflow-hidden"
-            style={{ background: '#ffffff', minHeight: '210px' }}
+            className="w-full relative overflow-hidden block"
+            style={{ borderRadius: 25, background: '#ffffff', height: 210, lineHeight: 0 }}
           >
           </button>
         </div>
