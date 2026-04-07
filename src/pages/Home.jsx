@@ -29,8 +29,6 @@ const QUICK_ACCESS = [
   { icon: Stethoscope,   label: 'Sağlık',       type: 'clinic' },
   { icon: Coffee,        label: 'Kafe',         type: 'cafe' },
   { icon: Hotel,         label: 'Otel',         type: 'hotel' },
-  { icon: ShoppingBag,   label: 'AVM',          type: 'mall' },
-  { icon: Users,         label: 'Toplanma',     type: 'assembly' },
   { icon: Building2,     label: 'Cami',         type: 'mosque' },
 ]
 
@@ -203,17 +201,17 @@ export default function Home() {
           <div style={{ marginBottom: 12 }} className="flex items-center justify-between">
             <button onClick={() => setKategoriSheet(true)}><h2 className="text-gray-800 font-semibold" style={{ fontSize: 18 }}>Şehir Rehberi <span className="text-gray-400">›</span></h2></button>
           </div>
-          <div className="grid grid-cols-6 gap-y-4 gap-x-2">
+          <div className="grid grid-cols-5 gap-y-4 gap-x-3">
             {QUICK_ACCESS.map(({ icon: Icon, label, type }) => (
               <button
                 key={label}
                 onClick={() => navigate(`/nearby/${type}`)}
                 className="flex flex-col items-center gap-1.5 active:scale-95 transition-transform"
               >
-                <div className="rounded-2xl bg-white flex items-center justify-center" style={{ width: 48, height: 48 }}>
-                  <Icon size={20} strokeWidth={1.8} className="text-gray-700" />
+                <div className="rounded-2xl bg-white flex items-center justify-center" style={{ width: 56, height: 56 }}>
+                  <Icon size={24} strokeWidth={1.8} className="text-gray-700" />
                 </div>
-                <span className="text-gray-500 text-[11px] font-medium">{label}</span>
+                <span className="text-gray-500 text-[12px] font-medium">{label}</span>
               </button>
             ))}
           </div>
