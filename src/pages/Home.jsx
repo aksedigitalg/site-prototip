@@ -191,9 +191,9 @@ export default function Home() {
             {/* İçerik */}
             <div className="relative h-full flex flex-col justify-between" style={{ padding: 20 }}>
               {/* CANLI badge */}
-              <div className="flex items-center gap-1 border border-red-400 rounded-full px-2 py-0.5 w-fit">
-                <div className="rounded-full bg-red-500 live-dot" style={{ width: 6, height: 6 }} />
-                <span className="text-red-400 text-[8px] font-bold tracking-wide">CANLI</span>
+              <div className="flex items-center gap-1 border border-red-500 rounded-full px-2 py-0.5 w-fit" style={{ background: 'rgba(239,68,68,0.9)' }}>
+                <div className="rounded-full bg-white live-dot" style={{ width: 6, height: 6 }} />
+                <span className="text-white text-[8px] font-bold tracking-wide">CANLI</span>
               </div>
 
               {/* Skor + gol bilgisi */}
