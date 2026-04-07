@@ -286,37 +286,37 @@ export default function Home() {
           <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}>
 
             {/* Hava Durumu */}
-            <div className="shrink-0 flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 130, borderRadius: 26, padding: '14px 16px', background: 'linear-gradient(135deg, #1e3a5f, #1e40af, #3b82f6)' }}>
-              <CloudSun size={80} strokeWidth={1} className="absolute -bottom-3 -right-3 text-white/10" />
+            <div className="shrink-0 bg-white flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 130, borderRadius: 26, padding: '14px 16px' }}>
+              <CloudSun size={80} strokeWidth={1} className="absolute -bottom-3 -right-3 text-gray-900/5" />
               <div>
-                <p className="text-white text-sm font-bold">Hava Durumu</p>
-                <p className="text-white/60 text-xs mt-1">Parçalı Bulutlu</p>
+                <p className="text-gray-900 text-sm font-bold">Hava Durumu</p>
+                <p className="text-gray-400 text-xs mt-1">Parçalı Bulutlu</p>
               </div>
-              <p className="text-white font-black" style={{ fontSize: 28 }}>9°</p>
+              <p className="text-gray-900 font-black" style={{ fontSize: 28 }}>9°</p>
             </div>
 
             {/* Namaz Vakti */}
-            <div className="shrink-0 flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 130, borderRadius: 26, padding: '14px 16px', background: 'linear-gradient(135deg, #064e3b, #065f46, #047857)' }}>
-              <Moon size={80} strokeWidth={1} className="absolute -bottom-3 -right-3 text-white/10" />
+            <div className="shrink-0 bg-white flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 130, borderRadius: 26, padding: '14px 16px' }}>
+              <Moon size={80} strokeWidth={1} className="absolute -bottom-3 -right-3 text-gray-900/5" />
               <div>
-                <p className="text-white text-sm font-bold">Namaz Vakti</p>
-                <p className="text-white/60 text-xs mt-1">İkindi</p>
+                <p className="text-gray-900 text-sm font-bold">Namaz Vakti</p>
+                <p className="text-gray-400 text-xs mt-1">İkindi</p>
               </div>
-              <p className="text-white font-black" style={{ fontSize: 28 }}>15:42</p>
+              <p className="text-gray-900 font-black" style={{ fontSize: 28 }}>15:42</p>
             </div>
 
             {/* Döviz */}
-            <div className="shrink-0 flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 130, borderRadius: 26, padding: '14px 16px', background: 'linear-gradient(135deg, #78350f, #92400e, #b45309)' }}>
+            <div className="shrink-0 bg-white flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 130, borderRadius: 26, padding: '14px 16px' }}>
               {DOVIZ_DATA.map((d, i) => {
                 const DIcon = d.Icon
                 return (
                   <div key={i} className="absolute inset-0 flex flex-col justify-between" style={{ padding: '14px 16px', opacity: dovizIndex === i ? 1 : 0, transition: 'opacity 0.5s ease' }}>
-                    <DIcon size={80} strokeWidth={1} className="absolute -bottom-3 -right-3 text-white/10" />
+                    <DIcon size={80} strokeWidth={1} className="absolute -bottom-3 -right-3 text-gray-900/5" />
                     <div>
-                      <p className="text-white text-sm font-bold">Döviz Kuru</p>
-                      <p className="text-white/60 text-xs mt-1">{d.label}</p>
+                      <p className="text-gray-900 text-sm font-bold">Döviz Kuru</p>
+                      <p className="text-gray-400 text-xs mt-1">{d.label}</p>
                     </div>
-                    <p className="text-white font-black" style={{ fontSize: 28 }}>{d.deger}</p>
+                    <p className="text-gray-900 font-black" style={{ fontSize: 28 }}>{d.deger}</p>
                   </div>
                 )
               })}
