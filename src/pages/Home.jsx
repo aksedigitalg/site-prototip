@@ -252,19 +252,7 @@ export default function Home() {
 
             {/* Hava Durumu */}
             <div className="shrink-0 flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 130, borderRadius: 26, padding: '14px 16px', background: 'linear-gradient(135deg, #1e3a5f, #1e40af, #3b82f6)' }}>
-              {/* Güneş */}
-              <div className="absolute" style={{ top: 18, right: 18, width: 32, height: 32, borderRadius: '50%', background: 'radial-gradient(circle, #fbbf24, #f59e0b)', boxShadow: '0 0 16px rgba(251,191,36,0.5)', animation: 'sunGlow 4s ease-in-out infinite' }} />
-              {/* Bulut 1 */}
-              <div className="absolute" style={{ top: 24, right: 8, animation: 'cloudMove 6s ease-in-out infinite' }}>
-                <div style={{ width: 40, height: 18, borderRadius: 10, background: 'rgba(255,255,255,0.85)' }} />
-                <div className="absolute" style={{ top: -8, left: 8, width: 22, height: 22, borderRadius: '50%', background: 'rgba(255,255,255,0.85)' }} />
-                <div className="absolute" style={{ top: -5, left: 20, width: 16, height: 16, borderRadius: '50%', background: 'rgba(255,255,255,0.85)' }} />
-              </div>
-              {/* Bulut 2 küçük */}
-              <div className="absolute" style={{ top: 40, right: 30, animation: 'cloudMove 8s ease-in-out infinite 1s' }}>
-                <div style={{ width: 26, height: 12, borderRadius: 7, background: 'rgba(255,255,255,0.5)' }} />
-                <div className="absolute" style={{ top: -5, left: 5, width: 14, height: 14, borderRadius: '50%', background: 'rgba(255,255,255,0.5)' }} />
-              </div>
+              <CloudSun size={80} strokeWidth={1} className="absolute -bottom-3 -right-3 text-white/10" />
               <div>
                 <p className="text-white text-sm font-bold">Hava Durumu</p>
                 <p className="text-white/60 text-xs mt-1">Parçalı Bulutlu</p>
