@@ -238,7 +238,7 @@ export default function Home() {
           </div>
           <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}>
             {[
-              { label: 'GebzemAI', bg: '#d1d5db' },
+              { label: '', bg: '#d1d5db' },
               { label: 'Yemek' },
               { label: 'Restoran' },
               { label: 'Alışveriş' },
@@ -251,7 +251,7 @@ export default function Home() {
               <div key={label} className="shrink-0 flex flex-col items-center gap-1.5">
                 <div className="rounded-2xl relative overflow-hidden" style={{ width: 75, height: 75, background: bg || '#ffffff' }}>
                 </div>
-                <span className="text-gray-500 text-[12px] font-medium">{label}</span>
+                {label && <span className="text-gray-500 text-[13px] font-medium">{label}</span>}
               </div>
             ))}
           </div>
