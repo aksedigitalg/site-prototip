@@ -4,6 +4,8 @@
 * {
   font-family: 'Plus Jakarta Sans', sans-serif;
   -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
   letter-spacing: 0 !important;
   word-spacing: normal !important;
 }
