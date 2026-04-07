@@ -238,7 +238,7 @@ export default function Home() {
           </div>
           <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}>
             {[
-              { label: 'GebzemAI',    gradient: 'linear-gradient(to top, rgba(147,51,234,0.9) 0%, rgba(168,85,247,0.4) 50%, transparent 50%)' },
+              { label: 'GebzemAI',    gradient: 'linear-gradient(to top, rgba(147,51,234,0.9) 0%, rgba(168,85,247,0.4) 50%, transparent 100%)' },
               { label: 'Yemek' },
               { label: 'Alışveriş' },
               { label: 'Hizmetler' },
@@ -248,7 +248,7 @@ export default function Home() {
               { label: 'Araç Kira' },
             ].map(({ label, gradient }) => (
               <div key={label} className="shrink-0 flex flex-col items-center gap-1.5">
-                <div className="rounded-2xl bg-white relative overflow-hidden" style={{ width: 85, height: 85 }}>
+                <div className="rounded-2xl bg-white relative overflow-hidden" style={{ width: 75, height: 75 }}>
                   {gradient && <div className="absolute inset-0" style={{ background: gradient }} />}
                 </div>
                 <span className="text-gray-500 text-[12px] font-medium">{label}</span>
