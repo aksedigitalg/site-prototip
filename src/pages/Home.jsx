@@ -477,6 +477,277 @@ export default function Home() {
           </div>
         </div>
 
+        {/* ══ VARYASYON 6: Neon glow ══ */}
+        <div style={{ paddingTop: 20 }}>
+          <p className="text-gray-400 text-xs font-bold mb-2">VARYASYON 6 — Neon</p>
+          <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
+            <div className="shrink-0 flex flex-col justify-between" style={{ width: 140, height: 120, borderRadius: 20, padding: '14px 16px', background: '#0a0a0a', boxShadow: '0 0 20px rgba(59,130,246,0.3), inset 0 0 20px rgba(59,130,246,0.05)' }}>
+              <CloudSun size={20} strokeWidth={1.5} style={{ color: '#60a5fa' }} />
+              <div>
+                <p style={{ color: '#60a5fa', fontSize: 28, fontWeight: 900, lineHeight: 1 }}>9°</p>
+                <p className="text-white/30 text-[10px] mt-1">Bulutlu</p>
+              </div>
+            </div>
+            <div className="shrink-0 flex flex-col justify-between" style={{ width: 140, height: 120, borderRadius: 20, padding: '14px 16px', background: '#0a0a0a', boxShadow: '0 0 20px rgba(16,185,129,0.3), inset 0 0 20px rgba(16,185,129,0.05)' }}>
+              <Moon size={20} strokeWidth={1.5} style={{ color: '#34d399' }} />
+              <div>
+                <p style={{ color: '#34d399', fontSize: 28, fontWeight: 900, lineHeight: 1 }}>15:42</p>
+                <p className="text-white/30 text-[10px] mt-1">İkindi</p>
+              </div>
+            </div>
+            <div className="shrink-0 flex flex-col justify-between" style={{ width: 140, height: 120, borderRadius: 20, padding: '14px 16px', background: '#0a0a0a', boxShadow: '0 0 20px rgba(245,158,11,0.3), inset 0 0 20px rgba(245,158,11,0.05)' }}>
+              <DollarSign size={20} strokeWidth={1.5} style={{ color: '#fbbf24' }} />
+              <div>
+                <p style={{ color: '#fbbf24', fontSize: 28, fontWeight: 900, lineHeight: 1 }}>38.42</p>
+                <p className="text-white/30 text-[10px] mt-1">USD/TRY</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ══ VARYASYON 7: Pill / Tag tarzı ══ */}
+        <div style={{ paddingTop: 20 }}>
+          <p className="text-gray-400 text-xs font-bold mb-2">VARYASYON 7 — Pill</p>
+          <div className="flex flex-wrap gap-2">
+            <div className="flex items-center gap-2 bg-blue-50 rounded-full px-4 py-2.5">
+              <CloudSun size={16} strokeWidth={2} className="text-blue-500" />
+              <span className="text-blue-700 text-sm font-bold">9°</span>
+              <span className="text-blue-400 text-xs">Bulutlu</span>
+            </div>
+            <div className="flex items-center gap-2 bg-emerald-50 rounded-full px-4 py-2.5">
+              <Moon size={16} strokeWidth={2} className="text-emerald-500" />
+              <span className="text-emerald-700 text-sm font-bold">15:42</span>
+              <span className="text-emerald-400 text-xs">İkindi</span>
+            </div>
+            <div className="flex items-center gap-2 bg-amber-50 rounded-full px-4 py-2.5">
+              <DollarSign size={16} strokeWidth={2} className="text-amber-500" />
+              <span className="text-amber-700 text-sm font-bold">38.42</span>
+              <span className="text-amber-400 text-xs">USD</span>
+            </div>
+          </div>
+        </div>
+
+        {/* ══ VARYASYON 8: Büyük rakam ortada ══ */}
+        <div style={{ paddingTop: 20 }}>
+          <p className="text-gray-400 text-xs font-bold mb-2">VARYASYON 8 — Centered</p>
+          <div className="flex gap-3">
+            <div className="flex-1 bg-white rounded-2xl flex flex-col items-center justify-center" style={{ height: 110, padding: 12 }}>
+              <CloudSun size={22} strokeWidth={1.5} className="text-blue-400 mb-1" />
+              <p className="text-gray-900 font-black text-2xl">9°</p>
+              <p className="text-gray-400 text-[10px] mt-0.5">Bulutlu</p>
+            </div>
+            <div className="flex-1 bg-white rounded-2xl flex flex-col items-center justify-center" style={{ height: 110, padding: 12 }}>
+              <Moon size={22} strokeWidth={1.5} className="text-emerald-400 mb-1" />
+              <p className="text-gray-900 font-black text-2xl">15:42</p>
+              <p className="text-gray-400 text-[10px] mt-0.5">İkindi</p>
+            </div>
+            <div className="flex-1 bg-white rounded-2xl flex flex-col items-center justify-center" style={{ height: 110, padding: 12 }}>
+              <DollarSign size={22} strokeWidth={1.5} className="text-amber-400 mb-1" />
+              <p className="text-gray-900 font-black text-2xl">38.42</p>
+              <p className="text-gray-400 text-[10px] mt-0.5">USD</p>
+            </div>
+          </div>
+        </div>
+
+        {/* ══ VARYASYON 9: Sol border accent ══ */}
+        <div style={{ paddingTop: 20 }}>
+          <p className="text-gray-400 text-xs font-bold mb-2">VARYASYON 9 — Accent</p>
+          <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
+            <div className="shrink-0 bg-white flex items-center gap-3" style={{ width: 160, borderRadius: 16, padding: '12px 14px', borderLeft: '4px solid #3b82f6' }}>
+              <div>
+                <p className="text-gray-900 font-black text-xl">9°</p>
+                <p className="text-gray-400 text-[10px]">Parçalı Bulutlu</p>
+              </div>
+              <CloudSun size={28} strokeWidth={1} className="text-gray-200 ml-auto" />
+            </div>
+            <div className="shrink-0 bg-white flex items-center gap-3" style={{ width: 160, borderRadius: 16, padding: '12px 14px', borderLeft: '4px solid #10b981' }}>
+              <div>
+                <p className="text-gray-900 font-black text-xl">15:42</p>
+                <p className="text-gray-400 text-[10px]">İkindi</p>
+              </div>
+              <Moon size={28} strokeWidth={1} className="text-gray-200 ml-auto" />
+            </div>
+            <div className="shrink-0 bg-white flex items-center gap-3" style={{ width: 160, borderRadius: 16, padding: '12px 14px', borderLeft: '4px solid #f59e0b' }}>
+              <div>
+                <p className="text-gray-900 font-black text-xl">38.42</p>
+                <p className="text-gray-400 text-[10px]">USD/TRY</p>
+              </div>
+              <DollarSign size={28} strokeWidth={1} className="text-gray-200 ml-auto" />
+            </div>
+          </div>
+        </div>
+
+        {/* ══ VARYASYON 10: Gradient border ══ */}
+        <div style={{ paddingTop: 20 }}>
+          <p className="text-gray-400 text-xs font-bold mb-2">VARYASYON 10 — Gradient Border</p>
+          <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
+            {[
+              { icon: CloudSun, deger: '9°', alt: 'Bulutlu', grad: 'linear-gradient(135deg, #3b82f6, #8b5cf6)' },
+              { icon: Moon, deger: '15:42', alt: 'İkindi', grad: 'linear-gradient(135deg, #10b981, #06b6d4)' },
+              { icon: DollarSign, deger: '38.42', alt: 'USD/TRY', grad: 'linear-gradient(135deg, #f59e0b, #ef4444)' },
+            ].map(({ icon: Icon, deger, alt, grad }, i) => (
+              <div key={i} className="shrink-0 p-[2px] rounded-2xl" style={{ background: grad, width: 140 }}>
+                <div className="bg-white rounded-[14px] flex flex-col justify-between" style={{ height: 110, padding: '14px 16px' }}>
+                  <Icon size={20} strokeWidth={1.5} className="text-gray-400" />
+                  <div>
+                    <p className="text-gray-900 font-black text-2xl leading-none">{deger}</p>
+                    <p className="text-gray-400 text-[10px] mt-1">{alt}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ══ VARYASYON 11: Ticker şerit ══ */}
+        <div style={{ paddingTop: 20 }}>
+          <p className="text-gray-400 text-xs font-bold mb-2">VARYASYON 11 — Ticker</p>
+          <div className="bg-gray-900 rounded-2xl overflow-hidden" style={{ padding: '14px 20px' }}>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <CloudSun size={14} strokeWidth={2} className="text-blue-400" />
+                <span className="text-white text-sm font-bold">9°</span>
+              </div>
+              <div className="w-px h-4 bg-white/10" />
+              <div className="flex items-center gap-2">
+                <Moon size={14} strokeWidth={2} className="text-emerald-400" />
+                <span className="text-white text-sm font-bold">15:42</span>
+                <span className="text-white/40 text-[10px]">İkindi</span>
+              </div>
+              <div className="w-px h-4 bg-white/10" />
+              <div className="flex items-center gap-2">
+                <DollarSign size={14} strokeWidth={2} className="text-amber-400" />
+                <span className="text-white text-sm font-bold">38.42</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ══ VARYASYON 12: Kart + ikon daire ══ */}
+        <div style={{ paddingTop: 20 }}>
+          <p className="text-gray-400 text-xs font-bold mb-2">VARYASYON 12 — Circle Icon</p>
+          <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
+            <div className="shrink-0 bg-white rounded-2xl flex flex-col items-center" style={{ width: 120, padding: '16px 12px' }}>
+              <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center mb-2">
+                <CloudSun size={22} strokeWidth={1.5} className="text-blue-500" />
+              </div>
+              <p className="text-gray-900 font-black text-xl">9°</p>
+              <p className="text-gray-400 text-[10px] mt-0.5">Bulutlu</p>
+            </div>
+            <div className="shrink-0 bg-white rounded-2xl flex flex-col items-center" style={{ width: 120, padding: '16px 12px' }}>
+              <div className="w-12 h-12 rounded-full bg-emerald-50 flex items-center justify-center mb-2">
+                <Moon size={22} strokeWidth={1.5} className="text-emerald-500" />
+              </div>
+              <p className="text-gray-900 font-black text-xl">15:42</p>
+              <p className="text-gray-400 text-[10px] mt-0.5">İkindi</p>
+            </div>
+            <div className="shrink-0 bg-white rounded-2xl flex flex-col items-center" style={{ width: 120, padding: '16px 12px' }}>
+              <div className="w-12 h-12 rounded-full bg-amber-50 flex items-center justify-center mb-2">
+                <DollarSign size={22} strokeWidth={1.5} className="text-amber-500" />
+              </div>
+              <p className="text-gray-900 font-black text-xl">38.42</p>
+              <p className="text-gray-400 text-[10px] mt-0.5">USD</p>
+            </div>
+          </div>
+        </div>
+
+        {/* ══ VARYASYON 13: Tam koyu 2+1 ══ */}
+        <div style={{ paddingTop: 20 }}>
+          <p className="text-gray-400 text-xs font-bold mb-2">VARYASYON 13 — Dark 2+1</p>
+          <div className="flex gap-3 mb-3">
+            <div className="flex-1 rounded-2xl" style={{ background: '#1a1a2e', padding: '16px' }}>
+              <div className="flex items-center justify-between mb-3">
+                <p className="text-white/40 text-[10px] font-medium">HAVA</p>
+                <CloudSun size={16} strokeWidth={1.5} className="text-blue-400" />
+              </div>
+              <p className="text-white font-black" style={{ fontSize: 32, lineHeight: 1 }}>9°</p>
+            </div>
+            <div className="flex-1 rounded-2xl" style={{ background: '#1a1a2e', padding: '16px' }}>
+              <div className="flex items-center justify-between mb-3">
+                <p className="text-white/40 text-[10px] font-medium">NAMAZ</p>
+                <Moon size={16} strokeWidth={1.5} className="text-emerald-400" />
+              </div>
+              <p className="text-white font-black" style={{ fontSize: 32, lineHeight: 1 }}>15:42</p>
+            </div>
+          </div>
+          <div className="rounded-2xl flex items-center justify-between" style={{ background: '#1a1a2e', padding: '14px 16px' }}>
+            <div className="flex items-center gap-2">
+              <DollarSign size={16} strokeWidth={1.5} className="text-amber-400" />
+              <p className="text-white/40 text-[10px] font-medium">DÖVİZ</p>
+            </div>
+            <div className="flex gap-6">
+              <div className="text-right">
+                <p className="text-white font-bold text-sm">38.42</p>
+                <p className="text-white/30 text-[9px]">USD</p>
+              </div>
+              <div className="text-right">
+                <p className="text-white font-bold text-sm">41.85</p>
+                <p className="text-white/30 text-[9px]">EUR</p>
+              </div>
+              <div className="text-right">
+                <p className="text-white font-bold text-sm">3.245</p>
+                <p className="text-white/30 text-[9px]">Altın</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ══ VARYASYON 14: Soft pastel ══ */}
+        <div style={{ paddingTop: 20 }}>
+          <p className="text-gray-400 text-xs font-bold mb-2">VARYASYON 14 — Pastel</p>
+          <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
+            <div className="shrink-0 flex flex-col justify-between" style={{ width: 140, height: 120, borderRadius: 22, padding: '14px 16px', background: '#eef2ff' }}>
+              <CloudSun size={20} strokeWidth={1.5} className="text-indigo-400" />
+              <div>
+                <p className="text-indigo-900 font-black text-2xl leading-none">9°</p>
+                <p className="text-indigo-400 text-[10px] mt-1">Parçalı Bulutlu</p>
+              </div>
+            </div>
+            <div className="shrink-0 flex flex-col justify-between" style={{ width: 140, height: 120, borderRadius: 22, padding: '14px 16px', background: '#ecfdf5' }}>
+              <Moon size={20} strokeWidth={1.5} className="text-emerald-400" />
+              <div>
+                <p className="text-emerald-900 font-black text-2xl leading-none">15:42</p>
+                <p className="text-emerald-400 text-[10px] mt-1">İkindi</p>
+              </div>
+            </div>
+            <div className="shrink-0 flex flex-col justify-between" style={{ width: 140, height: 120, borderRadius: 22, padding: '14px 16px', background: '#fffbeb' }}>
+              <DollarSign size={20} strokeWidth={1.5} className="text-amber-400" />
+              <div>
+                <p className="text-amber-900 font-black text-2xl leading-none">38.42</p>
+                <p className="text-amber-400 text-[10px] mt-1">USD/TRY</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ══ VARYASYON 15: Outline minimal ══ */}
+        <div style={{ paddingTop: 20 }}>
+          <p className="text-gray-400 text-xs font-bold mb-2">VARYASYON 15 — Outline</p>
+          <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
+            <div className="shrink-0 flex flex-col justify-between" style={{ width: 140, height: 120, borderRadius: 22, padding: '14px 16px', background: 'transparent', border: '1.5px solid #e5e7eb' }}>
+              <CloudSun size={20} strokeWidth={1.5} className="text-gray-400" />
+              <div>
+                <p className="text-gray-900 font-black text-2xl leading-none">9°</p>
+                <p className="text-gray-400 text-[10px] mt-1">Bulutlu</p>
+              </div>
+            </div>
+            <div className="shrink-0 flex flex-col justify-between" style={{ width: 140, height: 120, borderRadius: 22, padding: '14px 16px', background: 'transparent', border: '1.5px solid #e5e7eb' }}>
+              <Moon size={20} strokeWidth={1.5} className="text-gray-400" />
+              <div>
+                <p className="text-gray-900 font-black text-2xl leading-none">15:42</p>
+                <p className="text-gray-400 text-[10px] mt-1">İkindi</p>
+              </div>
+            </div>
+            <div className="shrink-0 flex flex-col justify-between" style={{ width: 140, height: 120, borderRadius: 22, padding: '14px 16px', background: 'transparent', border: '1.5px solid #e5e7eb' }}>
+              <DollarSign size={20} strokeWidth={1.5} className="text-gray-400" />
+              <div>
+                <p className="text-gray-900 font-black text-2xl leading-none">38.42</p>
+                <p className="text-gray-400 text-[10px] mt-1">USD/TRY</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* ── İndirimler & Fırsatlar (resimdeki alt kısım) ── */}
         <div style={{ paddingTop: 20 }}>
           <div style={{ marginBottom: 12 }}>
