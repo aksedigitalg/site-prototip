@@ -162,10 +162,11 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen" style={{ background: '#f5f6f8', paddingLeft: 20, paddingRight: 20, paddingBottom: 96 }}>
+    <div className="min-h-screen" style={{ background: '#f5f6f8' }}>
 
       {/* ── Header ── */}
-      <header className="sticky top-0 z-50 flex items-center backdrop-blur-md" style={{ gap: 6, paddingTop: 10, height: 56, background: 'rgba(245,246,248,0.8)' }}>
+      <header className="fixed top-0 left-0 right-0 z-50 flex justify-center backdrop-blur-md" style={{ background: 'rgba(245,246,248,0.8)' }}>
+        <div className="w-full max-w-[430px] flex items-center" style={{ gap: 6, paddingTop: 10, height: 56, paddingLeft: 20, paddingRight: 20 }}>
         {/* Profil resmi */}
         <button onClick={() => navigate('/profile')} className="w-9 h-9 rounded-full bg-gray-300 shrink-0 active:scale-95 transition-transform" style={{ marginRight: 4 }} />
 
@@ -184,10 +185,11 @@ export default function Home() {
           <Bell size={18} strokeWidth={2.2} className="text-gray-900" />
           <div className="absolute rounded-full bg-red-500" style={{ width: 12, height: 12, top: 0, right: 0 }} />
         </button>
+        </div>
       </header>
 
       {/* ── İçerik ── */}
-      <div>
+      <div style={{ paddingTop: 56, paddingLeft: 20, paddingRight: 20, paddingBottom: 96 }}>
 
         {/* ── Banner (fade geçişli slider) ── */}
         <div style={{ paddingTop: 20 }}>
