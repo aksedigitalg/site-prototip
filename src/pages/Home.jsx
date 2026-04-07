@@ -180,17 +180,46 @@ export default function Home() {
       <div>
 
         {/* ── Banner (fade geçişli slider) ── */}
-        <div style={{ paddingTop: 16 }}>
-          <button
-            onClick={() => navigate(SLIDER_ITEMS[sliderIndex].path)}
-            className="w-full relative overflow-hidden block"
-            style={{ borderRadius: 25, background: '#ffffff', height: 210, lineHeight: 0 }}
+        <div style={{ paddingTop: 20 }}>
+          <div
+            className="w-full relative overflow-hidden"
+            style={{ borderRadius: 25, background: '#ffffff', height: 210, padding: 20 }}
           >
-          </button>
+            {/* CANLI badge */}
+            <div className="flex items-center gap-1.5 border border-red-400 rounded-full px-2.5 py-1 w-fit">
+              <div className="w-2 h-2 rounded-full bg-red-500 live-dot" />
+              <span className="text-red-500 text-[10px] font-bold tracking-wide">CANLI</span>
+            </div>
+
+            {/* Skor tablosu */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="flex items-center gap-3">
+                <span className="text-gray-800 text-[13px] font-semibold">Türkiye</span>
+                <span className="text-gray-900 font-black" style={{ fontSize: 26 }}>2 - 1</span>
+                <span className="text-gray-800 text-[13px] font-semibold">Kosova</span>
+              </div>
+            </div>
+
+            {/* Sol oyuncu — Arda Güler */}
+            <img
+              src="https://i.pinimg.com/564x/6c/8c/b0/6c8cb0c69c861719b1cfb7aad560779f.jpg"
+              alt="Arda Güler"
+              className="absolute object-cover"
+              style={{ width: 90, height: 90, bottom: 0, left: 16, borderRadius: '50%', border: '3px solid #e5e7eb' }}
+            />
+
+            {/* Sağ oyuncu */}
+            <img
+              src="https://w7.pngwing.com/pngs/420/15/png-transparent-philippe-coutinho-2015-16-fc-barcelona-season-liverpool-f-c-jersey-fc-barcelona-tshirt-sport-material-thumbnail.png"
+              alt="Oyuncu"
+              className="absolute object-contain"
+              style={{ width: 100, height: 100, bottom: 0, right: 10 }}
+            />
+          </div>
         </div>
 
         {/* ── Hızlı Erişim ── */}
-        <div style={{ paddingTop: 16 }}>
+        <div style={{ paddingTop: 20 }}>
           <div style={{ marginBottom: 12 }} className="flex items-center justify-between">
             <button onClick={() => setKategoriSheet(true)}><h2 className="text-gray-800 font-semibold" style={{ fontSize: 18 }}>Şehir Rehberi <span className="text-gray-400">›</span></h2></button>
           </div>
@@ -222,7 +251,7 @@ export default function Home() {
               <CloudSun size={80} strokeWidth={1} className="absolute -bottom-3 -right-3 text-gray-900/5" />
               <div>
                 <p className="text-gray-900 text-sm font-bold">Hava Durumu</p>
-                <p className="text-gray-400 text-xs mt-1">Gebze</p>
+                <p className="text-gray-400 text-xs mt-1">Parçalı Bulutlu</p>
               </div>
               <p className="text-gray-900 font-black" style={{ fontSize: 28 }}>9°</p>
             </div>
@@ -252,7 +281,7 @@ export default function Home() {
         </div>
 
         {/* ── İndirimler & Fırsatlar (resimdeki alt kısım) ── */}
-        <div style={{ paddingTop: 24 }}>
+        <div style={{ paddingTop: 20 }}>
           <div style={{ marginBottom: 12 }}>
             <h2 className="text-gray-800 font-semibold" style={{ fontSize: 18 }}>İndirimler & Fırsatlar <span className="text-gray-400">›</span></h2>
           </div>
@@ -262,8 +291,8 @@ export default function Home() {
             <button onClick={() => navigate('/alisveris')} className="shrink-0 text-left active:scale-[0.97] transition-transform" style={{ width: 140 }}>
               <div className="w-full h-[100px] bg-white" style={{ borderRadius: 16 }} />
               <div className="px-1 pt-2.5">
-                <p className="text-gray-900 text-sm font-bold">Alışveriş</p>
-                <p className="text-gray-400 text-[11px] mt-0.5">6 ay taksit fırsatları</p>
+                <p className="text-gray-900 text-[15px] font-bold truncate">Alışveriş</p>
+                <p className="text-gray-400 text-xs mt-0.5 truncate">6 ay taksit fırsatları</p>
               </div>
             </button>
 
@@ -271,8 +300,8 @@ export default function Home() {
             <button onClick={() => navigate('/food')} className="shrink-0 text-left active:scale-[0.97] transition-transform" style={{ width: 140 }}>
               <div className="w-full h-[100px] bg-white" style={{ borderRadius: 16 }} />
               <div className="px-1 pt-2.5">
-                <p className="text-gray-900 text-sm font-bold">Yemek & Restoran</p>
-                <p className="text-gray-400 text-[11px] mt-0.5">%20'ye varan indirimler</p>
+                <p className="text-gray-900 text-[15px] font-bold truncate">Yemek & Restoran</p>
+                <p className="text-gray-400 text-xs mt-0.5 truncate">%20'ye varan indirimler</p>
               </div>
             </button>
 
@@ -280,8 +309,8 @@ export default function Home() {
             <button onClick={() => navigate('/campaigns')} className="shrink-0 text-left active:scale-[0.97] transition-transform" style={{ width: 140 }}>
               <div className="w-full h-[100px] bg-white" style={{ borderRadius: 16 }} />
               <div className="px-1 pt-2.5">
-                <p className="text-gray-900 text-sm font-bold">Kampanyalar</p>
-                <p className="text-gray-400 text-[11px] mt-0.5">Güncel promosyonlar</p>
+                <p className="text-gray-900 text-[15px] font-bold truncate">Kampanyalar</p>
+                <p className="text-gray-400 text-xs mt-0.5 truncate">Güncel promosyonlar</p>
               </div>
             </button>
 
@@ -289,8 +318,8 @@ export default function Home() {
             <button onClick={() => navigate('/oteller')} className="shrink-0 text-left active:scale-[0.97] transition-transform" style={{ width: 140 }}>
               <div className="w-full h-[100px] bg-white" style={{ borderRadius: 16 }} />
               <div className="px-1 pt-2.5">
-                <p className="text-gray-900 text-sm font-bold">Oteller</p>
-                <p className="text-gray-400 text-[11px] mt-0.5">Erken rezervasyon fırsatları</p>
+                <p className="text-gray-900 text-[15px] font-bold truncate">Oteller</p>
+                <p className="text-gray-400 text-xs mt-0.5 truncate">Erken rezervasyon fırs...</p>
               </div>
             </button>
 
