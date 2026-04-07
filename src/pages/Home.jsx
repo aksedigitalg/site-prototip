@@ -334,6 +334,149 @@ export default function Home() {
           </div>
         </div>
 
+        {/* ══ VARYASYON 1: Yatay banner kartlar ══ */}
+        <div style={{ paddingTop: 20 }}>
+          <p className="text-gray-400 text-xs font-bold mb-2">VARYASYON 1 — Banner</p>
+          <div className="flex flex-col gap-2">
+            <div className="flex items-center gap-3 bg-white rounded-2xl px-4 py-3">
+              <div className="w-1 h-10 rounded-full bg-blue-400" />
+              <CloudSun size={22} strokeWidth={1.5} className="text-blue-400" />
+              <div className="flex-1">
+                <p className="text-gray-900 text-sm font-semibold">Parçalı Bulutlu</p>
+                <p className="text-gray-400 text-[11px]">Gebze</p>
+              </div>
+              <p className="text-gray-900 text-xl font-black">9°</p>
+            </div>
+            <div className="flex items-center gap-3 bg-white rounded-2xl px-4 py-3">
+              <div className="w-1 h-10 rounded-full bg-emerald-400" />
+              <Moon size={22} strokeWidth={1.5} className="text-emerald-400" />
+              <div className="flex-1">
+                <p className="text-gray-900 text-sm font-semibold">İkindi</p>
+                <p className="text-gray-400 text-[11px]">Namaz Vakti</p>
+              </div>
+              <p className="text-gray-900 text-xl font-black">15:42</p>
+            </div>
+            <div className="flex items-center gap-3 bg-white rounded-2xl px-4 py-3">
+              <div className="w-1 h-10 rounded-full bg-amber-400" />
+              <DollarSign size={22} strokeWidth={1.5} className="text-amber-400" />
+              <div className="flex-1">
+                <p className="text-gray-900 text-sm font-semibold">USD/TRY</p>
+                <p className="text-gray-400 text-[11px]">Döviz Kuru</p>
+              </div>
+              <p className="text-gray-900 text-xl font-black">38.42</p>
+            </div>
+          </div>
+        </div>
+
+        {/* ══ VARYASYON 2: Kompakt tek satır ══ */}
+        <div style={{ paddingTop: 20 }}>
+          <p className="text-gray-400 text-xs font-bold mb-2">VARYASYON 2 — Kompakt</p>
+          <div className="flex items-center bg-white rounded-2xl px-4 py-4">
+            <div className="flex-1 flex items-center gap-2 justify-center border-r border-gray-100">
+              <CloudSun size={18} strokeWidth={1.5} className="text-blue-400" />
+              <p className="text-gray-900 text-lg font-black">9°</p>
+            </div>
+            <div className="flex-1 flex items-center gap-2 justify-center border-r border-gray-100">
+              <Moon size={18} strokeWidth={1.5} className="text-emerald-400" />
+              <p className="text-gray-900 text-lg font-black">15:42</p>
+            </div>
+            <div className="flex-1 flex items-center gap-2 justify-center">
+              <DollarSign size={18} strokeWidth={1.5} className="text-amber-400" />
+              <p className="text-gray-900 text-lg font-black">38.42</p>
+            </div>
+          </div>
+        </div>
+
+        {/* ══ VARYASYON 3: Renkli gradient kartlar ══ */}
+        <div style={{ paddingTop: 20 }}>
+          <p className="text-gray-400 text-xs font-bold mb-2">VARYASYON 3 — Renkli</p>
+          <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
+            <div className="shrink-0 flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 130, borderRadius: 22, padding: '14px 16px', background: 'linear-gradient(135deg, #3b82f6, #60a5fa)' }}>
+              <CloudSun size={60} strokeWidth={1} className="absolute -bottom-2 -right-2 text-white/15" />
+              <p className="text-white/80 text-[11px] font-medium">Hava Durumu</p>
+              <div>
+                <p className="text-white font-black text-3xl leading-none">9°</p>
+                <p className="text-white/60 text-[10px] mt-1">Parçalı Bulutlu</p>
+              </div>
+            </div>
+            <div className="shrink-0 flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 130, borderRadius: 22, padding: '14px 16px', background: 'linear-gradient(135deg, #059669, #34d399)' }}>
+              <Moon size={60} strokeWidth={1} className="absolute -bottom-2 -right-2 text-white/15" />
+              <p className="text-white/80 text-[11px] font-medium">Namaz Vakti</p>
+              <div>
+                <p className="text-white font-black text-3xl leading-none">15:42</p>
+                <p className="text-white/60 text-[10px] mt-1">İkindi</p>
+              </div>
+            </div>
+            <div className="shrink-0 flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 130, borderRadius: 22, padding: '14px 16px', background: 'linear-gradient(135deg, #d97706, #fbbf24)' }}>
+              <DollarSign size={60} strokeWidth={1} className="absolute -bottom-2 -right-2 text-white/15" />
+              <p className="text-white/80 text-[11px] font-medium">Döviz Kuru</p>
+              <div>
+                <p className="text-white font-black text-3xl leading-none">38.42</p>
+                <p className="text-white/60 text-[10px] mt-1">USD/TRY</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ══ VARYASYON 4: Minimal çizgi ══ */}
+        <div style={{ paddingTop: 20 }}>
+          <p className="text-gray-400 text-xs font-bold mb-2">VARYASYON 4 — Minimal</p>
+          <div className="bg-white rounded-2xl" style={{ padding: '16px 20px' }}>
+            <div className="flex items-center justify-between py-3">
+              <div className="flex items-center gap-3">
+                <CloudSun size={20} strokeWidth={1.5} className="text-gray-400" />
+                <div>
+                  <p className="text-gray-900 text-sm font-semibold">Parçalı Bulutlu</p>
+                  <p className="text-gray-400 text-[10px]">Gebze</p>
+                </div>
+              </div>
+              <p className="text-gray-900 text-2xl font-black">9°</p>
+            </div>
+            <div className="h-px bg-gray-100" />
+            <div className="flex items-center justify-between py-3">
+              <div className="flex items-center gap-3">
+                <Moon size={20} strokeWidth={1.5} className="text-gray-400" />
+                <div>
+                  <p className="text-gray-900 text-sm font-semibold">İkindi</p>
+                  <p className="text-gray-400 text-[10px]">Namaz Vakti</p>
+                </div>
+              </div>
+              <p className="text-gray-900 text-2xl font-black">15:42</p>
+            </div>
+            <div className="h-px bg-gray-100" />
+            <div className="flex items-center justify-between py-3">
+              <div className="flex items-center gap-3">
+                <DollarSign size={20} strokeWidth={1.5} className="text-gray-400" />
+                <div>
+                  <p className="text-gray-900 text-sm font-semibold">USD/TRY</p>
+                  <p className="text-gray-400 text-[10px]">Döviz Kuru</p>
+                </div>
+              </div>
+              <p className="text-gray-900 text-2xl font-black">38.42</p>
+            </div>
+          </div>
+        </div>
+
+        {/* ══ VARYASYON 5: Büyük hava + küçük alt ══ */}
+        <div style={{ paddingTop: 20 }}>
+          <p className="text-gray-400 text-xs font-bold mb-2">VARYASYON 5 — Hero</p>
+          <div className="relative overflow-hidden" style={{ borderRadius: 24, background: 'linear-gradient(180deg, #1e40af 0%, #3b82f6 100%)', padding: '24px 20px' }}>
+            <CloudSun size={100} strokeWidth={1} className="absolute top-2 right-2 text-white/10" />
+            <p className="text-white/60 text-xs font-medium">Gebze · Parçalı Bulutlu</p>
+            <p className="text-white font-black mt-1" style={{ fontSize: 48, lineHeight: 1 }}>9°</p>
+            <div className="flex gap-3 mt-4">
+              <div className="flex-1 rounded-xl py-2.5 px-3" style={{ background: 'rgba(255,255,255,0.12)' }}>
+                <p className="text-white/50 text-[10px]">Namaz</p>
+                <p className="text-white font-bold text-sm">İkindi 15:42</p>
+              </div>
+              <div className="flex-1 rounded-xl py-2.5 px-3" style={{ background: 'rgba(255,255,255,0.12)' }}>
+                <p className="text-white/50 text-[10px]">Döviz</p>
+                <p className="text-white font-bold text-sm">USD 38.42</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* ── İndirimler & Fırsatlar (resimdeki alt kısım) ── */}
         <div style={{ paddingTop: 20 }}>
           <div style={{ marginBottom: 12 }}>
