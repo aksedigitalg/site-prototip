@@ -248,10 +248,10 @@ export default function Home() {
               { label: 'Oteller' },
               { label: 'Araç Kira' },
             ].map(({ label, bg }) => (
-              <div key={label} className="shrink-0 flex flex-col items-center gap-1.5">
+              <div key={label || 'ai'} className="shrink-0 flex flex-col items-center gap-1.5" style={{ minWidth: 75 }}>
                 <div className="rounded-2xl relative overflow-hidden" style={{ width: 75, height: 75, background: bg || '#ffffff' }}>
                 </div>
-                {label && <span style={{ fontSize: 13, color: '#6b7280', fontWeight: 500 }}>{label}</span>}
+                {label && <span className="text-center whitespace-nowrap" style={{ fontSize: 13, color: '#6b7280', fontWeight: 500 }}>{label}</span>}
               </div>
             ))}
           </div>
