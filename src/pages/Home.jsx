@@ -234,6 +234,26 @@ export default function Home() {
               <p className="text-gray-900 text-2xl font-black">9°</p>
             </div>
 
+            {/* Namaz Vakti */}
+            <div className="shrink-0 bg-white p-4 flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 130, borderRadius: 26 }}>
+              <Moon size={80} strokeWidth={1} className="absolute -bottom-3 -right-3 text-gray-900/5" />
+              <div>
+                <p className="text-gray-800 text-[13px] font-bold leading-tight">Namaz Vakti</p>
+                <p className="text-gray-400 text-[11px] mt-0.5">İkindi</p>
+              </div>
+              <p className="text-gray-900 text-2xl font-black">15:42</p>
+            </div>
+
+            {/* Döviz */}
+            <div className="shrink-0 bg-white p-4 flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 130, borderRadius: 26 }}>
+              <DollarSign size={80} strokeWidth={1} className="absolute -bottom-3 -right-3 text-gray-900/5" />
+              <div>
+                <p className="text-gray-800 text-[13px] font-bold leading-tight">Döviz Kuru</p>
+                <p className="text-gray-400 text-[11px] mt-0.5">USD/TRY</p>
+              </div>
+              <p className="text-gray-900 text-2xl font-black">38.42</p>
+            </div>
+
             {/* En Yakın Eczane */}
             <button onClick={() => navigate('/nearby/pharmacy')} className="shrink-0 bg-white p-4 flex flex-col justify-between text-left active:scale-[0.97] transition-transform relative overflow-hidden" style={{ width: 140, height: 130, borderRadius: 26 }}>
               <Pill size={80} strokeWidth={1} className="absolute -bottom-3 -right-3 text-gray-900/5" />
@@ -265,26 +285,6 @@ export default function Home() {
               </div>
               <p className="text-gray-900 text-xs font-bold">12 Fırsat</p>
             </button>
-
-            {/* Namaz Vakti */}
-            <div className="shrink-0 bg-white p-4 flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 130, borderRadius: 26 }}>
-              <Moon size={80} strokeWidth={1} className="absolute -bottom-3 -right-3 text-gray-900/5" />
-              <div>
-                <p className="text-gray-800 text-[13px] font-bold leading-tight">Namaz Vakti</p>
-                <p className="text-gray-400 text-[11px] mt-0.5">İkindi</p>
-              </div>
-              <p className="text-gray-900 text-2xl font-black">15:42</p>
-            </div>
-
-            {/* Döviz */}
-            <div className="shrink-0 bg-white p-4 flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 130, borderRadius: 26 }}>
-              <DollarSign size={80} strokeWidth={1} className="absolute -bottom-3 -right-3 text-gray-900/5" />
-              <div>
-                <p className="text-gray-800 text-[13px] font-bold leading-tight">Döviz Kuru</p>
-                <p className="text-gray-400 text-[11px] mt-0.5">USD/TRY</p>
-              </div>
-              <p className="text-gray-900 text-2xl font-black">38.42</p>
-            </div>
 
           </div>
         </div>
