@@ -251,7 +251,7 @@ export default function Home() {
               <div key={label} className="shrink-0 flex flex-col items-center gap-1.5">
                 <div className="rounded-2xl relative overflow-hidden" style={{ width: 75, height: 75, background: bg || '#ffffff' }}>
                 </div>
-                {label && <span className="text-gray-500 text-[13px] font-medium">{label}</span>}
+                {label && <span style={{ fontSize: 13, color: '#6b7280', fontWeight: 500 }}>{label}</span>}
               </div>
             ))}
           </div>
@@ -272,7 +272,7 @@ export default function Home() {
                 <div className="rounded-2xl bg-white flex items-center justify-center" style={{ width: 60, height: 60 }}>
                   <Icon size={26} strokeWidth={1.8} className="text-gray-700" />
                 </div>
-                <span className="text-gray-500 text-[13px] font-medium">{label}</span>
+                <span style={{ fontSize: 13, color: '#6b7280', fontWeight: 500 }}>{label}</span>
               </button>
             ))}
           </div>
