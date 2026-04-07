@@ -238,7 +238,7 @@ export default function Home() {
           </div>
           <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}>
             {[
-              { label: 'GebzemAI',    gradient: 'linear-gradient(to top, rgba(147,51,234,0.9) 0%, rgba(168,85,247,0.4) 50%, transparent 100%)', innerText: true },
+              { label: '',    gradient: 'linear-gradient(to top, rgba(147,51,234,0.9) 0%, rgba(168,85,247,0.4) 50%, transparent 100%)', innerText: true },
               { label: 'Yemek' },
               { label: 'Restoran' },
               { label: 'Alışveriş' },
