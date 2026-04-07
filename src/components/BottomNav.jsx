@@ -32,6 +32,7 @@ function getActive(pathname) {
 function shouldShow(pathname) {
   if (pathname.startsWith('/isletme')) return false
   if (pathname.startsWith('/admin'))   return false
+  if (pathname.startsWith('/sosyal'))  return false
   const hidden = ['/login', '/register', '/onboarding', '/forgot-password', '/reset-otp', '/new-password', '/']
   return !hidden.includes(pathname)
 }

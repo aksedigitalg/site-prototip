@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import {
   LogOut, ChevronRight, User, Phone, Lock,
   CalendarDays, Clock, MessageCircle, FileText,
-  Crown, Gift, Tag, Camera,
+  Crown, Gift, Tag, Camera, Users,
 } from 'lucide-react'
 import { REZERVASYONLAR, RANDEVULAR, KONUSMALAR, TEKLIFLER } from '../data/mockMesajlar'
 
@@ -98,6 +98,22 @@ export default function Profile() {
             </div>
           ))}
         </div>
+
+        {/* Sosyal */}
+        <button
+          onClick={() => navigate('/sosyal')}
+          className="w-full rounded-2xl px-4 py-4 flex items-center gap-3 active:scale-95 transition-transform"
+          style={{ background: 'linear-gradient(135deg, #f97316 0%, #ec4899 50%, #8b5cf6 100%)' }}
+        >
+          <div className="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center shrink-0">
+            <Users size={18} strokeWidth={1.5} className="text-white" />
+          </div>
+          <div className="flex-1 text-left">
+            <p className="text-white text-sm font-bold">Sosyal</p>
+            <p className="text-white/60 text-xs mt-0.5">Arkadaşlarını keşfet, paylaşımda bulun</p>
+          </div>
+          <ChevronRight size={16} strokeWidth={1.5} className="text-white/40" />
+        </button>
 
         {/* Pro Hesap */}
         <button

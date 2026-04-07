@@ -46,6 +46,14 @@ import OtelDetail from './pages/OtelDetail'
 import AracKiralamaPage from './pages/AracKiralamaPage'
 import AracDetail from './pages/AracDetail'
 
+// Sosyal
+import SosyalFeed        from './pages/sosyal/SosyalFeed'
+import SosyalPostDetail  from './pages/sosyal/SosyalPostDetail'
+import SosyalProfil      from './pages/sosyal/SosyalProfil'
+import SosyalPaylasim    from './pages/sosyal/SosyalPaylasim'
+import SosyalKesfet      from './pages/sosyal/SosyalKesfet'
+import SosyalBildirimler from './pages/sosyal/SosyalBildirimler'
+
 // İşletme paneli
 import IsletmeGiris           from './pages/isletme/IsletmeGiris'
 import IsletmeLogin           from './pages/isletme/IsletmeLogin'
@@ -127,6 +135,14 @@ function AnimatedRoutes() {
           <Route path="/profile"         element={<PrivateRoute><Profile /></PrivateRoute>} />
           <Route path="/gebzem-ai"       element={<PrivateRoute><GebzemAI /></PrivateRoute>} />
           <Route path="/pro"             element={<PrivateRoute><ProPage /></PrivateRoute>} />
+
+          {/* Sosyal */}
+          <Route path="/sosyal"              element={<PrivateRoute><SosyalFeed /></PrivateRoute>} />
+          <Route path="/sosyal/post/:id"     element={<PrivateRoute><SosyalPostDetail /></PrivateRoute>} />
+          <Route path="/sosyal/profil/:id"   element={<PrivateRoute><SosyalProfil /></PrivateRoute>} />
+          <Route path="/sosyal/paylasim"     element={<PrivateRoute><SosyalPaylasim /></PrivateRoute>} />
+          <Route path="/sosyal/kesfet"       element={<PrivateRoute><SosyalKesfet /></PrivateRoute>} />
+          <Route path="/sosyal/bildirimler"  element={<PrivateRoute><SosyalBildirimler /></PrivateRoute>} />
           <Route path="/talepler"        element={<PrivateRoute><TaleplerPage /></PrivateRoute>} />
           <Route path="/talep/:id"       element={<PrivateRoute><TalepDetay /></PrivateRoute>} />
           <Route path="/talep-olustur"   element={<PrivateRoute><TalepOlustur /></PrivateRoute>} />
