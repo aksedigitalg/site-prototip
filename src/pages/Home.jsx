@@ -249,9 +249,9 @@ export default function Home() {
               { label: 'Araç Kira' },
             ].map(({ label, gradient, innerText }) => (
               <div key={label} className="shrink-0 flex flex-col items-center gap-1.5">
-                <div className="rounded-2xl bg-white relative overflow-hidden flex items-end justify-center" style={{ width: 75, height: 75 }}>
+                <div className="rounded-2xl bg-white relative overflow-hidden flex items-center justify-center" style={{ width: 75, height: 75 }}>
                   {gradient && <div className="absolute inset-0" style={{ background: gradient }} />}
-                  {innerText && <span className="relative z-10 text-white text-[11px] font-black mb-2">GebzemAI</span>}
+                  {innerText && <div className="relative z-10 text-center leading-tight"><span className="text-white text-[15px] font-black block">Gebzem</span><span className="text-white text-[15px] font-black block">AI</span></div>}
                 </div>
                 <span className="text-gray-500 text-[12px] font-medium">{label}</span>
               </div>
