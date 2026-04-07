@@ -165,7 +165,7 @@ export default function Home() {
     <div className="min-h-screen" style={{ background: '#f5f6f8', paddingLeft: 20, paddingRight: 20, paddingBottom: 96 }}>
 
       {/* ── Header ── */}
-      <header className="sticky top-0 z-50 flex items-center" style={{ gap: 6, paddingTop: 10, height: 56, background: '#f5f6f8' }}>
+      <header className="sticky top-0 z-50 flex items-center backdrop-blur-md" style={{ gap: 6, paddingTop: 10, height: 56, background: 'rgba(245,246,248,0.8)' }}>
         {/* Profil resmi */}
         <button onClick={() => navigate('/profile')} className="w-9 h-9 rounded-full bg-gray-300 shrink-0 active:scale-95 transition-transform" style={{ marginRight: 4 }} />
 
