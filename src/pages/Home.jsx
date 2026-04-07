@@ -238,18 +238,20 @@ export default function Home() {
           </div>
           <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}>
             {[
-              { label: 'GebzemAI',    gradient: 'linear-gradient(to top, rgba(147,51,234,0.9) 0%, rgba(168,85,247,0.4) 50%, transparent 100%)' },
+              { label: 'GebzemAI',    gradient: 'linear-gradient(to top, rgba(147,51,234,0.9) 0%, rgba(168,85,247,0.4) 50%, transparent 100%)', innerText: true },
               { label: 'Yemek' },
+              { label: 'Restoran' },
               { label: 'Alışveriş' },
               { label: 'Hizmetler' },
               { label: 'İlanlar' },
               { label: 'Etkinlikler' },
               { label: 'Oteller' },
               { label: 'Araç Kira' },
-            ].map(({ label, gradient }) => (
+            ].map(({ label, gradient, innerText }) => (
               <div key={label} className="shrink-0 flex flex-col items-center gap-1.5">
-                <div className="rounded-2xl bg-white relative overflow-hidden" style={{ width: 75, height: 75 }}>
+                <div className="rounded-2xl bg-white relative overflow-hidden flex items-end justify-center" style={{ width: 75, height: 75 }}>
                   {gradient && <div className="absolute inset-0" style={{ background: gradient }} />}
+                  {innerText && <span className="relative z-10 text-white text-[11px] font-black mb-2">GebzemAI</span>}
                 </div>
                 <span className="text-gray-500 text-[12px] font-medium">{label}</span>
               </div>
