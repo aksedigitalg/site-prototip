@@ -546,17 +546,17 @@ export default function Home() {
                 <X size={16} strokeWidth={2} className="text-gray-600" />
               </button>
             </div>
-            <div className="grid grid-cols-5 gap-3">
+            <div className="grid grid-cols-5 gap-x-3" style={{ rowGap: 12 }}>
               {TUM_KATEGORILER.map(({ icon: Icon, label, type }) => (
                 <button
                   key={label}
                   onClick={() => { setKategoriSheet(false); navigate(`/nearby/${type}`) }}
                   className="flex flex-col items-center gap-1.5 active:scale-95 transition-transform"
                 >
-                  <div className="w-12 h-12 rounded-2xl bg-gray-100 flex items-center justify-center">
-                    <Icon size={18} strokeWidth={1.5} className="text-gray-700" />
+                  <div className="rounded-2xl bg-gray-100 flex items-center justify-center" style={{ width: 60, height: 60 }}>
+                    <Icon size={26} strokeWidth={1.8} className="text-gray-700" />
                   </div>
-                  <span className="text-gray-500 text-[10px] font-medium text-center leading-tight">{label}</span>
+                  <span style={{ fontSize: 13, color: '#6b7280', fontWeight: 500 }}>{label}</span>
                 </button>
               ))}
             </div>
