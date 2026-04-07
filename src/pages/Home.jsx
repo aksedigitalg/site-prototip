@@ -8,7 +8,7 @@ import {
   Key, Users, Building2, Stethoscope, Shield, Flame,
   Hotel, Coffee, Scissors, Dumbbell, BookOpen, PawPrint,
   Mail, GraduationCap, Navigation, Plus, X, ChevronRight, Clock,
-  CloudSun, Car, Target, Moon, DollarSign,
+  CloudSun, Moon, DollarSign,
 } from 'lucide-react'
 import { MOCK_PLACES } from '../data/mockPlaces'
 
@@ -254,37 +254,6 @@ export default function Home() {
               <p className="text-gray-900 text-2xl font-black">38.42</p>
             </div>
 
-            {/* En Yakın Eczane */}
-            <button onClick={() => navigate('/nearby/pharmacy')} className="shrink-0 bg-white p-4 flex flex-col justify-between text-left active:scale-[0.97] transition-transform relative overflow-hidden" style={{ width: 140, height: 130, borderRadius: 26 }}>
-              <Pill size={80} strokeWidth={1} className="absolute -bottom-3 -right-3 text-gray-900/5" />
-              <div>
-                <p className="text-gray-800 text-[13px] font-bold leading-tight">En Yakın Eczane</p>
-              </div>
-              <div>
-                <p className="text-gray-900 text-xs font-bold">Hayat Eczanesi</p>
-                <p className="text-green-500 text-[10px] font-semibold mt-0.5">Açık · 350m</p>
-              </div>
-            </button>
-
-            {/* Trafik */}
-            <button onClick={() => navigate('/trafik')} className="shrink-0 bg-white p-4 flex flex-col justify-between text-left active:scale-[0.97] transition-transform relative overflow-hidden" style={{ width: 140, height: 130, borderRadius: 26 }}>
-              <Car size={80} strokeWidth={1} className="absolute -bottom-3 -right-3 text-gray-900/5" />
-              <div>
-                <p className="text-gray-800 text-[13px] font-bold leading-tight">Trafik</p>
-                <p className="text-gray-800 text-[13px] font-bold leading-tight">Yoğunluğu</p>
-              </div>
-              <p className="text-orange-500 text-xs font-bold">Orta Yoğunluk</p>
-            </button>
-
-            {/* Fırsatlar */}
-            <button onClick={() => navigate('/campaigns')} className="shrink-0 bg-white p-4 flex flex-col justify-between text-left active:scale-[0.97] transition-transform relative overflow-hidden" style={{ width: 140, height: 130, borderRadius: 26 }}>
-              <Target size={80} strokeWidth={1} className="absolute -bottom-3 -right-3 text-gray-900/5" />
-              <div>
-                <p className="text-gray-800 text-[13px] font-bold leading-tight">Yakınımdaki</p>
-                <p className="text-gray-800 text-[13px] font-bold leading-tight">Fırsatlar</p>
-              </div>
-              <p className="text-gray-900 text-xs font-bold">12 Fırsat</p>
-            </button>
 
           </div>
         </div>
