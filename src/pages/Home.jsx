@@ -236,7 +236,7 @@ export default function Home() {
           <div style={{ marginBottom: 12 }}>
             <h2 className="text-gray-800 font-semibold" style={{ fontSize: 18 }}>Kategoriler <span className="text-gray-400">›</span></h2>
           </div>
-          <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none', transform: 'translateZ(0)' }}>
+          <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none', WebkitFontSmoothing: 'antialiased', MozOsxFontSmoothing: 'grayscale' }}>
             {[
               { label: '', bg: '#d1d5db' },
               { label: 'Yemek' },
