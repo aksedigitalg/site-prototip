@@ -371,6 +371,47 @@ export default function Home() {
           </div>
         </div>
 
+        {/* ── Haberler ── */}
+        <div style={{ paddingTop: 20 }}>
+          <div style={{ marginBottom: 12 }}>
+            <h2 className="text-gray-800 font-semibold" style={{ fontSize: 18 }}>Haberler <span className="text-gray-400">›</span></h2>
+          </div>
+          <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
+
+            <div className="shrink-0 text-left" style={{ width: 140 }}>
+              <div className="w-full h-[100px] bg-white" style={{ borderRadius: 16 }} />
+              <div className="px-1 pt-2.5">
+                <p className="text-gray-900 text-[15px] font-bold truncate">Yeni Metro Hattı</p>
+                <p className="text-gray-400 text-xs mt-0.5 truncate">Gebze'de çalışmalar başladı</p>
+              </div>
+            </div>
+
+            <div className="shrink-0 text-left" style={{ width: 140 }}>
+              <div className="w-full h-[100px] bg-white" style={{ borderRadius: 16 }} />
+              <div className="px-1 pt-2.5">
+                <p className="text-gray-900 text-[15px] font-bold truncate">Kent Parkı Yenilendi</p>
+                <p className="text-gray-400 text-xs mt-0.5 truncate">Proje tamamlandı</p>
+              </div>
+            </div>
+
+            <div className="shrink-0 text-left" style={{ width: 140 }}>
+              <div className="w-full h-[100px] bg-white" style={{ borderRadius: 16 }} />
+              <div className="px-1 pt-2.5">
+                <p className="text-gray-900 text-[15px] font-bold truncate">Ücretsiz Ulaşım</p>
+                <p className="text-gray-400 text-xs mt-0.5 truncate">Öğrencilere müjde</p>
+              </div>
+            </div>
+
+            <div className="shrink-0 text-left" style={{ width: 140 }}>
+              <div className="w-full h-[100px] bg-white" style={{ borderRadius: 16 }} />
+              <div className="px-1 pt-2.5">
+                <p className="text-gray-900 text-[15px] font-bold truncate">Yeni Hastane</p>
+                <p className="text-gray-400 text-xs mt-0.5 truncate">Hizmete açılıyor</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
 
       </div>
 
