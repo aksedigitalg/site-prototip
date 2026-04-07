@@ -183,8 +183,10 @@ export default function Home() {
         <div style={{ paddingTop: 20 }}>
           <div
             className="w-full relative overflow-hidden"
-            style={{ borderRadius: 25, height: 210, background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 80%)' }}
+            style={{ borderRadius: 25, height: 210 }}
           >
+            <img src="/resim1.jpg" alt="" className="absolute inset-0 w-full h-full object-cover" style={{ borderRadius: 25 }} />
+            <div className="absolute inset-0" style={{ borderRadius: 25, background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 80%)' }} />
 
             {/* İçerik */}
             <div className="relative h-full flex flex-col justify-between" style={{ padding: 20 }}>
