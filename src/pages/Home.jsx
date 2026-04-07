@@ -183,20 +183,34 @@ export default function Home() {
         <div style={{ paddingTop: 20 }}>
           <div
             className="w-full relative overflow-hidden"
-            style={{ borderRadius: 25, background: '#ffffff', height: 210, padding: 20 }}
+            style={{ borderRadius: 25, height: 210 }}
           >
-            {/* CANLI badge */}
-            <div className="flex items-center gap-1.5 border border-red-400 rounded-full px-2.5 py-1 w-fit">
-              <div className="w-2 h-2 rounded-full bg-red-500 live-dot" />
-              <span className="text-red-500 text-[10px] font-bold tracking-wide">CANLI</span>
-            </div>
+            {/* Arka plan resmi */}
+            <img src="/resim4.webp" alt="" className="absolute inset-0 w-full h-full object-cover" />
+            {/* Alttan yukarı gradient overlay */}
+            <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%)' }} />
 
-            {/* Skor tablosu */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="flex items-center gap-4">
-                <span className="text-gray-800 font-bold" style={{ fontSize: 18 }}>Türkiye</span>
-                <span className="text-gray-900 font-black" style={{ fontSize: 34 }}>2 - 1</span>
-                <span className="text-gray-800 font-bold" style={{ fontSize: 18 }}>Kosova</span>
+            {/* İçerik */}
+            <div className="relative h-full flex flex-col justify-between" style={{ padding: 20 }}>
+              {/* CANLI badge */}
+              <div className="flex items-center gap-1.5 border border-red-400 rounded-full px-2.5 py-1 w-fit" style={{ background: 'rgba(0,0,0,0.3)' }}>
+                <div className="w-2 h-2 rounded-full bg-red-500 live-dot" />
+                <span className="text-red-400 text-[10px] font-bold tracking-wide">CANLI</span>
+              </div>
+
+              {/* Skor + gol bilgisi */}
+              <div>
+                <div className="flex items-center justify-center gap-4">
+                  <div className="text-right" style={{ minWidth: 80 }}>
+                    <span className="text-white font-bold block" style={{ fontSize: 18 }}>Türkiye</span>
+                    <span className="text-white/50 text-[10px] font-medium block mt-0.5">Arda Güler 70'</span>
+                    <span className="text-white/50 text-[10px] font-medium block">Kerem A. 60'</span>
+                  </div>
+                  <span className="text-white font-black" style={{ fontSize: 34 }}>2 - 1</span>
+                  <div className="text-left" style={{ minWidth: 80 }}>
+                    <span className="text-white font-bold block" style={{ fontSize: 18 }}>Kosova</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
