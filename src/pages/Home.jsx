@@ -8,7 +8,7 @@ import {
   Key, Users, Building2, Stethoscope, Shield, Flame,
   Hotel, Coffee, Scissors, Dumbbell, BookOpen, PawPrint,
   Mail, GraduationCap, Navigation, Plus, X, ChevronRight, Clock,
-  CloudSun, Sun, Moon, DollarSign,
+  CloudSun, Sun, Moon, DollarSign, Euro, Gem,
 } from 'lucide-react'
 import { MOCK_PLACES } from '../data/mockPlaces'
 
@@ -137,12 +137,22 @@ export default function Home() {
   const [kategoriSheet,    setKategoriSheet]    = useState(false)
   const [tumKatSheet,      setTumKatSheet]      = useState(false)
   const [sliderIndex,      setSliderIndex]      = useState(0)
+  const [dovizIndex,       setDovizIndex]       = useState(0)
+
+  const DOVIZ_DATA = [
+    { label: 'USD/TRY', deger: '38.42', Icon: DollarSign },
+    { label: 'EUR/TRY', deger: '41.85', Icon: Euro },
+    { label: 'Gram Altın', deger: '3.245', Icon: Gem },
+  ]
 
   useEffect(() => {
     const timer = setInterval(() => {
       setSliderIndex(prev => (prev + 1) % SLIDER_ITEMS.length)
     }, 3500)
-    return () => clearInterval(timer)
+    const dovizTimer = setInterval(() => {
+      setDovizIndex(prev => (prev + 1) % 3)
+    }, 3000)
+    return () => { clearInterval(timer); clearInterval(dovizTimer) }
   }, [])
 
   function konumSec(isim) {
@@ -262,12 +272,19 @@ export default function Home() {
 
             {/* Döviz */}
             <div className="shrink-0 flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 130, borderRadius: 26, padding: '14px 16px', background: 'linear-gradient(135deg, #78350f, #92400e, #b45309)' }}>
-              <DollarSign size={80} strokeWidth={1} className="absolute -bottom-3 -right-3 text-white/10" />
-              <div>
-                <p className="text-white text-sm font-bold">Döviz Kuru</p>
-                <p className="text-white/60 text-xs mt-1">USD/TRY</p>
-              </div>
-              <p className="text-white font-black" style={{ fontSize: 28 }}>38.42</p>
+              {DOVIZ_DATA.map((d, i) => {
+                const DIcon = d.Icon
+                return (
+                  <div key={i} className="absolute inset-0 flex flex-col justify-between" style={{ padding: '14px 16px', opacity: dovizIndex === i ? 1 : 0, transition: 'opacity 0.5s ease' }}>
+                    <DIcon size={80} strokeWidth={1} className="absolute -bottom-3 -right-3 text-white/10" />
+                    <div>
+                      <p className="text-white text-sm font-bold">Döviz Kuru</p>
+                      <p className="text-white/60 text-xs mt-1">{d.label}</p>
+                    </div>
+                    <p className="text-white font-black" style={{ fontSize: 28 }}>{d.deger}</p>
+                  </div>
+                )
+              })}
             </div>
 
 
