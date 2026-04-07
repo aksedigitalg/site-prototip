@@ -138,6 +138,13 @@ export default function Home() {
   const [tumKatSheet,      setTumKatSheet]      = useState(false)
   const [sliderIndex,      setSliderIndex]      = useState(0)
   const [dovizIndex,       setDovizIndex]       = useState(0)
+  const [scrolled,         setScrolled]         = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10)
+    window.addEventListener('scroll', onScroll)
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   const DOVIZ_DATA = [
     { label: 'USD/TRY', deger: '38.42', Icon: DollarSign },
@@ -165,8 +172,8 @@ export default function Home() {
     <div className="min-h-screen" style={{ background: '#f5f6f8' }}>
 
       {/* ── Header ── */}
-      <header className="fixed top-0 left-0 right-0 z-50 flex justify-center backdrop-blur-md" style={{ background: 'rgba(245,246,248,0.8)' }}>
-        <div className="w-full max-w-[430px] flex items-center" style={{ gap: 6, paddingTop: 10, paddingBottom: 10, height: 66, paddingLeft: 20, paddingRight: 20 }}>
+      <header className={`fixed top-0 left-0 right-0 z-50 flex justify-center transition-all duration-300 ${scrolled ? 'backdrop-blur-md' : ''}`} style={{ background: scrolled ? 'rgba(245,246,248,0.8)' : 'transparent' }}>
+        <div className="w-full max-w-[430px] flex items-center" style={{ gap: 6, paddingTop: 10, paddingBottom: scrolled ? 10 : 0, paddingLeft: 20, paddingRight: 20 }}>
         {/* Profil resmi */}
         <button onClick={() => navigate('/profile')} className="w-9 h-9 rounded-full bg-gray-300 shrink-0 active:scale-95 transition-transform" style={{ marginRight: 4 }} />
 
