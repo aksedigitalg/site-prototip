@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { Home, Search, Sparkles, Compass, Bell, X, ChevronRight, LayoutGrid } from 'lucide-react'
+import { Home, Search, Sparkles, Compass, MessageCircle, X, ChevronRight, LayoutGrid } from 'lucide-react'
 
 const SHEET_KATEGORILER = [
   { emoji: '🍜', label: 'Yemek',          path: '/food',          renk: '#fff7ed' },
@@ -66,8 +66,8 @@ export default function BottomNav() {
             <Compass size={24} strokeWidth={2} className={active === 'explore' ? 'text-white' : 'text-gray-400'} />
           </button>
 
-          <button onClick={() => navigate('/bildirimler')} className="flex items-center justify-center" style={{ width: 44, height: 44, borderRadius: 9999 }}>
-            <Bell size={24} strokeWidth={2} className="text-gray-400" />
+          <button onClick={() => navigate('/mesajlarim')} className="flex items-center justify-center" style={{ width: 44, height: 44, borderRadius: 9999 }}>
+            <MessageCircle size={24} strokeWidth={2} className="text-gray-400" />
           </button>
 
           <button onClick={() => navigate('/profile')} className="flex items-center justify-center" style={{ width: 44, height: 44, borderRadius: 9999 }}>

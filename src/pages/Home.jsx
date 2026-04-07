@@ -176,6 +176,12 @@ export default function Home() {
             <Search size={18} strokeWidth={2} className="text-gray-900" />
           </button>
 
+          {/* Bildirim */}
+          <button onClick={() => navigate('/bildirimler')} className="rounded-full bg-white flex items-center justify-center active:scale-90 transition-transform relative" style={{ width: 42, height: 42 }}>
+            <Bell size={18} strokeWidth={2} className="text-gray-900" />
+            <div className="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white" />
+          </button>
+
         </div>
       </header>
 
