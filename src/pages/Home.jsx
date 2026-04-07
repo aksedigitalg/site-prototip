@@ -152,39 +152,34 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen" style={{ background: '#f5f6f8' }}>
+    <div className="min-h-screen" style={{ background: '#f5f6f8', paddingLeft: 20, paddingRight: 20, paddingBottom: 96 }}>
 
       {/* ── Header ── */}
-      <header className="fixed top-0 left-0 right-0 z-50 flex justify-center">
-        <div className="w-full max-w-[430px] flex items-center" style={{ paddingLeft: 20, paddingRight: 20, gap: 8, paddingTop: 10, height: 56 }}>
-          {/* Profil resmi */}
-          <button onClick={() => navigate('/profile')} className="w-9 h-9 rounded-full overflow-hidden shrink-0 active:scale-95 transition-transform">
-            <img src={localStorage.getItem('sehir_avatar') || '/profil.jpeg'} alt="" className="w-full h-full object-cover" />
-          </button>
+      <header className="sticky top-0 z-50 flex items-center" style={{ gap: 8, paddingTop: 10, height: 56, background: '#f5f6f8' }}>
+        {/* Profil resmi */}
+        <button onClick={() => navigate('/profile')} className="w-9 h-9 rounded-full overflow-hidden shrink-0 active:scale-95 transition-transform">
+          <img src={localStorage.getItem('sehir_avatar') || '/profil.jpeg'} alt="" className="w-full h-full object-cover" />
+        </button>
 
-          {/* Selamlama */}
-          <div className="flex-1 min-w-0">
-            <p className="text-gray-900 truncate" style={{ fontSize: 15 }}><span className="font-normal">{new Date().getHours() < 12 ? 'Günaydın' : new Date().getHours() < 18 ? 'İyi Günler' : 'İyi Akşamlar'}, </span><span className="font-bold">{user?.firstName}</span></p>
-          </div>
-
-          {/* Arama + Menü sağda */}
-
-          {/* Arama */}
-          <button onClick={() => navigate('/search')} className="rounded-full bg-white flex items-center justify-center active:scale-90 transition-transform" style={{ width: 42, height: 42 }}>
-            <Search size={18} strokeWidth={2.2} className="text-gray-900" />
-          </button>
-
-          {/* Bildirim */}
-          <button onClick={() => navigate('/bildirimler')} className="rounded-full bg-white flex items-center justify-center active:scale-90 transition-transform relative" style={{ width: 42, height: 42 }}>
-            <Bell size={18} strokeWidth={2.2} className="text-gray-900" />
-            <div className="absolute rounded-full bg-red-500" style={{ width: 8, height: 8, top: 2, right: 2 }} />
-          </button>
-
+        {/* Selamlama */}
+        <div className="flex-1 min-w-0">
+          <p className="text-gray-900 truncate" style={{ fontSize: 15 }}><span className="font-normal">{new Date().getHours() < 12 ? 'Günaydın' : new Date().getHours() < 18 ? 'İyi Günler' : 'İyi Akşamlar'}, </span><span className="font-bold">{user?.firstName}</span></p>
         </div>
+
+        {/* Arama */}
+        <button onClick={() => navigate('/search')} className="rounded-full bg-white flex items-center justify-center active:scale-90 transition-transform" style={{ width: 42, height: 42 }}>
+          <Search size={18} strokeWidth={2.2} className="text-gray-900" />
+        </button>
+
+        {/* Bildirim */}
+        <button onClick={() => navigate('/bildirimler')} className="rounded-full bg-white flex items-center justify-center active:scale-90 transition-transform relative" style={{ width: 42, height: 42 }}>
+          <Bell size={18} strokeWidth={2.2} className="text-gray-900" />
+          <div className="absolute rounded-full bg-red-500" style={{ width: 12, height: 12, top: 0, right: 0 }} />
+        </button>
       </header>
 
       {/* ── İçerik ── */}
-      <div style={{ paddingTop: 56, paddingBottom: 96, paddingLeft: 20, paddingRight: 20 }}>
+      <div>
 
         {/* ── Banner (fade geçişli slider) ── */}
         <div style={{ paddingTop: 16 }}>
