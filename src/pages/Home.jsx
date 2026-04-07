@@ -194,7 +194,7 @@ export default function Home() {
           <div style={{ marginBottom: 12 }} className="flex items-center justify-between">
             <button onClick={() => setKategoriSheet(true)}><h2 className="text-gray-800 font-semibold" style={{ fontSize: 18 }}>Şehir Rehberi <span className="text-gray-400">›</span></h2></button>
           </div>
-          <div className="grid grid-cols-5 gap-x-3" style={{ rowGap: 10 }}>
+          <div className="grid grid-cols-5 gap-x-3" style={{ rowGap: 12 }}>
             {QUICK_ACCESS.map(({ icon: Icon, label, type }) => (
               <button
                 key={label}
@@ -218,33 +218,33 @@ export default function Home() {
           <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}>
 
             {/* Hava Durumu */}
-            <div className="shrink-0 bg-white p-4 flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 130, borderRadius: 26 }}>
+            <div className="shrink-0 bg-white flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 130, borderRadius: 26, padding: '14px 16px' }}>
               <CloudSun size={80} strokeWidth={1} className="absolute -bottom-3 -right-3 text-gray-900/5" />
               <div>
-                <p className="text-gray-800 text-[13px] font-bold leading-tight">Hava Durumu</p>
-                <p className="text-gray-400 text-[11px] mt-0.5">Gebze</p>
+                <p className="text-gray-900 text-sm font-bold">Hava Durumu</p>
+                <p className="text-gray-400 text-xs mt-1">Gebze</p>
               </div>
-              <p className="text-gray-900 text-2xl font-black">9°</p>
+              <p className="text-gray-900 font-black" style={{ fontSize: 28 }}>9°</p>
             </div>
 
             {/* Namaz Vakti */}
-            <div className="shrink-0 bg-white p-4 flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 130, borderRadius: 26 }}>
+            <div className="shrink-0 bg-white flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 130, borderRadius: 26, padding: '14px 16px' }}>
               <Moon size={80} strokeWidth={1} className="absolute -bottom-3 -right-3 text-gray-900/5" />
               <div>
-                <p className="text-gray-800 text-[13px] font-bold leading-tight">Namaz Vakti</p>
-                <p className="text-gray-400 text-[11px] mt-0.5">İkindi</p>
+                <p className="text-gray-900 text-sm font-bold">Namaz Vakti</p>
+                <p className="text-gray-400 text-xs mt-1">İkindi</p>
               </div>
-              <p className="text-gray-900 text-2xl font-black">15:42</p>
+              <p className="text-gray-900 font-black" style={{ fontSize: 28 }}>15:42</p>
             </div>
 
             {/* Döviz */}
-            <div className="shrink-0 bg-white p-4 flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 130, borderRadius: 26 }}>
+            <div className="shrink-0 bg-white flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 130, borderRadius: 26, padding: '14px 16px' }}>
               <DollarSign size={80} strokeWidth={1} className="absolute -bottom-3 -right-3 text-gray-900/5" />
               <div>
-                <p className="text-gray-800 text-[13px] font-bold leading-tight">Döviz Kuru</p>
-                <p className="text-gray-400 text-[11px] mt-0.5">USD/TRY</p>
+                <p className="text-gray-900 text-sm font-bold">Döviz Kuru</p>
+                <p className="text-gray-400 text-xs mt-1">USD/TRY</p>
               </div>
-              <p className="text-gray-900 text-2xl font-black">38.42</p>
+              <p className="text-gray-900 font-black" style={{ fontSize: 28 }}>38.42</p>
             </div>
 
 
