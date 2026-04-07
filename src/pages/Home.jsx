@@ -204,16 +204,16 @@ export default function Home() {
             <img
               src="https://i.pinimg.com/564x/6c/8c/b0/6c8cb0c69c861719b1cfb7aad560779f.jpg"
               alt="Arda Güler"
-              className="absolute object-cover"
-              style={{ width: 90, height: 90, bottom: 0, left: 16, borderRadius: '50%', border: '3px solid #e5e7eb' }}
+              className="absolute object-contain"
+              style={{ height: '80%', bottom: 0, left: 10 }}
             />
 
             {/* Sağ oyuncu */}
             <img
-              src="https://w7.pngwing.com/pngs/420/15/png-transparent-philippe-coutinho-2015-16-fc-barcelona-season-liverpool-f-c-jersey-fc-barcelona-tshirt-sport-material-thumbnail.png"
+              src="https://w1.pngwing.com/pngs/1014/255/png-transparent-messi-drawing-football-sports-lionel-messi-football-player-team-sport-soccer-player.png"
               alt="Oyuncu"
               className="absolute object-contain"
-              style={{ width: 100, height: 100, bottom: 0, right: 10 }}
+              style={{ height: '80%', bottom: 0, right: 10 }}
             />
           </div>
         </div>
