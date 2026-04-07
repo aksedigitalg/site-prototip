@@ -241,13 +241,13 @@ export default function Home() {
           <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}>
 
             {/* Hava Durumu */}
-            <div className="shrink-0 bg-white flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 130, borderRadius: 26, padding: '14px 16px' }}>
-              <CloudSun size={80} strokeWidth={1} className="absolute -bottom-3 -right-3 text-gray-900/5" />
+            <div className="shrink-0 flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 130, borderRadius: 26, padding: '14px 16px', background: 'linear-gradient(135deg, #1e3a5f, #1e40af, #3b82f6)' }}>
+              <CloudSun size={80} strokeWidth={1} className="absolute -bottom-3 -right-3 text-white/10" />
               <div>
-                <p className="text-gray-900 text-sm font-bold">Hava Durumu</p>
-                <p className="text-gray-400 text-xs mt-1">Parçalı Bulutlu</p>
+                <p className="text-white text-sm font-bold">Hava Durumu</p>
+                <p className="text-white/60 text-xs mt-1">Parçalı Bulutlu</p>
               </div>
-              <p className="text-gray-900 font-black" style={{ fontSize: 28 }}>9°</p>
+              <p className="text-white font-black" style={{ fontSize: 28 }}>9°</p>
             </div>
 
             {/* Namaz Vakti */}
@@ -261,13 +261,13 @@ export default function Home() {
             </div>
 
             {/* Döviz */}
-            <div className="shrink-0 bg-white flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 130, borderRadius: 26, padding: '14px 16px' }}>
-              <DollarSign size={80} strokeWidth={1} className="absolute -bottom-3 -right-3 text-gray-900/5" />
+            <div className="shrink-0 flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 130, borderRadius: 26, padding: '14px 16px', background: 'linear-gradient(135deg, #78350f, #92400e, #b45309)' }}>
+              <DollarSign size={80} strokeWidth={1} className="absolute -bottom-3 -right-3 text-white/10" />
               <div>
-                <p className="text-gray-900 text-sm font-bold">Döviz Kuru</p>
-                <p className="text-gray-400 text-xs mt-1">USD/TRY</p>
+                <p className="text-white text-sm font-bold">Döviz Kuru</p>
+                <p className="text-white/60 text-xs mt-1">USD/TRY</p>
               </div>
-              <p className="text-gray-900 font-black" style={{ fontSize: 28 }}>38.42</p>
+              <p className="text-white font-black" style={{ fontSize: 28 }}>38.42</p>
             </div>
 
 
