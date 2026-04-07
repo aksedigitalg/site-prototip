@@ -277,51 +277,60 @@ export default function Home() {
           </div>
         </div>
 
-        {/* ── Bilgi Kartları (yatay scroll) ── */}
+        {/* ── Bilgilendirme (tek kart, 3 bölüm) ── */}
         <div style={{ paddingTop: 20 }}>
-          <div style={{ marginBottom: 12 }}>
-            <h2 className="text-gray-800 font-semibold" style={{ fontSize: 18 }}>Bilgilendirme</h2>
-          </div>
-          <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}>
+          <div className="relative overflow-hidden" style={{ borderRadius: 24, background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)', padding: 20 }}>
+            {/* Dekoratif daireler */}
+            <div className="absolute" style={{ width: 120, height: 120, borderRadius: '50%', background: 'rgba(59,130,246,0.08)', top: -30, right: -20 }} />
+            <div className="absolute" style={{ width: 80, height: 80, borderRadius: '50%', background: 'rgba(139,92,246,0.06)', bottom: -20, left: -10 }} />
 
-            {/* Hava Durumu */}
-            <div className="shrink-0 bg-white flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 130, borderRadius: 26, padding: '14px 16px' }}>
-              <CloudSun size={80} strokeWidth={1} className="absolute -bottom-3 -right-3 text-gray-900/5" />
-              <div>
-                <p className="text-gray-900 text-sm font-bold">Hava Durumu</p>
-                <p className="text-gray-400 text-xs mt-1">Parçalı Bulutlu</p>
-              </div>
-              <p className="text-gray-900 font-black" style={{ fontSize: 28 }}>9°</p>
-            </div>
-
-            {/* Namaz Vakti */}
-            <div className="shrink-0 bg-white flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 130, borderRadius: 26, padding: '14px 16px' }}>
-              <Moon size={80} strokeWidth={1} className="absolute -bottom-3 -right-3 text-gray-900/5" />
-              <div>
-                <p className="text-gray-900 text-sm font-bold">Namaz Vakti</p>
-                <p className="text-gray-400 text-xs mt-1">İkindi</p>
-              </div>
-              <p className="text-gray-900 font-black" style={{ fontSize: 28 }}>15:42</p>
-            </div>
-
-            {/* Döviz */}
-            <div className="shrink-0 bg-white flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 130, borderRadius: 26, padding: '14px 16px' }}>
-              {DOVIZ_DATA.map((d, i) => {
-                const DIcon = d.Icon
-                return (
-                  <div key={i} className="absolute inset-0 flex flex-col justify-between" style={{ padding: '14px 16px', opacity: dovizIndex === i ? 1 : 0, transition: 'opacity 0.5s ease' }}>
-                    <DIcon size={80} strokeWidth={1} className="absolute -bottom-3 -right-3 text-gray-900/5" />
-                    <div>
-                      <p className="text-gray-900 text-sm font-bold">Döviz Kuru</p>
-                      <p className="text-gray-400 text-xs mt-1">{d.label}</p>
-                    </div>
-                    <p className="text-gray-900 font-black" style={{ fontSize: 28 }}>{d.deger}</p>
+            {/* Üst satır: Hava + Namaz */}
+            <div className="flex gap-3 mb-3">
+              {/* Hava Durumu */}
+              <div className="flex-1 relative overflow-hidden" style={{ borderRadius: 16, background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.08)', padding: '14px 16px' }}>
+                <CloudSun size={50} strokeWidth={1} className="absolute -bottom-2 -right-2" style={{ color: 'rgba(255,255,255,0.06)' }} />
+                <p className="text-white/50 text-[11px] font-medium">Hava Durumu</p>
+                <div className="flex items-end justify-between mt-2">
+                  <div>
+                    <p className="text-white font-black text-2xl leading-none">9°</p>
+                    <p className="text-white/40 text-[10px] mt-1">Parçalı Bulutlu</p>
                   </div>
-                )
-              })}
+                  <CloudSun size={24} strokeWidth={1.5} className="text-blue-400/70 mb-1" />
+                </div>
+              </div>
+
+              {/* Namaz Vakti */}
+              <div className="flex-1 relative overflow-hidden" style={{ borderRadius: 16, background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.08)', padding: '14px 16px' }}>
+                <Moon size={50} strokeWidth={1} className="absolute -bottom-2 -right-2" style={{ color: 'rgba(255,255,255,0.06)' }} />
+                <p className="text-white/50 text-[11px] font-medium">Namaz Vakti</p>
+                <div className="flex items-end justify-between mt-2">
+                  <div>
+                    <p className="text-white font-black text-2xl leading-none">15:42</p>
+                    <p className="text-white/40 text-[10px] mt-1">İkindi</p>
+                  </div>
+                  <Moon size={20} strokeWidth={1.5} className="text-emerald-400/70 mb-1" />
+                </div>
+              </div>
             </div>
 
-
+            {/* Alt satır: Döviz (tam genişlik) */}
+            <div className="relative overflow-hidden" style={{ borderRadius: 16, background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.08)', padding: '14px 16px' }}>
+              <p className="text-white/50 text-[11px] font-medium mb-2">Döviz Kuru</p>
+              <div className="flex items-center justify-between">
+                {DOVIZ_DATA.map((d, i) => {
+                  const DIcon = d.Icon
+                  return (
+                    <div key={i} className="flex items-center gap-2" style={{ opacity: dovizIndex === i ? 1 : 0.3, transition: 'opacity 0.5s ease' }}>
+                      <DIcon size={16} strokeWidth={1.5} className="text-amber-400/70" />
+                      <div>
+                        <p className="text-white font-bold text-sm leading-none">{d.deger}</p>
+                        <p className="text-white/30 text-[9px] mt-0.5">{d.label}</p>
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
           </div>
         </div>
 
