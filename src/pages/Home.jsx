@@ -8,7 +8,7 @@ import {
   Key, Users, Building2, Stethoscope, Shield, Flame,
   Hotel, Coffee, Scissors, Dumbbell, BookOpen, PawPrint,
   Mail, GraduationCap, Navigation, Plus, X, ChevronRight, Clock,
-  CloudSun, Car, Target,
+  CloudSun, Car, Target, Moon, DollarSign,
 } from 'lucide-react'
 import { MOCK_PLACES } from '../data/mockPlaces'
 
@@ -176,10 +176,6 @@ export default function Home() {
             <Search size={18} strokeWidth={2} className="text-gray-900" />
           </button>
 
-          {/* Bildirim */}
-          <button onClick={() => navigate('/bildirimler')} className="rounded-full bg-white flex items-center justify-center active:scale-90 transition-transform" style={{ width: 42, height: 42 }}>
-            <Bell size={18} strokeWidth={2} className="text-gray-900" />
-          </button>
         </div>
       </header>
 
@@ -265,6 +261,26 @@ export default function Home() {
               </div>
               <p className="text-gray-900 text-xs font-bold">12 Fırsat</p>
             </button>
+
+            {/* Namaz Vakti */}
+            <div className="shrink-0 bg-white p-4 flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 130, borderRadius: 26 }}>
+              <Moon size={80} strokeWidth={1} className="absolute -bottom-3 -right-3 text-gray-900/5" />
+              <div>
+                <p className="text-gray-800 text-[13px] font-bold leading-tight">Namaz Vakti</p>
+                <p className="text-gray-400 text-[11px] mt-0.5">İkindi</p>
+              </div>
+              <p className="text-gray-900 text-2xl font-black">15:42</p>
+            </div>
+
+            {/* Döviz */}
+            <div className="shrink-0 bg-white p-4 flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 130, borderRadius: 26 }}>
+              <DollarSign size={80} strokeWidth={1} className="absolute -bottom-3 -right-3 text-gray-900/5" />
+              <div>
+                <p className="text-gray-800 text-[13px] font-bold leading-tight">Döviz Kuru</p>
+                <p className="text-gray-400 text-[11px] mt-0.5">USD/TRY</p>
+              </div>
+              <p className="text-gray-900 text-2xl font-black">38.42</p>
+            </div>
 
           </div>
         </div>
