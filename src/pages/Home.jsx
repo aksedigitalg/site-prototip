@@ -253,7 +253,7 @@ export default function Home() {
               { label: '', bg: 'rgba(255,255,255,0.15)' },
               { label: 'Yemek', img: 'https://images.pexels.com/photos/28496647/pexels-photo-28496647.jpeg?auto=compress&cs=tinysrgb&w=200' },
               { label: 'Restoran', img: 'https://images.pexels.com/photos/7624446/pexels-photo-7624446.jpeg?auto=compress&cs=tinysrgb&w=200' },
-              { label: 'Alışveriş' },
+              { label: 'Alışveriş', img: 'https://images.pexels.com/photos/4199116/pexels-photo-4199116.jpeg?auto=compress&cs=tinysrgb&w=200' },
               { label: 'Hizmetler' },
               { label: 'İlanlar' },
               { label: 'Etkinlikler' },
