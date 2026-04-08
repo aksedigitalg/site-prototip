@@ -250,18 +250,20 @@ export default function Home() {
           </div>
           <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
             {[
-              { label: '', bg: '#d1d5db' },
+              { label: '', bg: 'rgba(255,255,255,0.15)' },
               { label: 'Yemek' },
-              { label: 'Restoran' },
+              { label: 'Restoran', img: 'https://images.pexels.com/photos/7624446/pexels-photo-7624446.jpeg?auto=compress&cs=tinysrgb&w=200' },
               { label: 'Alışveriş' },
               { label: 'Hizmetler' },
               { label: 'İlanlar' },
               { label: 'Etkinlikler' },
               { label: 'Oteller' },
               { label: 'Araç Kira' },
-            ].map(({ label, bg }) => (
+            ].map(({ label, bg, img }) => (
               <div key={label || 'ai'} className="shrink-0 flex flex-col items-center gap-1.5" style={{ minWidth: 75 }}>
-                <div className="rounded-2xl relative overflow-hidden" style={{ width: 75, height: 75, background: bg ? 'rgba(255,255,255,0.15)' : 'rgba(255,255,255,0.1)' }} />
+                <div className="rounded-2xl relative overflow-hidden" style={{ width: 75, height: 75, background: bg || 'rgba(255,255,255,0.1)' }}>
+                  {img && <img src={img} alt={label} className="absolute inset-0 w-full h-full object-cover" />}
+                </div>
                 {label && <span className="text-center whitespace-nowrap" style={{ fontSize: 14, color: 'rgba(255,255,255,0.6)', fontWeight: 500 }}>{label}</span>}
               </div>
             ))}
