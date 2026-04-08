@@ -187,7 +187,9 @@ export default function Home() {
       <header className={`fixed top-0 left-0 right-0 z-50 flex justify-center transition-all duration-300 ${scrolled ? 'backdrop-blur-md' : ''}`} style={{ background: scrolled ? 'rgba(15,10,26,0.7)' : 'transparent' }}>
         <div className="w-full max-w-[430px] flex items-center" style={{ gap: 6, paddingTop: 10, paddingBottom: scrolled ? 10 : 0, paddingLeft: 20, paddingRight: 20 }}>
         {/* Profil resmi */}
-        <button onClick={() => navigate('/profile')} className="w-9 h-9 rounded-full bg-gray-300 shrink-0 active:scale-95 transition-transform" style={{ marginRight: 4 }} />
+        <button onClick={() => navigate('/profile')} className="w-9 h-9 rounded-full shrink-0 active:scale-95 transition-transform overflow-hidden" style={{ marginRight: 4 }}>
+          <img src="https://images.pexels.com/photos/19760873/pexels-photo-19760873.jpeg?auto=compress&cs=tinysrgb&w=100" alt="" className="w-full h-full object-cover" />
+        </button>
 
         {/* Selamlama */}
         <div className="flex-1 min-w-0">

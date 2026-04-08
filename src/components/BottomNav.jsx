@@ -72,11 +72,14 @@ export default function BottomNav() {
           </button>
 
           <button onClick={() => navigate('/profile')} className="flex items-center justify-center" style={{ width: 44, height: 44, borderRadius: 9999 }}>
-            <div style={{
-              width: 32, height: 32, borderRadius: '50%',
-              background: '#d1d5db',
-              border: active === 'profile' ? '2px solid #111827' : '2px solid transparent',
-            }} />
+            <img
+              src="https://images.pexels.com/photos/19760873/pexels-photo-19760873.jpeg?auto=compress&cs=tinysrgb&w=100"
+              alt="Profil"
+              style={{
+                width: 32, height: 32, borderRadius: '50%', objectFit: 'cover',
+                border: active === 'profile' ? '2px solid #111827' : '2px solid transparent',
+              }}
+            />
           </button>
 
         </div>
