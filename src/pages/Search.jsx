@@ -59,43 +59,30 @@ export default function SearchPage() {
   const headerH = query.length > 0 ? 136 : 88
 
   return (
-    <div className="min-h-screen flex flex-col" style={{
-      background: `
-        radial-gradient(ellipse at 20% 0%, rgba(88, 28, 135, 0.8) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 0%, rgba(30, 27, 75, 0.9) 0%, transparent 40%),
-        radial-gradient(ellipse at 50% 30%, rgba(157, 23, 77, 0.6) 0%, transparent 45%),
-        radial-gradient(ellipse at 15% 50%, rgba(190, 24, 93, 0.5) 0%, transparent 40%),
-        radial-gradient(ellipse at 85% 45%, rgba(127, 29, 29, 0.4) 0%, transparent 40%),
-        radial-gradient(ellipse at 50% 65%, rgba(234, 88, 12, 0.4) 0%, transparent 45%),
-        radial-gradient(ellipse at 20% 80%, rgba(251, 146, 60, 0.3) 0%, transparent 40%),
-        radial-gradient(ellipse at 80% 85%, rgba(217, 70, 239, 0.2) 0%, transparent 40%),
-        linear-gradient(to bottom, #0f0a1a 0%, #1a0a2e 30%, #2d1b3d 60%, #1f1225 100%)
-      `
-    }}>
+    <div className="min-h-screen bg-white flex flex-col">
 
       {/* ── Header ── */}
-      <div className="fixed top-0 left-0 right-0 z-50 flex justify-center backdrop-blur-md" style={{ background: 'rgba(15,10,26,0.7)' }}>
-        <div className="w-full max-w-[430px] px-4 pt-12 pb-3">
+      <div className="fixed top-0 left-0 right-0 z-50 flex justify-center">
+        <div className="w-full max-w-[430px] bg-white border-b border-gray-100 px-4 pt-12 pb-3">
           <div className="flex items-center gap-3">
             <button
               onClick={() => navigate(-1)}
-              className="w-9 h-9 rounded-full flex items-center justify-center shrink-0 active:scale-90 transition-transform"
-              style={{ background: 'rgba(255,255,255,0.1)' }}
+              className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center shrink-0 active:scale-90 transition-transform"
             >
-              <ArrowLeft size={18} strokeWidth={2} className="text-white" />
+              <ArrowLeft size={18} strokeWidth={2} className="text-gray-700" />
             </button>
-            <div className="flex-1 flex items-center gap-2 rounded-2xl px-4 py-2.5" style={{ background: 'rgba(255,255,255,0.1)' }}>
-              <Search size={15} strokeWidth={1.5} className="text-white/40 shrink-0" />
+            <div className="flex-1 flex items-center gap-2 bg-gray-100 rounded-2xl px-4 py-2.5">
+              <Search size={15} strokeWidth={1.5} className="text-gray-400 shrink-0" />
               <input
                 ref={inputRef}
                 value={query}
                 onChange={e => aramaYap(e.target.value)}
                 placeholder="Ne arıyorsun?"
-                className="flex-1 bg-transparent text-white text-sm outline-none placeholder-white/40"
+                className="flex-1 bg-transparent text-gray-800 text-sm outline-none placeholder-gray-400"
               />
               {query.length > 0 && (
                 <button onClick={() => setQuery('')}>
-                  <X size={15} strokeWidth={2} className="text-white/40" />
+                  <X size={15} strokeWidth={2} className="text-gray-400" />
                 </button>
               )}
             </div>
@@ -110,8 +97,8 @@ export default function SearchPage() {
                   onClick={() => setAktifFiltre(f)}
                   className="shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold transition-colors"
                   style={{
-                    background: aktifFiltre === f ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.1)',
-                    color:      aktifFiltre === f ? '#111827' : 'rgba(255,255,255,0.6)',
+                    background: aktifFiltre === f ? '#111827' : '#f3f4f6',
+                    color:      aktifFiltre === f ? 'white'   : '#6b7280',
                   }}
                 >
                   {f}
@@ -132,16 +119,16 @@ export default function SearchPage() {
             {sonAramalar.length > 0 && (
               <div>
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-white text-sm font-semibold">Son Aramalar</h3>
-                  <button onClick={() => setSonAramalar([])} className="text-white/40 text-xs">Temizle</button>
+                  <h3 className="text-gray-800 text-sm font-semibold">Son Aramalar</h3>
+                  <button onClick={() => setSonAramalar([])} className="text-gray-400 text-xs">Temizle</button>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {sonAramalar.map(s => (
-                    <div key={s} className="flex items-center gap-1.5 rounded-full px-3 py-1.5" style={{ background: 'rgba(255,255,255,0.1)' }}>
-                      <Clock size={12} strokeWidth={1.5} className="text-white/40" />
-                      <button onClick={() => aramaYap(s)} className="text-white/70 text-xs font-medium">{s}</button>
+                    <div key={s} className="flex items-center gap-1.5 bg-gray-100 rounded-full px-3 py-1.5">
+                      <Clock size={12} strokeWidth={1.5} className="text-gray-400" />
+                      <button onClick={() => aramaYap(s)} className="text-gray-700 text-xs font-medium">{s}</button>
                       <button onClick={() => sonAraSil(s)}>
-                        <X size={11} strokeWidth={2} className="text-white/40" />
+                        <X size={11} strokeWidth={2} className="text-gray-400" />
                       </button>
                     </div>
                   ))}
@@ -151,17 +138,16 @@ export default function SearchPage() {
 
             {/* Popüler aramalar */}
             <div>
-              <h3 className="text-white text-sm font-semibold mb-3">Popüler Aramalar</h3>
+              <h3 className="text-gray-800 text-sm font-semibold mb-3">Popüler Aramalar</h3>
               <div className="flex flex-wrap gap-2">
                 {POPULER_ARAMALAR.map(s => (
                   <button
                     key={s}
                     onClick={() => aramaYap(s)}
-                    className="flex items-center gap-1.5 rounded-full px-3 py-1.5 active:opacity-80 transition-colors"
-                    style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.1)' }}
+                    className="flex items-center gap-1.5 bg-gray-50 border border-gray-200 rounded-full px-3 py-1.5 active:bg-gray-100 transition-colors"
                   >
-                    <TrendingUp size={12} strokeWidth={1.5} className="text-white/50" />
-                    <span className="text-white/70 text-xs font-medium">{s}</span>
+                    <TrendingUp size={12} strokeWidth={1.5} className="text-gray-500" />
+                    <span className="text-gray-700 text-xs font-medium">{s}</span>
                   </button>
                 ))}
               </div>
@@ -171,8 +157,8 @@ export default function SearchPage() {
         ) : filtrelenmis.length === 0 ? (
           <div className="flex flex-col items-center justify-center pt-20 px-8 text-center">
             <div className="text-5xl mb-4">🔍</div>
-            <p className="text-white text-base font-bold mb-1">Sonuç bulunamadı</p>
-            <p className="text-white/40 text-sm mb-6">"{query}" için eşleşme yok.</p>
+            <p className="text-gray-800 text-base font-bold mb-1">Sonuç bulunamadı</p>
+            <p className="text-gray-400 text-sm mb-6">"{query}" için eşleşme yok.</p>
             <button
               onClick={() => navigate('/gebzem-ai')}
               className="bg-gray-900 text-white text-sm font-semibold px-5 py-3 rounded-2xl active:scale-95 transition-transform"
@@ -182,29 +168,29 @@ export default function SearchPage() {
           </div>
         ) : (
           <div className="px-4 pt-3">
-            <p className="text-white/40 text-xs mb-3">{filtrelenmis.length} sonuç bulundu</p>
-            <div className="flex flex-col divide-y divide-white/5">
+            <p className="text-gray-400 text-xs mb-3">{filtrelenmis.length} sonuç bulundu</p>
+            <div className="flex flex-col divide-y divide-gray-100">
               {filtrelenmis.map(s => (
                 <button
                   key={s.id}
                   onClick={() => navigate(s.path)}
-                  className="flex items-center gap-3 py-3.5 active:opacity-80 transition-colors -mx-4 px-4"
+                  className="flex items-center gap-3 py-3.5 active:bg-gray-50 transition-colors -mx-4 px-4"
                 >
-                  <div className="w-10 h-10 rounded-2xl flex items-center justify-center shrink-0 text-lg" style={{ background: 'rgba(255,255,255,0.1)' }}>
+                  <div className="w-10 h-10 rounded-2xl bg-gray-100 flex items-center justify-center shrink-0 text-lg">
                     {TIP_EMOJI[s.tip] || '📍'}
                   </div>
                   <div className="flex-1 text-left min-w-0">
-                    <p className="text-white text-sm font-semibold truncate">{s.isim}</p>
-                    <p className="text-white/40 text-xs truncate">{s.aciklama}</p>
+                    <p className="text-gray-800 text-sm font-semibold truncate">{s.isim}</p>
+                    <p className="text-gray-400 text-xs truncate">{s.aciklama}</p>
                   </div>
                   <div className="flex flex-col items-end gap-1 shrink-0">
-                    <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full text-white/50" style={{ background: 'rgba(255,255,255,0.1)' }}>
+                    <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-gray-100 text-gray-500">
                       {s.tipLabel}
                     </span>
                     {s.puan && <span className="text-yellow-500 text-[11px] font-bold">★ {s.puan}</span>}
                     {s.mesafe && !s.puan && <span className="text-gray-400 text-[11px]">{s.mesafe}</span>}
                   </div>
-                  <ChevronRight size={16} strokeWidth={1.5} className="text-white/20 shrink-0" />
+                  <ChevronRight size={16} strokeWidth={1.5} className="text-gray-300 shrink-0" />
                 </button>
               ))}
             </div>

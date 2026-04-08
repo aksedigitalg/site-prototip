@@ -169,22 +169,10 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen" style={{
-      background: `
-        radial-gradient(ellipse at 20% 0%, rgba(88, 28, 135, 0.8) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 0%, rgba(30, 27, 75, 0.9) 0%, transparent 40%),
-        radial-gradient(ellipse at 50% 30%, rgba(157, 23, 77, 0.6) 0%, transparent 45%),
-        radial-gradient(ellipse at 15% 50%, rgba(190, 24, 93, 0.5) 0%, transparent 40%),
-        radial-gradient(ellipse at 85% 45%, rgba(127, 29, 29, 0.4) 0%, transparent 40%),
-        radial-gradient(ellipse at 50% 65%, rgba(234, 88, 12, 0.4) 0%, transparent 45%),
-        radial-gradient(ellipse at 20% 80%, rgba(251, 146, 60, 0.3) 0%, transparent 40%),
-        radial-gradient(ellipse at 80% 85%, rgba(217, 70, 239, 0.2) 0%, transparent 40%),
-        linear-gradient(to bottom, #0f0a1a 0%, #1a0a2e 30%, #2d1b3d 60%, #1f1225 100%)
-      `
-    }}>
+    <div className="min-h-screen" style={{ background: '#f5f6f8' }}>
 
       {/* ── Header ── */}
-      <header className={`fixed top-0 left-0 right-0 z-50 flex justify-center transition-all duration-300 ${scrolled ? 'backdrop-blur-md' : ''}`} style={{ background: scrolled ? 'rgba(15,10,26,0.7)' : 'transparent' }}>
+      <header className={`fixed top-0 left-0 right-0 z-50 flex justify-center transition-all duration-300 ${scrolled ? 'backdrop-blur-md' : ''}`} style={{ background: scrolled ? 'rgba(245,246,248,0.8)' : 'transparent' }}>
         <div className="w-full max-w-[430px] flex items-center" style={{ gap: 6, paddingTop: 10, paddingBottom: scrolled ? 10 : 0, paddingLeft: 20, paddingRight: 20 }}>
         {/* Profil resmi */}
         <button onClick={() => navigate('/profile')} className="w-9 h-9 rounded-full shrink-0 active:scale-95 transition-transform overflow-hidden" style={{ marginRight: 4 }}>
@@ -193,17 +181,17 @@ export default function Home() {
 
         {/* Selamlama */}
         <div className="flex-1 min-w-0">
-          <p className="text-white truncate flex items-center gap-1" style={{ fontSize: 16 }}><span className="font-normal text-white/70">{new Date().getHours() < 12 ? 'Günaydın' : new Date().getHours() < 18 ? 'İyi Günler' : 'İyi Akşamlar'}</span>{new Date().getHours() < 18 ? <Sun size={16} strokeWidth={2} className="text-yellow-400" /> : <Moon size={16} strokeWidth={2} className="text-white/50" />}<span className="font-bold">{user?.firstName}</span></p>
+          <p className="text-gray-900 truncate flex items-center gap-1" style={{ fontSize: 16 }}><span className="font-normal">{new Date().getHours() < 12 ? 'Günaydın' : new Date().getHours() < 18 ? 'İyi Günler' : 'İyi Akşamlar'}</span>{new Date().getHours() < 18 ? <Sun size={16} strokeWidth={2} className="text-yellow-400" /> : <Moon size={16} strokeWidth={2} className="text-gray-400" />}<span className="font-bold">{user?.firstName}</span></p>
         </div>
 
         {/* Arama */}
-        <button onClick={() => navigate('/search')} className="rounded-full flex items-center justify-center active:scale-90 transition-transform" style={{ width: 42, height: 42, background: 'rgba(255,255,255,0.1)' }}>
-          <Search size={18} strokeWidth={2.2} className="text-white" />
+        <button onClick={() => navigate('/search')} className="rounded-full bg-white flex items-center justify-center active:scale-90 transition-transform" style={{ width: 42, height: 42 }}>
+          <Search size={18} strokeWidth={2.2} className="text-gray-900" />
         </button>
 
         {/* Bildirim */}
-        <button onClick={() => navigate('/bildirimler')} className="rounded-full flex items-center justify-center active:scale-90 transition-transform relative" style={{ width: 42, height: 42, background: 'rgba(255,255,255,0.1)' }}>
-          <Bell size={18} strokeWidth={2.2} className="text-white" />
+        <button onClick={() => navigate('/bildirimler')} className="rounded-full bg-white flex items-center justify-center active:scale-90 transition-transform relative" style={{ width: 42, height: 42 }}>
+          <Bell size={18} strokeWidth={2.2} className="text-gray-900" />
           <div className="absolute rounded-full bg-red-500" style={{ width: 12, height: 12, top: 0, right: 0 }} />
         </button>
         </div>
@@ -248,25 +236,23 @@ export default function Home() {
         {/* ── Kategoriler (yatay scroll) ── */}
         <div style={{ paddingTop: 20 }}>
           <div style={{ marginBottom: 12 }}>
-            <h2 className="text-white font-semibold" style={{ fontSize: 18 }}>Kategoriler <span className="text-gray-400">›</span></h2>
+            <h2 className="text-gray-800 font-semibold" style={{ fontSize: 18 }}>Kategoriler <span className="text-gray-400">›</span></h2>
           </div>
           <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
             {[
-              { label: '', bg: 'rgba(255,255,255,0.15)' },
-              { label: 'Yemek', img: 'https://images.pexels.com/photos/28496647/pexels-photo-28496647.jpeg?auto=compress&cs=tinysrgb&w=200' },
-              { label: 'Restoran', img: 'https://images.pexels.com/photos/7624446/pexels-photo-7624446.jpeg?auto=compress&cs=tinysrgb&w=200' },
-              { label: 'Alışveriş', img: 'https://images.pexels.com/photos/4199116/pexels-photo-4199116.jpeg?auto=compress&cs=tinysrgb&w=200' },
+              { label: '', bg: '#d1d5db' },
+              { label: 'Yemek' },
+              { label: 'Restoran' },
+              { label: 'Alışveriş' },
               { label: 'Hizmetler' },
               { label: 'İlanlar' },
               { label: 'Etkinlikler' },
               { label: 'Oteller' },
               { label: 'Araç Kira' },
-            ].map(({ label, bg, img }) => (
+            ].map(({ label, bg }) => (
               <div key={label || 'ai'} className="shrink-0 flex flex-col items-center gap-1.5" style={{ minWidth: 75 }}>
-                <div className="rounded-2xl relative overflow-hidden" style={{ width: 75, height: 75, background: bg || 'rgba(255,255,255,0.1)' }}>
-                  {img && <img src={img} alt={label} className="absolute inset-0 w-full h-full object-cover" />}
-                </div>
-                {label && <span className="text-center whitespace-nowrap" style={{ fontSize: 14, color: 'rgba(255,255,255,0.6)', fontWeight: 500 }}>{label}</span>}
+                <div className="rounded-2xl relative overflow-hidden" style={{ width: 75, height: 75, background: bg || '#ffffff' }} />
+                {label && <span className="text-center whitespace-nowrap" style={{ fontSize: 14, color: '#6b7280', fontWeight: 500 }}>{label}</span>}
               </div>
             ))}
           </div>
@@ -275,7 +261,7 @@ export default function Home() {
         {/* ── Hızlı Erişim ── */}
         <div style={{ paddingTop: 20 }}>
           <div style={{ marginBottom: 12 }} className="flex items-center justify-between">
-            <button onClick={() => setKategoriSheet(true)}><h2 className="text-white font-semibold" style={{ fontSize: 18 }}>Şehir Rehberi <span className="text-gray-400">›</span></h2></button>
+            <button onClick={() => setKategoriSheet(true)}><h2 className="text-gray-800 font-semibold" style={{ fontSize: 18 }}>Şehir Rehberi <span className="text-gray-400">›</span></h2></button>
           </div>
           <div className="grid grid-cols-5 gap-x-3" style={{ rowGap: 12 }}>
             {QUICK_ACCESS.map(({ icon: Icon, label, type }) => (
@@ -284,10 +270,10 @@ export default function Home() {
                 onClick={() => navigate(`/nearby/${type}`)}
                 className="flex flex-col items-center gap-1.5 active:scale-95 transition-transform"
               >
-                <div className="rounded-2xl flex items-center justify-center" style={{ width: 60, height: 60, background: 'rgba(255,255,255,0.1)' }}>
-                  <Icon size={26} strokeWidth={1.8} className="text-white/80" />
+                <div className="rounded-2xl bg-white flex items-center justify-center" style={{ width: 60, height: 60 }}>
+                  <Icon size={26} strokeWidth={1.8} className="text-gray-700" />
                 </div>
-                <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', fontWeight: 500 }}>{label}</span>
+                <span style={{ fontSize: 13, color: '#6b7280', fontWeight: 500 }}>{label}</span>
               </button>
             ))}
           </div>
@@ -296,35 +282,35 @@ export default function Home() {
         {/* ── Bilgilendirme ── */}
         <div style={{ paddingTop: 20 }}>
           <div style={{ marginBottom: 12 }}>
-            <h2 className="text-white font-semibold" style={{ fontSize: 18 }}>Bilgilendirme</h2>
+            <h2 className="text-gray-800 font-semibold" style={{ fontSize: 18 }}>Bilgilendirme</h2>
           </div>
           <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
-            <div className="shrink-0 flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 110, borderRadius: 22, padding: '14px 16px', background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.08)' }}>
-              <CloudSun size={60} strokeWidth={1} className="absolute -bottom-2 -right-2 text-white/10" />
-              <p className="text-white/50 text-xs font-medium">Hava Durumu</p>
+            <div className="shrink-0 flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 110, borderRadius: 22, padding: '14px 16px', background: '#ffffff' }}>
+              <CloudSun size={60} strokeWidth={1} className="absolute -bottom-2 -right-2 text-gray-900/5" />
+              <p className="text-gray-500 text-xs font-medium">Hava Durumu</p>
               <div>
-                <p className="text-white font-black text-3xl leading-none">9°</p>
-                <p className="text-white/40 text-[11px] mt-1">Parçalı Bulutlu</p>
+                <p className="text-gray-900 font-black text-3xl leading-none">9°</p>
+                <p className="text-gray-400 text-[11px] mt-1">Parçalı Bulutlu</p>
               </div>
             </div>
-            <div className="shrink-0 flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 110, borderRadius: 22, padding: '14px 16px', background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.08)' }}>
-              <Moon size={60} strokeWidth={1} className="absolute -bottom-2 -right-2 text-white/10" />
-              <p className="text-white/50 text-xs font-medium">Namaz Vakti</p>
+            <div className="shrink-0 flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 110, borderRadius: 22, padding: '14px 16px', background: '#ffffff' }}>
+              <Moon size={60} strokeWidth={1} className="absolute -bottom-2 -right-2 text-gray-900/5" />
+              <p className="text-gray-500 text-xs font-medium">Namaz Vakti</p>
               <div>
-                <p className="text-white font-black text-3xl leading-none">15:42</p>
-                <p className="text-white/40 text-[11px] mt-1">İkindi</p>
+                <p className="text-gray-900 font-black text-3xl leading-none">15:42</p>
+                <p className="text-gray-400 text-[11px] mt-1">İkindi</p>
               </div>
             </div>
-            <div className="shrink-0 flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 110, borderRadius: 22, padding: '14px 16px', background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.08)' }}>
+            <div className="shrink-0 flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 110, borderRadius: 22, padding: '14px 16px', background: '#ffffff' }}>
               {DOVIZ_DATA.map((d, i) => {
                 const DIcon = d.Icon
                 return (
                   <div key={i} className="absolute inset-0 flex flex-col justify-between" style={{ padding: '14px 16px', opacity: dovizIndex === i ? 1 : 0, transition: 'opacity 0.5s ease' }}>
-                    <DIcon size={60} strokeWidth={1} className="absolute -bottom-2 -right-2 text-white/10" />
-                    <p className="text-white/50 text-xs font-medium">Döviz Kuru</p>
+                    <DIcon size={60} strokeWidth={1} className="absolute -bottom-2 -right-2 text-gray-900/5" />
+                    <p className="text-gray-500 text-xs font-medium">Döviz Kuru</p>
                     <div>
-                      <p className="text-white font-black text-3xl leading-none">{d.deger}</p>
-                      <p className="text-white/40 text-[11px] mt-1">{d.label}</p>
+                      <p className="text-gray-900 font-black text-3xl leading-none">{d.deger}</p>
+                      <p className="text-gray-400 text-[11px] mt-1">{d.label}</p>
                     </div>
                   </div>
                 )
@@ -336,7 +322,7 @@ export default function Home() {
         {/* ── İndirimler & Fırsatlar (resimdeki alt kısım) ── */}
         <div style={{ paddingTop: 20 }}>
           <div style={{ marginBottom: 12 }}>
-            <h2 className="text-white font-semibold" style={{ fontSize: 18 }}>İndirimler & Fırsatlar <span className="text-gray-400">›</span></h2>
+            <h2 className="text-gray-800 font-semibold" style={{ fontSize: 18 }}>İndirimler & Fırsatlar <span className="text-gray-400">›</span></h2>
           </div>
           <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}>
 
@@ -382,7 +368,7 @@ export default function Home() {
         {/* ── Haberler ── */}
         <div style={{ paddingTop: 20 }}>
           <div style={{ marginBottom: 12 }}>
-            <h2 className="text-white font-semibold" style={{ fontSize: 18 }}>Haberler <span className="text-gray-400">›</span></h2>
+            <h2 className="text-gray-800 font-semibold" style={{ fontSize: 18 }}>Haberler <span className="text-gray-400">›</span></h2>
           </div>
           <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
 
