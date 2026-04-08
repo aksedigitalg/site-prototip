@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
   Bell, MapPin, ChevronDown, Search,
@@ -139,6 +139,8 @@ export default function Home() {
   const [sliderIndex,      setSliderIndex]      = useState(0)
   const [dovizIndex,       setDovizIndex]       = useState(0)
   const [scrolled,         setScrolled]         = useState(false)
+  const [bannerIndex,      setBannerIndex]      = useState(0)
+  const sliderRef = useRef(null)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10)
@@ -162,6 +164,15 @@ export default function Home() {
     return () => { clearInterval(timer); clearInterval(dovizTimer) }
   }, [])
 
+  const handleSliderScroll = useCallback(() => {
+    const el = sliderRef.current
+    if (!el) return
+    const scrollLeft = el.scrollLeft
+    const cardWidth = el.firstChild?.offsetWidth || 1
+    const idx = Math.round(scrollLeft / (cardWidth + 12))
+    setBannerIndex(idx)
+  }, [])
+
   function konumSec(isim) {
     setAktifKonum(isim)
     localStorage.setItem('sehir_konum', isim)
@@ -174,10 +185,7 @@ export default function Home() {
       {/* ── Header ── */}
       <header className={`fixed top-0 left-0 right-0 z-50 flex justify-center transition-all duration-300 ${scrolled ? 'backdrop-blur-md' : ''}`} style={{ background: scrolled ? 'rgba(245,246,248,0.8)' : 'transparent' }}>
         <div className="w-full max-w-[430px] flex items-center" style={{ gap: 6, paddingTop: 10, paddingBottom: scrolled ? 10 : 0, paddingLeft: 20, paddingRight: 20 }}>
-        {/* Profil resmi */}
-        <button onClick={() => navigate('/profile')} className="w-9 h-9 rounded-full shrink-0 active:scale-95 transition-transform overflow-hidden" style={{ marginRight: 4 }}>
-          <img src="https://images.pexels.com/photos/19760873/pexels-photo-19760873.jpeg?auto=compress&cs=tinysrgb&w=100" alt="" className="w-full h-full object-cover" />
-        </button>
+        <button onClick={() => navigate('/profile')} className="w-9 h-9 rounded-full shrink-0 active:scale-95 transition-transform bg-gray-200" style={{ marginRight: 4 }} />
 
         {/* Selamlama */}
         <div className="flex-1 min-w-0">
@@ -200,36 +208,71 @@ export default function Home() {
       {/* ── İçerik ── */}
       <div style={{ paddingTop: 66, paddingLeft: 20, paddingRight: 20, paddingBottom: 96 }}>
 
-        {/* ── Banner (fade geçişli slider) ── */}
-        <div>
+        {/* ── Banner Slider (2 slayt, peek efektli) ── */}
+        <div style={{ marginLeft: -20, marginRight: -20 }}>
           <div
-            className="w-full relative overflow-hidden"
-            style={{ borderRadius: 25, height: 210 }}
+            ref={sliderRef}
+            className="flex gap-3 overflow-x-auto"
+            style={{ scrollSnapType: 'x mandatory', scrollbarWidth: 'none', paddingLeft: 20, paddingRight: 20 }}
+            onScroll={handleSliderScroll}
           >
-            <img src="/resim1.jpg" alt="" className="absolute inset-0 w-full h-full object-cover" style={{ borderRadius: 25 }} />
-            <div className="absolute inset-0" style={{ borderRadius: 25, background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 80%)' }} />
-
-            {/* İçerik */}
-            <div className="relative h-full flex flex-col justify-between" style={{ padding: 20 }}>
-              {/* CANLI badge */}
-              <div className="flex items-center gap-1 border border-red-500 rounded-full px-2 py-0.5 w-fit" style={{ background: 'rgba(239,68,68,0.9)' }}>
-                <div className="rounded-full bg-white live-dot" style={{ width: 6, height: 6 }} />
-                <span className="text-white text-[8px] font-bold tracking-wide">CANLI</span>
-              </div>
-
-              {/* Skor + gol bilgisi */}
-              <div>
-                <div className="flex items-center justify-center gap-4">
-                  <span className="text-white font-bold" style={{ fontSize: 22 }}>Türkiye</span>
-                  <span className="text-white font-black" style={{ fontSize: 34 }}>2 - 1</span>
-                  <span className="text-white font-bold" style={{ fontSize: 22 }}>Kosova</span>
+            {/* Slayt 1 — Canlı Maç */}
+            <div
+              className="shrink-0 relative overflow-hidden"
+              style={{ width: 'calc(100% - 40px)', borderRadius: 25, height: 210, scrollSnapAlign: 'center' }}
+            >
+              <img src="/resim1.jpg" alt="" className="absolute inset-0 w-full h-full object-cover" style={{ borderRadius: 25 }} />
+              <div className="absolute inset-0" style={{ borderRadius: 25, background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 80%)' }} />
+              <div className="relative h-full flex flex-col justify-between" style={{ padding: 20 }}>
+                <div className="flex items-center gap-1 border border-red-500 rounded-full px-2 py-0.5 w-fit" style={{ background: 'rgba(239,68,68,0.9)' }}>
+                  <div className="rounded-full bg-white live-dot" style={{ width: 6, height: 6 }} />
+                  <span className="text-white text-[8px] font-bold tracking-wide">CANLI</span>
                 </div>
-                <div className="text-right mt-1.5" style={{ paddingRight: 'calc(50% + 24px)' }}>
-                  <span className="text-white/50 text-[10px] font-medium block">Arda Güler 70'</span>
-                  <span className="text-white/50 text-[10px] font-medium block">Kerem A. 60'</span>
+                <div>
+                  <div className="flex items-center justify-center gap-4">
+                    <span className="text-white font-bold" style={{ fontSize: 22 }}>Türkiye</span>
+                    <span className="text-white font-black" style={{ fontSize: 34 }}>2 - 1</span>
+                    <span className="text-white font-bold" style={{ fontSize: 22 }}>Kosova</span>
+                  </div>
+                  <div className="text-right mt-1.5" style={{ paddingRight: 'calc(50% + 24px)' }}>
+                    <span className="text-white/50 text-[10px] font-medium block">Arda Güler 70'</span>
+                    <span className="text-white/50 text-[10px] font-medium block">Kerem A. 60'</span>
+                  </div>
                 </div>
               </div>
             </div>
+
+            {/* Slayt 2 — Kampanya / Tanıtım */}
+            <div
+              className="shrink-0 relative overflow-hidden"
+              style={{ width: 'calc(100% - 40px)', borderRadius: 25, height: 210, scrollSnapAlign: 'center', background: 'linear-gradient(135deg, #1e293b 0%, #334155 100%)' }}
+            >
+              <div className="relative h-full flex flex-col justify-between" style={{ padding: 20 }}>
+                <div className="flex items-center gap-1 bg-white/10 rounded-full px-2.5 py-0.5 w-fit">
+                  <Sparkles size={10} strokeWidth={2} className="text-white/70" />
+                  <span className="text-white/70 text-[8px] font-bold tracking-wide">YENİ</span>
+                </div>
+                <div>
+                  <p className="text-white font-black" style={{ fontSize: 26, lineHeight: 1.2 }}>Şehrin Nabzını Tut</p>
+                  <p className="text-white/50 text-sm mt-2">Etkinlikler, kampanyalar ve daha fazlası</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Dot indicator */}
+          <div className="flex justify-center gap-1.5" style={{ marginTop: 10 }}>
+            {[0, 1].map(i => (
+              <div
+                key={i}
+                className="rounded-full transition-all duration-300"
+                style={{
+                  width: bannerIndex === i ? 20 : 6,
+                  height: 6,
+                  background: bannerIndex === i ? '#1f2937' : '#d1d5db',
+                }}
+              />
+            ))}
           </div>
         </div>
 
@@ -238,7 +281,7 @@ export default function Home() {
           <div style={{ marginBottom: 12 }}>
             <h2 className="text-gray-800 font-semibold" style={{ fontSize: 18 }}>Kategoriler <span className="text-gray-400">›</span></h2>
           </div>
-          <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
+          <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none', marginLeft: -20, marginRight: -20, paddingLeft: 20, paddingRight: 20 }}>
             {[
               { label: '', bg: '#d1d5db' },
               { label: 'Yemek' },
@@ -284,7 +327,7 @@ export default function Home() {
           <div style={{ marginBottom: 12 }}>
             <h2 className="text-gray-800 font-semibold" style={{ fontSize: 18 }}>Bilgilendirme</h2>
           </div>
-          <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
+          <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none', marginLeft: -20, marginRight: -20, paddingLeft: 20, paddingRight: 20 }}>
             <div className="shrink-0 flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 110, borderRadius: 22, padding: '14px 16px', background: '#ffffff' }}>
               <CloudSun size={60} strokeWidth={1} className="absolute -bottom-2 -right-2 text-gray-900/5" />
               <p className="text-gray-500 text-xs font-medium">Hava Durumu</p>
@@ -324,7 +367,7 @@ export default function Home() {
           <div style={{ marginBottom: 12 }}>
             <h2 className="text-gray-800 font-semibold" style={{ fontSize: 18 }}>İndirimler & Fırsatlar <span className="text-gray-400">›</span></h2>
           </div>
-          <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}>
+          <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch', marginLeft: -20, marginRight: -20, paddingLeft: 20, paddingRight: 20 }}>
 
             {/* Kart 1 */}
             <button onClick={() => navigate('/alisveris')} className="shrink-0 text-left active:scale-[0.97] transition-transform" style={{ width: 140 }}>
@@ -370,7 +413,7 @@ export default function Home() {
           <div style={{ marginBottom: 12 }}>
             <h2 className="text-gray-800 font-semibold" style={{ fontSize: 18 }}>Haberler <span className="text-gray-400">›</span></h2>
           </div>
-          <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
+          <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none', marginLeft: -20, marginRight: -20, paddingLeft: 20, paddingRight: 20 }}>
 
             <div className="shrink-0 text-left" style={{ width: 140 }}>
               <div className="w-full h-[100px] bg-white" style={{ borderRadius: 16 }} />

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { Home, Search, Sparkles, Compass, MessageCircle, X, ChevronRight, LayoutGrid } from 'lucide-react'
+import { Home, Search, Sparkles, Compass, MessageCircle, X, ChevronRight, LayoutGrid, Users } from 'lucide-react'
 
 const SHEET_KATEGORILER = [
   { emoji: '🍜', label: 'Yemek',          path: '/food',          renk: '#fff7ed' },
@@ -72,14 +72,11 @@ export default function BottomNav() {
           </button>
 
           <button onClick={() => navigate('/profile')} className="flex items-center justify-center" style={{ width: 44, height: 44, borderRadius: 9999 }}>
-            <img
-              src="https://images.pexels.com/photos/19760873/pexels-photo-19760873.jpeg?auto=compress&cs=tinysrgb&w=100"
-              alt="Profil"
-              style={{
-                width: 32, height: 32, borderRadius: '50%', objectFit: 'cover',
-                border: active === 'profile' ? '2px solid #111827' : '2px solid transparent',
-              }}
-            />
+            <div style={{
+              width: 32, height: 32, borderRadius: '50%',
+              border: active === 'profile' ? '2px solid #111827' : '2px solid transparent',
+              background: '#e5e7eb',
+            }} />
           </button>
 
         </div>
