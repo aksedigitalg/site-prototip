@@ -216,53 +216,28 @@ export default function Home() {
             style={{ scrollSnapType: 'x mandatory', scrollbarWidth: 'none', paddingLeft: 20, paddingRight: 20 }}
             onScroll={handleSliderScroll}
           >
-            {/* Slayt 1 — Canlı Maç */}
+            {/* Slayt 1 */}
             <div
-              className="shrink-0 relative overflow-hidden"
-              style={{ width: 'calc(100% - 40px)', borderRadius: 25, height: 210, scrollSnapAlign: 'center' }}
-            >
-              <img src="/resim1.jpg" alt="" className="absolute inset-0 w-full h-full object-cover" style={{ borderRadius: 25 }} />
-              <div className="absolute inset-0" style={{ borderRadius: 25, background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 80%)' }} />
-              <div className="relative h-full flex flex-col justify-between" style={{ padding: 20 }}>
-                <div className="flex items-center gap-1 border border-red-500 rounded-full px-2 py-0.5 w-fit" style={{ background: 'rgba(239,68,68,0.9)' }}>
-                  <div className="rounded-full bg-white live-dot" style={{ width: 6, height: 6 }} />
-                  <span className="text-white text-[8px] font-bold tracking-wide">CANLI</span>
-                </div>
-                <div>
-                  <div className="flex items-center justify-center gap-4">
-                    <span className="text-white font-bold" style={{ fontSize: 22 }}>Türkiye</span>
-                    <span className="text-white font-black" style={{ fontSize: 34 }}>2 - 1</span>
-                    <span className="text-white font-bold" style={{ fontSize: 22 }}>Kosova</span>
-                  </div>
-                  <div className="text-right mt-1.5" style={{ paddingRight: 'calc(50% + 24px)' }}>
-                    <span className="text-white/50 text-[10px] font-medium block">Arda Güler 70'</span>
-                    <span className="text-white/50 text-[10px] font-medium block">Kerem A. 60'</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+              className="shrink-0"
+              style={{ width: 'calc(100% - 40px)', borderRadius: 25, height: 210, scrollSnapAlign: 'center', background: '#ffffff' }}
+            />
 
-            {/* Slayt 2 — Kampanya / Tanıtım */}
+            {/* Slayt 2 */}
             <div
-              className="shrink-0 relative overflow-hidden"
-              style={{ width: 'calc(100% - 40px)', borderRadius: 25, height: 210, scrollSnapAlign: 'center', background: 'linear-gradient(135deg, #1e293b 0%, #334155 100%)' }}
-            >
-              <div className="relative h-full flex flex-col justify-between" style={{ padding: 20 }}>
-                <div className="flex items-center gap-1 bg-white/10 rounded-full px-2.5 py-0.5 w-fit">
-                  <Sparkles size={10} strokeWidth={2} className="text-white/70" />
-                  <span className="text-white/70 text-[8px] font-bold tracking-wide">YENİ</span>
-                </div>
-                <div>
-                  <p className="text-white font-black" style={{ fontSize: 26, lineHeight: 1.2 }}>Şehrin Nabzını Tut</p>
-                  <p className="text-white/50 text-sm mt-2">Etkinlikler, kampanyalar ve daha fazlası</p>
-                </div>
-              </div>
-            </div>
+              className="shrink-0"
+              style={{ width: 'calc(100% - 40px)', borderRadius: 25, height: 210, scrollSnapAlign: 'center', background: '#ffffff' }}
+            />
+
+            {/* Slayt 3 */}
+            <div
+              className="shrink-0"
+              style={{ width: 'calc(100% - 40px)', borderRadius: 25, height: 210, scrollSnapAlign: 'center', background: '#ffffff' }}
+            />
           </div>
 
           {/* Dot indicator */}
           <div className="flex justify-center gap-1.5" style={{ marginTop: 10 }}>
-            {[0, 1].map(i => (
+            {[0, 1, 2].map(i => (
               <div
                 key={i}
                 className="rounded-full transition-all duration-300"
