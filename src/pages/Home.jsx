@@ -251,7 +251,7 @@ export default function Home() {
           <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
             {[
               { label: '', bg: 'rgba(255,255,255,0.15)' },
-              { label: 'Yemek' },
+              { label: 'Yemek', img: 'https://images.pexels.com/photos/28496647/pexels-photo-28496647.jpeg?auto=compress&cs=tinysrgb&w=200' },
               { label: 'Restoran', img: 'https://images.pexels.com/photos/7624446/pexels-photo-7624446.jpeg?auto=compress&cs=tinysrgb&w=200' },
               { label: 'Alışveriş' },
               { label: 'Hizmetler' },
