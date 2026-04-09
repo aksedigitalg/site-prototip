@@ -180,7 +180,7 @@ export default function Home() {
         </div>
 
         {/* Arama */}
-        <button onClick={() => navigate('/search')} className="rounded-full bg-white flex items-center justify-center active:scale-90 transition-transform" style={{ width: 42, height: 42 }}>
+        <button onClick={() => window.dispatchEvent(new Event('open-search-sheet'))} className="rounded-full bg-white flex items-center justify-center active:scale-90 transition-transform" style={{ width: 42, height: 42 }}>
           <Search size={18} strokeWidth={2.2} className="text-gray-900" />
         </button>
 
