@@ -61,7 +61,6 @@ const TUM_KATEGORILER = [
 const CATEGORIES = [
   { icon: UtensilsCrossed, label: 'Yemek',       path: '/food' },
   { icon: Soup,            label: 'Restoran',    path: '/food' },
-  { icon: ShoppingBag,     label: 'Alışveriş',   path: '/alisveris' },
   { icon: Wrench,          label: 'Hizmetler',   path: '/services' },
   { icon: Tag,             label: 'İlanlar',     path: '/ilanlar' },
   { icon: Calendar,        label: 'Etkinlikler', path: '/etkinlikler' },
@@ -71,7 +70,6 @@ const CATEGORIES = [
 const TUM_KATEGORILER_BUYUK = [
   { emoji: '🍜', label: 'Yemek',          path: '/food',         renk: '#fff7ed' },
   { emoji: '🍽️', label: 'Restoran',       path: '/food',         renk: '#fff7ed' },
-  { emoji: '🛍️', label: 'Alışveriş',      path: '/alisveris',    renk: '#eff6ff' },
   { emoji: '🔧', label: 'Hizmetler',      path: '/services',     renk: '#f0fdf4' },
   { emoji: '🏠', label: 'İlanlar',         path: '/ilanlar',      renk: '#fdf4ff' },
   { emoji: '🎭', label: 'Etkinlikler',    path: '/etkinlikler',  renk: '#fef9c3' },
@@ -250,7 +248,6 @@ export default function Home() {
               { label: '', bg: '#d1d5db' },
               { label: 'Yemek' },
               { label: 'Restoran' },
-              { label: 'Alışveriş' },
               { label: 'Hizmetler' },
               { label: 'İlanlar' },
               { label: 'Etkinlikler' },
@@ -291,15 +288,6 @@ export default function Home() {
           <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch', marginLeft: -20, marginRight: -20, paddingLeft: 20, paddingRight: 20 }}>
 
             {/* Kart 1 */}
-            <button onClick={() => navigate('/alisveris')} className="shrink-0 text-left active:scale-[0.97] transition-transform" style={{ width: 140 }}>
-              <div className="w-full h-[100px] bg-white" style={{ borderRadius: 16 }} />
-              <div className="px-1 pt-2.5">
-                <p className="text-gray-900 text-[15px] font-bold truncate">Alışveriş</p>
-                <p className="text-gray-400 text-xs mt-0.5 truncate">6 ay taksit fırsatları</p>
-              </div>
-            </button>
-
-            {/* Kart 2 */}
             <button onClick={() => navigate('/food')} className="shrink-0 text-left active:scale-[0.97] transition-transform" style={{ width: 140 }}>
               <div className="w-full h-[100px] bg-white" style={{ borderRadius: 16 }} />
               <div className="px-1 pt-2.5">

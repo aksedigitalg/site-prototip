@@ -19,8 +19,6 @@ import VasitaDetail from './pages/VasitaDetail'
 import IkincielDetail from './pages/IkincielDetail'
 import EtkinliklerPage from './pages/EtkinliklerPage'
 import EtkinlikDetail from './pages/EtkinlikDetail'
-import AlisverisPage from './pages/AlisverisPage'
-import SaticiProfil from './pages/SaticiProfil'
 import RezervasyonForm from './pages/RezervasyonForm'
 import TeklifForm from './pages/TeklifForm'
 import Rezervasyonlarim from './pages/Rezervasyonlarim'
@@ -172,9 +170,6 @@ function AnimatedRoutes() {
           <Route path="/etkinlikler"     element={<PrivateRoute><EtkinliklerPage /></PrivateRoute>} />
           <Route path="/etkinlik/:id"    element={<PrivateRoute><EtkinlikDetail /></PrivateRoute>} />
 
-          {/* ── Alışveriş ── */}
-          <Route path="/alisveris"       element={<PrivateRoute><AlisverisPage /></PrivateRoute>} />
-          <Route path="/magaza/:id"      element={<PrivateRoute><SaticiProfil /></PrivateRoute>} />
 
           {/* ── Rezervasyon / Randevu / Teklif ── */}
           <Route path="/rezervasyon/:id"   element={<PrivateRoute><RezervasyonForm /></PrivateRoute>} />

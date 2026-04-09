@@ -2,13 +2,12 @@ import { useState, useRef, useEffect, useCallback } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import {
   Home, Search, Sparkles, Compass, MessageCircle, X, ChevronRight, LayoutGrid,
-  UtensilsCrossed, ShoppingBag, Wrench, Tag, Calendar, Briefcase, Hotel, Car, Map, Target,
+  UtensilsCrossed, Wrench, Tag, Calendar, Briefcase, Hotel, Car, Map, Target,
 } from 'lucide-react'
 
 const SHEET_KATEGORILER = [
   { icon: UtensilsCrossed, label: 'Yemek',          path: '/food' },
   { icon: UtensilsCrossed, label: 'Restoran',       path: '/food' },
-  { icon: ShoppingBag,     label: 'Alışveriş',      path: '/alisveris' },
   { icon: Wrench,          label: 'Hizmetler',      path: '/services' },
   { icon: Tag,             label: 'İlanlar',         path: '/ilanlar' },
   { icon: Calendar,        label: 'Etkinlikler',    path: '/etkinlikler' },
