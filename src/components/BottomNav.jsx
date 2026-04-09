@@ -14,7 +14,6 @@ const SHEET_KATEGORILER = [
   { icon: Calendar,        label: 'Etkinlikler',    path: '/etkinlikler' },
   { icon: Briefcase,       label: 'İş İlanları',    path: '/is-ilanlari' },
   { icon: Hotel,           label: 'Otel',           path: '/oteller' },
-  { icon: Car,             label: 'Araç Kiralama',  path: '/arac-kiralama' },
   { icon: Map,             label: 'Keşfet',         path: '/explore' },
   { icon: Target,          label: 'Kampanyalar',    path: '/campaigns' },
 ]
@@ -47,11 +46,16 @@ export default function BottomNav() {
   const [sheetVisible, setSheetVisible] = useState(false)
   const [dragY, setDragY] = useState(0)
   const dragStart = useRef(null)
-  const sheetRef = useRef(null)
+  const scrollRef = useRef(null)
+  const savedScrollY = useRef(0)
 
   function openSheet() {
+    savedScrollY.current = window.scrollY
+    document.body.style.position = 'fixed'
+    document.body.style.top = `-${savedScrollY.current}px`
+    document.body.style.left = '0'
+    document.body.style.right = '0'
     setSheetMounted(true)
-    document.body.style.overflow = 'hidden'
     requestAnimationFrame(() => {
       requestAnimationFrame(() => setSheetVisible(true))
     })
@@ -62,20 +66,32 @@ export default function BottomNav() {
     setDragY(0)
     setTimeout(() => {
       setSheetMounted(false)
-      document.body.style.overflow = ''
+      document.body.style.position = ''
+      document.body.style.top = ''
+      document.body.style.left = ''
+      document.body.style.right = ''
+      window.scrollTo(0, savedScrollY.current)
     }, 300)
   }, [])
 
   function onTouchStart(e) {
+    const el = scrollRef.current
+    if (el && el.scrollTop > 0) return
     dragStart.current = e.touches[0].clientY
   }
   function onTouchMove(e) {
     if (dragStart.current === null) return
     const diff = e.touches[0].clientY - dragStart.current
-    if (diff > 0) setDragY(diff)
+    if (diff > 0) {
+      setDragY(diff)
+      e.preventDefault()
+    } else {
+      dragStart.current = null
+      setDragY(0)
+    }
   }
   function onTouchEnd() {
-    if (dragY > 120) {
+    if (dragY > 80) {
       closeSheet()
     } else {
       setDragY(0)
@@ -132,7 +148,6 @@ export default function BottomNav() {
             onClick={closeSheet}
           />
           <div
-            ref={sheetRef}
             className="relative rounded-t-3xl z-10 flex flex-col"
             style={{
               height: '98vh',
@@ -140,19 +155,17 @@ export default function BottomNav() {
               transform: `translateY(${sheetVisible ? dragY : window.innerHeight}px)`,
               transition: dragY > 0 ? 'none' : 'transform 0.3s cubic-bezier(0.32, 0.72, 0, 1)',
             }}
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
           >
 
-            {/* Sürükleme alanı */}
-            <div
-              className="flex justify-center pt-3 pb-4 shrink-0 cursor-grab"
-              onTouchStart={onTouchStart}
-              onTouchMove={onTouchMove}
-              onTouchEnd={onTouchEnd}
-            >
+            {/* Çentik */}
+            <div className="flex justify-center pt-3 pb-4 shrink-0">
               <div className="w-10 h-1.5 rounded-full bg-gray-300" />
             </div>
 
-            <div className="flex-1 overflow-y-auto px-4 pb-8">
+            <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 pb-8">
 
               {/* GebzemAI — en üstte */}
               <button

@@ -77,7 +77,6 @@ const TUM_KATEGORILER_BUYUK = [
   { emoji: '🎭', label: 'Etkinlikler',    path: '/etkinlikler',  renk: '#fef9c3' },
   { emoji: '💼', label: 'İş İlanları',    path: '/is-ilanlari',  renk: '#f0f9ff' },
   { emoji: '🏨', label: 'Otel',           path: '/oteller',      renk: '#fef2f2' },
-  { emoji: '🚗', label: 'Araç Kiralama',  path: '/arac-kiralama',renk: '#f5f3ff' },
   { emoji: '🤖', label: 'GebzemAI',       path: '/gebzem-ai',    renk: '#f3e8ff' },
   { emoji: '🗺️', label: 'Keşfet',         path: '/explore',      renk: '#ecfdf5' },
   { emoji: '🎯', label: 'Kampanyalar',    path: '/campaigns',    renk: '#fff1f2' },
@@ -256,7 +255,6 @@ export default function Home() {
               { label: 'İlanlar' },
               { label: 'Etkinlikler' },
               { label: 'Oteller' },
-              { label: 'Araç Kira' },
             ].map(({ label, bg }) => (
               <div key={label || 'ai'} className="shrink-0 flex flex-col items-center gap-1.5" style={{ minWidth: 75 }}>
                 <div className="rounded-2xl relative overflow-hidden" style={{ width: 75, height: 75, background: bg || '#ffffff' }} />
