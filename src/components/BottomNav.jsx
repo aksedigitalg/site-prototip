@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import {
   Home, Search, Sparkles, Compass, MessageCircle, X, ChevronRight, LayoutGrid,
@@ -43,7 +43,45 @@ function shouldShow(pathname) {
 export default function BottomNav() {
   const navigate = useNavigate()
   const location = useLocation()
-  const [sheet, setSheet] = useState(false)
+  const [sheetMounted, setSheetMounted] = useState(false)
+  const [sheetVisible, setSheetVisible] = useState(false)
+  const [dragY, setDragY] = useState(0)
+  const dragStart = useRef(null)
+  const sheetRef = useRef(null)
+
+  function openSheet() {
+    setSheetMounted(true)
+    document.body.style.overflow = 'hidden'
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => setSheetVisible(true))
+    })
+  }
+
+  const closeSheet = useCallback(() => {
+    setSheetVisible(false)
+    setDragY(0)
+    setTimeout(() => {
+      setSheetMounted(false)
+      document.body.style.overflow = ''
+    }, 300)
+  }, [])
+
+  function onTouchStart(e) {
+    dragStart.current = e.touches[0].clientY
+  }
+  function onTouchMove(e) {
+    if (dragStart.current === null) return
+    const diff = e.touches[0].clientY - dragStart.current
+    if (diff > 0) setDragY(diff)
+  }
+  function onTouchEnd() {
+    if (dragY > 120) {
+      closeSheet()
+    } else {
+      setDragY(0)
+    }
+    dragStart.current = null
+  }
 
   if (!shouldShow(location.pathname)) return null
 
@@ -62,7 +100,7 @@ export default function BottomNav() {
             <Search size={24} strokeWidth={2} className={active === 'search' ? 'text-white' : 'text-gray-400'} />
           </button>
 
-          <button onClick={() => setSheet(true)} className="flex items-center justify-center" style={{ width: 44, height: 44, borderRadius: 9999 }}>
+          <button onClick={openSheet} className="flex items-center justify-center" style={{ width: 44, height: 44, borderRadius: 9999 }}>
             <LayoutGrid size={24} strokeWidth={2} className="text-gray-400" />
           </button>
 
@@ -86,13 +124,31 @@ export default function BottomNav() {
       </nav>
 
       {/* Kategori + AI Sheet */}
-      {sheet && (
+      {sheetMounted && (
         <div className="fixed inset-0 z-[100] flex flex-col justify-end">
-          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setSheet(false)} />
-          <div className="relative rounded-t-3xl z-10 flex flex-col" style={{ height: '98vh', background: '#f5f6f8' }}>
+          <div
+            className="absolute inset-0"
+            style={{ background: `rgba(0,0,0,${sheetVisible ? 0.4 : 0})`, transition: 'background 0.3s ease' }}
+            onClick={closeSheet}
+          />
+          <div
+            ref={sheetRef}
+            className="relative rounded-t-3xl z-10 flex flex-col"
+            style={{
+              height: '98vh',
+              background: '#f5f6f8',
+              transform: `translateY(${sheetVisible ? dragY : window.innerHeight}px)`,
+              transition: dragY > 0 ? 'none' : 'transform 0.3s cubic-bezier(0.32, 0.72, 0, 1)',
+            }}
+          >
 
-            {/* iPhone çentik */}
-            <div className="flex justify-center pt-3 pb-4 shrink-0">
+            {/* Sürükleme alanı */}
+            <div
+              className="flex justify-center pt-3 pb-4 shrink-0 cursor-grab"
+              onTouchStart={onTouchStart}
+              onTouchMove={onTouchMove}
+              onTouchEnd={onTouchEnd}
+            >
               <div className="w-10 h-1.5 rounded-full bg-gray-300" />
             </div>
 
@@ -100,7 +156,7 @@ export default function BottomNav() {
 
               {/* GebzemAI — en üstte */}
               <button
-                onClick={() => { setSheet(false); navigate('/gebzem-ai') }}
+                onClick={() => { closeSheet(); navigate('/gebzem-ai') }}
                 className="w-full flex items-center gap-3 rounded-2xl px-4 py-4 mb-4 active:scale-[0.97] transition-transform"
                 style={{ background: 'linear-gradient(135deg, #7C3AED 0%, #9333EA 55%, #EC4899 100%)' }}
               >
@@ -119,7 +175,7 @@ export default function BottomNav() {
                 {SHEET_KATEGORILER.map(({ icon: Icon, label, path }) => (
                   <button
                     key={label}
-                    onClick={() => { setSheet(false); navigate(path) }}
+                    onClick={() => { closeSheet(); navigate(path) }}
                     className="flex flex-col items-center justify-center gap-3 py-5 rounded-2xl bg-white active:scale-95 transition-transform"
                   >
                     <Icon size={28} strokeWidth={1.5} className="text-gray-700" />

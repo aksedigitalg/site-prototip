@@ -8,7 +8,7 @@ import {
   Key, Users, Building2, Stethoscope, Shield, Flame,
   Hotel, Coffee, Scissors, Dumbbell, BookOpen, PawPrint,
   Mail, GraduationCap, Navigation, Plus, X, ChevronRight, Clock,
-  CloudSun, Sun, Moon, DollarSign, Euro, Gem,
+  Sun, Moon,
 } from 'lucide-react'
 import { MOCK_PLACES } from '../data/mockPlaces'
 
@@ -137,7 +137,6 @@ export default function Home() {
   const [kategoriSheet,    setKategoriSheet]    = useState(false)
   const [tumKatSheet,      setTumKatSheet]      = useState(false)
   const [sliderIndex,      setSliderIndex]      = useState(0)
-  const [dovizIndex,       setDovizIndex]       = useState(0)
   const [scrolled,         setScrolled]         = useState(false)
   const [bannerIndex,      setBannerIndex]      = useState(0)
   const sliderRef = useRef(null)
@@ -148,20 +147,11 @@ export default function Home() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const DOVIZ_DATA = [
-    { label: 'USD/TRY', deger: '38.42', Icon: DollarSign },
-    { label: 'EUR/TRY', deger: '41.85', Icon: Euro },
-    { label: 'Gram Altın', deger: '3.245', Icon: Gem },
-  ]
-
   useEffect(() => {
     const timer = setInterval(() => {
       setSliderIndex(prev => (prev + 1) % SLIDER_ITEMS.length)
     }, 3500)
-    const dovizTimer = setInterval(() => {
-      setDovizIndex(prev => (prev + 1) % 3)
-    }, 3000)
-    return () => { clearInterval(timer); clearInterval(dovizTimer) }
+    return () => clearInterval(timer)
   }, [])
 
   const handleSliderScroll = useCallback(() => {
@@ -294,46 +284,6 @@ export default function Home() {
                 <span style={{ fontSize: 13, color: '#6b7280', fontWeight: 500 }}>{label}</span>
               </button>
             ))}
-          </div>
-        </div>
-
-        {/* ── Bilgilendirme ── */}
-        <div style={{ paddingTop: 20 }}>
-          <div style={{ marginBottom: 12 }}>
-            <h2 className="text-gray-800 font-semibold" style={{ fontSize: 18 }}>Bilgilendirme</h2>
-          </div>
-          <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none', marginLeft: -20, marginRight: -20, paddingLeft: 20, paddingRight: 20 }}>
-            <div className="shrink-0 flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 110, borderRadius: 22, padding: '14px 16px', background: '#ffffff' }}>
-              <CloudSun size={60} strokeWidth={1} className="absolute -bottom-2 -right-2 text-gray-900/5" />
-              <p className="text-gray-500 text-xs font-medium">Hava Durumu</p>
-              <div>
-                <p className="text-gray-900 font-black text-3xl leading-none">9°</p>
-                <p className="text-gray-400 text-[11px] mt-1">Parçalı Bulutlu</p>
-              </div>
-            </div>
-            <div className="shrink-0 flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 110, borderRadius: 22, padding: '14px 16px', background: '#ffffff' }}>
-              <Moon size={60} strokeWidth={1} className="absolute -bottom-2 -right-2 text-gray-900/5" />
-              <p className="text-gray-500 text-xs font-medium">Namaz Vakti</p>
-              <div>
-                <p className="text-gray-900 font-black text-3xl leading-none">15:42</p>
-                <p className="text-gray-400 text-[11px] mt-1">İkindi</p>
-              </div>
-            </div>
-            <div className="shrink-0 flex flex-col justify-between relative overflow-hidden" style={{ width: 140, height: 110, borderRadius: 22, padding: '14px 16px', background: '#ffffff' }}>
-              {DOVIZ_DATA.map((d, i) => {
-                const DIcon = d.Icon
-                return (
-                  <div key={i} className="absolute inset-0 flex flex-col justify-between" style={{ padding: '14px 16px', opacity: dovizIndex === i ? 1 : 0, transition: 'opacity 0.5s ease' }}>
-                    <DIcon size={60} strokeWidth={1} className="absolute -bottom-2 -right-2 text-gray-900/5" />
-                    <p className="text-gray-500 text-xs font-medium">Döviz Kuru</p>
-                    <div>
-                      <p className="text-gray-900 font-black text-3xl leading-none">{d.deger}</p>
-                      <p className="text-gray-400 text-[11px] mt-1">{d.label}</p>
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
           </div>
         </div>
 
