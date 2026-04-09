@@ -270,15 +270,13 @@ export default function Home() {
             <button onClick={() => setKategoriSheet(true)}><h2 className="text-gray-800 font-semibold" style={{ fontSize: 18 }}>Şehir Rehberi <span className="text-gray-400">›</span></h2></button>
           </div>
           <div className="grid grid-cols-5 gap-x-3" style={{ rowGap: 12 }}>
-            {QUICK_ACCESS.map(({ icon: Icon, label, type }) => (
+            {QUICK_ACCESS.map(({ label, type }) => (
               <button
                 key={label}
                 onClick={() => navigate(`/nearby/${type}`)}
                 className="flex flex-col items-center gap-1.5 active:scale-95 transition-transform"
               >
-                <div className="rounded-2xl bg-white flex items-center justify-center" style={{ width: 60, height: 60 }}>
-                  <Icon size={26} strokeWidth={1.8} className="text-gray-700" />
-                </div>
+                <div className="rounded-2xl bg-white" style={{ width: 60, height: 60 }} />
                 <span style={{ fontSize: 13, color: '#6b7280', fontWeight: 500 }}>{label}</span>
               </button>
             ))}
@@ -507,15 +505,13 @@ export default function Home() {
               </button>
             </div>
             <div className="grid grid-cols-5 gap-x-3" style={{ rowGap: 12 }}>
-              {TUM_KATEGORILER.map(({ icon: Icon, label, type }) => (
+              {TUM_KATEGORILER.map(({ label, type }) => (
                 <button
                   key={label}
                   onClick={() => { setKategoriSheet(false); navigate(`/nearby/${type}`) }}
                   className="flex flex-col items-center gap-1.5 active:scale-95 transition-transform"
                 >
-                  <div className="rounded-2xl bg-gray-100 flex items-center justify-center" style={{ width: 60, height: 60 }}>
-                    <Icon size={26} strokeWidth={1.8} className="text-gray-700" />
-                  </div>
+                  <div className="rounded-2xl bg-gray-100" style={{ width: 60, height: 60 }} />
                   <span style={{ fontSize: 13, color: '#6b7280', fontWeight: 500 }}>{label}</span>
                 </button>
               ))}
