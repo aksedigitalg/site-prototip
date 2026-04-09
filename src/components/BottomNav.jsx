@@ -1,20 +1,16 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
-import {
-  Home, Search, Sparkles, Compass, MessageCircle, X, ChevronRight, LayoutGrid,
-  UtensilsCrossed, Wrench, Tag, Calendar, Briefcase, Hotel, Car, Map, Target,
-} from 'lucide-react'
+import { Home, Search, Compass, MessageCircle, LayoutGrid } from 'lucide-react'
 
 const SHEET_KATEGORILER = [
-  { icon: UtensilsCrossed, label: 'Yemek',          path: '/food' },
-  { icon: UtensilsCrossed, label: 'Restoran',       path: '/food' },
-  { icon: Wrench,          label: 'Hizmetler',      path: '/services' },
-  { icon: Tag,             label: 'İlanlar',         path: '/ilanlar' },
-  { icon: Calendar,        label: 'Etkinlikler',    path: '/etkinlikler' },
-  { icon: Briefcase,       label: 'İş İlanları',    path: '/is-ilanlari' },
-  { icon: Hotel,           label: 'Otel',           path: '/oteller' },
-  { icon: Map,             label: 'Keşfet',         path: '/explore' },
-  { icon: Target,          label: 'Kampanyalar',    path: '/campaigns' },
+  { path: '/food' },
+  { path: '/food' },
+  { path: '/services' },
+  { path: '/ilanlar' },
+  { path: '/etkinlikler' },
+  { path: '/is-ilanlari' },
+  { path: '/oteller' },
+  { path: '/campaigns' },
 ]
 
 function getActive(pathname) {
@@ -166,33 +162,21 @@ export default function BottomNav() {
 
             <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 pb-8">
 
-              {/* GebzemAI — en üstte */}
-              <button
-                onClick={() => { closeSheet(); navigate('/gebzem-ai') }}
-                className="w-full flex items-center gap-3 rounded-2xl px-4 py-4 mb-4 active:scale-[0.97] transition-transform"
-                style={{ background: 'linear-gradient(135deg, #7C3AED 0%, #9333EA 55%, #EC4899 100%)' }}
-              >
-                <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0" style={{ background: 'rgba(255,255,255,0.15)' }}>
-                  <Sparkles size={24} strokeWidth={2} className="text-white" />
-                </div>
-                <div className="flex-1 text-left">
-                  <p className="text-white text-sm font-bold">GebzemAI</p>
-                  <p className="text-white/60 text-xs mt-0.5">Yapay zeka ile şehrini keşfet</p>
-                </div>
-                <ChevronRight size={16} strokeWidth={2} className="text-white/40" />
-              </button>
-
               {/* Kategoriler grid */}
               <div className="grid grid-cols-3 gap-3">
-                {SHEET_KATEGORILER.map(({ icon: Icon, label, path }) => (
+                {/* GebzemAI — ilk kart, gradient */}
+                <button
+                  onClick={() => { closeSheet(); navigate('/gebzem-ai') }}
+                  className="rounded-2xl active:scale-95 transition-transform"
+                  style={{ height: 100, background: 'linear-gradient(135deg, #7C3AED 0%, #9333EA 55%, #EC4899 100%)' }}
+                />
+                {SHEET_KATEGORILER.map(({ path }, i) => (
                   <button
-                    key={label}
+                    key={i}
                     onClick={() => { closeSheet(); navigate(path) }}
-                    className="flex flex-col items-center justify-center gap-3 py-5 rounded-2xl bg-white active:scale-95 transition-transform"
-                  >
-                    <Icon size={28} strokeWidth={1.5} className="text-gray-700" />
-                    <span className="text-gray-700 text-xs font-semibold text-center leading-tight px-1">{label}</span>
-                  </button>
+                    className="rounded-2xl bg-white active:scale-95 transition-transform"
+                    style={{ height: 100 }}
+                  />
                 ))}
               </div>
             </div>
