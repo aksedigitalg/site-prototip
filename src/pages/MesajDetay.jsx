@@ -50,11 +50,7 @@ export default function MesajDetay() {
             <ArrowLeft size={20} strokeWidth={1.5} />
           </button>
 
-          <div className="w-9 h-9 bg-gray-100 rounded-xl flex items-center justify-center text-xl shrink-0">
-            {konusma.isletme.logo}
-          </div>
-
-          <div className="flex-1 min-w-0">
+<div className="flex-1 min-w-0">
             <p className="text-gray-800 text-sm font-bold leading-tight">{konusma.isletme.name}</p>
             <p className="text-gray-400 text-xs">{konusma.isletme.kategori}</p>
           </div>
@@ -74,7 +70,7 @@ export default function MesajDetay() {
                 <div
                   className={`px-4 py-2.5 rounded-2xl text-sm leading-relaxed ${
                     m.gelen
-                      ? 'bg-white border border-gray-100 text-gray-800 rounded-tl-sm shadow-sm'
+                      ? 'bg-white border border-gray-100 text-gray-800 rounded-tl-sm'
                       : 'bg-gray-900 text-white rounded-tr-sm'
                   }`}
                 >
@@ -90,7 +86,7 @@ export default function MesajDetay() {
 
       {/* Input */}
       <div className="fixed bottom-0 left-0 right-0 z-40 flex justify-center">
-        <div className="w-full max-w-[430px] bg-white border-t border-gray-100 px-4 py-3 flex items-end gap-3">
+        <div className="w-full max-w-[430px] bg-white border-t border-gray-100 px-4 py-3 flex items-center gap-3">
           <textarea
             value={yeniMesaj}
             onChange={e => setYeniMesaj(e.target.value)}
@@ -107,7 +103,7 @@ export default function MesajDetay() {
               yeniMesaj.trim() ? 'bg-gray-900' : 'bg-gray-200'
             }`}
           >
-            <Send size={16} strokeWidth={1.5} className={yeniMesaj.trim() ? 'text-white' : 'text-gray-400'} />
+            <Send size={16} strokeWidth={2} className={yeniMesaj.trim() ? 'text-white' : 'text-gray-400'} />
           </button>
         </div>
       </div>

@@ -28,11 +28,11 @@ function getActive(pathname) {
   if (pathname === '/search')    return 'search'
   if (pathname === '/gebzem-ai') return 'ai'
   if (pathname === '/explore')   return 'explore'
+  if (pathname.startsWith('/mesajlarim') || pathname.startsWith('/mesaj/')) return 'messages'
   if (
     pathname === '/profile' || pathname === '/pro' ||
     pathname.startsWith('/rezervasyonlarim') || pathname.startsWith('/randevularim') ||
-    pathname.startsWith('/tekliflerim') || pathname.startsWith('/mesajlarim') ||
-    pathname.startsWith('/mesaj/') || pathname.startsWith('/ilanlarim')
+    pathname.startsWith('/tekliflerim') || pathname.startsWith('/ilanlarim')
   ) return 'profile'
   return 'home'
 }
@@ -41,6 +41,7 @@ function shouldShow(pathname) {
   if (pathname.startsWith('/isletme')) return false
   if (pathname.startsWith('/admin'))   return false
   if (pathname.startsWith('/sosyal'))  return false
+  if (pathname.startsWith('/mesaj/'))  return false
   const hidden = ['/login', '/register', '/onboarding', '/forgot-password', '/reset-otp', '/new-password', '/']
   return !hidden.includes(pathname)
 }
@@ -173,14 +174,14 @@ export default function BottomNav() {
             <Compass size={24} strokeWidth={2} className={active === 'explore' ? 'text-white' : 'text-gray-400'} />
           </button>
 
-          <button onClick={() => navigate('/mesajlarim')} className="flex items-center justify-center" style={{ width: 44, height: 44, borderRadius: 9999 }}>
-            <MessageCircle size={24} strokeWidth={2} className="text-gray-400" />
+          <button onClick={() => navigate('/mesajlarim')} className="flex items-center justify-center" style={{ width: 44, height: 44, borderRadius: 9999, background: active === 'messages' ? '#111827' : 'transparent' }}>
+            <MessageCircle size={24} strokeWidth={2} className={active === 'messages' ? 'text-white' : 'text-gray-400'} />
           </button>
 
           <button onClick={() => navigate('/profile')} className="flex items-center justify-center" style={{ width: 44, height: 44, borderRadius: 9999 }}>
             <div style={{
               width: 32, height: 32, borderRadius: '50%',
-              border: active === 'profile' ? '2px solid #111827' : '2px solid transparent',
+              border: 'none',
               background: '#e5e7eb',
             }} />
           </button>
