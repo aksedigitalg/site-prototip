@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { Home, Search, Compass, MessageCircle, LayoutGrid, X, Clock, TrendingUp, ChevronRight } from 'lucide-react'
+import { Home, Search, MessageCircle, LayoutGrid, X, Clock, TrendingUp, ChevronRight } from 'lucide-react'
 import {
   SON_ARAMALAR as INITIAL_SON,
   POPULER_ARAMALAR,
@@ -27,7 +27,6 @@ const SHEET_KATEGORILER = [
 function getActive(pathname) {
   if (pathname === '/search')    return 'search'
   if (pathname === '/gebzem-ai') return 'ai'
-  if (pathname === '/explore')   return 'explore'
   if (pathname.startsWith('/mesajlarim') || pathname.startsWith('/mesaj/')) return 'messages'
   if (
     pathname === '/profile' || pathname === '/pro' ||
@@ -168,10 +167,6 @@ export default function BottomNav() {
 
           <button onClick={openSheet} className="flex items-center justify-center" style={{ width: 44, height: 44 }}>
             <LayoutGrid size={24} strokeWidth={2} className="text-gray-400" />
-          </button>
-
-          <button onClick={() => navigate('/explore')} className="flex items-center justify-center" style={{ width: 44, height: 44 }}>
-            <Compass size={24} strokeWidth={2} className={active === 'explore' ? 'text-white' : 'text-gray-400'} />
           </button>
 
           <button onClick={() => navigate('/mesajlarim')} className="relative flex items-center justify-center" style={{ width: 44, height: 44 }}>

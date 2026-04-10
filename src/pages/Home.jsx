@@ -15,7 +15,6 @@ import { MOCK_PLACES } from '../data/mockPlaces'
 // ─── Slider banner'ları ───────────────────────────────────────────────────────
 const SLIDER_ITEMS = [
   { id: 1, baslik: 'GebzemAI ile Tanış', path: '/gebzem-ai' },
-  { id: 2, baslik: 'Şehrin Nabzını Tut', path: '/explore' },
 ]
 
 // ─── Hızlı erişim ────────────────────────────────────────────────────────────
@@ -76,7 +75,6 @@ const TUM_KATEGORILER_BUYUK = [
   { emoji: '💼', label: 'İş İlanları',    path: '/is-ilanlari',  renk: '#f0f9ff' },
   { emoji: '🏨', label: 'Otel',           path: '/oteller',      renk: '#fef2f2' },
   { emoji: '🤖', label: 'GebzemAI',       path: '/gebzem-ai',    renk: '#f3e8ff' },
-  { emoji: '🗺️', label: 'Keşfet',         path: '/explore',      renk: '#ecfdf5' },
   { emoji: '🎯', label: 'Kampanyalar',    path: '/campaigns',    renk: '#fff1f2' },
 ]
 
@@ -258,6 +256,38 @@ export default function Home() {
                 {label && <span className="text-center whitespace-nowrap" style={{ fontSize: 14, color: '#6b7280', fontWeight: 500 }}>{label}</span>}
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* ── Yakınımda ── */}
+        <div style={{ paddingTop: 20 }}>
+          <div style={{ marginBottom: 12 }}>
+            <h2 className="text-gray-800 font-semibold" style={{ fontSize: 18 }}>Yakınımda <span className="text-gray-400">›</span></h2>
+          </div>
+          <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none', marginLeft: -20, marginRight: -20, paddingLeft: 20, paddingRight: 20 }}>
+            {[
+              { label: 'Eczane', type: 'pharmacy', icon: Pill },
+              { label: 'ATM', type: 'atm', icon: CreditCard },
+              { label: 'Benzinlik', type: 'fuel', icon: Fuel },
+              { label: 'Otopark', type: 'parking', icon: ParkingCircle },
+              { label: 'Otobüs', type: 'bus', icon: Bus },
+              { label: 'Şarj', type: 'charging', icon: Zap },
+            ].map(({ label, type, icon: Icon }) => {
+              const place = MOCK_PLACES[type]?.[0]
+              return (
+                <button key={type} onClick={() => navigate(`/nearby/${type}`)} className="shrink-0 active:scale-[0.97] transition-transform">
+                  <div className="bg-white flex items-center gap-3" style={{ width: 165, borderRadius: 16, padding: '14px 14px' }}>
+                    <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center shrink-0">
+                      <Icon size={20} strokeWidth={1.8} className="text-gray-800" />
+                    </div>
+                    <div className="flex-1 min-w-0 text-left">
+                      <p className="text-gray-900 text-[13px] font-bold truncate">{place?.name || label}</p>
+                      <p className="text-gray-400 text-[11px] mt-0.5">{place?.distance}</p>
+                    </div>
+                  </div>
+                </button>
+              )
+            })}
           </div>
         </div>
 

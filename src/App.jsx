@@ -29,7 +29,6 @@ import MesajlarPage from './pages/MesajlarPage'
 import MesajDetay from './pages/MesajDetay'
 import GebzemAI from './pages/GebzemAI'
 import Search from './pages/Search'
-import Explore from './pages/Explore'
 import Campaigns from './pages/Campaigns'
 import Profile from './pages/Profile'
 import ProPage from './pages/ProPage'
@@ -128,7 +127,6 @@ function AnimatedRoutes() {
           <Route path="/nearby/:type"    element={<PrivateRoute><NearbyDetail /></PrivateRoute>} />
           <Route path="/trafik"          element={<PrivateRoute><TrafikHarita /></PrivateRoute>} />
           <Route path="/search"          element={<PrivateRoute><Search /></PrivateRoute>} />
-          <Route path="/explore"         element={<PrivateRoute><Explore /></PrivateRoute>} />
           <Route path="/campaigns"       element={<PrivateRoute><Campaigns /></PrivateRoute>} />
           <Route path="/profile"         element={<PrivateRoute><Profile /></PrivateRoute>} />
           <Route path="/gebzem-ai"       element={<PrivateRoute><GebzemAI /></PrivateRoute>} />
