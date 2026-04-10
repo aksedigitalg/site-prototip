@@ -266,19 +266,19 @@ export default function Home() {
           </div>
           <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none', marginLeft: -20, marginRight: -20, paddingLeft: 20, paddingRight: 20 }}>
             {[
-              { label: 'Eczane', type: 'pharmacy', icon: Pill },
+              { label: 'Eczane', type: 'pharmacy', icon: Pill, iconBg: 'rgba(239,68,68,0.2)', iconColor: 'text-red-400' },
               { label: 'ATM', type: 'atm', icon: CreditCard },
               { label: 'Benzinlik', type: 'fuel', icon: Fuel },
               { label: 'Otopark', type: 'parking', icon: ParkingCircle },
               { label: 'Otobüs', type: 'bus', icon: Bus },
               { label: 'Şarj', type: 'charging', icon: Zap },
-            ].map(({ label, type, icon: Icon }) => {
+            ].map(({ label, type, icon: Icon, iconBg, iconColor }) => {
               const place = MOCK_PLACES[type]?.[0]
               return (
                 <button key={type} onClick={() => navigate(`/nearby/${type}`)} className="shrink-0 active:scale-[0.97] transition-transform">
                   <div className="flex items-center gap-3" style={{ width: 165, borderRadius: 16, padding: '14px 14px', background: '#1e1e2e', border: '1px solid rgba(255,255,255,0.06)' }}>
-                    <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ background: 'rgba(255,255,255,0.08)' }}>
-                      <Icon size={20} strokeWidth={1.8} className="text-white" />
+                    <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ background: iconBg || 'rgba(255,255,255,0.08)' }}>
+                      <Icon size={20} strokeWidth={1.8} className={iconColor || 'text-white'} />
                     </div>
                     <div className="flex-1 min-w-0 text-left">
                       <p className="text-white text-[13px] font-bold truncate">{place?.name || label}</p>
@@ -297,13 +297,15 @@ export default function Home() {
             <button onClick={() => setKategoriSheet(true)}><h2 className="text-white font-semibold" style={{ fontSize: 18 }}>Şehir Rehberi <span className="text-white/30">›</span></h2></button>
           </div>
           <div className="grid grid-cols-5 gap-x-3" style={{ rowGap: 12 }}>
-            {QUICK_ACCESS.map(({ label, type }) => (
+            {QUICK_ACCESS.map(({ icon: Icon, label, type }) => (
               <button
                 key={label}
                 onClick={() => navigate(`/nearby/${type}`)}
                 className="flex flex-col items-center gap-1.5 active:scale-95 transition-transform"
               >
-                <div className="rounded-2xl" style={{ width: 60, height: 60, background: '#1e1e2e', border: '1px solid rgba(255,255,255,0.06)' }} />
+                <div className="rounded-2xl flex items-center justify-center" style={{ width: 60, height: 60, background: type === 'pharmacy' ? '#ef4444' : '#1e1e2e', border: type === 'pharmacy' ? 'none' : '1px solid rgba(255,255,255,0.06)' }}>
+                  <Icon size={22} strokeWidth={1.8} className="text-white" />
+                </div>
                 <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.5)', fontWeight: 500 }}>{label}</span>
               </button>
             ))}
