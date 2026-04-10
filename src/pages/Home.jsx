@@ -165,26 +165,26 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen" style={{ background: '#f5f6f8' }}>
+    <div className="min-h-screen" style={{ background: 'linear-gradient(180deg, #2d1b69 0%, #1a1a2e 20%, #111118 40%)' }}>
 
       {/* ── Header ── */}
-      <header className={`fixed top-0 left-0 right-0 z-50 flex justify-center transition-all duration-300 ${scrolled ? 'backdrop-blur-md' : ''}`} style={{ background: scrolled ? 'rgba(245,246,248,0.8)' : 'transparent' }}>
+      <header className={`fixed top-0 left-0 right-0 z-50 flex justify-center transition-all duration-300 ${scrolled ? 'backdrop-blur-md' : ''}`} style={{ background: scrolled ? 'rgba(17,17,24,0.85)' : 'transparent' }}>
         <div className="w-full max-w-[430px] flex items-center" style={{ gap: 6, paddingTop: 10, paddingBottom: scrolled ? 10 : 0, paddingLeft: 20, paddingRight: 20 }}>
-        <button onClick={() => navigate('/profile')} className="w-9 h-9 rounded-full shrink-0 active:scale-95 transition-transform bg-gray-200" style={{ marginRight: 4 }} />
+        <button onClick={() => navigate('/profile')} className="w-9 h-9 rounded-full shrink-0 active:scale-95 transition-transform bg-white/15" style={{ marginRight: 4 }} />
 
         {/* Selamlama */}
         <div className="flex-1 min-w-0">
-          <p className="text-gray-900 truncate flex items-center gap-1" style={{ fontSize: 16 }}><span className="font-normal">{new Date().getHours() < 12 ? 'Günaydın' : new Date().getHours() < 18 ? 'İyi Günler' : 'İyi Akşamlar'}</span>{new Date().getHours() < 18 ? <Sun size={16} strokeWidth={2} className="text-yellow-400" /> : <Moon size={16} strokeWidth={2} className="text-gray-400" />}<span className="font-bold">{user?.firstName}</span></p>
+          <p className="text-white truncate flex items-center gap-1" style={{ fontSize: 16 }}><span className="font-normal">{new Date().getHours() < 12 ? 'Günaydın' : new Date().getHours() < 18 ? 'İyi Günler' : 'İyi Akşamlar'}</span>{new Date().getHours() < 18 ? <Sun size={16} strokeWidth={2} className="text-yellow-400" /> : <Moon size={16} strokeWidth={2} className="text-white/60" />}<span className="font-bold">{user?.firstName}</span></p>
         </div>
 
         {/* Arama */}
-        <button onClick={() => window.dispatchEvent(new Event('open-search-sheet'))} className="rounded-full bg-white flex items-center justify-center active:scale-90 transition-transform" style={{ width: 42, height: 42 }}>
-          <Search size={18} strokeWidth={2.2} className="text-gray-900" />
+        <button onClick={() => window.dispatchEvent(new Event('open-search-sheet'))} className="rounded-full flex items-center justify-center active:scale-90 transition-all bg-white/10" style={{ width: 42, height: 42 }}>
+          <Search size={18} strokeWidth={2.2} className="text-white" />
         </button>
 
         {/* Bildirim */}
-        <button onClick={() => navigate('/bildirimler')} className="rounded-full bg-white flex items-center justify-center active:scale-90 transition-transform relative" style={{ width: 42, height: 42 }}>
-          <Bell size={18} strokeWidth={2.2} className="text-gray-900" />
+        <button onClick={() => navigate('/bildirimler')} className="rounded-full flex items-center justify-center active:scale-90 transition-all relative bg-white/10" style={{ width: 42, height: 42 }}>
+          <Bell size={18} strokeWidth={2.2} className="text-white" />
           <div className="absolute rounded-full bg-red-500" style={{ width: 12, height: 12, top: 0, right: 0 }} />
         </button>
         </div>
@@ -204,19 +204,19 @@ export default function Home() {
             {/* Slayt 1 */}
             <div
               className="shrink-0"
-              style={{ width: 'calc(100% - 40px)', borderRadius: 25, height: 210, scrollSnapAlign: 'center', background: '#ffffff' }}
+              style={{ width: 'calc(100% - 40px)', borderRadius: 25, height: 210, scrollSnapAlign: 'center', background: '#1e1e2e', border: '1px solid rgba(255,255,255,0.06)' }}
             />
 
             {/* Slayt 2 */}
             <div
               className="shrink-0"
-              style={{ width: 'calc(100% - 40px)', borderRadius: 25, height: 210, scrollSnapAlign: 'center', background: '#ffffff' }}
+              style={{ width: 'calc(100% - 40px)', borderRadius: 25, height: 210, scrollSnapAlign: 'center', background: '#1e1e2e', border: '1px solid rgba(255,255,255,0.06)' }}
             />
 
             {/* Slayt 3 */}
             <div
               className="shrink-0"
-              style={{ width: 'calc(100% - 40px)', borderRadius: 25, height: 210, scrollSnapAlign: 'center', background: '#ffffff' }}
+              style={{ width: 'calc(100% - 40px)', borderRadius: 25, height: 210, scrollSnapAlign: 'center', background: '#1e1e2e', border: '1px solid rgba(255,255,255,0.06)' }}
             />
           </div>
 
@@ -229,7 +229,7 @@ export default function Home() {
                 style={{
                   width: bannerIndex === i ? 20 : 6,
                   height: 6,
-                  background: bannerIndex === i ? '#1f2937' : '#d1d5db',
+                  background: bannerIndex === i ? '#ffffff' : 'rgba(255,255,255,0.2)',
                 }}
               />
             ))}
@@ -239,11 +239,11 @@ export default function Home() {
         {/* ── Kategoriler (yatay scroll) ── */}
         <div style={{ paddingTop: 20 }}>
           <div style={{ marginBottom: 12 }}>
-            <h2 className="text-gray-800 font-semibold" style={{ fontSize: 18 }}>Kategoriler <span className="text-gray-400">›</span></h2>
+            <h2 className="text-white font-semibold" style={{ fontSize: 18 }}>Kategoriler <span className="text-white/30">›</span></h2>
           </div>
           <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none', marginLeft: -20, marginRight: -20, paddingLeft: 20, paddingRight: 20 }}>
             {[
-              { label: '', bg: '#d1d5db' },
+              { label: '', bg: 'linear-gradient(135deg, #7C3AED, #EC4899)' },
               { label: 'Yemek' },
               { label: 'Restoran' },
               { label: 'Hizmetler' },
@@ -252,8 +252,8 @@ export default function Home() {
               { label: 'Oteller' },
             ].map(({ label, bg }) => (
               <div key={label || 'ai'} className="shrink-0 flex flex-col items-center gap-1.5" style={{ minWidth: 75 }}>
-                <div className="rounded-2xl relative overflow-hidden" style={{ width: 75, height: 75, background: bg || '#ffffff' }} />
-                {label && <span className="text-center whitespace-nowrap" style={{ fontSize: 14, color: '#6b7280', fontWeight: 500 }}>{label}</span>}
+                <div className="rounded-2xl relative overflow-hidden" style={{ width: 75, height: 75, background: bg || '#1e1e2e', border: '1px solid rgba(255,255,255,0.06)' }} />
+                {label && <span className="text-center whitespace-nowrap" style={{ fontSize: 14, color: 'rgba(255,255,255,0.5)', fontWeight: 500 }}>{label}</span>}
               </div>
             ))}
           </div>
@@ -262,7 +262,7 @@ export default function Home() {
         {/* ── Yakınımda ── */}
         <div style={{ paddingTop: 20 }}>
           <div style={{ marginBottom: 12 }}>
-            <h2 className="text-gray-800 font-semibold" style={{ fontSize: 18 }}>Yakınımda <span className="text-gray-400">›</span></h2>
+            <h2 className="text-white font-semibold" style={{ fontSize: 18 }}>Yakınımda <span className="text-white/30">›</span></h2>
           </div>
           <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none', marginLeft: -20, marginRight: -20, paddingLeft: 20, paddingRight: 20 }}>
             {[
@@ -276,13 +276,13 @@ export default function Home() {
               const place = MOCK_PLACES[type]?.[0]
               return (
                 <button key={type} onClick={() => navigate(`/nearby/${type}`)} className="shrink-0 active:scale-[0.97] transition-transform">
-                  <div className="bg-white flex items-center gap-3" style={{ width: 165, borderRadius: 16, padding: '14px 14px' }}>
-                    <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center shrink-0">
-                      <Icon size={20} strokeWidth={1.8} className="text-gray-800" />
+                  <div className="flex items-center gap-3" style={{ width: 165, borderRadius: 16, padding: '14px 14px', background: '#1e1e2e', border: '1px solid rgba(255,255,255,0.06)' }}>
+                    <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ background: 'rgba(255,255,255,0.08)' }}>
+                      <Icon size={20} strokeWidth={1.8} className="text-white" />
                     </div>
                     <div className="flex-1 min-w-0 text-left">
-                      <p className="text-gray-900 text-[13px] font-bold truncate">{place?.name || label}</p>
-                      <p className="text-gray-400 text-[11px] mt-0.5">{place?.distance}</p>
+                      <p className="text-white text-[13px] font-bold truncate">{place?.name || label}</p>
+                      <p className="text-[11px] mt-0.5" style={{ color: 'rgba(255,255,255,0.4)' }}>{place?.distance}</p>
                     </div>
                   </div>
                 </button>
@@ -294,7 +294,7 @@ export default function Home() {
         {/* ── Hızlı Erişim ── */}
         <div style={{ paddingTop: 20 }}>
           <div style={{ marginBottom: 12 }} className="flex items-center justify-between">
-            <button onClick={() => setKategoriSheet(true)}><h2 className="text-gray-800 font-semibold" style={{ fontSize: 18 }}>Şehir Rehberi <span className="text-gray-400">›</span></h2></button>
+            <button onClick={() => setKategoriSheet(true)}><h2 className="text-white font-semibold" style={{ fontSize: 18 }}>Şehir Rehberi <span className="text-white/30">›</span></h2></button>
           </div>
           <div className="grid grid-cols-5 gap-x-3" style={{ rowGap: 12 }}>
             {QUICK_ACCESS.map(({ label, type }) => (
@@ -303,8 +303,8 @@ export default function Home() {
                 onClick={() => navigate(`/nearby/${type}`)}
                 className="flex flex-col items-center gap-1.5 active:scale-95 transition-transform"
               >
-                <div className="rounded-2xl bg-white" style={{ width: 60, height: 60 }} />
-                <span style={{ fontSize: 13, color: '#6b7280', fontWeight: 500 }}>{label}</span>
+                <div className="rounded-2xl" style={{ width: 60, height: 60, background: '#1e1e2e', border: '1px solid rgba(255,255,255,0.06)' }} />
+                <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.5)', fontWeight: 500 }}>{label}</span>
               </button>
             ))}
           </div>
@@ -313,34 +313,34 @@ export default function Home() {
         {/* ── İndirimler & Fırsatlar (resimdeki alt kısım) ── */}
         <div style={{ paddingTop: 20 }}>
           <div style={{ marginBottom: 12 }}>
-            <h2 className="text-gray-800 font-semibold" style={{ fontSize: 18 }}>İndirimler & Fırsatlar <span className="text-gray-400">›</span></h2>
+            <h2 className="text-white font-semibold" style={{ fontSize: 18 }}>İndirimler & Fırsatlar <span className="text-white/30">›</span></h2>
           </div>
           <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch', marginLeft: -20, marginRight: -20, paddingLeft: 20, paddingRight: 20 }}>
 
             {/* Kart 1 */}
             <button onClick={() => navigate('/food')} className="shrink-0 text-left active:scale-[0.97] transition-transform" style={{ width: 140 }}>
-              <div className="w-full h-[100px] bg-white" style={{ borderRadius: 16 }} />
+              <div className="w-full h-[100px]" style={{ borderRadius: 16, background: '#1e1e2e', border: '1px solid rgba(255,255,255,0.06)' }} />
               <div className="px-1 pt-2.5">
-                <p className="text-gray-900 text-[15px] font-bold truncate">Yemek & Restoran</p>
-                <p className="text-gray-400 text-xs mt-0.5 truncate">%20'ye varan indirimler</p>
+                <p className="text-white text-[15px] font-bold truncate">Yemek & Restoran</p>
+                <p className="text-xs mt-0.5 truncate" style={{ color: 'rgba(255,255,255,0.4)' }}>%20'ye varan indirimler</p>
               </div>
             </button>
 
             {/* Kart 3 */}
             <button onClick={() => navigate('/campaigns')} className="shrink-0 text-left active:scale-[0.97] transition-transform" style={{ width: 140 }}>
-              <div className="w-full h-[100px] bg-white" style={{ borderRadius: 16 }} />
+              <div className="w-full h-[100px]" style={{ borderRadius: 16, background: '#1e1e2e', border: '1px solid rgba(255,255,255,0.06)' }} />
               <div className="px-1 pt-2.5">
-                <p className="text-gray-900 text-[15px] font-bold truncate">Kampanyalar</p>
-                <p className="text-gray-400 text-xs mt-0.5 truncate">Güncel promosyonlar</p>
+                <p className="text-white text-[15px] font-bold truncate">Kampanyalar</p>
+                <p className="text-xs mt-0.5 truncate" style={{ color: 'rgba(255,255,255,0.4)' }}>Güncel promosyonlar</p>
               </div>
             </button>
 
             {/* Kart 4 */}
             <button onClick={() => navigate('/oteller')} className="shrink-0 text-left active:scale-[0.97] transition-transform" style={{ width: 140 }}>
-              <div className="w-full h-[100px] bg-white" style={{ borderRadius: 16 }} />
+              <div className="w-full h-[100px]" style={{ borderRadius: 16, background: '#1e1e2e', border: '1px solid rgba(255,255,255,0.06)' }} />
               <div className="px-1 pt-2.5">
-                <p className="text-gray-900 text-[15px] font-bold truncate">Oteller</p>
-                <p className="text-gray-400 text-xs mt-0.5 truncate">Erken rezervasyon fırs...</p>
+                <p className="text-white text-[15px] font-bold truncate">Oteller</p>
+                <p className="text-xs mt-0.5 truncate" style={{ color: 'rgba(255,255,255,0.4)' }}>Erken rezervasyon fırs...</p>
               </div>
             </button>
 
@@ -350,39 +350,39 @@ export default function Home() {
         {/* ── Haberler ── */}
         <div style={{ paddingTop: 20 }}>
           <div style={{ marginBottom: 12 }}>
-            <h2 className="text-gray-800 font-semibold" style={{ fontSize: 18 }}>Haberler <span className="text-gray-400">›</span></h2>
+            <h2 className="text-white font-semibold" style={{ fontSize: 18 }}>Haberler <span className="text-white/30">›</span></h2>
           </div>
           <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none', marginLeft: -20, marginRight: -20, paddingLeft: 20, paddingRight: 20 }}>
 
             <div className="shrink-0 text-left" style={{ width: 140 }}>
-              <div className="w-full h-[100px] bg-white" style={{ borderRadius: 16 }} />
+              <div className="w-full h-[100px]" style={{ borderRadius: 16, background: '#1e1e2e', border: '1px solid rgba(255,255,255,0.06)' }} />
               <div className="px-1 pt-2.5">
-                <p className="text-gray-900 text-[15px] font-bold truncate">Yeni Metro Hattı</p>
-                <p className="text-gray-400 text-xs mt-0.5 truncate">Gebze'de çalışmalar başladı</p>
+                <p className="text-white text-[15px] font-bold truncate">Yeni Metro Hattı</p>
+                <p className="text-xs mt-0.5 truncate" style={{ color: 'rgba(255,255,255,0.4)' }}>Gebze'de çalışmalar başladı</p>
               </div>
             </div>
 
             <div className="shrink-0 text-left" style={{ width: 140 }}>
-              <div className="w-full h-[100px] bg-white" style={{ borderRadius: 16 }} />
+              <div className="w-full h-[100px]" style={{ borderRadius: 16, background: '#1e1e2e', border: '1px solid rgba(255,255,255,0.06)' }} />
               <div className="px-1 pt-2.5">
-                <p className="text-gray-900 text-[15px] font-bold truncate">Kent Parkı Yenilendi</p>
-                <p className="text-gray-400 text-xs mt-0.5 truncate">Proje tamamlandı</p>
+                <p className="text-white text-[15px] font-bold truncate">Kent Parkı Yenilendi</p>
+                <p className="text-xs mt-0.5 truncate" style={{ color: 'rgba(255,255,255,0.4)' }}>Proje tamamlandı</p>
               </div>
             </div>
 
             <div className="shrink-0 text-left" style={{ width: 140 }}>
-              <div className="w-full h-[100px] bg-white" style={{ borderRadius: 16 }} />
+              <div className="w-full h-[100px]" style={{ borderRadius: 16, background: '#1e1e2e', border: '1px solid rgba(255,255,255,0.06)' }} />
               <div className="px-1 pt-2.5">
-                <p className="text-gray-900 text-[15px] font-bold truncate">Ücretsiz Ulaşım</p>
-                <p className="text-gray-400 text-xs mt-0.5 truncate">Öğrencilere müjde</p>
+                <p className="text-white text-[15px] font-bold truncate">Ücretsiz Ulaşım</p>
+                <p className="text-xs mt-0.5 truncate" style={{ color: 'rgba(255,255,255,0.4)' }}>Öğrencilere müjde</p>
               </div>
             </div>
 
             <div className="shrink-0 text-left" style={{ width: 140 }}>
-              <div className="w-full h-[100px] bg-white" style={{ borderRadius: 16 }} />
+              <div className="w-full h-[100px]" style={{ borderRadius: 16, background: '#1e1e2e', border: '1px solid rgba(255,255,255,0.06)' }} />
               <div className="px-1 pt-2.5">
-                <p className="text-gray-900 text-[15px] font-bold truncate">Yeni Hastane</p>
-                <p className="text-gray-400 text-xs mt-0.5 truncate">Hizmete açılıyor</p>
+                <p className="text-white text-[15px] font-bold truncate">Yeni Hastane</p>
+                <p className="text-xs mt-0.5 truncate" style={{ color: 'rgba(255,255,255,0.4)' }}>Hizmete açılıyor</p>
               </div>
             </div>
 
