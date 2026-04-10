@@ -32,17 +32,14 @@ export default function Profile() {
   }
 
   const ROW_CLS = 'w-full flex items-center gap-3 px-4 py-3.5 active:bg-gray-50 transition-colors'
-  const ICON_CLS = 'w-9 h-9 rounded-full bg-gray-50 flex items-center justify-center shrink-0'
 
   function Row({ icon: Icon, label, value, onClick, danger }) {
     return (
       <button onClick={onClick} className={ROW_CLS}>
-        <div className={ICON_CLS}>
-          <Icon size={20} strokeWidth={2} className={danger ? 'text-red-500' : 'text-gray-500'} />
-        </div>
+        <Icon size={22} strokeWidth={2} className={danger ? 'text-red-500' : 'text-gray-900'} />
         <span className={`flex-1 text-left text-sm font-medium ${danger ? 'text-red-500' : 'text-gray-800'}`}>{label}</span>
-        {value && <span className="text-gray-400 text-sm mr-1">{value}</span>}
-        <ChevronRight size={16} strokeWidth={2} className="text-gray-300" />
+        {value && <span className="text-gray-900 text-sm mr-1">{value}</span>}
+        <ChevronRight size={18} strokeWidth={2} className="text-gray-900" />
       </button>
     )
   }
@@ -108,9 +105,7 @@ export default function Profile() {
           <div className="bg-white rounded-2xl divide-y divide-gray-100">
             <Row icon={HelpCircle} label="Yardım Merkezi" />
             <button onClick={handleLogout} className={ROW_CLS}>
-              <div className={ICON_CLS}>
-                <MoveRight size={20} strokeWidth={2} className="text-red-500" />
-              </div>
+              <MoveRight size={22} strokeWidth={2} className="text-red-500" />
               <span className="flex-1 text-left text-sm font-medium text-red-500">Çıkış Yap</span>
             </button>
           </div>

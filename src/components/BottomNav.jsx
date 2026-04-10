@@ -155,34 +155,34 @@ export default function BottomNav() {
 
   return (
     <>
-      <nav className="fixed z-50 flex justify-center" style={{ bottom: 20, left: 0, right: 0 }}>
-        <div className="bg-white/85 backdrop-blur-md flex items-center justify-center gap-[6px]" style={{ borderRadius: 9999, padding: '8px 8px', position: 'relative', boxShadow: '0 2px 12px rgba(0,0,0,0.06)', border: '1px solid rgba(0,0,0,0.04)' }}>
+      <nav className="fixed z-50 flex justify-center" style={{ bottom: 0, left: 0, right: 0 }}>
+        <div className="w-full max-w-[430px] flex items-center justify-between" style={{ borderRadius: '15px 15px 0 0', padding: '10px 20px', background: '#000000' }}>
 
-          <button onClick={() => navigate('/home')} className="flex items-center justify-center" style={{ width: 44, height: 44, borderRadius: 9999, background: active === 'home' ? '#111827' : 'transparent' }}>
+          <button onClick={() => navigate('/home')} className="flex items-center justify-center" style={{ width: 44, height: 44 }}>
             <Home size={24} strokeWidth={2} className={active === 'home' ? 'text-white' : 'text-gray-400'} />
           </button>
 
-          <button onClick={openSearchSheet} className="flex items-center justify-center" style={{ width: 44, height: 44, borderRadius: 9999 }}>
+          <button onClick={openSearchSheet} className="flex items-center justify-center" style={{ width: 44, height: 44 }}>
             <Search size={24} strokeWidth={2} className="text-gray-400" />
           </button>
 
-          <button onClick={openSheet} className="flex items-center justify-center" style={{ width: 44, height: 44, borderRadius: 9999 }}>
+          <button onClick={openSheet} className="flex items-center justify-center" style={{ width: 44, height: 44 }}>
             <LayoutGrid size={24} strokeWidth={2} className="text-gray-400" />
           </button>
 
-          <button onClick={() => navigate('/explore')} className="flex items-center justify-center" style={{ width: 44, height: 44, borderRadius: 9999, background: active === 'explore' ? '#111827' : 'transparent' }}>
+          <button onClick={() => navigate('/explore')} className="flex items-center justify-center" style={{ width: 44, height: 44 }}>
             <Compass size={24} strokeWidth={2} className={active === 'explore' ? 'text-white' : 'text-gray-400'} />
           </button>
 
-          <button onClick={() => navigate('/mesajlarim')} className="flex items-center justify-center" style={{ width: 44, height: 44, borderRadius: 9999, background: active === 'messages' ? '#111827' : 'transparent' }}>
+          <button onClick={() => navigate('/mesajlarim')} className="relative flex items-center justify-center" style={{ width: 44, height: 44 }}>
             <MessageCircle size={24} strokeWidth={2} className={active === 'messages' ? 'text-white' : 'text-gray-400'} />
+            <div className="absolute" style={{ top: 6, right: 6, width: 8, height: 8, borderRadius: '50%', background: '#ef4444' }} />
           </button>
 
-          <button onClick={() => navigate('/profile')} className="flex items-center justify-center" style={{ width: 44, height: 44, borderRadius: 9999 }}>
+          <button onClick={() => navigate('/profile')} className="flex items-center justify-center" style={{ width: 44, height: 44 }}>
             <div style={{
-              width: 32, height: 32, borderRadius: '50%',
-              border: 'none',
-              background: '#e5e7eb',
+              width: 28, height: 28, borderRadius: '50%',
+              background: active === 'profile' ? '#ffffff' : '#e5e7eb',
             }} />
           </button>
 
