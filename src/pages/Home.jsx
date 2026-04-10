@@ -266,19 +266,21 @@ export default function Home() {
           </div>
           <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none', marginLeft: -20, marginRight: -20, paddingLeft: 20, paddingRight: 20 }}>
             {[
-              { label: 'Eczane', type: 'pharmacy', icon: Pill, iconBg: 'rgba(239,68,68,0.2)', iconColor: 'text-red-400' },
-              { label: 'ATM', type: 'atm', icon: CreditCard },
-              { label: 'Benzinlik', type: 'fuel', icon: Fuel },
-              { label: 'Otopark', type: 'parking', icon: ParkingCircle },
-              { label: 'Otobüs', type: 'bus', icon: Bus },
-              { label: 'Şarj', type: 'charging', icon: Zap },
-            ].map(({ label, type, icon: Icon, iconBg, iconColor }) => {
+              { label: 'Eczane', type: 'pharmacy', logo: 'https://atakoyplus.com/wp-content/uploads/2022/03/eczane.png', iconBg: '#ef4444' },
+              { label: 'ATM', type: 'atm', logo: 'https://play-lh.googleusercontent.com/FzSKxZNZy_tchg-jexqNX9SWyK_l_iXU3DnN4AufVVm6CsoI1ouAjSaHy0X-_PeQ_D23' },
+              { label: 'Benzinlik', type: 'fuel', logo: 'https://s3-symbol-logo.tradingview.com/shell--600.png' },
+              { label: 'Otopark', type: 'parking', icon: ParkingCircle, iconBg: '#2563eb' },
+              { label: 'Otobüs', type: 'bus', icon: Bus, iconBg: '#2563eb' },
+              { label: 'Şarj', type: 'charging', icon: Zap, iconBg: '#84cc16' },
+            ].map(({ label, type, icon: Icon, logo, letter, iconBg }) => {
               const place = MOCK_PLACES[type]?.[0]
               return (
                 <button key={type} onClick={() => navigate(`/nearby/${type}`)} className="shrink-0 active:scale-[0.97] transition-transform">
                   <div className="flex items-center gap-3" style={{ width: 165, borderRadius: 16, padding: '14px 14px', background: '#1e1e2e', border: '1px solid rgba(255,255,255,0.06)' }}>
-                    <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ background: iconBg || 'rgba(255,255,255,0.08)' }}>
-                      <Icon size={20} strokeWidth={1.8} className={iconColor || 'text-white'} />
+                    <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 overflow-hidden" style={{ background: iconBg || 'rgba(255,255,255,0.08)' }}>
+                      {letter ? <span className="text-white font-black text-base">{letter}</span>
+                        : logo ? <img src={logo} alt={label} className="w-full h-full object-cover" />
+                        : Icon ? <Icon size={20} strokeWidth={1.8} className="text-white" /> : null}
                     </div>
                     <div className="flex-1 min-w-0 text-left">
                       <p className="text-white text-[13px] font-bold truncate">{place?.name || label}</p>
@@ -303,7 +305,7 @@ export default function Home() {
                 onClick={() => navigate(`/nearby/${type}`)}
                 className="flex flex-col items-center gap-1.5 active:scale-95 transition-transform"
               >
-                <div className="rounded-2xl flex items-center justify-center" style={{ width: 60, height: 60, background: type === 'pharmacy' ? '#ef4444' : '#1e1e2e', border: type === 'pharmacy' ? 'none' : '1px solid rgba(255,255,255,0.06)' }}>
+                <div className="rounded-2xl flex items-center justify-center" style={{ width: 60, height: 60, background: 'linear-gradient(180deg, #2d1b69 0%, #1e1e2e 100%)' }}>
                   <Icon size={22} strokeWidth={1.8} className="text-white" />
                 </div>
                 <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.5)', fontWeight: 500 }}>{label}</span>
