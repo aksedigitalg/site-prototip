@@ -156,7 +156,7 @@ export default function BottomNav() {
   return (
     <>
       <nav className="fixed z-50 flex justify-center" style={{ bottom: 0, left: 0, right: 0 }}>
-        <div className="w-full max-w-[430px] flex items-center justify-between" style={{ borderRadius: '10px 10px 0 0', padding: '10px 20px 20px 20px', background: '#000000' }}>
+        <div className="w-full max-w-[430px] flex items-center justify-between" style={{ borderRadius: '20px 20px 0 0', padding: '10px 20px 20px 20px', background: '#000000' }}>
 
           <button onClick={() => navigate('/home')} className="flex items-center justify-center" style={{ width: 44, height: 44 }}>
             <Home size={24} strokeWidth={2} className={active === 'home' ? 'text-white' : 'text-gray-400'} />
