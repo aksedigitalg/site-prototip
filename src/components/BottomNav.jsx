@@ -176,7 +176,7 @@ export default function BottomNav() {
 
           <button onClick={() => navigate('/mesajlarim')} className="relative flex items-center justify-center" style={{ width: 44, height: 44 }}>
             <MessageCircle size={24} strokeWidth={2} className={active === 'messages' ? 'text-white' : 'text-gray-400'} />
-            <div className="absolute" style={{ top: 6, right: 6, width: 8, height: 8, borderRadius: '50%', background: '#ef4444' }} />
+            <div className="absolute" style={{ top: 8, right: 8, width: 10, height: 10, borderRadius: '50%', background: '#ef4444' }} />
           </button>
 
           <button onClick={() => navigate('/profile')} className="flex items-center justify-center" style={{ width: 44, height: 44 }}>
