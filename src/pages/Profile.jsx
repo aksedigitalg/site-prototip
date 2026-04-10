@@ -58,7 +58,7 @@ export default function Profile() {
 
         {/* Profil Kartı */}
         <div className="bg-white rounded-2xl px-4 py-5 flex items-center gap-4">
-          <div className="w-16 h-16 rounded-full bg-gray-200 shrink-0" />
+          <img src="https://images.unsplash.com/photo-1639149888905-fb39731f2e6c?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0" className="w-16 h-16 rounded-full shrink-0 object-cover" />
           <div className="flex-1 min-w-0">
             <h1 className="text-gray-900 text-base font-bold">
               {user?.firstName} {user?.lastName}

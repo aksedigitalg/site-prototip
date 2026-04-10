@@ -156,7 +156,7 @@ export default function BottomNav() {
   return (
     <>
       <nav className="fixed z-50 flex justify-center" style={{ bottom: 0, left: 0, right: 0 }}>
-        <div className="w-full max-w-[430px] flex items-center justify-between" style={{ borderRadius: '15px 15px 0 0', padding: '10px 20px', background: '#000000' }}>
+        <div className="w-full max-w-[430px] flex items-center justify-between" style={{ borderRadius: '10px 10px 0 0', padding: '10px 20px 20px 20px', background: '#000000' }}>
 
           <button onClick={() => navigate('/home')} className="flex items-center justify-center" style={{ width: 44, height: 44 }}>
             <Home size={24} strokeWidth={2} className={active === 'home' ? 'text-white' : 'text-gray-400'} />
@@ -180,9 +180,9 @@ export default function BottomNav() {
           </button>
 
           <button onClick={() => navigate('/profile')} className="flex items-center justify-center" style={{ width: 44, height: 44 }}>
-            <div style={{
-              width: 28, height: 28, borderRadius: '50%',
-              background: active === 'profile' ? '#ffffff' : '#e5e7eb',
+            <img src="https://images.unsplash.com/photo-1639149888905-fb39731f2e6c?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0" style={{
+              width: 28, height: 28, borderRadius: '50%', objectFit: 'cover',
+              border: 'none',
             }} />
           </button>
 
