@@ -204,19 +204,19 @@ export default function Home() {
             {/* Slayt 1 */}
             <div
               className="shrink-0"
-              style={{ width: 'calc(100% - 40px)', borderRadius: 25, height: 210, scrollSnapAlign: 'center', background: '#1e1e2e', border: '1px solid rgba(255,255,255,0.06)' }}
+              style={{ width: 'calc(100% - 40px)', borderRadius: 25, height: 210, scrollSnapAlign: 'center', background: '#1e1e2e' }}
             />
 
             {/* Slayt 2 */}
             <div
               className="shrink-0"
-              style={{ width: 'calc(100% - 40px)', borderRadius: 25, height: 210, scrollSnapAlign: 'center', background: '#1e1e2e', border: '1px solid rgba(255,255,255,0.06)' }}
+              style={{ width: 'calc(100% - 40px)', borderRadius: 25, height: 210, scrollSnapAlign: 'center', background: '#1e1e2e' }}
             />
 
             {/* Slayt 3 */}
             <div
               className="shrink-0"
-              style={{ width: 'calc(100% - 40px)', borderRadius: 25, height: 210, scrollSnapAlign: 'center', background: '#1e1e2e', border: '1px solid rgba(255,255,255,0.06)' }}
+              style={{ width: 'calc(100% - 40px)', borderRadius: 25, height: 210, scrollSnapAlign: 'center', background: '#1e1e2e' }}
             />
           </div>
 
@@ -252,7 +252,7 @@ export default function Home() {
               { label: 'Oteller' },
             ].map(({ label, bg }) => (
               <div key={label || 'ai'} className="shrink-0 flex flex-col items-center gap-1.5" style={{ minWidth: 75 }}>
-                <div className="rounded-2xl relative overflow-hidden" style={{ width: 75, height: 75, background: bg || '#1e1e2e', border: '1px solid rgba(255,255,255,0.06)' }} />
+                <div className="rounded-2xl relative overflow-hidden" style={{ width: 75, height: 75, background: bg || '#1e1e2e' }} />
                 {label && <span className="text-center whitespace-nowrap" style={{ fontSize: 14, color: 'rgba(255,255,255,0.5)', fontWeight: 500 }}>{label}</span>}
               </div>
             ))}
@@ -276,7 +276,7 @@ export default function Home() {
               const place = MOCK_PLACES[type]?.[0]
               return (
                 <button key={type} onClick={() => navigate(`/nearby/${type}`)} className="shrink-0 active:scale-[0.97] transition-transform">
-                  <div className="flex items-center gap-3" style={{ width: 165, borderRadius: 16, padding: '14px 14px', background: '#1e1e2e', border: '1px solid rgba(255,255,255,0.06)' }}>
+                  <div className="flex items-center gap-3" style={{ width: 165, borderRadius: 16, padding: '14px 14px', background: '#1e1e2e' }}>
                     <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 overflow-hidden" style={{ background: iconBg || 'rgba(255,255,255,0.08)' }}>
                       {letter ? <span className="text-white font-black text-base">{letter}</span>
                         : logo ? <img src={logo} alt={label} className="w-full h-full object-cover" />
@@ -305,7 +305,7 @@ export default function Home() {
                 onClick={() => navigate(`/nearby/${type}`)}
                 className="flex flex-col items-center gap-1.5 active:scale-95 transition-transform"
               >
-                <div className="rounded-2xl flex items-center justify-center" style={{ width: 60, height: 60, background: 'linear-gradient(180deg, #2d1b69 0%, #1e1e2e 100%)' }}>
+                <div className="rounded-2xl flex items-center justify-center" style={{ width: 60, height: 60, background: 'linear-gradient(180deg, #252038 0%, #1e1e2e 100%)' }}>
                   <Icon size={22} strokeWidth={1.8} className="text-white" />
                 </div>
                 <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.5)', fontWeight: 500 }}>{label}</span>
@@ -314,7 +314,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* ── İndirimler & Fırsatlar (resimdeki alt kısım) ── */}
+        {/* ── İndirimler & Fırsatlar ── */}
         <div style={{ paddingTop: 20 }}>
           <div style={{ marginBottom: 12 }}>
             <h2 className="text-white font-semibold" style={{ fontSize: 18 }}>İndirimler & Fırsatlar <span className="text-white/30">›</span></h2>
@@ -323,7 +323,7 @@ export default function Home() {
 
             {/* Kart 1 */}
             <button onClick={() => navigate('/food')} className="shrink-0 text-left active:scale-[0.97] transition-transform" style={{ width: 140 }}>
-              <div className="w-full h-[100px]" style={{ borderRadius: 16, background: '#1e1e2e', border: '1px solid rgba(255,255,255,0.06)' }} />
+              <div className="w-full h-[100px]" style={{ borderRadius: 16, background: '#1e1e2e' }} />
               <div className="px-1 pt-2.5">
                 <p className="text-white text-[15px] font-bold truncate">Yemek & Restoran</p>
                 <p className="text-xs mt-0.5 truncate" style={{ color: 'rgba(255,255,255,0.4)' }}>%20'ye varan indirimler</p>
@@ -332,7 +332,7 @@ export default function Home() {
 
             {/* Kart 3 */}
             <button onClick={() => navigate('/campaigns')} className="shrink-0 text-left active:scale-[0.97] transition-transform" style={{ width: 140 }}>
-              <div className="w-full h-[100px]" style={{ borderRadius: 16, background: '#1e1e2e', border: '1px solid rgba(255,255,255,0.06)' }} />
+              <div className="w-full h-[100px]" style={{ borderRadius: 16, background: '#1e1e2e' }} />
               <div className="px-1 pt-2.5">
                 <p className="text-white text-[15px] font-bold truncate">Kampanyalar</p>
                 <p className="text-xs mt-0.5 truncate" style={{ color: 'rgba(255,255,255,0.4)' }}>Güncel promosyonlar</p>
@@ -341,7 +341,7 @@ export default function Home() {
 
             {/* Kart 4 */}
             <button onClick={() => navigate('/oteller')} className="shrink-0 text-left active:scale-[0.97] transition-transform" style={{ width: 140 }}>
-              <div className="w-full h-[100px]" style={{ borderRadius: 16, background: '#1e1e2e', border: '1px solid rgba(255,255,255,0.06)' }} />
+              <div className="w-full h-[100px]" style={{ borderRadius: 16, background: '#1e1e2e' }} />
               <div className="px-1 pt-2.5">
                 <p className="text-white text-[15px] font-bold truncate">Oteller</p>
                 <p className="text-xs mt-0.5 truncate" style={{ color: 'rgba(255,255,255,0.4)' }}>Erken rezervasyon fırs...</p>
@@ -359,7 +359,7 @@ export default function Home() {
           <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none', marginLeft: -20, marginRight: -20, paddingLeft: 20, paddingRight: 20 }}>
 
             <div className="shrink-0 text-left" style={{ width: 140 }}>
-              <div className="w-full h-[100px]" style={{ borderRadius: 16, background: '#1e1e2e', border: '1px solid rgba(255,255,255,0.06)' }} />
+              <div className="w-full h-[100px]" style={{ borderRadius: 16, background: '#1e1e2e' }} />
               <div className="px-1 pt-2.5">
                 <p className="text-white text-[15px] font-bold truncate">Yeni Metro Hattı</p>
                 <p className="text-xs mt-0.5 truncate" style={{ color: 'rgba(255,255,255,0.4)' }}>Gebze'de çalışmalar başladı</p>
@@ -367,7 +367,7 @@ export default function Home() {
             </div>
 
             <div className="shrink-0 text-left" style={{ width: 140 }}>
-              <div className="w-full h-[100px]" style={{ borderRadius: 16, background: '#1e1e2e', border: '1px solid rgba(255,255,255,0.06)' }} />
+              <div className="w-full h-[100px]" style={{ borderRadius: 16, background: '#1e1e2e' }} />
               <div className="px-1 pt-2.5">
                 <p className="text-white text-[15px] font-bold truncate">Kent Parkı Yenilendi</p>
                 <p className="text-xs mt-0.5 truncate" style={{ color: 'rgba(255,255,255,0.4)' }}>Proje tamamlandı</p>
@@ -375,7 +375,7 @@ export default function Home() {
             </div>
 
             <div className="shrink-0 text-left" style={{ width: 140 }}>
-              <div className="w-full h-[100px]" style={{ borderRadius: 16, background: '#1e1e2e', border: '1px solid rgba(255,255,255,0.06)' }} />
+              <div className="w-full h-[100px]" style={{ borderRadius: 16, background: '#1e1e2e' }} />
               <div className="px-1 pt-2.5">
                 <p className="text-white text-[15px] font-bold truncate">Ücretsiz Ulaşım</p>
                 <p className="text-xs mt-0.5 truncate" style={{ color: 'rgba(255,255,255,0.4)' }}>Öğrencilere müjde</p>
@@ -383,7 +383,7 @@ export default function Home() {
             </div>
 
             <div className="shrink-0 text-left" style={{ width: 140 }}>
-              <div className="w-full h-[100px]" style={{ borderRadius: 16, background: '#1e1e2e', border: '1px solid rgba(255,255,255,0.06)' }} />
+              <div className="w-full h-[100px]" style={{ borderRadius: 16, background: '#1e1e2e' }} />
               <div className="px-1 pt-2.5">
                 <p className="text-white text-[15px] font-bold truncate">Yeni Hastane</p>
                 <p className="text-xs mt-0.5 truncate" style={{ color: 'rgba(255,255,255,0.4)' }}>Hizmete açılıyor</p>
