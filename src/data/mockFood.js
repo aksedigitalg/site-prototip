@@ -18,31 +18,6 @@ export const RESTAURANTS = [
     rating: 4.8, reviewCount: 234, deliveryTime: '20-30 dk',
     minOrder: 50, distance: '0.8 km', isOpen: true, discount: '%20',
   },
-  {
-    id: 2, name: 'Pizza House', category: 'Pizza',
-    rating: 4.5, reviewCount: 189, deliveryTime: '25-40 dk',
-    minOrder: 80, distance: '1.2 km', isOpen: true, discount: null,
-  },
-  {
-    id: 3, name: 'Burger Bros', category: 'Burger',
-    rating: 4.6, reviewCount: 312, deliveryTime: '15-25 dk',
-    minOrder: 60, distance: '0.5 km', isOpen: true, discount: '%10',
-  },
-  {
-    id: 4, name: 'Köfteci Yusuf', category: 'Köfte',
-    rating: 4.9, reviewCount: 521, deliveryTime: '20-35 dk',
-    minOrder: 40, distance: '1.5 km', isOpen: true, discount: null,
-  },
-  {
-    id: 5, name: 'Pide Fırını', category: 'Pide',
-    rating: 4.3, reviewCount: 98, deliveryTime: '30-45 dk',
-    minOrder: 70, distance: '2.1 km', isOpen: false, discount: null,
-  },
-  {
-    id: 6, name: 'Kebapçı Ali', category: 'Kebap',
-    rating: 4.7, reviewCount: 445, deliveryTime: '25-35 dk',
-    minOrder: 55, distance: '0.9 km', isOpen: true, discount: '%15',
-  },
 ]
 
 export const DISCOUNT_CARDS = {

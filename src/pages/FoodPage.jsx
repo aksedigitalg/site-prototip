@@ -1,44 +1,7 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Search, Star, Clock, ChevronLeft, ChevronRight } from 'lucide-react'
-import { FOOD_CATEGORIES, FOOD_FILTERS, SLIDER_BANNERS, RESTAURANTS } from '../data/mockFood'
-import StoryBar from '../components/StoryBar'
-import { STORIES, MARKALAR } from '../data/mockStory'
-
-function Slider() {
-  const [current, setCurrent] = useState(0)
-
-  useEffect(() => {
-    const t = setInterval(() => setCurrent(c => (c + 1) % SLIDER_BANNERS.length), 3000)
-    return () => clearInterval(t)
-  }, [])
-
-  const s = SLIDER_BANNERS[current]
-
-  return (
-    <div className="mx-4 mt-4 rounded-2xl overflow-hidden relative" style={{ height: 140 }}>
-      <div
-        className="w-full h-full flex flex-col justify-center px-6"
-        style={{ backgroundColor: s.bg, transition: 'background-color 0.5s' }}
-      >
-        <p className="text-white/60 text-xs font-medium mb-1">Özel Teklif</p>
-        <h2 className="text-white text-xl font-bold leading-tight">{s.title}</h2>
-        <p className="text-white/70 text-sm mt-1">{s.subtitle}</p>
-      </div>
-      {/* Dots */}
-      <div className="absolute bottom-3 right-4 flex gap-1.5">
-        {SLIDER_BANNERS.map((_, i) => (
-          <div
-            key={i}
-            onClick={() => setCurrent(i)}
-            className="h-1.5 rounded-full transition-all duration-300 cursor-pointer"
-            style={{ width: i === current ? 18 : 6, backgroundColor: i === current ? 'white' : 'rgba(255,255,255,0.4)' }}
-          />
-        ))}
-      </div>
-    </div>
-  )
-}
+import { FOOD_CATEGORIES, FOOD_FILTERS, RESTAURANTS } from '../data/mockFood'
 
 function RestaurantCard({ r, onClick }) {
   return (
@@ -109,12 +72,6 @@ export default function FoodPage() {
       </header>
 
       <div className="pt-14 pb-24">
-
-        {/* Slider */}
-        <Slider />
-
-        {/* Story + Markalar */}
-        <StoryBar stories={STORIES.food} markalar={MARKALAR.food} />
 
         {/* Kategoriler */}
         <div className="mt-5">

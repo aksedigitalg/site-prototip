@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ArrowLeft, Mic, ArrowUp, Sparkles } from 'lucide-react'
+import { ChevronLeft, ArrowUp, Search } from 'lucide-react'
 import { ONERI_SORULAR, AI_YANIT_SABLONLARI, VARSAYILAN_YANIT } from '../data/mockAI'
 
 function getAIResponse(text) {
@@ -13,7 +13,7 @@ function getAIResponse(text) {
 
 function TypingDots() {
   return (
-    <div className="flex items-center gap-1 px-4 py-3">
+    <div className="flex items-center gap-1.5 px-4 py-3">
       {[0, 1, 2].map(i => (
         <span
           key={i}
@@ -25,15 +25,22 @@ function TypingDots() {
   )
 }
 
+const QUICK_CHIPS = [
+  'Yakınımdaki restoranlar', 'Nöbetçi eczane nerede', 'Hava durumu nasıl', 'Bu hafta etkinlikler',
+  'En iyi kafeler', 'Düğün salonu öner', 'Güvenilir elektrikçi bul', 'Yakın otopark', 'En yakın ATM', 'Benzinlik nerede',
+  'Kuaför önerisi', 'Spor salonu yakında', 'Veteriner kliniği', 'Uygun otel bul',
+]
+
 export default function GebzemAI() {
   const navigate = useNavigate()
-  const raw  = localStorage.getItem('sehir_user')
+  const raw = localStorage.getItem('sehir_user')
   const user = raw ? JSON.parse(raw) : null
 
-  const [phase,    setPhase]    = useState('welcome')
+  const [phase, setPhase] = useState('welcome')
   const [messages, setMessages] = useState([])
-  const [input,    setInput]    = useState('')
+  const [input, setInput] = useState('')
   const [isTyping, setIsTyping] = useState(false)
+  const [mode, setMode] = useState('ai')
   const messagesEndRef = useRef(null)
 
   useEffect(() => {
@@ -45,13 +52,10 @@ export default function GebzemAI() {
   function gonder(metin) {
     const soru = (metin || input).trim()
     if (!soru) return
-
     setPhase('chat')
     setInput('')
-
     setMessages(prev => [...prev, { id: Date.now(), role: 'user', text: soru }])
     setIsTyping(true)
-
     setTimeout(() => {
       setMessages(prev => [...prev, { id: Date.now() + 1, role: 'ai', text: getAIResponse(soru) }])
       setIsTyping(false)
@@ -63,138 +67,125 @@ export default function GebzemAI() {
   }
 
   return (
-    <div
-      className="flex flex-col bg-white"
-      style={{ height: '100dvh', overscrollBehavior: 'none' }}
-    >
+    <div className="flex flex-col" style={{ height: '100dvh', background: '#ffffff' }}>
 
-      {/* ── Header ── */}
-      <div className="shrink-0 flex items-center justify-between px-4 pt-12 pb-3 bg-white border-b border-gray-100">
-        <button
-          onClick={() => navigate(-1)}
-          className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center active:scale-90 transition-transform"
-        >
-          <ArrowLeft size={18} strokeWidth={2} className="text-gray-700" />
+      {/* Header */}
+      <div className="shrink-0 flex items-center justify-between" style={{ paddingTop: 15, paddingBottom: 10, paddingLeft: 15, paddingRight: 15 }}>
+        <button onClick={() => navigate('/home')} className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center active:scale-90 transition-transform">
+          <ChevronLeft size={20} strokeWidth={2} className="text-gray-700" />
         </button>
-
-        <div className="flex items-center gap-1.5">
-          <Sparkles size={14} strokeWidth={2} className="text-gray-800" />
-          <span className="text-gray-900 text-sm font-bold tracking-wide">GebzemAI</span>
-        </div>
-
-        <div className="w-9" />
+        <span className="text-gray-900 text-sm font-bold">GebzemAI</span>
+        <div className="w-10" />
       </div>
 
-      {/* ── Karşılama ── */}
+      {/* Welcome */}
       {phase === 'welcome' && (
-        <div className="flex-1 flex flex-col px-5 pt-8">
-          <p className="text-gray-400 text-sm font-medium">
-            Merhaba, {user?.firstName || 'Hoş geldin'}!
-          </p>
-          <h1 className="text-gray-900 text-2xl font-extrabold leading-snug mt-2">
-            Şehrinizle ilgili<br />ne öğrenmek istersiniz?
-          </h1>
+        <div className="flex-1 flex flex-col" style={{ paddingLeft: 15, paddingRight: 15 }}>
+          <div className="flex flex-col items-center justify-center" style={{ flex: '0 0 auto', paddingTop: '25vh' }}>
+            <h1 className="text-gray-900 text-[22px] font-bold text-center leading-snug">
+              Merhaba {user?.firstName},<br />Bugün ne arıyorsun?
+            </h1>
+          </div>
+
+          {/* Chip grid — 3 satır, yatay scroll */}
+          <div style={{ marginTop: 40, marginLeft: -15, marginRight: -15 }}>
+            {[
+              QUICK_CHIPS.slice(0, 4),
+              QUICK_CHIPS.slice(4, 10),
+              QUICK_CHIPS.slice(10, 14),
+            ].map((row, ri) => (
+              <div key={ri} className="flex justify-center gap-1.5 overflow-x-auto" style={{ scrollbarWidth: 'none', paddingLeft: 15, paddingRight: 15, marginBottom: 6 }}>
+                {row.map((chip, ci) => (
+                  <button
+                    key={ci}
+                    onClick={() => gonder(chip)}
+                    className="shrink-0 rounded-full active:scale-95 transition-transform flex items-center justify-center"
+                    style={{ background: '#f3f3f3', height: 32, paddingLeft: 14, paddingRight: 14 }}
+                  >
+                    <span className="text-gray-500 text-[11px] font-medium whitespace-nowrap leading-none">{chip}</span>
+                  </button>
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
       )}
 
-      {/* ── Sohbet mesajları ── */}
+      {/* Chat */}
       {phase === 'chat' && (
-        <div
-          className="flex-1 overflow-y-auto px-4 pt-4 space-y-4"
-          style={{ scrollbarWidth: 'none', overscrollBehavior: 'contain', paddingBottom: '168px' }}
-        >
+        <div className="flex-1 overflow-y-auto pt-2 space-y-4" style={{ scrollbarWidth: 'none', paddingBottom: 180, paddingLeft: 15, paddingRight: 15 }}>
           {messages.map(m =>
             m.role === 'user' ? (
               <div key={m.id} className="flex justify-end">
-                <div className="max-w-[78%] bg-gray-900 rounded-2xl rounded-tr-sm px-4 py-3 shadow-sm">
-                  <p className="text-white text-sm leading-relaxed">{m.text}</p>
+                <div className="max-w-[80%] rounded-2xl rounded-br-sm px-4 py-3" style={{ background: '#111827' }}>
+                  <p className="text-white text-[14px] leading-relaxed">{m.text}</p>
                 </div>
               </div>
             ) : (
-              <div key={m.id} className="flex gap-2.5 items-start">
-                <div className="w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center shrink-0 mt-0.5">
-                  <Sparkles size={12} strokeWidth={2} className="text-gray-600" />
-                </div>
+              <div key={m.id} className="flex gap-3 items-start">
+                <div className="w-8 h-8 rounded-full bg-gray-100 shrink-0 mt-0.5" />
                 <div className="flex-1 min-w-0">
-                  <p className="text-gray-400 text-xs font-semibold mb-1.5">GebzemAI</p>
-                  <div className="bg-gray-50 border border-gray-100 rounded-2xl rounded-tl-sm px-4 py-3.5 shadow-sm">
-                    <p className="text-gray-800 text-sm leading-relaxed whitespace-pre-wrap">{m.text}</p>
+                  <div className="rounded-2xl rounded-bl-sm px-4 py-3" style={{ background: '#f5f5f5' }}>
+                    <p className="text-gray-800 text-[14px] leading-relaxed whitespace-pre-wrap">{m.text}</p>
                   </div>
                 </div>
               </div>
             )
           )}
-
           {isTyping && (
-            <div className="flex gap-2.5 items-start">
-              <div className="w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center shrink-0">
-                <Sparkles size={12} strokeWidth={2} className="text-gray-600" />
-              </div>
-              <div className="bg-gray-50 border border-gray-100 rounded-2xl rounded-tl-sm overflow-hidden shadow-sm">
+            <div className="flex gap-3 items-start">
+              <div className="w-8 h-8 rounded-full bg-gray-100 shrink-0" />
+              <div className="rounded-2xl rounded-bl-sm overflow-hidden" style={{ background: '#f5f5f5' }}>
                 <TypingDots />
               </div>
             </div>
           )}
-
           <div ref={messagesEndRef} />
         </div>
       )}
 
-      {/* ── Alt alan (sabit) ── */}
-      <div className="fixed bottom-0 left-0 right-0 flex justify-center z-50">
-        <div className="w-full max-w-[430px] bg-white border-t border-gray-100" style={{ boxShadow: '0 -4px 24px rgba(0,0,0,0.06)' }}>
-
-          {/* Öneri chips — yatay scroll */}
-          <div
-            className="flex gap-2 px-4 pt-3 pb-2 overflow-x-auto"
-            style={{ scrollbarWidth: 'none' }}
-          >
-            {ONERI_SORULAR.map((soru, i) => (
+      {/* Alt alan */}
+      <div className="shrink-0" style={{ paddingLeft: 15, paddingRight: 15, paddingBottom: 30 }}>
+        <div className="rounded-2xl" style={{ background: '#f5f5f5' }}>
+          <div className="flex items-center px-4" style={{ height: 44 }}>
+            <textarea
+              value={input}
+              onChange={e => setInput(e.target.value)}
+              onKeyDown={handleKey}
+              placeholder="Aramaya başla..."
+              rows={1}
+              className="flex-1 bg-transparent text-gray-800 placeholder-gray-400 resize-none outline-none"
+              style={{ maxHeight: 44, paddingTop: 13, fontSize: 12 }}
+            />
+          </div>
+          <div className="flex items-center justify-between px-3 pb-2.5">
+            <div className="flex items-center gap-1">
               <button
-                key={i}
-                onClick={() => gonder(soru)}
-                className="shrink-0 px-3 py-1.5 bg-gray-100 rounded-full active:bg-gray-200 transition-colors"
+                onClick={() => setMode('ai')}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full font-semibold transition-colors"
+                style={{ fontSize: 11, background: mode === 'ai' ? '#e8e8e8' : 'transparent', color: '#374151' }}
               >
-                <span className="text-gray-600 text-xs font-medium whitespace-nowrap">{soru}</span>
+                <div className="w-2 h-2 rounded-full" style={{ background: '#f59e0b' }} />
+                AI mode
               </button>
-            ))}
-          </div>
-
-          {/* Input kutusu */}
-          <div className="px-4 pb-8 pt-1">
-            <div
-              className="flex items-end gap-3 bg-gray-50 border border-gray-200 rounded-2xl px-4 py-3"
-              style={{ boxShadow: '0 1px 4px rgba(0,0,0,0.06)' }}
-            >
-              <textarea
-                value={input}
-                onChange={e => setInput(e.target.value)}
-                onKeyDown={handleKey}
-                placeholder="Sorunuzu yazın..."
-                rows={1}
-                className="flex-1 bg-transparent text-gray-800 placeholder-gray-400 text-sm resize-none outline-none leading-relaxed"
-                style={{ maxHeight: '100px' }}
-              />
-              <div className="flex items-center gap-2 shrink-0 mb-0.5">
-                <button className="text-gray-400 active:text-gray-600 transition-colors">
-                  <Mic size={17} strokeWidth={1.5} />
-                </button>
-                <button
-                  onClick={() => gonder()}
-                  disabled={!input.trim()}
-                  className="w-8 h-8 rounded-full flex items-center justify-center active:scale-90 transition-all"
-                  style={{ background: input.trim() ? '#111827' : '#e5e7eb' }}
-                >
-                  <ArrowUp
-                    size={15}
-                    strokeWidth={2.5}
-                    className={input.trim() ? 'text-white' : 'text-gray-400'}
-                  />
-                </button>
-              </div>
+              <button
+                onClick={() => setMode('standard')}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full font-semibold transition-colors"
+                style={{ fontSize: 11, background: mode === 'standard' ? '#e8e8e8' : 'transparent', color: '#374151' }}
+              >
+                <Search size={11} strokeWidth={2} className="text-gray-400" />
+                Standard
+              </button>
             </div>
+            <button
+              onClick={() => gonder()}
+              disabled={!input.trim()}
+              className="w-8 h-8 rounded-full flex items-center justify-center active:scale-90 transition-all"
+              style={{ background: input.trim() ? '#111827' : '#d4d4d4' }}
+            >
+              <ArrowUp size={15} strokeWidth={2.5} className={input.trim() ? 'text-white' : 'text-gray-400'} />
+            </button>
           </div>
-
         </div>
       </div>
 

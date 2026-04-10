@@ -191,7 +191,7 @@ export default function Home() {
       </header>
 
       {/* ── İçerik ── */}
-      <div style={{ paddingTop: 66, paddingLeft: 20, paddingRight: 20, paddingBottom: 96 }}>
+      <div style={{ paddingTop: 66, paddingLeft: 20, paddingRight: 20, paddingBottom: 110 }}>
 
         {/* ── Banner Slider (2 slayt, peek efektli) ── */}
         <div style={{ marginLeft: -20, marginRight: -20 }}>

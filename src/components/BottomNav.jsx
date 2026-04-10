@@ -14,14 +14,14 @@ const TIP_EMOJI = {
 }
 
 const SHEET_KATEGORILER = [
-  { path: '/food' },
-  { path: '/food' },
-  { path: '/services' },
-  { path: '/ilanlar' },
-  { path: '/etkinlikler' },
-  { path: '/is-ilanlari' },
-  { path: '/oteller' },
-  { path: '/campaigns' },
+  { path: '/food', label: 'Yemek' },
+  { path: '/food', label: 'Restoran' },
+  { path: '/services', label: 'Hizmetler' },
+  { path: '/ilanlar', label: 'İlanlar' },
+  { path: '/etkinlikler', label: 'Etkinlikler' },
+  { path: '/is-ilanlari', label: 'İş İlanları' },
+  { path: '/oteller', label: 'Oteller' },
+  { path: '/campaigns', label: 'Kampanyalar' },
 ]
 
 function getActive(pathname) {
@@ -41,6 +41,7 @@ function shouldShow(pathname) {
   if (pathname.startsWith('/admin'))   return false
   if (pathname.startsWith('/sosyal'))  return false
   if (pathname.startsWith('/mesaj/'))  return false
+  if (pathname === '/gebzem-ai')      return false
   const hidden = ['/login', '/register', '/onboarding', '/forgot-password', '/reset-otp', '/new-password', '/']
   return !hidden.includes(pathname)
 }
@@ -219,13 +220,15 @@ export default function BottomNav() {
                     className="rounded-2xl active:scale-95 transition-transform"
                     style={{ height: 100, background: 'linear-gradient(135deg, #7C3AED 0%, #9333EA 55%, #EC4899 100%)' }}
                   />
-                  {SHEET_KATEGORILER.map(({ path }, i) => (
+                  {SHEET_KATEGORILER.map(({ path, label }, i) => (
                     <button
                       key={i}
                       onClick={() => { closeAnySheet(); navigate(path) }}
-                      className="rounded-2xl bg-white active:scale-95 transition-transform"
-                      style={{ height: 100 }}
-                    />
+                      className="rounded-2xl bg-white active:scale-95 transition-transform flex items-end justify-start"
+                      style={{ height: 100, padding: '0 12px 10px' }}
+                    >
+                      <span className="text-gray-700 text-xs font-semibold">{label}</span>
+                    </button>
                   ))}
                 </div>
               </div>

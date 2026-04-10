@@ -54,7 +54,7 @@ export default function Profile() {
         </div>
       </header>
 
-      <div className="pt-16 pb-24 px-4 space-y-5">
+      <div className="pt-16 px-4 space-y-5" style={{ paddingBottom: 110 }}>
 
         {/* Profil Kartı */}
         <div className="bg-white rounded-2xl px-4 py-5 flex items-center gap-4">
