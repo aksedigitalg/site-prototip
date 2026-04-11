@@ -24,14 +24,14 @@ export default function SosyalNav() {
   ]
 
   return (
-    <nav className="fixed z-50 flex justify-center" style={{ bottom: 0, left: 0, right: 0 }}>
-      <div className="w-full max-w-[430px] flex items-center justify-between" style={{ padding: '12px 32px 24px', background: '#000000', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+    <nav className="fixed z-50 flex justify-center" style={{ bottom: 25, left: 0, right: 0 }}>
+      <div className="flex items-center justify-between" style={{ borderRadius: 9999, padding: '10px 15px', background: '#000000', width: 'calc(100% - 120px)', maxWidth: 310 }}>
         {tabs.map(({ key, icon: Icon, path }) => (
           <button
             key={key}
             onClick={() => navigate(path)}
             className="flex items-center justify-center"
-            style={{ width: 40, height: 40 }}
+            style={{ width: 44, height: 44 }}
           >
             <Icon size={24} strokeWidth={active === key ? 2.5 : 1.8} className={active === key ? 'text-white' : 'text-gray-600'} />
           </button>
