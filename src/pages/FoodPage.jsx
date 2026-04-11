@@ -32,6 +32,21 @@ export default function FoodPage() {
 
       <div style={{ paddingTop: 66, paddingBottom: 110, paddingLeft: 16, paddingRight: 16 }}>
 
+        {/* Kategoriler — 3 kolon grid */}
+        <div className="grid grid-cols-3 gap-2" style={{ marginBottom: 16 }}>
+          {FILTER_CATS.map(cat => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(activeCategory === cat ? null : cat)}
+              className="flex items-center gap-2 active:scale-95 transition-transform"
+              style={{ background: activeCategory === cat ? '#111827' : '#f5f5f5', borderRadius: 10, padding: '10px 10px' }}
+            >
+              <div className="w-7 h-7 rounded-full shrink-0" style={{ background: activeCategory === cat ? 'rgba(255,255,255,0.15)' : '#e5e7eb' }} />
+              <span className={`text-[12px] font-semibold ${activeCategory === cat ? 'text-white' : 'text-gray-700'}`}>{cat}</span>
+            </button>
+          ))}
+        </div>
+
         {/* Arama */}
         <div className="flex items-center gap-2 bg-white rounded-xl px-3" style={{ height: 42, marginBottom: 14 }}>
           <Search size={16} strokeWidth={2} className="text-gray-400 shrink-0" />

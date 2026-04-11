@@ -2,7 +2,7 @@ import { useState, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import {
   ArrowLeft, Star, Clock, MapPin, Phone,
-  Plus, Minus, ShoppingBag, MessageSquare, Copy, Info,
+  Plus, Minus, ShoppingBag, MessageSquare, Copy, Share2,
 } from 'lucide-react'
 import { RESTAURANTS, MENUS, REVIEWS, RESTAURANT_INFO, DISCOUNT_CARDS } from '../data/mockFood'
 
@@ -17,6 +17,9 @@ function Stars({ rating, size = 12 }) {
     </div>
   )
 }
+
+const COVER_IMG = 'https://www.yesilyurtavm.com/uploads/sayfalar/329e2.png'
+const LOGO_IMG = 'https://yt3.googleusercontent.com/1WniihFDVTi6FmS8jsx89tadboWFXn5gIcjQDTteWBFytrQVSrswN3A3yz5HXXk3thuFG_U5=s900-c-k-c0x00ffffff-no-rj'
 
 export default function RestaurantDetail() {
   const { id } = useParams()
@@ -71,79 +74,83 @@ export default function RestaurantDetail() {
   return (
     <div className="min-h-screen bg-gray-50">
 
-      {/* Kapak */}
-      <div className="relative bg-gray-800" style={{ height: 220 }}>
-        <div className="w-full h-full flex items-center justify-center">
-          <span className="text-8xl opacity-20">🍽️</span>
+      {/* ── Hero Cover ── */}
+      <div className="relative" style={{ height: 260 }}>
+        {/* Arka plan resmi */}
+        <img src={COVER_IMG} alt="" className="w-full h-full object-cover" />
+
+        {/* Gradient overlay — alttan yukarı, alt %100 siyah, ortaya doğru %20 */}
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.2) 70%, rgba(0,0,0,0.1) 100%)' }} />
+
+        {/* Üst butonlar */}
+        <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
+          <button
+            onClick={() => navigate(-1)}
+            className="w-10 h-10 rounded-full flex items-center justify-center active:scale-90 transition-transform"
+            style={{ background: 'rgba(255,255,255,0.15)', backdropFilter: 'blur(10px)' }}
+          >
+            <ArrowLeft size={18} strokeWidth={2} className="text-white" />
+          </button>
+          <button
+            className="w-10 h-10 rounded-full flex items-center justify-center active:scale-90 transition-transform"
+            style={{ background: 'rgba(255,255,255,0.15)', backdropFilter: 'blur(10px)' }}
+          >
+            <Share2 size={16} strokeWidth={2} className="text-white" />
+          </button>
         </div>
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
-        {/* Geri */}
-        <button
-          onClick={() => navigate(-1)}
-          className="absolute top-4 left-4 w-9 h-9 bg-black/30 backdrop-blur rounded-full flex items-center justify-center"
-        >
-          <ArrowLeft size={18} strokeWidth={1.5} className="text-white" />
-        </button>
-
-        {/* Info */}
-        <button
-          onClick={() => setActiveTab('about')}
-          className="absolute top-4 right-4 w-9 h-9 bg-black/30 backdrop-blur rounded-full flex items-center justify-center"
-        >
-          <Info size={16} strokeWidth={1.5} className="text-white" />
-        </button>
-
-        {/* Alt bilgi */}
-        <div className="absolute bottom-0 left-0 right-0 px-4 pb-4">
-          <div className="flex items-end justify-between">
-            <div>
-              <h1 className="text-white text-xl font-bold">{restaurant.name}</h1>
-              <div className="flex items-center gap-2 mt-1">
-                <Stars rating={restaurant.rating} size={12} />
-                <span className="text-white/80 text-xs">{restaurant.rating} ({restaurant.reviewCount})</span>
-              </div>
+        {/* Logo + İsim — alt kısım ortada */}
+        <div className="absolute bottom-0 left-0 right-0 flex flex-col items-center" style={{ paddingBottom: 20 }}>
+          <img
+            src={LOGO_IMG}
+            alt={restaurant.name}
+            className="object-cover"
+            style={{ width: 60, height: 60, borderRadius: '50%' }}
+          />
+          <h1 className="text-white text-lg font-bold mt-3">{restaurant.name}</h1>
+          <div className="flex items-center gap-2 mt-1.5">
+            <div className="flex items-center gap-1">
+              <Star size={13} className="text-yellow-400 fill-yellow-400" />
+              <span className="text-white text-[13px] font-semibold">{restaurant.rating}</span>
+              <span className="text-white/50 text-[12px]">({restaurant.reviewCount})</span>
             </div>
-            <div className={`px-3 py-1 rounded-xl text-xs font-bold ${restaurant.isOpen ? 'bg-green-500' : 'bg-gray-500'} text-white`}>
+            <span className="text-white/30">·</span>
+            <span className="text-white/60 text-[12px]">{restaurant.category}</span>
+            <span className="text-white/30">·</span>
+            <div className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${restaurant.isOpen ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'}`}>
               {restaurant.isOpen ? 'Açık' : 'Kapalı'}
             </div>
           </div>
         </div>
       </div>
 
-      {/* Hız bilgileri şeridi */}
-      <div className="bg-white border-b border-gray-100 px-4 py-3 flex items-center gap-4 overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
+      {/* ── Bilgi şeridi ── */}
+      <div className="bg-white px-4 py-3 flex items-center justify-center gap-6">
         {[
-          { icon: Clock,  value: restaurant.deliveryTime },
+          { icon: Clock, value: restaurant.deliveryTime },
           { icon: MapPin, value: restaurant.distance },
           { icon: ShoppingBag, value: `Min. ${restaurant.minOrder}₺` },
         ].map(({ icon: Icon, value }) => (
-          <div key={value} className="flex items-center gap-1.5 shrink-0">
-            <Icon size={13} strokeWidth={1.5} className="text-gray-400" />
-            <span className="text-gray-600 text-xs font-medium">{value}</span>
+          <div key={value} className="flex items-center gap-1.5">
+            <Icon size={14} strokeWidth={1.5} className="text-gray-400" />
+            <span className="text-gray-600 text-[12px] font-medium">{value}</span>
           </div>
         ))}
-        {restaurant.discount && (
-          <div className="ml-auto shrink-0 bg-gray-900 text-white text-xs font-bold px-3 py-1 rounded-xl">
-            {restaurant.discount} İndirim
-          </div>
-        )}
       </div>
 
       {/* İndirim kartları */}
       {discounts.length > 0 && (
-        <div className="bg-white border-b border-gray-100 py-3">
+        <div className="bg-white border-t border-gray-100 py-3">
           <div className="flex gap-3 px-4 overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
             {discounts.map(d => (
-              <div key={d.id} className="shrink-0 border border-dashed border-gray-300 rounded-2xl px-4 py-3 min-w-[150px]">
+              <div key={d.id} className="shrink-0 border border-dashed border-gray-200 rounded-xl px-4 py-3 min-w-[150px]">
                 <p className="text-gray-800 text-xs font-bold">{d.title}</p>
-                <p className="text-gray-500 text-xs mt-0.5">{d.desc}</p>
+                <p className="text-gray-400 text-[11px] mt-0.5">{d.desc}</p>
                 <button onClick={() => copyCode(d.code)} className="flex items-center gap-1 mt-2">
-                  <span className="text-gray-400 text-xs font-mono bg-gray-50 px-2 py-0.5 rounded-lg">{d.code}</span>
+                  <span className="text-gray-400 text-[11px] font-mono bg-gray-50 px-2 py-0.5 rounded-lg">{d.code}</span>
                   {copiedCode === d.code
-                    ? <span className="text-green-500 text-xs">✓</span>
-                    : <Copy size={10} className="text-gray-400" />}
+                    ? <span className="text-green-500 text-[11px]">✓</span>
+                    : <Copy size={10} className="text-gray-300" />}
                 </button>
               </div>
             ))}
@@ -151,17 +158,17 @@ export default function RestaurantDetail() {
         </div>
       )}
 
-      {/* Tabs */}
+      {/* ── Tabs ── */}
       <div className="sticky top-0 z-30 bg-white border-b border-gray-100 flex">
         {[
-          { key: 'menu',    label: 'Menü' },
-          { key: 'about',   label: 'Hakkında' },
+          { key: 'menu', label: 'Menü' },
+          { key: 'about', label: 'Hakkında' },
           { key: 'reviews', label: `Yorumlar (${totalReviews})` },
         ].map(tab => (
           <button
             key={tab.key}
             onClick={() => setActiveTab(tab.key)}
-            className={`flex-1 py-3 text-sm font-semibold border-b-2 transition-all ${
+            className={`flex-1 py-3 text-[13px] font-semibold border-b-2 transition-all ${
               activeTab === tab.key ? 'border-gray-900 text-gray-900' : 'border-transparent text-gray-400'
             }`}
           >
@@ -170,10 +177,9 @@ export default function RestaurantDetail() {
         ))}
       </div>
 
-      {/* MENÜ */}
+      {/* ── MENÜ ── */}
       {activeTab === 'menu' && (
         <div>
-          {/* Menü kategori scroll */}
           <div className="bg-white border-b border-gray-100 px-4 py-2 flex gap-2 overflow-x-auto sticky top-[45px] z-20" style={{ scrollbarWidth: 'none' }}>
             {menu.map((section, i) => (
               <button
@@ -182,8 +188,8 @@ export default function RestaurantDetail() {
                   setActiveSection(i)
                   sectionRefs.current[i]?.scrollIntoView({ behavior: 'smooth', block: 'start' })
                 }}
-                className={`shrink-0 px-3 py-1.5 rounded-xl text-xs font-medium transition-all ${
-                  activeSection === i ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-600'
+                className={`shrink-0 px-3 py-1.5 rounded-full text-[12px] font-medium transition-all ${
+                  activeSection === i ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-500'
                 }`}
               >
                 {section.section}
@@ -194,33 +200,32 @@ export default function RestaurantDetail() {
           <div className="pb-32 px-4 pt-4 space-y-6">
             {menu.map((section, i) => (
               <div key={section.section} ref={el => sectionRefs.current[i] = el}>
-                <h3 className="text-gray-800 text-sm font-bold mb-3">{section.section}</h3>
+                <h3 className="text-gray-800 text-[13px] font-bold mb-3">{section.section}</h3>
                 <div className="space-y-2">
                   {section.items.map(item => {
                     const qty = cart[item.id] || 0
                     return (
-                      <div key={item.id} className="bg-white border border-gray-100 rounded-2xl p-3 shadow-sm flex items-center gap-3">
-                        <div className="w-14 h-14 rounded-xl bg-gray-100 flex items-center justify-center shrink-0 text-2xl">🍴</div>
+                      <div key={item.id} className="bg-white rounded-xl p-3 flex items-center gap-3">
+                        <div className="w-14 h-14 rounded-xl bg-gray-100 flex items-center justify-center shrink-0 text-xl">🍴</div>
                         <div className="flex-1 min-w-0">
-                          <p className="text-gray-800 text-sm font-semibold">{item.name}</p>
-                          <p className="text-gray-400 text-xs mt-0.5 line-clamp-1">{item.desc}</p>
-                          <p className="text-gray-900 text-sm font-bold mt-1">{item.price}₺</p>
+                          <p className="text-gray-800 text-[13px] font-semibold">{item.name}</p>
+                          <p className="text-gray-400 text-[11px] mt-0.5 line-clamp-1">{item.desc}</p>
+                          <p className="text-gray-900 text-[13px] font-bold mt-1">{item.price}₺</p>
                         </div>
-                        {/* Sepet kontrol */}
                         {qty === 0 ? (
                           <button
                             onClick={() => addToCart(item.id)}
-                            className="w-8 h-8 rounded-xl bg-gray-900 flex items-center justify-center shrink-0 active:scale-90 transition-transform"
+                            className="w-8 h-8 rounded-full bg-gray-900 flex items-center justify-center shrink-0 active:scale-90 transition-transform"
                           >
-                            <Plus size={16} strokeWidth={2} className="text-white" />
+                            <Plus size={15} strokeWidth={2} className="text-white" />
                           </button>
                         ) : (
                           <div className="flex items-center gap-2 shrink-0">
-                            <button onClick={() => removeFromCart(item.id)} className="w-7 h-7 rounded-xl bg-gray-100 flex items-center justify-center active:scale-90 transition-transform">
-                              <Minus size={13} strokeWidth={2} className="text-gray-700" />
+                            <button onClick={() => removeFromCart(item.id)} className="w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center active:scale-90 transition-transform">
+                              <Minus size={13} strokeWidth={2} className="text-gray-600" />
                             </button>
-                            <span className="text-gray-800 text-sm font-bold w-4 text-center">{qty}</span>
-                            <button onClick={() => addToCart(item.id)} className="w-7 h-7 rounded-xl bg-gray-900 flex items-center justify-center active:scale-90 transition-transform">
+                            <span className="text-gray-800 text-[13px] font-bold w-4 text-center">{qty}</span>
+                            <button onClick={() => addToCart(item.id)} className="w-7 h-7 rounded-full bg-gray-900 flex items-center justify-center active:scale-90 transition-transform">
                               <Plus size={13} strokeWidth={2} className="text-white" />
                             </button>
                           </div>
@@ -236,37 +241,37 @@ export default function RestaurantDetail() {
         </div>
       )}
 
-      {/* HAKKINDA */}
+      {/* ── HAKKINDA ── */}
       {activeTab === 'about' && (
-        <div className="px-4 pt-4 space-y-3 pb-8">
+        <div className="px-4 pt-4 space-y-2 pb-8">
           {info && [
-            { icon: MapPin,  label: 'Adres',            value: info.address },
-            { icon: Clock,   label: 'Çalışma Saatleri', value: info.hours },
-            { icon: Phone,   label: 'Telefon',          value: info.phone },
+            { icon: MapPin, label: 'Adres', value: info.address },
+            { icon: Clock, label: 'Çalışma Saatleri', value: info.hours },
+            { icon: Phone, label: 'Telefon', value: info.phone },
             { icon: ShoppingBag, label: 'Min. Sipariş', value: info.minOrder },
-            { icon: Clock,   label: 'Teslimat Süresi',  value: info.deliveryTime },
+            { icon: Clock, label: 'Teslimat Süresi', value: info.deliveryTime },
           ].map(({ icon: Icon, label, value }) => (
-            <div key={label} className="bg-white border border-gray-100 rounded-2xl px-4 py-4 shadow-sm flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-gray-100 flex items-center justify-center shrink-0">
-                <Icon size={15} strokeWidth={1.5} className="text-gray-600" />
+            <div key={label} className="bg-white rounded-xl px-4 py-3.5 flex items-center gap-3">
+              <div className="w-9 h-9 rounded-full bg-gray-50 flex items-center justify-center shrink-0">
+                <Icon size={15} strokeWidth={1.5} className="text-gray-500" />
               </div>
               <div>
-                <p className="text-gray-400 text-xs">{label}</p>
-                <p className="text-gray-800 text-sm font-medium">{value}</p>
+                <p className="text-gray-400 text-[11px]">{label}</p>
+                <p className="text-gray-800 text-[13px] font-medium">{value}</p>
               </div>
             </div>
           ))}
         </div>
       )}
 
-      {/* YORUMLAR */}
+      {/* ── YORUMLAR ── */}
       {activeTab === 'reviews' && (
-        <div className="px-4 pt-4 space-y-3 pb-8">
-          <div className="bg-white border border-gray-100 rounded-2xl p-4 shadow-sm flex gap-4 items-center">
+        <div className="px-4 pt-4 space-y-2 pb-8">
+          <div className="bg-white rounded-xl p-4 flex gap-4 items-center">
             <div className="text-center">
-              <p className="text-gray-900 text-4xl font-bold">{avgRating}</p>
-              <Stars rating={parseFloat(avgRating)} size={14} />
-              <p className="text-gray-400 text-xs mt-1">{totalReviews} yorum</p>
+              <p className="text-gray-900 text-3xl font-bold">{avgRating}</p>
+              <Stars rating={parseFloat(avgRating)} size={13} />
+              <p className="text-gray-400 text-[11px] mt-1">{totalReviews} yorum</p>
             </div>
             <div className="flex-1 space-y-1.5">
               {[5,4,3,2,1].map(star => {
@@ -274,11 +279,10 @@ export default function RestaurantDetail() {
                 const pct = totalReviews > 0 ? (count / totalReviews) * 100 : 0
                 return (
                   <div key={star} className="flex items-center gap-2">
-                    <span className="text-gray-500 text-xs w-3">{star}</span>
+                    <span className="text-gray-400 text-[11px] w-3">{star}</span>
                     <div className="flex-1 h-1.5 bg-gray-100 rounded-full overflow-hidden">
                       <div className="h-full bg-gray-800 rounded-full" style={{ width: `${pct}%` }} />
                     </div>
-                    <span className="text-gray-400 text-xs w-3">{count}</span>
                   </div>
                 )
               })}
@@ -287,36 +291,36 @@ export default function RestaurantDetail() {
 
           {reviews.length === 0 ? (
             <div className="text-center py-8 text-gray-400 text-sm flex flex-col items-center gap-2">
-              <MessageSquare size={28} strokeWidth={1.5} className="text-gray-300" />
+              <MessageSquare size={24} strokeWidth={1.5} className="text-gray-300" />
               Henüz yorum yapılmamış
             </div>
           ) : reviews.map(r => (
-            <div key={r.id} className="bg-white border border-gray-100 rounded-2xl p-4 shadow-sm">
+            <div key={r.id} className="bg-white rounded-xl p-4">
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-2">
                   <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center">
-                    <span className="text-gray-600 text-xs font-bold">{r.name[0]}</span>
+                    <span className="text-gray-500 text-[11px] font-bold">{r.name[0]}</span>
                   </div>
                   <div>
-                    <p className="text-gray-800 text-sm font-semibold">{r.name}</p>
-                    <p className="text-gray-400 text-xs">{r.date}</p>
+                    <p className="text-gray-800 text-[13px] font-semibold">{r.name}</p>
+                    <p className="text-gray-400 text-[11px]">{r.date}</p>
                   </div>
                 </div>
                 <Stars rating={r.rating} size={11} />
               </div>
-              <p className="text-gray-600 text-sm leading-relaxed">{r.text}</p>
+              <p className="text-gray-600 text-[13px] leading-relaxed">{r.text}</p>
             </div>
           ))}
         </div>
       )}
 
-      {/* Sepet butonu */}
+      {/* ── Sepet / CTA ── */}
       {restaurant.isOpen && totalItems > 0 && (
         <div className="fixed bottom-0 left-0 right-0 z-40 flex justify-center">
           <div className="w-full max-w-[430px] bg-white border-t border-gray-100 px-4 py-3">
-            <button className="w-full bg-gray-900 text-white font-semibold text-sm py-4 rounded-2xl active:scale-95 transition-transform flex items-center justify-between px-5">
-              <div className="w-6 h-6 rounded-lg bg-white/20 flex items-center justify-center">
-                <span className="text-white text-xs font-bold">{totalItems}</span>
+            <button className="w-full bg-gray-900 text-white font-semibold text-[13px] py-4 rounded-2xl active:scale-95 transition-transform flex items-center justify-between px-5">
+              <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
+                <span className="text-white text-[11px] font-bold">{totalItems}</span>
               </div>
               <span>Sepeti Görüntüle</span>
               <span className="font-bold">{totalPrice}₺</span>
@@ -330,11 +334,11 @@ export default function RestaurantDetail() {
           <div className="w-full max-w-[430px] bg-white border-t border-gray-100 px-4 py-3 flex gap-2">
             <button
               onClick={() => navigate(`/rezervasyon/${restaurant.id}`)}
-              className="flex-1 border border-gray-200 text-gray-700 font-semibold text-sm py-4 rounded-2xl active:scale-95 transition-transform"
+              className="flex-1 border border-gray-200 text-gray-700 font-semibold text-[13px] py-3.5 rounded-2xl active:scale-95 transition-transform"
             >
               Rezervasyon
             </button>
-            <button className="flex-1 bg-gray-900 text-white font-semibold text-sm py-4 rounded-2xl active:scale-95 transition-transform">
+            <button className="flex-1 bg-gray-900 text-white font-semibold text-[13px] py-3.5 rounded-2xl active:scale-95 transition-transform">
               Sipariş Ver
             </button>
           </div>
@@ -346,7 +350,7 @@ export default function RestaurantDetail() {
           <div className="w-full max-w-[430px] bg-white border-t border-gray-100 px-4 py-3">
             <button
               onClick={() => navigate(`/rezervasyon/${restaurant.id}`)}
-              className="w-full bg-gray-900 text-white font-semibold text-sm py-4 rounded-2xl active:scale-95 transition-transform"
+              className="w-full bg-gray-900 text-white font-semibold text-[13px] py-3.5 rounded-2xl active:scale-95 transition-transform"
             >
               Rezervasyon Yap
             </button>
