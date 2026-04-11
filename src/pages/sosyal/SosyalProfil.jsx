@@ -1,107 +1,128 @@
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { ArrowLeft, Grid3X3 } from 'lucide-react'
+import { ArrowLeft, Settings, Grid3X3, MessageCircle } from 'lucide-react'
 import { SOSYAL_KULLANICILAR, SOSYAL_POSTLAR } from '../../data/mockSosyal'
 import SosyalNav from '../../components/SosyalNav'
 
 export default function SosyalProfil() {
-  const navigate = useNavigate()
   const { id } = useParams()
-  const [takipEdiyor, setTakipEdiyor] = useState(false)
+  const navigate = useNavigate()
 
-  const isBen = id === 'ben' || id === '0'
   const raw = localStorage.getItem('sehir_user')
   const currentUser = raw ? JSON.parse(raw) : null
+  const isSelf = id === 'ben' || id === '0'
 
-  const kullanici = isBen
-    ? { id: 0, isim: currentUser ? `${currentUser.firstName} ${currentUser.lastName}` : 'Ben', kullaniciAdi: currentUser?.firstName?.toLowerCase() || 'ben', avatar: '😊', bg: '#667eea', bio: 'Şehir App kullanıcısı', takipci: 156, takipEdilen: 89, postSayisi: 5 }
+  const kullanici = isSelf
+    ? { id: 0, isim: `${currentUser?.firstName} ${currentUser?.lastName}`, kullaniciAdi: currentUser?.firstName?.toLowerCase() || 'ben', avatar: '👤', bg: '#374151', bio: 'Gebzem kullanıcısı', takipci: 42, takipEdilen: 78, postSayisi: 3 }
     : SOSYAL_KULLANICILAR.find(k => k.id === parseInt(id))
 
-  if (!kullanici) return null
+  const [takipEdiliyor, setTakipEdiliyor] = useState(false)
+
+  if (!kullanici) return (
+    <div className="min-h-screen flex items-center justify-center" style={{ background: '#000' }}>
+      <p className="text-gray-500 text-sm">Kullanıcı bulunamadı</p>
+    </div>
+  )
 
   const postlar = SOSYAL_POSTLAR.filter(p => p.kullaniciId === kullanici.id)
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen" style={{ background: '#000000' }}>
+
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 flex justify-center backdrop-blur-md" style={{ background: 'rgba(255,255,255,0.9)' }}>
-        <div className="w-full max-w-[430px] flex items-center justify-between" style={{ padding: '10px 20px', height: 56 }}>
-          <button onClick={() => navigate(-1)}>
-            <ArrowLeft size={20} strokeWidth={2} className="text-gray-900" />
+      <div className="flex items-center justify-between" style={{ padding: '14px 16px 10px' }}>
+        <button onClick={() => navigate(-1)} className="w-10 h-10 flex items-center justify-center">
+          <ArrowLeft size={20} strokeWidth={2} className="text-white" />
+        </button>
+        <span className="text-white text-[15px] font-bold">{kullanici.kullaniciAdi}</span>
+        {isSelf ? (
+          <button className="w-10 h-10 flex items-center justify-center">
+            <Settings size={20} strokeWidth={1.8} className="text-white" />
           </button>
-          <h1 className="text-gray-900 text-base font-bold">{kullanici.kullaniciAdi}</h1>
-          <div style={{ width: 20 }} />
-        </div>
-      </header>
+        ) : <div className="w-10" />}
+      </div>
 
-      <div style={{ paddingTop: 56, paddingBottom: 96, paddingLeft: 20, paddingRight: 20 }}>
-
-        {/* Profil Header */}
-        <div className="flex items-center gap-5 py-5">
-          <div className="w-20 h-20 rounded-full flex items-center justify-center text-4xl shrink-0" style={{ background: kullanici.bg }}>
+      {/* Profil bilgileri */}
+      <div style={{ padding: '16px 20px' }}>
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-white text-xl font-bold">{kullanici.isim}</h1>
+            <p className="text-gray-500 text-[13px] mt-0.5">@{kullanici.kullaniciAdi}</p>
+          </div>
+          <div className="w-16 h-16 rounded-full flex items-center justify-center text-3xl" style={{ background: kullanici.bg }}>
             {kullanici.avatar}
           </div>
-          <div className="flex-1">
-            <div className="flex justify-around text-center">
-              <div>
-                <p className="text-gray-900 text-lg font-bold">{postlar.length || kullanici.postSayisi}</p>
-                <p className="text-gray-500 text-xs">Gönderi</p>
-              </div>
-              <div>
-                <p className="text-gray-900 text-lg font-bold">{kullanici.takipci}</p>
-                <p className="text-gray-500 text-xs">Takipçi</p>
-              </div>
-              <div>
-                <p className="text-gray-900 text-lg font-bold">{kullanici.takipEdilen}</p>
-                <p className="text-gray-500 text-xs">Takip</p>
-              </div>
-            </div>
+        </div>
+
+        <p className="text-gray-300 text-[14px] mt-3">{kullanici.bio}</p>
+
+        {/* İstatistikler */}
+        <div className="flex items-center gap-5 mt-4">
+          <div className="flex items-center gap-1">
+            <span className="text-white text-[14px] font-bold">{kullanici.takipci}</span>
+            <span className="text-gray-500 text-[13px]">takipçi</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <span className="text-white text-[14px] font-bold">{kullanici.takipEdilen}</span>
+            <span className="text-gray-500 text-[13px]">takip</span>
           </div>
         </div>
 
-        {/* Bio */}
-        <div className="mb-4">
-          <p className="text-gray-900 text-sm font-semibold">{kullanici.isim}</p>
-          <p className="text-gray-600 text-sm mt-0.5">{kullanici.bio}</p>
-        </div>
-
-        {/* Takip butonu */}
-        {!isBen && (
-          <button
-            onClick={() => setTakipEdiyor(!takipEdiyor)}
-            className="w-full rounded-xl py-2.5 text-sm font-semibold mb-5"
-            style={{
-              background: takipEdiyor ? '#f3f4f6' : '#111827',
-              color: takipEdiyor ? '#374151' : '#ffffff',
-            }}
-          >
-            {takipEdiyor ? 'Takipten Çık' : 'Takip Et'}
-          </button>
-        )}
-
-        {/* Grid başlık */}
-        <div className="flex justify-center border-t border-gray-100 pt-3 mb-3">
-          <Grid3X3 size={20} strokeWidth={1.5} className="text-gray-900" />
-        </div>
-
-        {/* Post Grid */}
-        <div className="grid grid-cols-3 gap-1">
-          {postlar.map(post => (
-            <button
-              key={post.id}
-              onClick={() => navigate(`/sosyal/post/${post.id}`)}
-              className="aspect-square rounded-lg flex items-center justify-center"
-              style={{ background: post.gradyan }}
-            >
-              <span className="text-3xl">{post.emoji}</span>
-            </button>
-          ))}
-          {postlar.length === 0 && (
-            <div className="col-span-3 py-12 text-center">
-              <p className="text-gray-400 text-sm">Henüz gönderi yok</p>
-            </div>
+        {/* Butonlar */}
+        <div className="flex gap-2 mt-4">
+          {isSelf ? (
+            <>
+              <button className="flex-1 rounded-xl text-white text-[13px] font-semibold" style={{ height: 36, border: '1px solid rgba(255,255,255,0.15)' }}>
+                Profili Düzenle
+              </button>
+              <button className="flex-1 rounded-xl text-white text-[13px] font-semibold" style={{ height: 36, border: '1px solid rgba(255,255,255,0.15)' }}>
+                Paylaş
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                onClick={() => setTakipEdiliyor(!takipEdiliyor)}
+                className="flex-1 rounded-xl text-[13px] font-semibold"
+                style={{ height: 36, background: takipEdiliyor ? 'transparent' : '#ffffff', color: takipEdiliyor ? '#fff' : '#000', border: takipEdiliyor ? '1px solid rgba(255,255,255,0.15)' : 'none' }}
+              >
+                {takipEdiliyor ? 'Takipte' : 'Takip Et'}
+              </button>
+              <button className="flex-1 rounded-xl text-white text-[13px] font-semibold" style={{ height: 36, border: '1px solid rgba(255,255,255,0.15)' }}>
+                Mesaj
+              </button>
+            </>
           )}
         </div>
+      </div>
+
+      {/* Tab */}
+      <div className="flex" style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+        <div className="flex-1 flex items-center justify-center" style={{ height: 44, borderBottom: '2px solid #fff' }}>
+          <Grid3X3 size={18} strokeWidth={2} className="text-white" />
+        </div>
+        <div className="flex-1 flex items-center justify-center" style={{ height: 44 }}>
+          <MessageCircle size={18} strokeWidth={1.8} className="text-gray-600" />
+        </div>
+      </div>
+
+      {/* Postlar grid */}
+      <div className="grid grid-cols-3 gap-0.5" style={{ paddingBottom: 80 }}>
+        {postlar.map(post => (
+          <button
+            key={post.id}
+            onClick={() => navigate(`/sosyal/post/${post.id}`)}
+            className="flex items-center justify-center"
+            style={{ background: post.gradyan, aspectRatio: '1/1' }}
+          >
+            <span className="text-3xl">{post.emoji}</span>
+          </button>
+        ))}
+        {postlar.length === 0 && (
+          <div className="col-span-3 text-center py-16">
+            <p className="text-gray-600 text-sm">Henüz gönderi yok</p>
+          </div>
+        )}
       </div>
 
       <SosyalNav />

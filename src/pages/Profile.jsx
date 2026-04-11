@@ -70,6 +70,25 @@ export default function Profile() {
           </button>
         </div>
 
+        {/* Sosyal Medya */}
+        <button
+          onClick={() => navigate('/sosyal')}
+          className="w-full rounded-2xl px-5 py-4 flex items-center gap-4 relative overflow-hidden"
+          style={{ background: 'linear-gradient(135deg, #1a1a2e 0%, #2d1b69 50%, #4c1d95 100%)' }}
+        >
+          <div className="absolute" style={{
+            width: 120, height: 120, borderRadius: '50%',
+            border: '30px solid rgba(255,255,255,0.06)',
+            top: -30, right: -20,
+            transform: 'rotate(-15deg) scaleX(1.3)',
+          }} />
+          <div className="flex-1 text-left relative z-10">
+            <p className="text-white text-[15px] font-bold">Gebzem Sosyal</p>
+            <p className="text-white/50 text-[12px] mt-0.5">Paylaş, keşfet, bağlan</p>
+          </div>
+          <ChevronRight size={16} strokeWidth={2} className="text-white/30 relative z-10" />
+        </button>
+
         {/* Hesap */}
         <div>
           <p className="text-gray-400 font-medium px-1 mb-2" style={{ fontSize: 14 }}>Hesap</p>

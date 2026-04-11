@@ -1,182 +1,170 @@
-import { useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
-import { ArrowLeft, Heart, MessageCircle, Send, Bookmark, MoreHorizontal } from 'lucide-react'
+import { useState, useRef, useEffect } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
+import { ArrowLeft, Heart, MessageCircle, Repeat2, Send, MoreHorizontal } from 'lucide-react'
 import { SOSYAL_POSTLAR, SOSYAL_KULLANICILAR, SOSYAL_YORUMLAR } from '../../data/mockSosyal'
 
 function zamanOnce(tarih) {
   const fark = Date.now() - new Date(tarih).getTime()
   const dk = Math.floor(fark / 60000)
-  if (dk < 1) return 'Şimdi'
-  if (dk < 60) return `${dk} dk`
+  if (dk < 1) return 'şimdi'
+  if (dk < 60) return `${dk}dk`
   const saat = Math.floor(dk / 60)
-  if (saat < 24) return `${saat} sa`
-  const gun = Math.floor(saat / 24)
-  return `${gun} gün`
+  if (saat < 24) return `${saat}sa`
+  return `${Math.floor(saat / 24)}g`
 }
 
-function Yorum({ yorum, kullanicilar, onYanitGoster }) {
-  const kullanici = kullanicilar.find(k => k.id === yorum.kullaniciId)
+export default function SosyalPostDetail() {
+  const { id } = useParams()
+  const navigate = useNavigate()
+  const post = SOSYAL_POSTLAR.find(p => p.id === parseInt(id))
+  const kullanici = post ? SOSYAL_KULLANICILAR.find(k => k.id === post.kullaniciId) : null
+  const yorumlar = SOSYAL_YORUMLAR[parseInt(id)] || []
+
   const [liked, setLiked] = useState(false)
-  const [likeCount, setLikeCount] = useState(yorum.begeniler?.length || 0)
+  const [likeCount, setLikeCount] = useState(post?.begeniler.length || 0)
+  const [yeniYorum, setYeniYorum] = useState('')
+  const [ekYorumlar, setEkYorumlar] = useState([])
+  const bottomRef = useRef(null)
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }, [ekYorumlar])
+
+  if (!post || !kullanici) return (
+    <div className="min-h-screen flex items-center justify-center" style={{ background: '#000' }}>
+      <p className="text-gray-500 text-sm">Gönderi bulunamadı</p>
+    </div>
+  )
+
+  function yorumGonder() {
+    const metin = yeniYorum.trim()
+    if (!metin) return
+    setEkYorumlar(prev => [...prev, { id: Date.now(), metin, tarih: new Date().toISOString() }])
+    setYeniYorum('')
+  }
+
+  const tumYorumlar = [...yorumlar, ...ekYorumlar.map(y => ({
+    ...y, kullaniciId: 0, begeniler: [], yanitlar: []
+  }))]
 
   return (
-    <div className="mb-4">
-      <div className="flex gap-3">
-        <div className="w-8 h-8 rounded-full flex items-center justify-center text-sm shrink-0" style={{ background: kullanici?.bg || '#e5e7eb' }}>
-          {kullanici?.avatar || '👤'}
-        </div>
-        <div className="flex-1">
-          <p className="text-sm">
-            <span className="font-semibold text-gray-900">{kullanici?.kullaniciAdi || 'kullanici'}</span>{' '}
-            <span className="text-gray-700">{yorum.metin}</span>
-          </p>
-          <div className="flex items-center gap-4 mt-1">
-            <span className="text-gray-400 text-[11px]">{zamanOnce(yorum.tarih)}</span>
-            <button className="text-gray-400 text-[11px] font-semibold" onClick={onYanitGoster}>Yanıtla</button>
-            <button onClick={() => { setLiked(!liked); setLikeCount(prev => liked ? prev - 1 : prev + 1) }}>
-              <Heart size={12} strokeWidth={2} className={liked ? 'text-red-500' : 'text-gray-400'} fill={liked ? '#ef4444' : 'none'} />
-            </button>
-            {likeCount > 0 && <span className="text-gray-400 text-[11px]">{likeCount}</span>}
-          </div>
+    <div className="flex flex-col" style={{ height: '100dvh', background: '#000000' }}>
 
-          {/* Yanıtlar */}
-          {yorum.yanitlar?.length > 0 && (
-            <div className="mt-3 pl-2 border-l-2 border-gray-100">
-              {yorum.yanitlar.map(yanit => {
-                const yanitKullanici = kullanicilar.find(k => k.id === yanit.kullaniciId)
+      {/* Header */}
+      <div className="shrink-0 flex items-center justify-between" style={{ padding: '14px 16px 10px' }}>
+        <button onClick={() => navigate(-1)} className="w-10 h-10 flex items-center justify-center">
+          <ArrowLeft size={20} strokeWidth={2} className="text-white" />
+        </button>
+        <span className="text-white text-[15px] font-bold">Gönderi</span>
+        <div className="w-10" />
+      </div>
+
+      {/* İçerik */}
+      <div className="flex-1 overflow-y-auto" style={{ scrollbarWidth: 'none', paddingBottom: 80 }}>
+
+        {/* Ana post */}
+        <div style={{ borderBottom: '1px solid rgba(255,255,255,0.07)', padding: '12px 16px' }}>
+          <div className="flex gap-3">
+            <div className="w-10 h-10 rounded-full flex items-center justify-center text-lg shrink-0" style={{ background: kullanici.bg }}>
+              {kullanici.avatar}
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-2">
+                <span className="text-white text-[14px] font-bold">{kullanici.kullaniciAdi}</span>
+                <span className="text-gray-600 text-[13px]">{zamanOnce(post.tarih)}</span>
+              </div>
+              <p className="text-white text-[15px] leading-relaxed mt-2">{post.aciklama}</p>
+              {post.etiketler.length > 0 && (
+                <p className="text-blue-400 text-[13px] mt-1">{post.etiketler.map(e => `#${e}`).join(' ')}</p>
+              )}
+              {post.gradyan && (
+                <div className="mt-3 rounded-xl overflow-hidden" style={{ background: post.gradyan, height: 200 }}>
+                  <div className="w-full h-full flex items-center justify-center">
+                    <span className="text-5xl">{post.emoji}</span>
+                  </div>
+                </div>
+              )}
+              <div className="flex items-center gap-5 mt-3">
+                <button onClick={() => { setLiked(!liked); setLikeCount(prev => liked ? prev - 1 : prev + 1) }} className="flex items-center gap-1.5">
+                  <Heart size={18} strokeWidth={1.8} className={liked ? 'text-red-500' : 'text-gray-500'} fill={liked ? '#ef4444' : 'none'} />
+                  <span className="text-gray-500 text-[12px]">{likeCount}</span>
+                </button>
+                <div className="flex items-center gap-1.5">
+                  <MessageCircle size={18} strokeWidth={1.8} className="text-gray-500" />
+                  <span className="text-gray-500 text-[12px]">{tumYorumlar.length}</span>
+                </div>
+                <Repeat2 size={18} strokeWidth={1.8} className="text-gray-500" />
+                <Send size={16} strokeWidth={1.8} className="text-gray-500" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Yorumlar */}
+        {tumYorumlar.map(yorum => {
+          const yorumcu = yorum.kullaniciId === 0
+            ? { kullaniciAdi: 'Sen', avatar: '👤', bg: '#374151' }
+            : SOSYAL_KULLANICILAR.find(k => k.id === yorum.kullaniciId) || { kullaniciAdi: '?', avatar: '?', bg: '#333' }
+
+          return (
+            <div key={yorum.id} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+              <div className="flex gap-3" style={{ padding: '12px 16px' }}>
+                <div className="w-8 h-8 rounded-full flex items-center justify-center text-sm shrink-0" style={{ background: yorumcu.bg }}>
+                  {yorumcu.avatar}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2">
+                    <span className="text-white text-[13px] font-bold">{yorumcu.kullaniciAdi}</span>
+                    <span className="text-gray-600 text-[12px]">{zamanOnce(yorum.tarih)}</span>
+                  </div>
+                  <p className="text-gray-300 text-[13px] leading-relaxed mt-0.5">{yorum.metin}</p>
+                </div>
+              </div>
+
+              {yorum.yanitlar?.map(yanit => {
+                const yanitci = SOSYAL_KULLANICILAR.find(k => k.id === yanit.kullaniciId) || { kullaniciAdi: '?', avatar: '?', bg: '#333' }
                 return (
-                  <div key={yanit.id} className="mb-2">
-                    <p className="text-sm">
-                      <span className="font-semibold text-gray-900">{yanitKullanici?.kullaniciAdi || 'kullanici'}</span>{' '}
-                      <span className="text-gray-700">{yanit.metin}</span>
-                    </p>
-                    <span className="text-gray-400 text-[11px]">{zamanOnce(yanit.tarih)}</span>
+                  <div key={yanit.id} className="flex gap-3" style={{ padding: '8px 16px 12px 56px' }}>
+                    <div className="w-7 h-7 rounded-full flex items-center justify-center text-xs shrink-0" style={{ background: yanitci.bg }}>
+                      {yanitci.avatar}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2">
+                        <span className="text-white text-[12px] font-bold">{yanitci.kullaniciAdi}</span>
+                        <span className="text-gray-600 text-[11px]">{zamanOnce(yanit.tarih)}</span>
+                      </div>
+                      <p className="text-gray-400 text-[12px] mt-0.5">{yanit.metin}</p>
+                    </div>
                   </div>
                 )
               })}
             </div>
-          )}
-        </div>
+          )
+        })}
+        <div ref={bottomRef} />
       </div>
-    </div>
-  )
-}
 
-export default function SosyalPostDetail() {
-  const navigate = useNavigate()
-  const { id } = useParams()
-  const postId = parseInt(id)
-  const post = SOSYAL_POSTLAR.find(p => p.id === postId)
-  const kullanici = post ? SOSYAL_KULLANICILAR.find(k => k.id === post.kullaniciId) : null
-  const yorumlar = SOSYAL_YORUMLAR[postId] || []
-
-  const [liked, setLiked] = useState(false)
-  const [likeCount, setLikeCount] = useState(post?.begeniler?.length || 0)
-  const [saved, setSaved] = useState(false)
-  const [yeniYorum, setYeniYorum] = useState('')
-  const [ekYorumlar, setEkYorumlar] = useState([])
-
-  if (!post || !kullanici) return null
-
-  function yorumGonder() {
-    if (!yeniYorum.trim()) return
-    setEkYorumlar(prev => [...prev, {
-      id: Date.now(),
-      kullaniciId: 0,
-      metin: yeniYorum.trim(),
-      tarih: new Date().toISOString(),
-      begeniler: [],
-      yanitlar: [],
-    }])
-    setYeniYorum('')
-  }
-
-  const tumYorumlar = [...yorumlar, ...ekYorumlar]
-
-  return (
-    <div className="min-h-screen bg-white">
-      {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 flex justify-center backdrop-blur-md" style={{ background: 'rgba(255,255,255,0.9)' }}>
-        <div className="w-full max-w-[430px] flex items-center justify-between" style={{ padding: '10px 20px', height: 56 }}>
-          <button onClick={() => navigate(-1)}>
-            <ArrowLeft size={20} strokeWidth={2} className="text-gray-900" />
-          </button>
-          <h1 className="text-gray-900 text-base font-bold">Gönderi</h1>
-          <div style={{ width: 20 }} />
-        </div>
-      </header>
-
-      {/* İçerik */}
-      <div style={{ paddingTop: 56, paddingBottom: 80, paddingLeft: 20, paddingRight: 20 }}>
-
-        {/* Post Header */}
-        <div className="flex items-center gap-3 py-3">
-          <button onClick={() => navigate(`/sosyal/profil/${kullanici.id}`)} className="w-9 h-9 rounded-full flex items-center justify-center text-lg" style={{ background: kullanici.bg }}>
-            {kullanici.avatar}
-          </button>
-          <button onClick={() => navigate(`/sosyal/profil/${kullanici.id}`)} className="flex-1 text-left">
-            <p className="text-gray-900 text-sm font-semibold">{kullanici.kullaniciAdi}</p>
-          </button>
-          <MoreHorizontal size={18} className="text-gray-400" />
-        </div>
-
-        {/* Görsel */}
-        <div className="w-full rounded-2xl flex items-center justify-center" style={{ background: post.gradyan, aspectRatio: '1/1' }}>
-          <span className="text-7xl">{post.emoji}</span>
-        </div>
-
-        {/* Aksiyonlar */}
-        <div className="flex items-center justify-between mt-3">
-          <div className="flex items-center gap-4">
-            <button onClick={() => { setLiked(!liked); setLikeCount(prev => liked ? prev - 1 : prev + 1) }}>
-              <Heart size={24} strokeWidth={2} className={liked ? 'text-red-500' : 'text-gray-800'} fill={liked ? '#ef4444' : 'none'} />
+      {/* Yorum input */}
+      <div className="shrink-0" style={{ borderTop: '1px solid rgba(255,255,255,0.08)', padding: '10px 16px 28px', background: '#000' }}>
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 rounded-full bg-gray-700 shrink-0" />
+          <div className="flex-1 flex items-center rounded-full" style={{ background: '#1a1a1a', height: 40, padding: '0 4px 0 16px' }}>
+            <input
+              value={yeniYorum}
+              onChange={e => setYeniYorum(e.target.value)}
+              onKeyDown={e => { if (e.key === 'Enter') yorumGonder() }}
+              placeholder="Yanıtla..."
+              className="flex-1 bg-transparent text-white text-[13px] outline-none placeholder-gray-600"
+            />
+            <button
+              onClick={yorumGonder}
+              disabled={!yeniYorum.trim()}
+              className="px-3 py-1.5 rounded-full text-[13px] font-semibold"
+              style={{ color: yeniYorum.trim() ? '#22c55e' : '#374151' }}
+            >
+              Gönder
             </button>
-            <MessageCircle size={24} strokeWidth={2} className="text-gray-800" />
-            <Send size={24} strokeWidth={2} className="text-gray-800" />
           </div>
-          <button onClick={() => setSaved(!saved)}>
-            <Bookmark size={24} strokeWidth={2} className={saved ? 'text-gray-900' : 'text-gray-800'} fill={saved ? '#111827' : 'none'} />
-          </button>
-        </div>
-
-        <p className="text-gray-900 text-sm font-semibold mt-2">{likeCount} beğeni</p>
-
-        <p className="text-gray-800 text-sm mt-1">
-          <span className="font-semibold">{kullanici.kullaniciAdi}</span>{' '}
-          {post.aciklama}
-        </p>
-
-        {post.etiketler.length > 0 && (
-          <p className="text-blue-500 text-sm mt-0.5">
-            {post.etiketler.map(e => `#${e}`).join(' ')}
-          </p>
-        )}
-
-        {/* Yorumlar */}
-        <div className="mt-6">
-          <p className="text-gray-900 text-sm font-semibold mb-4">Yorumlar</p>
-          {tumYorumlar.map(yorum => (
-            <Yorum key={yorum.id} yorum={yorum} kullanicilar={SOSYAL_KULLANICILAR} onYanitGoster={() => {}} />
-          ))}
-          {tumYorumlar.length === 0 && (
-            <p className="text-gray-400 text-sm text-center py-8">Henüz yorum yok</p>
-          )}
-        </div>
-      </div>
-
-      {/* Yorum Input */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center" style={{ background: 'rgba(255,255,255,0.95)', borderTop: '1px solid #f3f4f6' }}>
-        <div className="w-full max-w-[430px] flex items-center gap-3" style={{ padding: '10px 20px' }}>
-          <div className="w-8 h-8 rounded-full bg-gray-300 shrink-0" />
-          <input
-            type="text"
-            value={yeniYorum}
-            onChange={e => setYeniYorum(e.target.value)}
-            onKeyDown={e => e.key === 'Enter' && yorumGonder()}
-            placeholder="Yorum ekle..."
-            className="flex-1 bg-gray-100 rounded-full px-4 py-2 text-sm outline-none"
-          />
-          <button onClick={yorumGonder} className="text-blue-500 text-sm font-semibold">Paylaş</button>
         </div>
       </div>
     </div>
